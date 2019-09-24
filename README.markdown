@@ -1,6 +1,10 @@
 ammo.js
 =======
 
+# Node.js install for Cocos Creator 3D
+
+Install module via npm for cocos creator 3d:
+usage : `npm install github:cocos-creator/ammo.js#cocos-master --save-dev`。
 
 # Demos
 
@@ -34,7 +38,6 @@ ammo.js is zlib licensed, just like Bullet.
 
 Discussion takes place on IRC at #emscripten on Mozilla's server
 (irc.mozilla.org)
-
 
 Instructions
 ------------
