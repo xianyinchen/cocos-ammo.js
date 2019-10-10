@@ -47,6 +47,7 @@ declare namespace Ammo {
     public setZ (z: number): void;
     public setValue (x: number, y: number, z: number): void;
     public normalize (): void;
+    /**[Value] */
     public rotate (wAxis: btVector3, angle: number): btVector3;
     public dot (v: btVector3): number;
     public op_mul (x: number): btVector3;
@@ -83,8 +84,11 @@ declare namespace Ammo {
     public length2 (): number;
     public length (): number;
     public dot (q: btQuaternion): number;
+    /**[Value] */
     public normalized (): btQuaternion;
+    /**[Value] */
     public getAxis (): btVector3;
+    /**[Value] */
     public inverse (): btQuaternion;
     public getAngle (): number;
     public getAngleShortestPath (): number;
@@ -109,9 +113,13 @@ declare namespace Ammo {
     public setOrigin (origin: btVector3): void;
     public setRotation (rotation: btQuaternion): void;
     public getOrigin (): btVector3;
+    /**[Value] */
     public getRotation (): btQuaternion;
     public getBasis (): btMatrix3x3;
     public setFromOpenGLMatrix (m: number[]): void;
+    /**[Value] */
+    public inverse (): btTransform;
+    public op_mul (t: btTransform): btTransform;
   }
 
   class btMotionState {
@@ -335,6 +343,7 @@ declare namespace Ammo {
   class btCompoundShape extends btCollisionShape {
     constructor (enableDynamicAabbTree?: boolean);
     public addChildShape (localTransform: btTransform, shape: btCollisionShape): void;
+    public removeChildShape (shape: btCollisionShape): void;
     public removeChildShapeByIndex (childShapeindex: number): void;
     public getNumChildShapes (): number;
     public getChildShape (index: number): btCollisionShape;
@@ -474,6 +483,8 @@ declare namespace Ammo {
     public getCenterOfMassTransform (): btTransform;
     public setCenterOfMassTransform (xform: btTransform): void;
     public setSleepingThresholds (linear: number, angular: number): void;
+    public getLinearDamping (): number;
+    public getAngularDamping (): number;
     public setDamping (lin_damping: number, ang_damping: number): void;
     public setMassProps (mass: number, inertia: btVector3): void;
     public setLinearFactor (linearFactor: btVector3): void;
@@ -493,11 +504,14 @@ declare namespace Ammo {
     public getMotionState (): btMotionState;
     public setMotionState (motionState: btMotionState): void;
     public setAngularFactor (angularFactor: btVector3): void;
+    public getAngularFactor (): btVector3;
+    public getLinearFactor (): btVector3;
     public upcast (colObj: btCollisionObject): btRigidBody;
     public getAabb (aabbMin: btVector3, aabbMax: btVector3): void;
     public applyGravity (): void;
     public getGravity (): btVector3;
     public setGravity (acceleration: btVector3): void;
+    public getBroadphaseProxy (): btBroadphaseProxy;
   }
 
   class btConstraintSetting {
@@ -759,6 +773,11 @@ declare namespace Ammo {
       maxSubSteps?: number,
       fixedTimeStep?: number,
     ): number;
+
+    // Contact callback support
+    public setContactAddedCallback (funcpointer: number): void;
+    public setContactProcessedCallback (funcpointer: number): void;
+    public setContactDestroyedCallback (funcpointer: number): void;
   }
 
   class btVehicleTuning {
@@ -786,7 +805,10 @@ declare namespace Ammo {
   }
 
   class btDefaultVehicleRaycaster extends btVehicleRaycaster {
-    constructor (world: btDynamicsWorld);
+    // constructor (world: btDynamicsWorld);
+    public addAction (action: btActionInterface): void;
+    public removeAction (action: btActionInterface): void;
+    public getSolverInfo (): btContactSolverInfo;
   }
 
   class RaycastInfo {
