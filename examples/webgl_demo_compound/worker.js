@@ -15,13 +15,23 @@ Ammo().then(function(Ammo) {
   var dynamicsWorld = new Ammo.btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
   dynamicsWorld.setGravity(new Ammo.btVector3(0, -10, 0));
 
-  var groundShape = new Ammo.btBoxShape(new Ammo.btVector3(50, 50, 50));
+  var box1 = new Ammo.btBoxShape(new Ammo.btVector3(50, 1, 50));
+  var box1Trans = new Ammo.btTransform();
+  box1Trans.setIdentity();
+
+  var sphere1 = new Ammo.btSphereShape(5);  
+  var sphere1Trans = new Ammo.btTransform();
+  sphere1Trans.setIdentity();
+
+  var groundShape = new Ammo.btCompoundShape(true);
+  groundShape.addChildShape(box1Trans, box1);
+  groundShape.addChildShape(sphere1Trans, sphere1);
 
   var bodies = [];
 
   var groundTransform = new Ammo.btTransform();
   groundTransform.setIdentity();
-  groundTransform.setOrigin(new Ammo.btVector3(0, -56, 0));
+  groundTransform.setOrigin(new Ammo.btVector3(0, -5, 0));
 
   (function() {
     var mass = 0;
@@ -110,6 +120,14 @@ Ammo().then(function(Ammo) {
         break;
       }
     }
+
+    /** 更新 transform */
+    if(sphere1Trans.getOrigin().y() == 1){
+      sphere1Trans.getOrigin().setY(0);
+    }else{
+      sphere1Trans.getOrigin().setY(1);
+    }
+    groundShape.updateChildTransform(1, sphere1Trans, true);
     return false;
   }
 

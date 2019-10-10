@@ -11,7 +11,7 @@
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:8080",
             "webRoot": "${workspaceFolder}",
-            "file": "${workspaceFolder}/examples/webgl_demo/ammo.html",
+            "file": "${workspaceFolder}/examples/webgl_demo_compound/ammo.html",
             "runtimeArgs": [
                 "-–allow-file-access-from-files",
                 "--disable-web-security"
