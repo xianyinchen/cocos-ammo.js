@@ -19,7 +19,10 @@ Ammo().then(function(Ammo) {
   var box1Trans = new Ammo.btTransform();
   box1Trans.setIdentity();
 
-  var sphere1 = new Ammo.btSphereShape(5);  
+  var spVec3 = new Ammo.btVector3(5, 5, 5);
+  var sphere1 = new Ammo.btBoxShape(spVec3);
+  // sphere1.setLocalScaling(new Ammo.btVector3(2, 2, 2)); working 
+  // var sphere1 = new Ammo.btSphereShape(5);
   var sphere1Trans = new Ammo.btTransform();
   sphere1Trans.setIdentity();
 
@@ -31,14 +34,16 @@ Ammo().then(function(Ammo) {
 
   var groundTransform = new Ammo.btTransform();
   groundTransform.setIdentity();
-  groundTransform.setOrigin(new Ammo.btVector3(0, -5, 0));
+  groundTransform.setOrigin(new Ammo.btVector3(0, -7, 0));
+
+  var groundBody;
 
   (function() {
     var mass = 0;
     var localInertia = new Ammo.btVector3(0, 0, 0);
     var myMotionState = new Ammo.btDefaultMotionState(groundTransform);
     var rbInfo = new Ammo.btRigidBodyConstructionInfo(0, myMotionState, groundShape, localInertia);
-    var body = new Ammo.btRigidBody(rbInfo);
+    var body = groundBody = new Ammo.btRigidBody(rbInfo);
 
     dynamicsWorld.addRigidBody(body);
     bodies.push(body);
@@ -80,7 +85,7 @@ Ammo().then(function(Ammo) {
       var myMotionState = new Ammo.btDefaultMotionState(startTransform);
       var rbInfo = new Ammo.btRigidBodyConstructionInfo(mass, myMotionState, boxShape, localInertia);
       var body = new Ammo.btRigidBody(rbInfo);
-
+      body.setActivationState( 4 );
       dynamicsWorld.addRigidBody(body);
       bodies.push(body);
     });
@@ -106,6 +111,36 @@ Ammo().then(function(Ammo) {
 
   var nextTimeToRestart = 0;
   function timeToRestart() { // restart if at least one is inactive - the scene is starting to get boring
+    
+    /** 更新子形状 scale */    
+    /** 更新子形状 rotation */
+    let y = sphere1.getLocalScaling().y();
+    if(y < 10){
+      y += 0.01;
+      /** scaling sub shape */
+      sphere1.setLocalScaling(new Ammo.btVector3(y,y,y));
+      groundShape.updateChildTransform(1, sphere1Trans, true);
+
+      // dynamicsWorld.removeRigidBody(groundBody);
+      // groundShape.removeChildShape(sphere1);
+      // sphere1Trans.setIdentity();
+      // groundShape.addChildShape(sphere1Trans, sphere1);
+      
+      // dynamicsWorld.addRigidBody(groundBody);
+
+
+      // dynamicsWorld.updateSingleAabb(groundBody);
+            
+      //not work      
+      // groundShape.removeChildShapeByIndex(1);
+
+      // not work
+      // dynamicsWorld.updateSingleAabb(bodies[0]);
+      // spVec3.setX(4 + y);
+      // spVec3.setY(4 + y);
+      // spVec3.setZ(4 + y);
+    }
+
     if (nextTimeToRestart) {
       if (Date.now() >= nextTimeToRestart) {
         nextTimeToRestart = 0;
@@ -121,13 +156,22 @@ Ammo().then(function(Ammo) {
       }
     }
 
-    /** 更新 transform */
-    if(sphere1Trans.getOrigin().y() == 1){
-      sphere1Trans.getOrigin().setY(0);
-    }else{
-      sphere1Trans.getOrigin().setY(1);
-    }
-    groundShape.updateChildTransform(1, sphere1Trans, true);
+    // if(0) {
+    //   /** 更新子形状 pos */
+    //   if(sphere1Trans.getOrigin().y() == 1){
+    //     sphere1Trans.getOrigin().setY(0);
+    //   }else{
+    //     sphere1Trans.getOrigin().setY(1);
+    //   }
+    //   groundShape.updateChildTransform(1, sphere1Trans, true);
+    // } else {
+    //   /** 动态移除、添加子形状 */
+    //   if(groundShape.getNumChildShapes() >=2){
+    //     groundShape.removeChildShapeByIndex(1);
+    //   } else {
+    //     groundShape.addChildShape(sphere1Trans, sphere1);
+    //   }
+    // }
     return false;
   }
 
