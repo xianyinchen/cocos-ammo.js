@@ -340,6 +340,7 @@ declare namespace Ammo {
     public getChildShape (index: number): btCollisionShape;
     public setMargin (margin: number): void;
     public getMargin (): number;
+    public updateChildTransform (childIndex: number, newChildTransform: btTransform, shouldRecalculateLocalAabb?: boolean): void;
   }
 
   class btStridingMeshInterface { }
