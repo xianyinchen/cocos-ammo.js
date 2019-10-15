@@ -113,6 +113,18 @@
           var floor_ = new CubicVR.SceneObject({ mesh: floorMesh, position: [0, FLOOR_HEIGHT, 0] });
           scene.bindSceneObject(floor_, true);
 
+          var cc_mesh = new CubicVR.primitives.box({
+              size: 1.0,
+              material: boxMaterials[0],
+              uvmapper: {
+                projectionMode: CubicVR.enums.uv.projection.CUBIC,
+                scale: [2, 2, 2]
+              }
+          }).calcNormals().triangulateQuads().compile().clean();
+
+          var cc_box = new CubicVR.SceneObject({ mesh: cc_mesh, position: [0, 0, 0], scale: [10, 10, 10] });
+          scene.bindSceneObject(cc_box, true);
+
           // Worker
 
           if (physicsWorker) physicsWorker.terminate();
@@ -122,7 +134,7 @@
 
           physicsWorker.onmessage = function(event) {
             var data = event.data;
-            if (data.objects.length != NUM) return;
+            // if (data.objects.length != NUM) return;
             for (var i = 0; i < NUM; i++) {
               var physicsObject = data.objects[i];
               var renderObject = boxes[i];
@@ -135,6 +147,18 @@
               quaternion.w = physicsObject[6];
               renderObject.rotation = quaternion.toEuler();
             }
+            
+            var physicsObject = data.objects[NUM];
+            var renderObject = cc_box;
+            renderObject.position[0] = physicsObject[0];
+            renderObject.position[1] = physicsObject[1];
+            renderObject.position[2] = physicsObject[2];
+            quaternion.x = physicsObject[3];
+            quaternion.y = physicsObject[4];
+            quaternion.z = physicsObject[5];
+            quaternion.w = physicsObject[6];
+            renderObject.rotation = quaternion.toEuler();
+
             currFPS = data.currFPS;
             allFPS = data.allFPS;
           };

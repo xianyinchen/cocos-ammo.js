@@ -21,9 +21,15 @@ Ammo().then(function(Ammo) {
 
   var spVec3 = new Ammo.btVector3(5, 5, 5);
   var sphere1 = new Ammo.btBoxShape(spVec3);
+  
   // sphere1.setLocalScaling(new Ammo.btVector3(2, 2, 2)); working 
+
   // var sphere1 = new Ammo.btSphereShape(5);
-  var sphere1Trans = new Ammo.btTransform();
+  var s1_localPos = new Ammo.btVector3();
+  var s1_localRot = new Ammo.btQuaternion();
+  var s1_localEuler = new Ammo.btVector3(0, 0, 0);
+  // s1_localRot.setEulerZYX(45, 45, 45); working
+  var sphere1Trans = new Ammo.btTransform(s1_localRot, s1_localPos);
   sphere1Trans.setIdentity();
 
   var groundShape = new Ammo.btCompoundShape(true);
@@ -112,33 +118,61 @@ Ammo().then(function(Ammo) {
   var nextTimeToRestart = 0;
   function timeToRestart() { // restart if at least one is inactive - the scene is starting to get boring
     
-    /** 更新子形状 scale */    
-    /** 更新子形状 rotation */
-    let y = sphere1.getLocalScaling().y();
-    if(y < 10){
-      y += 0.01;
-      /** scaling sub shape */
-      sphere1.setLocalScaling(new Ammo.btVector3(y,y,y));
+    globalThis.CC_UPDATE_SCALE = true;
+    globalThis.CC_UPDATE_POSITION = true;
+    globalThis.CC_UPDATE_ROTATION = true;
+
+    if(globalThis.CC_UPDATE_SCALE){
+      /** 更新子形状 scale */
+      let y = sphere1.getLocalScaling().y();
+      if(y < 10){
+        y += 0.01;
+        /** scaling sub shape */
+        sphere1.setLocalScaling(new Ammo.btVector3(y,y,y));
+        groundShape.updateChildTransform(1, sphere1Trans, true);
+        
+        // not work
+        // dynamicsWorld.removeRigidBody(groundBody);
+        // groundShape.removeChildShape(sphere1);
+        // sphere1Trans.setIdentity();
+        // groundShape.addChildShape(sphere1Trans, sphere1);
+        
+        // dynamicsWorld.addRigidBody(groundBody);
+
+        // not work
+        // dynamicsWorld.updateSingleAabb(groundBody);
+              
+        // not work
+        // groundShape.removeChildShapeByIndex(1);
+
+        // not work
+        // dynamicsWorld.updateSingleAabb(bodies[0]);
+        // spVec3.setX(4 + y);
+        // spVec3.setY(4 + y);
+        // spVec3.setZ(4 + y);
+      }
+    }
+    if(globalThis.CC_UPDATE_POSITION){
+      /** translate sub shape */
+      if(sphere1Trans.getOrigin().y() == 2){
+        sphere1Trans.getOrigin().setY(0);
+      }else{
+        sphere1Trans.getOrigin().setY(sphere1Trans.getOrigin().y() + 0.01);
+      }
       groundShape.updateChildTransform(1, sphere1Trans, true);
-
-      // dynamicsWorld.removeRigidBody(groundBody);
-      // groundShape.removeChildShape(sphere1);
-      // sphere1Trans.setIdentity();
-      // groundShape.addChildShape(sphere1Trans, sphere1);
-      
-      // dynamicsWorld.addRigidBody(groundBody);
-
-
-      // dynamicsWorld.updateSingleAabb(groundBody);
-            
-      //not work      
-      // groundShape.removeChildShapeByIndex(1);
-
-      // not work
-      // dynamicsWorld.updateSingleAabb(bodies[0]);
-      // spVec3.setX(4 + y);
-      // spVec3.setY(4 + y);
-      // spVec3.setZ(4 + y);
+    }
+    if(globalThis.CC_UPDATE_ROTATION){
+      /** rotate sub shape */      
+      if(s1_localEuler.y() == 45){
+        s1_localEuler.setValue(0, 0, 0);
+        s1_localRot.setEulerZYX(s1_localEuler.z(), s1_localEuler.y(), s1_localEuler.x());
+      }else{
+        var e = 0.01;
+        s1_localEuler.setValue(0, s1_localEuler.y() + e, 0);        
+        s1_localRot.setEulerZYX(s1_localEuler.z(), s1_localEuler.y(), s1_localEuler.x());
+      }
+      sphere1Trans.setRotation(s1_localRot);
+      groundShape.updateChildTransform(1, sphere1Trans, true);
     }
 
     if (nextTimeToRestart) {
@@ -201,6 +235,21 @@ Ammo().then(function(Ammo) {
       readBulletObject(i+1, object);
       data.objects[i] = object;
     }
+
+    groundBody.getMotionState().getWorldTransform(transform);
+    var origin1 = transform.getOrigin();
+    var rotation1 = transform.getRotation();
+    var origin = sphere1Trans.getOrigin();
+    object[0] = origin1.x() + origin.x();
+    object[1] = origin1.y() + origin.y();
+    object[2] = origin1.z() + origin.z();
+    var rotation = sphere1Trans.getRotation();
+    // rotation.op_mulq(rotation1);
+    object[3] = rotation.x();
+    object[4] = rotation.y();
+    object[5] = rotation.z();
+    object[6] = rotation.w();
+    data.objects[NUM] = object;
 
     postMessage(data);
 
