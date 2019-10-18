@@ -19,12 +19,12 @@ Ammo().then(function(Ammo) {
   var box1Trans = new Ammo.btTransform();
   box1Trans.setIdentity();
 
-  var spVec3 = new Ammo.btVector3(5, 5, 5);
-  var sphere1 = new Ammo.btBoxShape(spVec3);
+  // var spVec3 = new Ammo.btVector3(5, 5, 5);
+  // var sphere1 = new Ammo.btBoxShape(spVec3);
   
   // sphere1.setLocalScaling(new Ammo.btVector3(2, 2, 2)); working 
 
-  // var sphere1 = new Ammo.btSphereShape(5);
+  var sphere1 = new Ammo.btSphereShape(5);
   var s1_localPos = new Ammo.btVector3();
   var s1_localRot = new Ammo.btQuaternion();
   var s1_localEuler = new Ammo.btVector3(0, 0, 0);
@@ -119,17 +119,21 @@ Ammo().then(function(Ammo) {
   function timeToRestart() { // restart if at least one is inactive - the scene is starting to get boring
     
     globalThis.CC_UPDATE_SCALE = true;
-    globalThis.CC_UPDATE_POSITION = true;
-    globalThis.CC_UPDATE_ROTATION = true;
+    // globalThis.CC_UPDATE_POSITION = true;
+    // globalThis.CC_UPDATE_ROTATION = true;
 
     if(globalThis.CC_UPDATE_SCALE){
       /** 更新子形状 scale */
       let y = sphere1.getLocalScaling().y();
-      if(y < 10){
+      if(y < 100){
         y += 0.01;
         /** scaling sub shape */
         sphere1.setLocalScaling(new Ammo.btVector3(y,y,y));
         groundShape.updateChildTransform(1, sphere1Trans, true);
+        
+        // not work
+        // sphere1.getLocalScaling().setValue(y,y,y);
+        // groundShape.updateChildTransform(1, sphere1Trans, true);
         
         // not work
         // dynamicsWorld.removeRigidBody(groundBody);

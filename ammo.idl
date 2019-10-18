@@ -210,6 +210,17 @@ interface btManifoldPoint {
   [Value] attribute btVector3 m_positionWorldOnA;
   [Value] attribute btVector3 m_normalWorldOnB;
   
+  [Value]	attribute double m_distance1;
+	[Value]	attribute double m_combinedFriction;
+	[Value]	attribute double m_combinedRollingFriction;
+	[Value]	attribute double m_combinedRestitution;
+
+  //BP mod, store contact triangles.
+  [Value] attribute int m_partId0;
+  [Value] attribute	int m_partId1;
+  [Value] attribute	int m_index0;
+  [Value] attribute	int m_index1;
+
   // Contact callback support
   attribute any m_userPersistentData;
 };
@@ -579,6 +590,8 @@ interface btRigidBody {
   [Const, Ref] btVector3 getGravity();
   void setGravity([Const, Ref] btVector3 acceleration);
   [Const] btBroadphaseProxy getBroadphaseProxy();
+  [Const] float getFlags();
+  void setFlags(int flags);
 };
 btRigidBody implements btCollisionObject;
 

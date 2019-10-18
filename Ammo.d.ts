@@ -456,6 +456,11 @@ declare namespace Ammo {
     constructor ();
   }
 
+  interface btBroadphaseProxy {
+    m_collisionFilterGroup: number;
+    m_collisionFilterMask: number;
+  }
+
   class btRigidBodyConstructionInfo {
 
     public m_linearDamping: number;
@@ -512,6 +517,8 @@ declare namespace Ammo {
     public getGravity (): btVector3;
     public setGravity (acceleration: btVector3): void;
     public getBroadphaseProxy (): btBroadphaseProxy;
+    public getFlags (): number;
+    public setFlags (flags: number): void;
   }
 
   class btConstraintSetting {
