@@ -278,6 +278,9 @@ interface btCollisionShape {
   void calculateLocalInertia(float mass, [Ref] btVector3 inertia);
   void setMargin(float margin);
   float getMargin();
+  boolean isCompound();  
+  VoidPtr getUserPointer();
+  void setUserPointer(VoidPtr userPointer);
 };
 
 interface btConvexShape {
