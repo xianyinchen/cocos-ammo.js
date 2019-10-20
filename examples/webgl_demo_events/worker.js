@@ -16,6 +16,8 @@ Ammo().then(function (Ammo) {
   dynamicsWorld.setGravity(new Ammo.btVector3(0, -10, 0));
 
   var groundShape = new Ammo.btBoxShape(new Ammo.btVector3(50, 50, 50));
+  var gsTransform = new Ammo.btTransform();
+  gsTransform.setIdentity();
 
   var bodies = [];
 
@@ -27,7 +29,18 @@ Ammo().then(function (Ammo) {
     var mass = 0;
     var localInertia = new Ammo.btVector3(0, 0, 0);
     var myMotionState = new Ammo.btDefaultMotionState(groundTransform);
-    var rbInfo = new Ammo.btRigidBodyConstructionInfo(0, myMotionState, groundShape, localInertia);
+    var com = new Ammo.btCompoundShape(true);
+    // var shape = new Ammo.btSphereShape(1);
+    // var ssTransform = new Ammo.btTransform();
+    // ssTransform.setIdentity();
+    // com.addChildShape(ssTransform, shape);
+    com.addChildShape(gsTransform, groundShape);
+    var rbInfo;
+    if (0) {
+      rbInfo = new Ammo.btRigidBodyConstructionInfo(0, myMotionState, com, localInertia);
+    } else {
+      rbInfo = new Ammo.btRigidBodyConstructionInfo(0, myMotionState, groundShape, localInertia);
+    }
     var body = new Ammo.btRigidBody(rbInfo);
 
     dynamicsWorld.addRigidBody(body);
@@ -61,14 +74,27 @@ Ammo().then(function (Ammo) {
 
   function startUp () {
     NUMRANGE.forEach(function (i) {
+      
+      var com;
+      if( 1 /** 0 : single, 1 : compound */) {
+        com = new Ammo.btCompoundShape(true);
+
+        var boxTrans0 = new Ammo.btTransform();
+        boxTrans0.setIdentity();      
+        com.addChildShape(boxTrans0, boxShape);
+        
+        var boxTrans1 = new Ammo.btTransform();
+        boxTrans1.setIdentity();
+        boxTrans1.getOrigin().setValue(-2, -2, 0);
+        com.addChildShape(boxTrans1, boxShape);
+      } else {       
+        com = boxShape;
+      }
+
       var startTransform = new Ammo.btTransform();
       startTransform.setIdentity();
-      var mass = 1;
+      var mass = 1; 
       var localInertia = new Ammo.btVector3(0, 0, 0);
-      var boxTrans = new Ammo.btTransform();
-      boxTrans.setIdentity();
-      var com = new Ammo.btCompoundShape(true);
-      com.addChildShape(boxTrans, boxShape);
       com.calculateLocalInertia(mass, localInertia);
       var myMotionState = new Ammo.btDefaultMotionState(startTransform);
       var rbInfo = new Ammo.btRigidBodyConstructionInfo(mass, myMotionState, com, localInertia);
@@ -165,7 +191,17 @@ Ammo().then(function (Ammo) {
           // manifoldPoint.m_localPointA
           // manifoldPoint.m_localPointB
           // manifoldPoint.m_normalWorldOnB
-          console.log('A:', indexA, 'B:', indexB);
+          console.log('manifoldPoint',{
+            m_distance1: manifoldPoint.m_distance1,
+            m_combinedFriction: manifoldPoint.m_combinedFriction,
+            m_combinedRollingFriction: manifoldPoint.m_combinedRollingFriction,
+            m_combinedRestitution: manifoldPoint.m_combinedRestitution,
+            m_partId0: manifoldPoint.m_partId0,
+            m_partId1: manifoldPoint.m_partId1,
+            m_index0: manifoldPoint.m_index0,
+            m_index1: manifoldPoint.m_index1,
+            m_userPersistentData: manifoldPoint.m_userPersistentData,
+          });
           break;
         }
       }
