@@ -196,6 +196,20 @@ declare namespace Ammo {
 
     public get_m_positionWorldOnB (): btVector3;
     public get_m_normalWorldOnB (): btVector3;
+
+    public m_distance1: number;
+    public m_combinedFriction: number;
+    public m_combinedRollingFriction: number;
+    public m_combinedRestitution: number;
+
+    //BP mod, store contact triangles.
+    public m_partId0: number;
+    public m_partId1: number;
+    public m_index0: number;
+    public m_index1: number;
+
+    // Contact callback support
+    public m_userPersistentData: any;
   }
 
   class ContactResultCallback {
