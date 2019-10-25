@@ -120,7 +120,8 @@ btDefaultMotionState implements btMotionState;
 interface btCollisionObject {
   void setAnisotropicFriction([Const, Ref] btVector3 anisotropicFriction, long frictionMode);
   btCollisionShape getCollisionShape();
-  void setContactProcessingThreshold(float contactProcessingThreshold);
+  void setContactProcessingThreshold(float contactProcessingThreshold);  
+  long getActivationState();
   void setActivationState(long newState);
   void forceActivationState(long newState);
   void activate(optional boolean forceActivation);
@@ -595,6 +596,7 @@ interface btRigidBody {
   [Const] btBroadphaseProxy getBroadphaseProxy();
   [Const] long getFlags();
   void setFlags(long flags);
+  boolean wantsSleeping();
 };
 btRigidBody implements btCollisionObject;
 

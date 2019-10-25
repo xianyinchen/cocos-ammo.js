@@ -139,6 +139,7 @@ declare namespace Ammo {
     ): void;
     public getCollisionShape (): btCollisionShape;
     public setContactProcessingThreshold (contactProcessingThreshold: number): void;
+    public getActivationState (): number;
     public setActivationState (newState: number): void;
     public forceActivationState (newState: number): void;
     public activate (forceActivation?: boolean): void;
@@ -533,6 +534,7 @@ declare namespace Ammo {
     public getBroadphaseProxy (): btBroadphaseProxy;
     public getFlags (): number;
     public setFlags (flags: number): void;
+    public wantsSleeping (): boolean;
   }
 
   class btConstraintSetting {
