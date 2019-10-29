@@ -533,6 +533,7 @@ interface btCollisionConfiguration {
 interface btDbvtBroadphase {
   void btDbvtBroadphase();
 };
+btDbvtBroadphase implements btBroadphaseInterface;
 
 interface btBroadphaseProxy {
   attribute long m_collisionFilterGroup;
