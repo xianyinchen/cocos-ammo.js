@@ -451,6 +451,7 @@ declare namespace Ammo {
     public setInternalGhostPairCallback (
       ghostPairCallback: btOverlappingPairCallback,
     ): void;
+    getNumOverlappingPairs (): number;
   }
 
   class btAxisSweep3 {
@@ -463,11 +464,13 @@ declare namespace Ammo {
     );
   }
 
-  class btBroadphaseInterface { }
+  class btBroadphaseInterface {
+    getOverlappingPairCache (): btOverlappingPairCache;
+  }
 
   class btCollisionConfiguration { }
 
-  class btDbvtBroadphase {
+  class btDbvtBroadphase extends btBroadphaseInterface {
     constructor ();
   }
 
