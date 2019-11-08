@@ -163,6 +163,7 @@ interface RayResultCallback {
   boolean hasHit();
   attribute short m_collisionFilterGroup;
   attribute short m_collisionFilterMask;
+  attribute long m_shapePart;
   attribute float m_closestHitFraction;
   [Const] attribute btCollisionObject m_collisionObject;
 };
@@ -181,11 +182,13 @@ ClosestRayResultCallback implements RayResultCallback;
 interface btConstCollisionObjectArray {
   long size();
   [Const] btCollisionObject at(long n);
+  void clear();
 };
 
 interface btScalarArray {
   long size();
   float at(long n);
+  void clear();
 };
 
 [Prefix="btCollisionWorld::"]
@@ -198,6 +201,7 @@ interface AllHitsRayResultCallback {
   [Value] attribute btVector3Array m_hitNormalWorld;
   [Value] attribute btVector3Array m_hitPointWorld;
   [Value] attribute btScalarArray m_hitFractions;
+  [Value] attribute btIntArray m_shapeParts;
 };
 AllHitsRayResultCallback implements RayResultCallback;
 
@@ -366,6 +370,7 @@ btConeShape implements btCollisionShape;
 interface btIntArray {
   long size();
   long at(long n);
+  void clear();
 };
 
 interface btFace {

@@ -184,6 +184,26 @@ declare namespace Ammo {
     public get_m_hitNormalWorld (): btVector3;
   }
 
+  interface btArray<T> {
+    clear (): void;
+    size (): number;
+    at (n: number): T;
+  }
+  interface btNumberArray extends btArray<number> { }
+  interface btConstCollisionObjectArray extends btArray<btCollisionObject> { }
+
+  class AllHitsRayResultCallback extends RayResultCallback {
+    public m_rayFromWorld: btVector3;
+    public m_rayToWorld: btVector3;
+    public m_hitNormalWorld: btVector3;
+    public m_hitPointWorld: btVector3;
+    constructor (from: btVector3, to: btVector3);
+    public get_m_hitPointWorld (): btVector3;
+    public get_m_hitNormalWorld (): btVector3;
+    public m_hitFractions: btNumberArray;
+    public m_collisionObjects: btConstCollisionObjectArray;
+  }
+
   class btManifoldPoint {
     public m_localPointA: btVector3;
     public m_localPointB: btVector3;
