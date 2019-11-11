@@ -18,6 +18,8 @@ subject to the following restrictions:
 #include "BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
 #include "BulletCollision/CollisionDispatch/btCollisionObject.h"
 #include "BulletCollision/CollisionDispatch/btCollisionObjectWrapper.h"
+#include "BulletCollision/CollisionShapes/btCollisionShape.h"
+#include "BulletCollision/CollisionShapes/btCompoundShape.h"
 
 ///This is to allow MaterialCombiner/Custom Friction/Restitution values
 ContactAddedCallback		gContactAddedCallback=0;
@@ -106,12 +108,42 @@ void btManifoldResult::addContactPoint(const btVector3& normalOnBInWorld,const b
 	
 	int insertIndex = m_manifoldPtr->getCacheEntry(newPt);
 
-	newPt.m_combinedFriction = calculateCombinedFriction(m_body0Wrap->getCollisionObject(),m_body1Wrap->getCollisionObject());
-	newPt.m_combinedRestitution = calculateCombinedRestitution(m_body0Wrap->getCollisionObject(),m_body1Wrap->getCollisionObject());
-	newPt.m_combinedRollingFriction = calculateCombinedRollingFriction(m_body0Wrap->getCollisionObject(),m_body1Wrap->getCollisionObject());
-	btPlaneSpace1(newPt.m_normalWorldOnB,newPt.m_lateralFrictionDir1,newPt.m_lateralFrictionDir2);
-	
+	// newPt.m_combinedFriction = calculateCombinedFriction(m_body0Wrap->getCollisionObject(),m_body1Wrap->getCollisionObject());
+	// newPt.m_combinedRestitution = calculateCombinedRestitution(m_body0Wrap->getCollisionObject(),m_body1Wrap->getCollisionObject());
+	// newPt.m_combinedRollingFriction = calculateCombinedRollingFriction(m_body0Wrap->getCollisionObject(),m_body1Wrap->getCollisionObject());
+	// btPlaneSpace1(newPt.m_normalWorldOnB,newPt.m_lateralFrictionDir1,newPt.m_lateralFrictionDir2);
 
+	const btCollisionShape* collisionShape0 = m_body0Wrap->getCollisionShape();
+	btScalar friction0 = m_body0Wrap->getCollisionObject()->getFriction();
+	btScalar restitution0 = m_body0Wrap->getCollisionObject()->getRestitution();
+	btScalar rollingFriction0 = m_body0Wrap->getCollisionObject()->getRollingFriction();
+	if (collisionShape0->isCompound()){
+		const btCompoundShape* compoundShape0 = static_cast<const btCompoundShape*>(collisionShape0);
+		if (compoundShape0->isMutiMaterial()) {
+			friction0 = compoundShape0->getFriction(m_index0);
+			restitution0 = compoundShape0->getRestitution(m_index0);
+			rollingFriction0 = compoundShape0->getRollingFriction(m_index0);
+		}
+	}
+	
+	
+	const btCollisionShape* collisionShape1 = m_body1Wrap->getCollisionShape();
+	btScalar friction1 = m_body1Wrap->getCollisionObject()->getFriction();
+	btScalar restitution1 = m_body1Wrap->getCollisionObject()->getRestitution();
+	btScalar rollingFriction1 = m_body1Wrap->getCollisionObject()->getRollingFriction();
+	if (collisionShape1->isCompound()){
+		const btCompoundShape* compoundShape1 = static_cast<const btCompoundShape*>(collisionShape1);
+		if (compoundShape1->isMutiMaterial()) {
+			friction1 = compoundShape1->getFriction(m_index1);
+			restitution1 = compoundShape1->getRestitution(m_index1);
+			rollingFriction1 = compoundShape1->getRollingFriction(m_index1);
+		}
+	}
+
+	newPt.m_combinedFriction = friction0 * friction1;
+	newPt.m_combinedRestitution = restitution0 * restitution1;
+	newPt.m_combinedRollingFriction = rollingFriction0 * rollingFriction1;
+	btPlaneSpace1(newPt.m_normalWorldOnB,newPt.m_lateralFrictionDir1,newPt.m_lateralFrictionDir2);
 	
    //BP mod, store contact triangles.
 	if (isSwapped)
