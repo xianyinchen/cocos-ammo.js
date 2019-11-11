@@ -481,11 +481,14 @@ void	btCollisionWorld::rayTestSingleInternal(const btTransform& rayFromTrans,con
 					virtual btScalar addSingleResult (btCollisionWorld::LocalRayResult &r, bool b)
 					{
 						btCollisionWorld::LocalShapeInfo shapeInfo;
-						shapeInfo.m_shapePart = -1;
+						shapeInfo.m_shapePart = m_i;
 						shapeInfo.m_triangleIndex = m_i;
 						if (r.m_localShapeInfo == NULL)
 							r.m_localShapeInfo = &shapeInfo;
-
+						else {
+							r.m_localShapeInfo->m_shapePart = m_i;
+							r.m_localShapeInfo->m_triangleIndex = m_i;
+						}
 						const btScalar result = m_userCallback->addSingleResult(r, b);
 						m_closestHitFraction = m_userCallback->m_closestHitFraction;
 						return result;
