@@ -591,6 +591,16 @@
 						intersectionNormal.set(normal.x(), normal.y(), normal.z());
 					}
 
+					const co = closestRayResultCallback.m_collisionObject;
+					const cs = co.getCollisionShape();
+					const sp = closestRayResultCallback.m_shapePart;
+					if (cs.isCompound()) {
+						var csCom = Ammo.castObject(cs, Ammo.btCompoundShape);
+						console.log('com', sp, '- num', csCom.getNumChildShapes());
+					} else {
+						console.log('single', sp);
+					}
+
 					return true;
 
 				} else {
@@ -625,18 +635,19 @@
 				physicsWorld.rayTest(tempV3_0, tempV3_1, AllHitsRayResultCallback);
 
 				if (AllHitsRayResultCallback.hasHit()) {
-					var sps = AllHitsRayResultCallback.m_shapeParts;
-					var sp = AllHitsRayResultCallback.m_shapePart;
-					var cos = AllHitsRayResultCallback.m_collisionObjects;
-					console.log("size", cos.size(), sps.size(), sp)
-					for (let i = sps.size(); i--;) {
-						var num = AllHitsRayResultCallback.m_collisionObject
-						var cs = cos.at(i).getCollisionShape();
-						if (cs.isCompound()) {
-							var csCom = Ammo.castObject(cs, Ammo.btCompoundShape);
-							console.log('index', i, '-', sps.at(i), '- num', csCom.getNumChildShapes());
-						} else {
-							console.log('index', i, '-', sps.at(i));
+					if (0) {
+						var sps = AllHitsRayResultCallback.m_shapeParts;
+						var sp = AllHitsRayResultCallback.m_shapePart;
+						var cos = AllHitsRayResultCallback.m_collisionObjects;
+						console.log("size", cos.size(), sps.size(), sp)
+						for (let i = sps.size(); i--;) {
+							var cs = cos.at(i).getCollisionShape();
+							if (cs.isCompound()) {
+								var csCom = Ammo.castObject(cs, Ammo.btCompoundShape);
+								console.log('index', i, '-', sps.at(i), '- num', csCom.getNumChildShapes());
+							} else {
+								console.log('index', i, '-', sps.at(i));
+							}
 						}
 					}
 					return true;
