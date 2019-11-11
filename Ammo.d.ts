@@ -166,6 +166,7 @@ declare namespace Ammo {
   class btCollisionObjectWrapper { }
 
   class RayResultCallback {
+    public m_shapePart: number;
     public m_collisionFilterGroup: number;
     public m_collisionFilterMask: number;
     public m_closestHitFraction: number;
@@ -202,6 +203,7 @@ declare namespace Ammo {
     public get_m_hitNormalWorld (): btVector3;
     public m_hitFractions: btNumberArray;
     public m_collisionObjects: btConstCollisionObjectArray;
+    public m_shapeParts: btNumberArray;
   }
 
   class btManifoldPoint {
