@@ -432,6 +432,7 @@ interface btCompoundShape {
   void updateChildTransform(long childIndex, [Const, Ref] btTransform newChildTransform, optional boolean shouldRecalculateLocalAabb);
   void setMargin(float margin);
   float getMargin();
+  void setMaterial(long childShapeindex, float f, float r, optional float rf);
 };
 btCompoundShape implements btCollisionShape;
 
