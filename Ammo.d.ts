@@ -161,6 +161,7 @@ declare namespace Ammo {
     public setUserIndex (index: number): void;
     public getUserPointer (): VoidPtr;
     public setUserPointer (userPointer: VoidPtr): void;
+    public getBroadphaseHandle (): btBroadphaseProxy;
   }
 
   class btCollisionObjectWrapper { }
@@ -387,6 +388,7 @@ declare namespace Ammo {
     public setMargin (margin: number): void;
     public getMargin (): number;
     public updateChildTransform (childIndex: number, newChildTransform: btTransform, shouldRecalculateLocalAabb?: boolean): void;
+    public setMaterial (childShapeindex: number, f: number, r: number, rf?: number): void;
   }
 
   class btStridingMeshInterface { }
