@@ -113,38 +113,6 @@ void btManifoldResult::addContactPoint(const btVector3& normalOnBInWorld,const b
 	// newPt.m_combinedRollingFriction = calculateCombinedRollingFriction(m_body0Wrap->getCollisionObject(),m_body1Wrap->getCollisionObject());
 	// btPlaneSpace1(newPt.m_normalWorldOnB,newPt.m_lateralFrictionDir1,newPt.m_lateralFrictionDir2);
 
-	const btCollisionShape* collisionShape0 = m_body0Wrap->getCollisionShape();
-	btScalar friction0 = m_body0Wrap->getCollisionObject()->getFriction();
-	btScalar restitution0 = m_body0Wrap->getCollisionObject()->getRestitution();
-	btScalar rollingFriction0 = m_body0Wrap->getCollisionObject()->getRollingFriction();
-	if (collisionShape0->isCompound()){
-		const btCompoundShape* compoundShape0 = static_cast<const btCompoundShape*>(collisionShape0);
-		if (compoundShape0->isMutiMaterial()) {
-			friction0 = compoundShape0->getFriction(m_index0);
-			restitution0 = compoundShape0->getRestitution(m_index0);
-			rollingFriction0 = compoundShape0->getRollingFriction(m_index0);
-		}
-	}
-	
-	
-	const btCollisionShape* collisionShape1 = m_body1Wrap->getCollisionShape();
-	btScalar friction1 = m_body1Wrap->getCollisionObject()->getFriction();
-	btScalar restitution1 = m_body1Wrap->getCollisionObject()->getRestitution();
-	btScalar rollingFriction1 = m_body1Wrap->getCollisionObject()->getRollingFriction();
-	if (collisionShape1->isCompound()){
-		const btCompoundShape* compoundShape1 = static_cast<const btCompoundShape*>(collisionShape1);
-		if (compoundShape1->isMutiMaterial()) {
-			friction1 = compoundShape1->getFriction(m_index1);
-			restitution1 = compoundShape1->getRestitution(m_index1);
-			rollingFriction1 = compoundShape1->getRollingFriction(m_index1);
-		}
-	}
-
-	newPt.m_combinedFriction = friction0 * friction1;
-	newPt.m_combinedRestitution = restitution0 * restitution1;
-	newPt.m_combinedRollingFriction = rollingFriction0 * rollingFriction1;
-	btPlaneSpace1(newPt.m_normalWorldOnB,newPt.m_lateralFrictionDir1,newPt.m_lateralFrictionDir2);
-	
    //BP mod, store contact triangles.
 	if (isSwapped)
 	{
@@ -159,6 +127,40 @@ void btManifoldResult::addContactPoint(const btVector3& normalOnBInWorld,const b
 		newPt.m_index0  = m_index0;
 		newPt.m_index1  = m_index1;
 	}
+
+	const btCollisionObject* collisionObject0 = m_body0Wrap->getCollisionObject();
+	const btCollisionShape* collisionShape0 = collisionObject0->getCollisionShape();
+	btScalar friction0 = collisionObject0->getFriction();
+	btScalar restitution0 = collisionObject0->getRestitution();
+	btScalar rollingFriction0 = collisionObject0->getRollingFriction();
+	if (collisionShape0->isCompound()){
+		const btCompoundShape* compoundShape0 = static_cast<const btCompoundShape*>(collisionShape0);
+		if (compoundShape0->isMutiMaterial()) {
+			friction0 = compoundShape0->getFriction(newPt.m_index0);
+			restitution0 = compoundShape0->getRestitution(newPt.m_index0);
+			rollingFriction0 = compoundShape0->getRollingFriction(newPt.m_index0);
+		}
+	}
+	
+	const btCollisionObject* collisionObject1 = m_body1Wrap->getCollisionObject();
+	const btCollisionShape* collisionShape1 = collisionObject1->getCollisionShape();
+	btScalar friction1 = collisionObject1->getFriction();
+	btScalar restitution1 = collisionObject1->getRestitution();
+	btScalar rollingFriction1 = collisionObject1->getRollingFriction();
+	if (collisionShape1->isCompound()){
+		const btCompoundShape* compoundShape1 = static_cast<const btCompoundShape*>(collisionShape1);
+		if (compoundShape1->isMutiMaterial()) {
+			friction1 = compoundShape1->getFriction(newPt.m_index1);
+			restitution1 = compoundShape1->getRestitution(newPt.m_index1);
+			rollingFriction1 = compoundShape1->getRollingFriction(newPt.m_index1);
+		}
+	}
+
+	newPt.m_combinedFriction = friction0 * friction1;
+	newPt.m_combinedRestitution = restitution0 * restitution1;
+	newPt.m_combinedRollingFriction = rollingFriction0 * rollingFriction1;
+	btPlaneSpace1(newPt.m_normalWorldOnB,newPt.m_lateralFrictionDir1,newPt.m_lateralFrictionDir2);
+	
 	//printf("depth=%f\n",depth);
 	///@todo, check this for any side effects
 	if (insertIndex >= 0)
