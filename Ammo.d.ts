@@ -1353,6 +1353,6 @@ declare namespace Ammo {
   function castObject<T> (...args: any): any;
 }
 
-declare module 'ammo.js' {
+declare module 'cocos/ammo' {
   export = Ammo;
 }
