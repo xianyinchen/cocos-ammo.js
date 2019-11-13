@@ -1,6 +1,6 @@
 {
-  "name": "ammo.js",
-  "version": "0.0.2",
+  "name": "@cocos/ammo.js",
+  "version": "1.0.0",
   "description": "Direct port of the Bullet physics engine to JavaScript using Emscripten",
   "main": "builds/node/ammo.cocos.js",
   "scripts": {
@@ -8,11 +8,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/kripken/ammo.js.git"
+    "url": "git://github.com/cocos-creator/ammo.js.git"
   },
-  "author": "Alon Zakai <alonzakai@gmail.com>",
+  "author": "Alon Zakai <alonzakai@gmail.com>, JayceLai",
   "bugs": {
-    "url": "https://github.com/kripken/ammo.js/issues"
+    "url": "https://github.com/cocos-creator/ammo.js/issues"
   },
-  "homepage": "https://github.com/kripken/ammo.js"
+  "homepage": "https://github.com/cocos-creator/ammo.js"
 }
