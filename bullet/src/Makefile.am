@@ -321,6 +321,7 @@ libBulletDynamics_la_SOURCES = \
 		BulletDynamics/ConstraintSolver/btGearConstraint.cpp \
 		BulletDynamics/ConstraintSolver/btGeneric6DofConstraint.cpp \
 		BulletDynamics/ConstraintSolver/btGeneric6DofSpringConstraint.cpp \
+		BulletDynamics/ConstraintSolver/btGeneric6DofSpring2Constraint.cpp \
 		BulletDynamics/ConstraintSolver/btSolve2LinearConstraint.cpp \
 		BulletDynamics/ConstraintSolver/btPoint2PointConstraint.cpp \
 		BulletDynamics/ConstraintSolver/btTypedConstraint.cpp \
