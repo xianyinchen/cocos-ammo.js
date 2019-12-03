@@ -78,7 +78,7 @@ public:
 			m_aabbMax(aabbMax),
 			m_shapeType(shapeType)
 		{
-			m_multiSapParentProxy =this;
+			// m_multiSapParentProxy =this;
 		}
 
 		

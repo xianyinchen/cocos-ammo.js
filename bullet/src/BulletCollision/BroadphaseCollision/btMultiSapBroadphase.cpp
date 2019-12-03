@@ -57,13 +57,14 @@ m_invalidPair(0)
 		// return true when pairs need collision
 		virtual bool	needBroadphaseCollision(btBroadphaseProxy* childProxy0,btBroadphaseProxy* childProxy1) const
 		{
-			btBroadphaseProxy* multiProxy0 = (btBroadphaseProxy*)childProxy0->m_multiSapParentProxy;
-			btBroadphaseProxy* multiProxy1 = (btBroadphaseProxy*)childProxy1->m_multiSapParentProxy;
+			// btBroadphaseProxy* multiProxy0 = (btBroadphaseProxy*)childProxy0->m_multiSapParentProxy;
+			// btBroadphaseProxy* multiProxy1 = (btBroadphaseProxy*)childProxy1->m_multiSapParentProxy;
 			
-			bool collides = (multiProxy0->m_collisionFilterGroup & multiProxy1->m_collisionFilterMask) != 0;
-			collides = collides && (multiProxy1->m_collisionFilterGroup & multiProxy0->m_collisionFilterMask);
+			// bool collides = (multiProxy0->m_collisionFilterGroup & multiProxy1->m_collisionFilterMask) != 0;
+			// collides = collides && (multiProxy1->m_collisionFilterGroup & multiProxy0->m_collisionFilterMask);
 	
-			return collides;
+			// return collides;
+			return false;
 		}
 	};
 
@@ -212,7 +213,7 @@ void	btMultiSapBroadphase::setAabb(btBroadphaseProxy* proxy,const btVector3& aab
 			if (containingBroadphaseIndex<0)
 			{
 				//add it
-				btBroadphaseProxy* childProxy = childBroadphase->createProxy(m_multiProxy->m_aabbMin,m_multiProxy->m_aabbMax,m_multiProxy->m_shapeType,m_multiProxy->m_clientObject,m_multiProxy->m_collisionFilterGroup,m_multiProxy->m_collisionFilterMask, m_dispatcher,m_multiProxy);
+				btBroadphaseProxy* childProxy = childBroadphase->createProxy(m_multiProxy->m_aabbMin,m_multiProxy->m_aabbMax,m_multiProxy->m_shapeType,m_multiProxy->m_clientObject,m_multiProxy->m_collisionFilterGroup,m_multiProxy->m_collisionFilterMask, m_dispatcher);//,m_multiProxy);
 				m_multiSap->addToChildBroadphase(m_multiProxy,childProxy,childBroadphase);
 
 			}
@@ -343,14 +344,15 @@ class btMultiSapBroadphasePairSortPredicate
 
 		bool operator() ( const btBroadphasePair& a1, const btBroadphasePair& b1 ) const
 		{
-				btMultiSapBroadphase::btMultiSapProxy* aProxy0 = a1.m_pProxy0 ? (btMultiSapBroadphase::btMultiSapProxy*)a1.m_pProxy0->m_multiSapParentProxy : 0;
-				btMultiSapBroadphase::btMultiSapProxy* aProxy1 = a1.m_pProxy1 ? (btMultiSapBroadphase::btMultiSapProxy*)a1.m_pProxy1->m_multiSapParentProxy : 0;
-				btMultiSapBroadphase::btMultiSapProxy* bProxy0 = b1.m_pProxy0 ? (btMultiSapBroadphase::btMultiSapProxy*)b1.m_pProxy0->m_multiSapParentProxy : 0;
-				btMultiSapBroadphase::btMultiSapProxy* bProxy1 = b1.m_pProxy1 ? (btMultiSapBroadphase::btMultiSapProxy*)b1.m_pProxy1->m_multiSapParentProxy : 0;
+				// btMultiSapBroadphase::btMultiSapProxy* aProxy0 = a1.m_pProxy0 ? (btMultiSapBroadphase::btMultiSapProxy*)a1.m_pProxy0->m_multiSapParentProxy : 0;
+				// btMultiSapBroadphase::btMultiSapProxy* aProxy1 = a1.m_pProxy1 ? (btMultiSapBroadphase::btMultiSapProxy*)a1.m_pProxy1->m_multiSapParentProxy : 0;
+				// btMultiSapBroadphase::btMultiSapProxy* bProxy0 = b1.m_pProxy0 ? (btMultiSapBroadphase::btMultiSapProxy*)b1.m_pProxy0->m_multiSapParentProxy : 0;
+				// btMultiSapBroadphase::btMultiSapProxy* bProxy1 = b1.m_pProxy1 ? (btMultiSapBroadphase::btMultiSapProxy*)b1.m_pProxy1->m_multiSapParentProxy : 0;
 
-				 return aProxy0 > bProxy0 || 
-					(aProxy0 == bProxy0 && aProxy1 > bProxy1) ||
-					(aProxy0 == bProxy0 && aProxy1 == bProxy1 && a1.m_algorithm > b1.m_algorithm); 
+				//  return aProxy0 > bProxy0 || 
+				// 	(aProxy0 == bProxy0 && aProxy1 > bProxy1) ||
+				// 	(aProxy0 == bProxy0 && aProxy1 == bProxy1 && a1.m_algorithm > b1.m_algorithm); 
+				return false;
 		}
 };
 
@@ -385,54 +387,54 @@ void    btMultiSapBroadphase::calculateOverlappingPairs(btDispatcher* dispatcher
 		previousPair.m_algorithm = 0;
 		
 		
-		for (i=0;i<overlappingPairArray.size();i++)
-		{
+		// for (i=0;i<overlappingPairArray.size();i++)
+		// {
 		
-			btBroadphasePair& pair = overlappingPairArray[i];
+		// 	btBroadphasePair& pair = overlappingPairArray[i];
 
-			btMultiSapProxy* aProxy0 = pair.m_pProxy0 ? (btMultiSapProxy*)pair.m_pProxy0->m_multiSapParentProxy : 0;
-			btMultiSapProxy* aProxy1 = pair.m_pProxy1 ? (btMultiSapProxy*)pair.m_pProxy1->m_multiSapParentProxy : 0;
-			btMultiSapProxy* bProxy0 = previousPair.m_pProxy0 ? (btMultiSapProxy*)previousPair.m_pProxy0->m_multiSapParentProxy : 0;
-			btMultiSapProxy* bProxy1 = previousPair.m_pProxy1 ? (btMultiSapProxy*)previousPair.m_pProxy1->m_multiSapParentProxy : 0;
+		// 	btMultiSapProxy* aProxy0 = pair.m_pProxy0 ? (btMultiSapProxy*)pair.m_pProxy0->m_multiSapParentProxy : 0;
+		// 	btMultiSapProxy* aProxy1 = pair.m_pProxy1 ? (btMultiSapProxy*)pair.m_pProxy1->m_multiSapParentProxy : 0;
+		// 	btMultiSapProxy* bProxy0 = previousPair.m_pProxy0 ? (btMultiSapProxy*)previousPair.m_pProxy0->m_multiSapParentProxy : 0;
+		// 	btMultiSapProxy* bProxy1 = previousPair.m_pProxy1 ? (btMultiSapProxy*)previousPair.m_pProxy1->m_multiSapParentProxy : 0;
 
-			bool isDuplicate = (aProxy0 == bProxy0) && (aProxy1 == bProxy1);
+		// 	bool isDuplicate = (aProxy0 == bProxy0) && (aProxy1 == bProxy1);
 			
-			previousPair = pair;
+		// 	previousPair = pair;
 
-			bool needsRemoval = false;
+		// 	bool needsRemoval = false;
 
-			if (!isDuplicate)
-			{
-				bool hasOverlap = testAabbOverlap(pair.m_pProxy0,pair.m_pProxy1);
+		// 	if (!isDuplicate)
+		// 	{
+		// 		bool hasOverlap = testAabbOverlap(pair.m_pProxy0,pair.m_pProxy1);
 
-				if (hasOverlap)
-				{
-					needsRemoval = false;//callback->processOverlap(pair);
-				} else
-				{
-					needsRemoval = true;
-				}
-			} else
-			{
-				//remove duplicate
-				needsRemoval = true;
-				//should have no algorithm
-				btAssert(!pair.m_algorithm);
-			}
+		// 		if (hasOverlap)
+		// 		{
+		// 			needsRemoval = false;//callback->processOverlap(pair);
+		// 		} else
+		// 		{
+		// 			needsRemoval = true;
+		// 		}
+		// 	} else
+		// 	{
+		// 		//remove duplicate
+		// 		needsRemoval = true;
+		// 		//should have no algorithm
+		// 		btAssert(!pair.m_algorithm);
+		// 	}
 			
-			if (needsRemoval)
-			{
-				getOverlappingPairCache()->cleanOverlappingPair(pair,dispatcher);
+		// 	if (needsRemoval)
+		// 	{
+		// 		getOverlappingPairCache()->cleanOverlappingPair(pair,dispatcher);
 
-		//		m_overlappingPairArray.swap(i,m_overlappingPairArray.size()-1);
-		//		m_overlappingPairArray.pop_back();
-				pair.m_pProxy0 = 0;
-				pair.m_pProxy1 = 0;
-				m_invalidPair++;
-				gOverlappingPairs--;
-			} 
+		// //		m_overlappingPairArray.swap(i,m_overlappingPairArray.size()-1);
+		// //		m_overlappingPairArray.pop_back();
+		// 		pair.m_pProxy0 = 0;
+		// 		pair.m_pProxy1 = 0;
+		// 		m_invalidPair++;
+		// 		gOverlappingPairs--;
+		// 	} 
 			
-		}
+		// }
 
 	///if you don't like to skip the invalid pairs in the array, execute following code:
 	#define CLEAN_INVALID_PAIRS 1
@@ -455,12 +457,12 @@ void    btMultiSapBroadphase::calculateOverlappingPairs(btDispatcher* dispatcher
 
 bool	btMultiSapBroadphase::testAabbOverlap(btBroadphaseProxy* childProxy0,btBroadphaseProxy* childProxy1)
 {
-	btMultiSapProxy* multiSapProxy0 = (btMultiSapProxy*)childProxy0->m_multiSapParentProxy;
-		btMultiSapProxy* multiSapProxy1 = (btMultiSapProxy*)childProxy1->m_multiSapParentProxy;
+	// btMultiSapProxy* multiSapProxy0 = (btMultiSapProxy*)childProxy0->m_multiSapParentProxy;
+	// 	btMultiSapProxy* multiSapProxy1 = (btMultiSapProxy*)childProxy1->m_multiSapParentProxy;
 
-		return	TestAabbAgainstAabb2(multiSapProxy0->m_aabbMin,multiSapProxy0->m_aabbMax,
-			multiSapProxy1->m_aabbMin,multiSapProxy1->m_aabbMax);
-		
+	// 	return	TestAabbAgainstAabb2(multiSapProxy0->m_aabbMin,multiSapProxy0->m_aabbMax,
+	// 		multiSapProxy1->m_aabbMin,multiSapProxy1->m_aabbMax);
+	return false;
 }
 
 
