@@ -1,0 +1,389 @@
+<html>
+
+<head>
+  <title>Bullet/WebGL Demo</title>
+  <script src="../../builds/node/ammo.cocos.js"></script>
+  <script src="CubicVR.min.js" type="text/javascript"></script>
+  <script src="../js/three/three.min.js"></script>
+  <script src="../js/three/OrbitControls.js"></script>
+  <script src="../js/three/Detector.js"></script>
+  <script src="../js/three/stats.min.js"></script>
+
+  <style type="text/css">
+    body {
+      background-color: #ccc;
+      text-size-adjust: none;
+    }
+  </style>
+
+  <script type="text/javascript">
+    // Main demo code
+
+    var boxes = [];
+
+    var lastFPS = 0;
+    var outElement = null;
+    var currFPS = 0,
+      allFPS = 0;
+
+    function showFPS() {
+      if (!outElement) outElement = document.getElementById('out');
+      var now = Date.now();
+      if (now - lastFPS > 333) {
+        outElement.value = currFPS + ' / ' + allFPS;
+        lastFPS = now;
+      }
+    }
+
+    var FLOOR_SIZE = 100;
+    var FLOOR_HEIGHT = -56
+
+    // var physicsWorker = null;
+    // var nextPhysicsWorker = new Worker('worker.js');
+
+    // CubicVR code
+
+    function startUp(NUM) {
+      var NUMRANGE = [];
+      while (NUMRANGE.length < NUM) NUMRANGE.push(NUMRANGE.length + 1);
+
+      document.getElementById('postdiv').innerHTML = '(' + NUM + ' cubes)';
+
+      //document.getElementById('before').style.visibility = 'hidden';
+      document.getElementById('during').style.visibility = 'visible';
+
+      var canvas = document.getElementById("canvas");
+      canvas.width = screen.width * 0.75;
+      canvas.height = screen.height * 0.50;
+
+      var gl = CubicVR.init(canvas);
+
+      if (!gl) {
+        alert("Sorry, no WebGL support :(");
+        return;
+      };
+
+      var quaternion = new CubicVR.Quaternion;
+
+      var scene = new CubicVR.Scene(canvas.width, canvas.height, 70);
+
+      var light = new CubicVR.Light({
+        type: CubicVR.enums.light.type.POINT,
+        intensity: 0.9,
+        areaCeiling: 80,
+        areaFloor: FLOOR_HEIGHT,
+        areaAxis: [15, 10],
+        distance: 60,
+        mapRes: 1024
+      });
+      scene.bindLight(light);
+
+      scene.camera.position = [0, 1.2, 10];
+      scene.camera.target = [0, 1.2, 0];
+
+      var boxMaterials = [];
+      var boxMeshes = [];
+      var radius = 0.5;
+      for (var i = 0; i < 5; i++) {
+        boxMaterials[i] = new CubicVR.Material({
+          textures: {
+            color: new CubicVR.Texture("cube" + (i + 1) + ".jpg")
+          }
+        });
+        boxMeshes[i] = new CubicVR.primitives.sphere({
+          radius: radius,
+          material: boxMaterials[i],
+          uvmapper: {
+            projectionMode: CubicVR.enums.uv.projection.CUBIC,
+            scale: [2, 2, 2]
+          }
+        }).calcNormals().triangulateQuads().compile().clean();
+      }
+
+      for (var i = 0; i < NUM; i++) {
+        boxes[i] = new CubicVR.SceneObject({
+          mesh: boxMeshes[Math.floor(Math.random() * 5)],
+          position: [0, -10000, 0]
+        });
+        scene.bindSceneObject(boxes[i], true);
+      }
+
+      var floorMaterial = new CubicVR.Material({
+        textures: {
+          color: new CubicVR.Texture("cube3.jpg")
+        }
+      });
+      var floorMesh = new CubicVR.primitives.box({
+        size: FLOOR_SIZE,
+        material: floorMaterial,
+        uvmapper: {
+          projectionMode: CubicVR.enums.uv.projection.CUBIC,
+          scale: [4, 4, 4]
+        }
+      }).calcNormals().triangulateQuads().compile().clean();
+
+      var floor_ = new CubicVR.SceneObject({
+        mesh: floorMesh,
+        position: [0, FLOOR_HEIGHT, 0]
+      });
+      scene.bindSceneObject(floor_, true);
+
+      // Main loop
+
+      var mvc = new CubicVR.MouseViewController(canvas, scene.camera);
+
+      CubicVR.MainLoop(function (timer, gl) {
+        var dt = timer.getLastUpdateSeconds();
+        scene.render();
+        showFPS();
+      });
+
+
+      // Ammo().then(function (Ammo) {
+
+      var collisionConfiguration = new Ammo.btDefaultCollisionConfiguration();
+      var dispatcher = new Ammo.btCollisionDispatcher(collisionConfiguration);
+      var overlappingPairCache = new Ammo.btDbvtBroadphase();
+      var solver = new Ammo.btSequentialImpulseConstraintSolver();
+      var dynamicsWorld = new Ammo.btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver,
+        collisionConfiguration);
+      dynamicsWorld.setGravity(new Ammo.btVector3(0, -10, 0));
+
+      var bodies = [];
+
+
+      // var sphereSubShape = new Ammo.btSphereShape(radius);
+      // var sphereSubTransform = new Ammo.btTransform();
+      // sphereSubTransform.setIdentity();
+      // sphereSubTransform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
+
+      // var sphereShape = new Ammo.btCompoundShape();
+      // sphereShape.addChildShape(sphereSubTransform, sphereSubShape);
+
+      // var startTransform = new Ammo.btTransform();
+      // startTransform.setIdentity();
+      // startTransform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
+
+      // var mass = 10;
+      // var localInertia = new Ammo.btVector3(1.6666666269302368, 1.6666666269302368, 1.6666666269302368);
+      // sphereShape.calculateLocalInertia(mass, localInertia);
+
+      // var myMotionState = new Ammo.btDefaultMotionState(startTransform);
+      // var rbInfo = new Ammo.btRigidBodyConstructionInfo(mass, myMotionState, sphereShape, localInertia);
+      // var body1 = new Ammo.btRigidBody(rbInfo);
+      // body1.setActivationState(4);
+      // body1.setUserIndex(0);
+      // dynamicsWorld.addRigidBody(body1);
+      // bodies[NUM] = body1;
+
+      for (let i = 0; i < NUM; i++) {
+
+        var sphereSubShape = new Ammo.btSphereShape(radius);
+        var sphereSubTransform = new Ammo.btTransform();
+        sphereSubTransform.setIdentity();
+        sphereSubTransform.setRotation(new Ammo.btQuaternion(0, 1, 0, 1));
+
+        var sphereShape = new Ammo.btCompoundShape();
+
+        var startTransform = new Ammo.btTransform();
+        startTransform.setIdentity();
+        startTransform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
+
+        var mass = 10;
+        var localInertia = new Ammo.btVector3(1.6666666269302368, 1.6666666269302368, 1.6666666269302368);
+        sphereShape.calculateLocalInertia(mass, localInertia);
+
+        var myMotionState = new Ammo.btDefaultMotionState(startTransform);
+        var rbInfo = new Ammo.btRigidBodyConstructionInfo(mass, myMotionState, sphereShape, localInertia);
+        var bodyd = new Ammo.btRigidBody(rbInfo);
+        bodyd.setActivationState(4);
+        bodyd.setUserIndex(i + 2);
+
+        sphereSubShape.setLocalScaling(new Ammo.btVector3(1, 1, 1));
+        sphereShape.addChildShape(sphereSubTransform, sphereSubShape);
+        sphereShape.setMaterial(0, 0.5, 0);
+
+        dynamicsWorld.addRigidBody(bodyd);
+        bodies[i + 1] = bodyd;
+
+        if (i == Math.floor(NUM / 2)) {
+          {
+            var groundShape = new Ammo.btCompoundShape();
+
+            var localInertia = new Ammo.btVector3(1.6666666269302368, 1.6666666269302368, 1.6666666269302368);
+            var groundTransform = new Ammo.btTransform();
+            groundTransform.setIdentity();
+            groundTransform.setOrigin(new Ammo.btVector3(0, -6, 0));
+            groundTransform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
+            var myMotionState = new Ammo.btDefaultMotionState(groundTransform);
+            var rbInfo = new Ammo.btRigidBodyConstructionInfo(0, myMotionState, groundShape, localInertia);
+            var bodyc = new Ammo.btRigidBody(rbInfo);
+
+            var groundSubShape = new Ammo.btBoxShape(new Ammo.btVector3(50, 0.00000001, 50));
+            groundSubShape.setLocalScaling(new Ammo.btVector3(1, 1, 1));
+            var groundSubTransform = new Ammo.btTransform();
+            groundSubTransform.setIdentity();
+            groundShape.addChildShape(groundSubTransform, groundSubShape);
+            groundShape.setMaterial(0, 0.5, 0);
+
+            bodyc.setUserIndex(1);
+            dynamicsWorld.addRigidBody(bodyc);
+            bodies[0] = bodyc;
+          }
+        }
+      }
+
+      // dynamicsWorld.removeRigidBody(bodies[1]);
+      // dynamicsWorld.addRigidBody(bodies[1]);
+      // dynamicsWorld.removeRigidBody(bodies[0]);
+      // dynamicsWorld.addRigidBody(bodies[0]);
+      // dynamicsWorld.removeRigidBody(bodies[1]);
+      // dynamicsWorld.addRigidBody(bodies[1]);
+      // dynamicsWorld.removeRigidBody(bodies[0]);
+      // dynamicsWorld.addRigidBody(bodies[0]);
+
+      function resetPositions() {
+        var side = Math.ceil(Math.pow(NUM, 1 / 3));
+        var i = 1;
+        for (var x = 0; x < side; x++) {
+          for (var y = 0; y < side; y++) {
+            for (var z = 0; z < side; z++) {
+              if (i == bodies.length) break;
+              var body = bodies[i++];
+              var origin = body.getWorldTransform().getOrigin();
+              origin.setX((x - side / 2) * (2.2 + Math.random()));
+              origin.setY(y * (15 + Math.random()));
+              origin.setZ((z - side / 2) * (2.2 + Math.random()) - side - 3);
+              body.activate();
+              var rotation = body.getWorldTransform().getRotation();
+              rotation.setX(1);
+              rotation.setY(1);
+              rotation.setZ(0);
+              rotation.setW(1);
+            }
+          }
+        }
+      }
+
+      var transform = new Ammo.btTransform(); // taking this out of readBulletObject reduces the leaking
+      function readBulletObject(i, object) {
+        var body = bodies[i];
+        body.getMotionState().getWorldTransform(transform);
+        var origin = transform.getOrigin();
+        object[0] = origin.x();
+        object[1] = origin.y();
+        object[2] = origin.z();
+        var rotation = transform.getRotation();
+        object[3] = rotation.x();
+        object[4] = rotation.y();
+        object[5] = rotation.z();
+        object[6] = rotation.w();
+      }
+
+      function update(dt) {
+
+        for (var i = 0; i < NUM; i++) {
+          var body = bodies[i];
+          body.getWorldTransform(transform);
+          var origin = transform.getOrigin();
+          var object = [];
+          object[0] = origin.x();
+          object[1] = origin.y();
+          object[2] = origin.z();
+          var rotation = transform.getRotation();
+          object[3] = rotation.x();
+          object[4] = rotation.y();
+          object[5] = rotation.z();
+          object[6] = rotation.w();
+
+          origin.setValue(object[0], object[1], object[2]);
+          rotation.setValue(object[3], object[4], object[5], object[6]);
+        }
+
+        dynamicsWorld.stepSimulation(dt, 2);
+
+        var data = {
+          objects: [],
+          currFPS: Math.round(1000 / 1),
+          allFPS: Math.round(1000 / 1)
+        };
+
+        // Read bullet data into JS objects
+        for (var i = 0; i < NUM; i++) {
+          var object = [];
+          readBulletObject(i + 1, object);
+          data.objects[i] = object;
+        }
+
+        // if (data.objects.length != NUM) return;
+        for (var i = 0; i < NUM; i++) {
+          var physicsObject = data.objects[i];
+          var renderObject = boxes[i];
+          renderObject.position[0] = physicsObject[0];
+          renderObject.position[1] = physicsObject[1];
+          renderObject.position[2] = physicsObject[2];
+          quaternion.x = physicsObject[3];
+          quaternion.y = physicsObject[4];
+          quaternion.z = physicsObject[5];
+          quaternion.w = physicsObject[6];
+          renderObject.rotation = quaternion.toEuler();
+        }
+
+        currFPS = data.currFPS;
+        allFPS = data.allFPS;
+
+        window.requestAnimationFrame(update);
+      }
+
+      resetPositions();
+      update(0);
+
+      // })
+
+    }
+  </script>
+</head>
+
+<body onload="document.getElementById('during').style.visibility = 'hidden'">
+  <center>
+    <h2>ammo.js benchmark</h2>
+
+    <canvas id="canvas" width="1" height="1"></canvas>
+    <br>
+    <br>
+    <div id="before">
+      <form>
+        Boxes:
+        <select name="boxes">
+          <option value="2">2</option>
+          <option value="6">6</option>
+          <option value="10">10</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="200">200</option>
+          <option value="300">300</option>
+          <option value="500" selected>500</option>
+          <option value="750">750</option>
+          <option value="1000">1000</option>
+          <option value="1500">1500</option>
+          <option value="2500">2500</option>
+        </select>
+        <input type="button" value="go!" onclick="startUp(boxes.value);">
+        <a href="https://twitter.com/horse_js"><img src="js.png" style="width: 4em; margin-left: 300px"></a>
+      </form>
+    </div>
+    <div id="during">
+      <div>Physics FPS (current / stable): <input type="text" id="out" readonly="1" size="7"></div>
+      <div id="postdiv"></div>
+    </div>
+    <p>
+      This is <b><a href="https://github.com/kripken/ammo.js">ammo.js</a></b>, a port of
+      the <b><a href="http://www.bulletphysics.com">Bullet physics engine</a></b> from C++ to JavaScript
+      using <b><a href="http://emscripten.org">Emscripten</a></b> in
+      <b><a href="http://asmjs.org">asm.js</a></b> mode. WebGL rendering in this demo is done using
+      <b><a href="https://github.com/cjcliffe/CubicVR.js/">CubicVR.js</a></b>.
+    </p>
+  </center>
+</body>
+
+</html>
