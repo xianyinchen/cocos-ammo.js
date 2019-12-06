@@ -295,6 +295,7 @@ Ammo().then(function (Ammo) {
     var userPersistentData = cp.m_userPersistentData;
     if (userPersistentData == 0) {
       cp.m_userPersistentData = cp.ptr;
+      cp.m_userPersistentData1 = s0.ptr;
       if (eventMap[cp.ptr] == null) {
         eventMap[cp.ptr] = { s0, s1 }
       }
