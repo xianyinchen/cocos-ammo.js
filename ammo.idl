@@ -229,7 +229,8 @@ interface btManifoldPoint {
 
   // Contact callback support
   attribute any m_userPersistentData;
-  attribute any m_userPersistentData1;
+  attribute long m_userPersistentData0;
+  attribute long m_userPersistentData1;
 };
 
 [Prefix="btCollisionWorld::"]

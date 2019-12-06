@@ -295,7 +295,8 @@ Ammo().then(function (Ammo) {
     var userPersistentData = cp.m_userPersistentData;
     if (userPersistentData == 0) {
       cp.m_userPersistentData = cp.ptr;
-      cp.m_userPersistentData1 = s0.ptr;
+      cp.m_userPersistentData0 = s0.ptr;
+      cp.m_userPersistentData1 = s1.ptr;
       if (eventMap[cp.ptr] == null) {
         eventMap[cp.ptr] = { s0, s1 }
       }
@@ -324,6 +325,7 @@ Ammo().then(function (Ammo) {
 
   var contactDestroyedCallbackPtr = Ammo.addFunction((ptr) => {
     var cp = Ammo.wrapPointer(ptr, Ammo.btManifoldPoint);
+    console.log(cp.m_userPersistentData0, cp.m_userPersistentData1);
     var s0 = eventMap[ptr].s0;
     var s1 = eventMap[ptr].s1;
     eventList[s0.ptr].exit.push(cp);

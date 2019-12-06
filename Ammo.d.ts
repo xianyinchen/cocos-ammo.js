@@ -234,6 +234,7 @@ declare namespace Ammo {
 
     // Contact callback support
     public m_userPersistentData: any;
+    public m_userPersistentData1: any;
   }
 
   class ContactResultCallback {
@@ -1351,6 +1352,10 @@ declare namespace Ammo {
   function destroy (obj: Ammo.Type): void;
 
   function castObject<T> (...args: any): any;
+
+  function wrapPointer<T extends Ammo.Type> (params: number, obj: Constructor<T>): T;
+
+  function addFunction (params: Function): number;
 }
 
 declare module '@cocos/ammo' {
