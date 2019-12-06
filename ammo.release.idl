@@ -206,14 +206,14 @@ interface AllHitsRayResultCallback {
 AllHitsRayResultCallback implements RayResultCallback;
 
 interface btManifoldPoint {
-  [Const, Ref] btVector3 getPositionWorldOnA();
-  [Const, Ref] btVector3 getPositionWorldOnB();
+  // [Const, Ref] btVector3 getPositionWorldOnA();
+  // [Const, Ref] btVector3 getPositionWorldOnB();
   [Const] double getAppliedImpulse();
   [Const] double getDistance();
   [Value] attribute btVector3 m_localPointA;
   [Value] attribute btVector3 m_localPointB;
-  [Value] attribute btVector3 m_positionWorldOnB;
   [Value] attribute btVector3 m_positionWorldOnA;
+  [Value] attribute btVector3 m_positionWorldOnB;
   [Value] attribute btVector3 m_normalWorldOnB;
   
   attribute double m_distance1;
@@ -222,13 +222,13 @@ interface btManifoldPoint {
 	// attribute double m_combinedRestitution;
 
   //BP mod, store contact triangles.
-  attribute long m_partId0;
-  attribute	long m_partId1;
+  // attribute long m_partId0;
+  // attribute	long m_partId1;
   attribute	long m_index0;
   attribute	long m_index1;
 
   // Contact callback support
-  // attribute any m_userPersistentData;
+  attribute any m_userPersistentData;
 };
 
 // [Prefix="btCollisionWorld::"]
@@ -786,8 +786,8 @@ interface btDiscreteDynamicsWorld {
 
 	// Contact callback support
   // void setContactAddedCallback(long funcpointer);
-  // void setContactProcessedCallback(long funcpointer);
-  // void setContactDestroyedCallback(long funcpointer);
+  void setContactProcessedCallback(long funcpointer);
+  void setContactDestroyedCallback(long funcpointer);
 };
 btDiscreteDynamicsWorld implements btDynamicsWorld;
 
