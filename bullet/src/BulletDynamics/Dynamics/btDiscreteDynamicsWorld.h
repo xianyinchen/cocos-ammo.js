@@ -244,7 +244,13 @@ public:
 	}
 	void setContactDestroyedCallback(unsigned long callbackFunction) {
 		gContactDestroyedCallback = (ContactDestroyedCallback)callbackFunction;
-	}
+	}	
+	// void setContactStartedCallback(unsigned long callbackFunction) {
+	// 	gContactStartedCallback = (ContactStartedCallback)callbackFunction;
+	// }	
+	// void setContactEndedCallback(unsigned long callbackFunction) {
+	// 	gContactEndedCallback = (ContactEndedCallback)callbackFunction;
+	// }
 };
 
 #endif //BT_DISCRETE_DYNAMICS_WORLD_H
