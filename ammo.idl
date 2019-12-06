@@ -783,6 +783,8 @@ interface btDiscreteDynamicsWorld {
   void setContactAddedCallback(long funcpointer);
   void setContactProcessedCallback(long funcpointer);
   void setContactDestroyedCallback(long funcpointer);
+  // void setContactStartedCallback(long funcpointer);
+  // void setContactEndedCallback(long funcpointer);
 };
 btDiscreteDynamicsWorld implements btDynamicsWorld;
 
