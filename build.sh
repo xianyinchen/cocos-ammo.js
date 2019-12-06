@@ -2,4 +2,4 @@
 cd bullet
 sh autogen.sh
 cd ..
-python make.py
+python make.py add_func
