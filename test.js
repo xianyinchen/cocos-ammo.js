@@ -2,6 +2,7 @@ var Ammo = require('./builds/ammo');
 global.Ammo = Ammo;
 
 function assert (b, s) {
+    s = s == null ? b : s;
     if (b) {
         console.log(s);
     } else {
@@ -14,7 +15,7 @@ function assertEq (a, b, s) {
     if (a == b) {
         if (s == null) s = 'ok';
         console.log(s);
-    } else {        
+    } else {
         if (s == null) s = 'fail';
         console.error('err:', s);
     }
@@ -25,7 +26,7 @@ function assertNeq (a, b, s) {
     if (a != b) {
         if (s == null) s = 'ok';
         console.log(s);
-    } else {        
+    } else {
         if (s == null) s = 'fail';
         console.error('err:', s);
     }
@@ -42,4 +43,4 @@ global.print = console.log;
 // require('./tests/stress');
 // require('./tests/testutils');
 // require('./tests/userData');
-// require('./tests/wrapping');
+require('./tests/wrapping');
