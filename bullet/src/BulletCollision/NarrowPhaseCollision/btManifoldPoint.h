@@ -51,6 +51,7 @@ class btManifoldPoint
 		public:
 			btManifoldPoint()
 				:m_userPersistentData(0),
+				m_userPersistentData1(0),
 				m_contactPointFlags(0),
 				m_appliedImpulse(0.f),
                 m_appliedImpulseLateral1(0.f),
@@ -76,6 +77,7 @@ class btManifoldPoint
                     m_combinedSpinningFriction(btScalar(0.)),
                     m_combinedRestitution(btScalar(0.)),
 					m_userPersistentData(0),
+					m_userPersistentData1(0),
 					m_contactPointFlags(0),
 					m_appliedImpulse(0.f),
                     m_appliedImpulseLateral1(0.f),
@@ -112,6 +114,7 @@ class btManifoldPoint
 			int			m_index1;
 				
 			mutable void*	m_userPersistentData;
+			mutable void*	m_userPersistentData1;
 			//bool			m_lateralFrictionInitialized;
 			int				m_contactPointFlags;
 			
