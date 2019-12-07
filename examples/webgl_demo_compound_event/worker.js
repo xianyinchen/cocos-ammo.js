@@ -295,8 +295,8 @@ Ammo().then(function (Ammo) {
     var userPersistentData = cp.m_userPersistentData;
     if (userPersistentData == 0) {
       cp.m_userPersistentData = cp.ptr;
-      cp.m_userPersistentData0 = s0.ptr;
-      cp.m_userPersistentData1 = s1.ptr;
+      cp.m_userPersistentData0 = 0;//s0.ptr;
+      cp.m_userPersistentData1 = 1;//s1.ptr;
       if (eventMap[cp.ptr] == null) {
         eventMap[cp.ptr] = { s0, s1 }
       }
@@ -320,6 +320,7 @@ Ammo().then(function (Ammo) {
     } else {
       eventList[s0.ptr].stay.push(cp);
       eventList[s1.ptr].stay.push(cp);
+      console.log(cp.m_userPersistentData0, cp.m_userPersistentData1);
     }
   });
 
