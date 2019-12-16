@@ -4,7 +4,8 @@
   "description": "Direct port of the Bullet physics engine to JavaScript using Emscripten",
   "main": "builds/node/ammo.cocos.js",
   "scripts": {
-    "port2node": "cd builds/node && node port.js"
+    "port2node": "cd builds/node && node port.js",
+    "uglifyjs": "uglifyjs builds/node/ammo.cocos.js -o builds/node/ammo.cocos.js"
   },
   "repository": {
     "type": "git",
