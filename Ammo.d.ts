@@ -564,6 +564,9 @@ declare namespace Ammo {
     public getFlags (): number;
     public setFlags (flags: number): void;
     public wantsSleeping (): boolean;
+
+    // XXX
+    public clearState (): void;
   }
 
   class btConstraintSetting {
