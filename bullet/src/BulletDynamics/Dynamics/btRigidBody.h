@@ -569,6 +569,14 @@ public:
 
 	virtual void serializeSingleObject(class btSerializer* serializer) const;
 
+	// XXX EMSCRIPTEN: clear the rigid body state
+	void clearState() {
+		m_linearVelocity.setValue(btScalar(0.0), btScalar(0.0), btScalar(0.0));
+		m_angularVelocity.setValue(btScalar(0.0), btScalar(0.0), btScalar(0.0));
+		m_totalForce.setValue(btScalar(0.0), btScalar(0.0), btScalar(0.0));
+		m_totalTorque.setValue(btScalar(0.0), btScalar(0.0), btScalar(0.0));
+	}
+
 };
 
 //@todo add m_optionalMotionState and m_constraintRefs to btRigidBodyData
