@@ -234,6 +234,7 @@ declare namespace Ammo {
 
     // Contact callback support
     public m_userPersistentData: any;
+    public m_userPersistentData0: any;
     public m_userPersistentData1: any;
   }
 
@@ -1353,7 +1354,7 @@ declare namespace Ammo {
 
   function castObject<T> (...args: any): any;
 
-  function wrapPointer<T extends Ammo.Type> (params: number, obj: Constructor<T>): T;
+  function wrapPointer<T extends Ammo.Type> (params: number, obj: new (...args: any[]) => T): T;
 
   function addFunction (params: Function): number;
 }
