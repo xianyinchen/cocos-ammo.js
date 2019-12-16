@@ -607,6 +607,9 @@ interface btRigidBody {
   [Const] long getFlags();
   void setFlags(long flags);
   boolean wantsSleeping();
+
+  // xxx
+  void clearState();
 };
 btRigidBody implements btCollisionObject;
 
