@@ -314,6 +314,7 @@ interface btCapsuleShape {
   long getUpAxis();
   float getRadius();
   float getHalfHeight();
+  [Const, Ref] btVector3 getImplicitShapeDimensions();
 };
 btCapsuleShape implements btCollisionShape;
 
