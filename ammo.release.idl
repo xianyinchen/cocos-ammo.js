@@ -307,15 +307,15 @@ interface btBoxShape {
 };
 btBoxShape implements btCollisionShape;
 
-// interface btCapsuleShape {
-//   void btCapsuleShape(float radius, float height);
-//   void setMargin(float margin);
-//   float getMargin();
-//   long getUpAxis();
-//   float getRadius();
-//   float getHalfHeight();
-// };
-// btCapsuleShape implements btCollisionShape;
+interface btCapsuleShape {
+  void btCapsuleShape(float radius, float height);
+  void setMargin(float margin);
+  float getMargin();
+  long getUpAxis();
+  float getRadius();
+  float getHalfHeight();
+};
+btCapsuleShape implements btCollisionShape;
 
 // interface btCapsuleShapeX {
 //   void btCapsuleShapeX(float radius, float height);
