@@ -314,6 +314,8 @@ declare namespace Ammo {
     public getUpAxis (): number;
     public getRadius (): number;
     public getHalfHeight (): number;
+    public setUpAxis (upAxis: number): void;
+    public getImplicitShapeDimensions (): btVector3;
   }
 
   class btCapsuleShapeX extends btCapsuleShape {

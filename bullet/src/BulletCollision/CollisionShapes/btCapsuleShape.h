@@ -73,6 +73,21 @@ public:
 		return m_upAxis;
 	}
 
+	// XXX
+	void setUpAxis(int v) {
+		int radiusAxis = (m_upAxis+2)%3;
+		btScalar r = m_implicitShapeDimensions[radiusAxis];
+		btScalar h = m_implicitShapeDimensions[m_upAxis];
+		m_upAxis = v;
+		if (m_upAxis == 1) {
+			m_implicitShapeDimensions.setValue(r, h, r);
+		} else if (m_upAxis == 0){
+			m_implicitShapeDimensions.setValue(h, r, r);
+		} else {
+			m_implicitShapeDimensions.setValue(r, r, h);
+		}
+	}
+
 	btScalar	getRadius() const
 	{
 		int radiusAxis = (m_upAxis+2)%3;

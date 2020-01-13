@@ -314,6 +314,10 @@ interface btCapsuleShape {
   long getUpAxis();
   float getRadius();
   float getHalfHeight();
+
+  // XXX
+  void setUpAxis(long upAxis);
+  [Const, Ref] btVector3 getImplicitShapeDimensions();
 };
 btCapsuleShape implements btCollisionShape;
 
