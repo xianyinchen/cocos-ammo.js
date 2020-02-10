@@ -1,10 +1,16 @@
 ammo.js
 =======
 
-# Node.js install for Cocos Creator 3D
+# Install for Cocos Creator 3D
 
 Install module via npm for cocos creator 3d:
 usage : `npm install github:cocos-creator/ammo.js#cocos-master --save`。
+
+# Compile pipeline
+
+1. `./build.sh`
+2. replace code of `builds/node/ammo.js.fix`
+3. `npm run uglifyjs`
 
 # Demos
 
