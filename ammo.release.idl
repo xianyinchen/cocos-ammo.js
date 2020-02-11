@@ -387,6 +387,7 @@ interface btIntArray {
 interface btVector3Array {
   long size();
   [Const, Ref] btVector3 at(long n);
+  void clear();
 };
 
 // interface btFaceArray {
