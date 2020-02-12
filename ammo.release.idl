@@ -480,6 +480,7 @@ interface btConcaveShape {
 btConcaveShape implements btCollisionShape;
 
 interface btEmptyShape {
+  void btEmptyShape();
 };
 btEmptyShape implements btConcaveShape;
 

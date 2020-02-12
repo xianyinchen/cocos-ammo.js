@@ -297,6 +297,8 @@ declare namespace Ammo {
 
   class btConvexShape extends btCollisionShape { }
 
+  class btEmptyShape extends btCollisionShape { }
+
   class btConvexTriangleMeshShape extends btConvexShape {
     constructor (meshInterface: btStridingMeshInterface, calcAabb?: boolean);
   }
