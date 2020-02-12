@@ -443,27 +443,27 @@ interface btCompoundShape {
 };
 btCompoundShape implements btCollisionShape;
 
-// interface btStridingMeshInterface {
-//   void setScaling([Const, Ref] btVector3 scaling);
-// };
+interface btStridingMeshInterface {
+  void setScaling([Const, Ref] btVector3 scaling);
+};
 
-// interface btIndexedMesh {
-//   attribute long m_numTriangles;
-// };
+interface btIndexedMesh {
+  attribute long m_numTriangles;
+};
 
-// interface btIndexedMeshArray {
-//   long size();
-//   [Const, Ref] btIndexedMesh at(long n);
-// };
+interface btIndexedMeshArray {
+  long size();
+  [Const, Ref] btIndexedMesh at(long n);
+};
 
-// interface btTriangleMesh {
-//   void btTriangleMesh(optional boolean use32bitIndices, optional boolean use4componentVertices);
-//   void addTriangle([Const, Ref] btVector3 vertex0, [Const, Ref] btVector3 vertex1, [Const, Ref] btVector3 vertex2, optional boolean removeDuplicateVertices);
-//   long findOrAddVertex([Const, Ref] btVector3 vertex, boolean removeDuplicateVertices);
-//   void addIndex(long index);
-//  [Ref] btIndexedMeshArray getIndexedMeshArray();
-// };
-// btTriangleMesh implements btStridingMeshInterface;
+interface btTriangleMesh {
+  void btTriangleMesh(optional boolean use32bitIndices, optional boolean use4componentVertices);
+  void addTriangle([Const, Ref] btVector3 vertex0, [Const, Ref] btVector3 vertex1, [Const, Ref] btVector3 vertex2, optional boolean removeDuplicateVertices);
+  long findOrAddVertex([Const, Ref] btVector3 vertex, boolean removeDuplicateVertices);
+  void addIndex(long index);
+ [Ref] btIndexedMeshArray getIndexedMeshArray();
+};
+btTriangleMesh implements btStridingMeshInterface;
 
 // enum PHY_ScalarType {
 //     "PHY_FLOAT",
@@ -474,23 +474,27 @@ btCompoundShape implements btCollisionShape;
 //     "PHY_UCHAR"
 // };
 
-// interface btConcaveShape {
-// };
-// btConcaveShape implements btCollisionShape;
+interface btConcaveShape {
+};
+btConcaveShape implements btCollisionShape;
+
+interface btEmptyShape {
+};
+btEmptyShape implements btConcaveShape;
 
 // interface btStaticPlaneShape {
 //   void btStaticPlaneShape([Const, Ref] btVector3 planeNormal, float planeConstant);
 // };
 // btStaticPlaneShape implements btConcaveShape;
 
-// interface btTriangleMeshShape {
-// };
-// btTriangleMeshShape implements btConcaveShape;
+interface btTriangleMeshShape {
+};
+btTriangleMeshShape implements btConcaveShape;
 
-// interface btBvhTriangleMeshShape {
-//   void btBvhTriangleMeshShape(btStridingMeshInterface meshInterface, boolean useQuantizedAabbCompression, optional boolean buildBvh);
-// };
-// btBvhTriangleMeshShape implements btTriangleMeshShape;
+interface btBvhTriangleMeshShape {
+  void btBvhTriangleMeshShape(btStridingMeshInterface meshInterface, boolean useQuantizedAabbCompression, optional boolean buildBvh);
+};
+btBvhTriangleMeshShape implements btTriangleMeshShape;
 
 // interface btHeightfieldTerrainShape {
 //     void btHeightfieldTerrainShape(long heightStickWidth, long heightStickLength, VoidPtr heightfieldData, float heightScale, float minHeight, float maxHeight, long upAxis, PHY_ScalarType hdt, boolean flipQuadEdges);
