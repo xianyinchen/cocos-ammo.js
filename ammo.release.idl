@@ -231,6 +231,10 @@ interface btManifoldPoint {
   attribute any m_userPersistentData;
   attribute long m_userPersistentData0;
   attribute long m_userPersistentData1;
+  
+	//// XXX +++
+  [Const] btCollisionShape getShape0();
+  [Const] btCollisionShape getShape1();
 };
 
 // [Prefix="btCollisionWorld::"]
@@ -286,9 +290,11 @@ interface btCollisionShape {
   void calculateLocalInertia(float mass, [Ref] btVector3 inertia);
   void setMargin(float margin);
   float getMargin();
-  boolean isCompound();  
+  boolean isCompound();
   // VoidPtr getUserPointer();
   // void setUserPointer(VoidPtr userPointer);
+  long getUserIndex();
+  void setUserIndex(long index);
 };
 
 // interface btConvexShape {
@@ -497,6 +503,23 @@ interface btBvhTriangleMeshShape {
   void btBvhTriangleMeshShape(btStridingMeshInterface meshInterface, boolean useQuantizedAabbCompression, optional boolean buildBvh);
 };
 btBvhTriangleMeshShape implements btTriangleMeshShape;
+
+interface btGImpactShapeInterface {
+	// void btGImpactShapeInterface();
+  void updateBound();
+};
+btGImpactShapeInterface implements btConcaveShape;
+
+interface btGImpactMeshShapePart {
+	void btGImpactMeshShapePart();
+  void btGImpactMeshShapePart(btStridingMeshInterface meshInterface, long part );
+};
+btGImpactMeshShapePart implements btGImpactShapeInterface;
+
+interface btGImpactMeshShape {
+	void btGImpactMeshShape(btStridingMeshInterface meshInterface);
+};
+btGImpactMeshShape implements btGImpactShapeInterface;
 
 // interface btHeightfieldTerrainShape {
 //     void btHeightfieldTerrainShape(long heightStickWidth, long heightStickLength, VoidPtr heightfieldData, float heightScale, float minHeight, float maxHeight, long upAxis, PHY_ScalarType hdt, boolean flipQuadEdges);

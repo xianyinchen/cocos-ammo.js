@@ -18,6 +18,7 @@ subject to the following restrictions:
 
 #include "LinearMath/btVector3.h"
 #include "LinearMath/btTransformUtil.h"
+#include "BulletCollision/CollisionShapes/btCollisionShape.h"
 
 #ifdef PFX_USE_FREE_VECTORMATH
 	#include "physics_effects/base_level/solver/pfx_constraint_row.h"
@@ -180,7 +181,19 @@ class btManifoldPoint
 			}
 
 			
+			//// XXX +++
+			const btCollisionShape* m_shape0;
+			const btCollisionShape* m_shape1;	
 
+			const btCollisionShape* getShape0()
+			{
+				return m_shape0;
+			}
+
+			const btCollisionShape* getShape1()
+			{
+				return m_shape1;
+			}
 	};
 
 #endif //BT_MANIFOLD_CONTACT_POINT_H

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Ammo.js bvh mesh demo</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<style>
+		body {
+			color: #61443e;
+			font-family: Monospace;
+			font-size: 13px;
+			text-align: center;
+
+			background-color: #bfd1e5;
+			margin: 0px;
+			overflow: hidden;
+		}
+
+		#info {
+			position: absolute;
+			top: 0px;
+			width: 100%;
+			padding: 5px;
+		}
+
+		a {
+
+			color: #a06851;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="container"><br /><br /><br /><br /><br />Loading...</div>
+	<div id="info">Ammo.js bvh mesh demo</div>
+
+	<script src="../../builds/node/ammo.cocos.js"></script>
+
+	<script src="../js/three/three.min.js"></script>
+	<script src="../js/three/OrbitControls.js"></script>
+	<script src="../js/three/Detector.js"></script>
+	<script src="../js/three/stats.min.js"></script>
+
+	<script>
+
+		// Ammo().then(function (Ammo) {
+
+		// Detects webgl
+		if (!Detector.webgl) {
+			Detector.addGetWebGLMessage();
+			document.getElementById('container').innerHTML = "";
+		}
+
+		// - Global variables -
+
+		// Heightfield parameters
+		var terrainWidthExtents = 100;
+		var terrainDepthExtents = 100;
+		var terrainWidth = 128;
+		var terrainDepth = 128;
+		// var terrainWidth = 12;
+		// var terrainDepth = 12;
+		var terrainHalfWidth = terrainWidth / 2;
+		var terrainHalfDepth = terrainDepth / 2;
+		var terrainMaxHeight = 8;
+		var terrainMinHeight = -2;
+
+		// Graphics variables
+		var container, stats;
+		var camera, controls, scene, renderer;
+		var terrainMesh, texture;
+
+		var clock = new THREE.Clock();
+
+		// Physics variables
+		var collisionConfiguration;
+		var dispatcher;
+		var broadphase;
+		var solver;
+		var physicsWorld;
+		var terrainBody;
+		var dynamicObjects = [];
+		var transformAux1 = new Ammo.btTransform();
+
+		var groundShape, bvhMeshShape, bvhTrans;
+
+		var heightData = null;
+		var ammoHeightData = null;
+
+		var time = 0;
+		var objectTimePeriod = 1.5;
+		var timeNextSpawn = time + objectTimePeriod;
+		var maxNumObjects = 60;
+
+		var delY = 0.01;
+		var delRot = 0.001;
+
+		// - Main code -
+		init();
+		animate();
+
+		function init() {
+
+			heightData = generateHeight(terrainWidth, terrainDepth, terrainMinHeight, terrainMaxHeight);
+
+			initGraphics();
+
+			initPhysics();
+
+		}
+
+		function initGraphics() {
+
+			container = document.getElementById('container');
+
+			camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.2, 2000);
+
+			scene = new THREE.Scene();
+
+			camera.position.y = heightData[terrainHalfWidth + terrainHalfDepth * terrainWidth] * (terrainMaxHeight - terrainMinHeight) + 5;
+
+			camera.position.z = terrainDepthExtents / 2;
+			camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+			controls = new THREE.OrbitControls(camera);
+
+			geometry = new THREE.PlaneBufferGeometry(100, 100, terrainWidth - 1, terrainDepth - 1);
+			// geometry = new THREE.PlaneBufferGeometry(10, 10, terrainWidth - 1, terrainDepth - 1);
+			geometry.rotateX(- Math.PI / 2);
+
+			var vertices = geometry.attributes.position.array;
+
+			for (var i = 0, j = 0, l = vertices.length; i < l; i++ , j += 3) {
+
+				// j + 1 because it is the y component that we modify
+				vertices[j + 1] = heightData[i];
+
+			}
+
+			geometry.computeVertexNormals();
+
+			var groundMaterial = new THREE.MeshPhongMaterial({ color: 0xC7C7C7 });
+			terrainMesh = new THREE.Mesh(geometry, groundMaterial);
+			window.terrainMesh = terrainMesh;
+			scene.add(terrainMesh);
+
+			var textureLoader = new THREE.TextureLoader();
+			textureLoader.load("../textures/grid.png", function (texture) {
+				texture.wrapS = THREE.RepeatWrapping;
+				texture.wrapT = THREE.RepeatWrapping;
+				texture.repeat.set(terrainWidth - 1, terrainDepth - 1);
+				groundMaterial.map = texture;
+				groundMaterial.needsUpdate = true;
+
+			});
+
+			var dirLight = new THREE.DirectionalLight(0xffffff, 1);
+			dirLight.position.set(10, 10, 5);
+			scene.add(dirLight);
+
+
+			renderer = new THREE.WebGLRenderer();
+			renderer.setClearColor(0xbfd1e5);
+			renderer.setPixelRatio(window.devicePixelRatio);
+			renderer.setSize(window.innerWidth, window.innerHeight);
+
+			container.innerHTML = "";
+
+			container.appendChild(renderer.domElement);
+
+			stats = new Stats();
+			stats.domElement.style.position = 'absolute';
+			stats.domElement.style.top = '0px';
+			container.appendChild(stats.domElement);
+
+			//
+
+			window.addEventListener('resize', onWindowResize, false);
+
+		}
+
+		function onWindowResize() {
+
+			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.updateProjectionMatrix();
+
+			renderer.setSize(window.innerWidth, window.innerHeight);
+
+		}
+
+		function initPhysics() {
+
+			// Physics configuration
+
+			collisionConfiguration = new Ammo.btDefaultCollisionConfiguration();
+			dispatcher = new Ammo.btCollisionDispatcher(collisionConfiguration);
+			broadphase = new Ammo.btDbvtBroadphase();
+			solver = new Ammo.btSequentialImpulseConstraintSolver();
+			physicsWorld = new Ammo.btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
+			physicsWorld.setGravity(new Ammo.btVector3(0, - 10, 0));
+
+			// Create the terrain body
+
+			groundShape = new Ammo.btCompoundShape();
+
+			var groundTransform = new Ammo.btTransform();
+			groundTransform.setIdentity();
+			// Shifts the terrain, since bullet re-centers it on its bounding box.
+			// groundTransform.setOrigin(new Ammo.btVector3(0, (terrainMaxHeight + terrainMinHeight) / 2, 0));
+			var groundMass = 0;
+			var groundLocalInertia = new Ammo.btVector3(0, 0, 0);
+			var groundMotionState = new Ammo.btDefaultMotionState(groundTransform);
+			var groundBody = new Ammo.btRigidBody(new Ammo.btRigidBodyConstructionInfo(groundMass, groundMotionState, groundShape, groundLocalInertia));
+			physicsWorld.addRigidBody(groundBody);
+
+			bvhMeshShape = createBvhStaticMeshShape(terrainMesh);
+			// bvhMeshShape.setUserIndex(groundShape.getNumChildShapes());
+			bvhTrans = new Ammo.btTransform();
+			bvhTrans.setIdentity();
+			groundShape.addChildShape(bvhTrans, bvhMeshShape);
+			// var boxShape = new Ammo.btBoxShape(new Ammo.btVector3(10, 10, 10));
+			// boxTrans = new Ammo.btTransform();
+			// boxTrans.setIdentity();
+			// groundShape.addChildShape(boxTrans, boxShape);
+		}
+
+		function generateHeight(width, depth, minHeight, maxHeight) {
+
+			// Generates the height data (a sinus wave)
+
+			var size = width * depth;
+			var data = new Float32Array(size);
+
+			var hRange = maxHeight - minHeight;
+			var w2 = width / 2;
+			var d2 = depth / 2;
+			var phaseMult = 12;
+
+			var p = 0;
+			for (var j = 0; j < depth; j++) {
+				for (var i = 0; i < width; i++) {
+
+					var radius = Math.sqrt(
+						Math.pow((i - w2) / w2, 2.0) +
+						Math.pow((j - d2) / d2, 2.0));
+
+					var height = (Math.sin(radius * phaseMult) + 1) * 0.5 * hRange + minHeight;
+
+					data[p] = height;
+
+					p++;
+				}
+			}
+
+			return data;
+		}
+
+		function createBvhStaticMeshShape(terrainMesh) {
+			// return new Ammo.btEmptyShape();
+
+			var triangleMesh = new Ammo.btTriangleMesh();
+			var vertices = geometry.attributes.position.array;
+			var indices = geometry.index.array;
+			for (var i = 0, j = 0, l = vertices.length; i < l; i++ , j += 3) {
+				var i0 = indices[j] * 3;
+				var i1 = indices[j + 1] * 3;
+				var i2 = indices[j + 2] * 3;
+				const v0 = new Ammo.btVector3(vertices[i0], vertices[i0 + 1], vertices[i0 + 2]);
+				const v1 = new Ammo.btVector3(vertices[i1], vertices[i1 + 1], vertices[i1 + 2]);
+				const v2 = new Ammo.btVector3(vertices[i2], vertices[i2 + 1], vertices[i2 + 2]);
+				triangleMesh.addTriangle(v0, v1, v2);
+			}
+			return new Ammo.btBvhTriangleMeshShape(triangleMesh, true, true);
+		}
+
+		function generateObject() {
+
+			var numTypes = 3;
+			var objectType = Math.ceil(Math.random() * numTypes);
+
+			var threeObject = null;
+			var shape = null;
+
+			var objectSize = 3;
+			var margin = 0.05;
+
+			switch (objectType) {
+				case 1:
+					// Sphere
+					var radius = 1 + Math.random() * objectSize;
+					threeObject = new THREE.Mesh(new THREE.SphereGeometry(radius, 20, 20), createObjectMaterial());
+					shape = new Ammo.btSphereShape(radius);
+					// shape.setMargin(margin);
+					break;
+				case 2:
+					// Box
+					var sx = 1 + Math.random() * objectSize;
+					var sy = 1 + Math.random() * objectSize;
+					var sz = 1 + Math.random() * objectSize;
+					threeObject = new THREE.Mesh(new THREE.BoxGeometry(sx, sy, sz, 1, 1, 1), createObjectMaterial());
+					var box = new Ammo.btBoxShape(new Ammo.btVector3(sx * 0.5, sy * 0.5, sz * 0.5));
+					// box.setMargin(margin);
+					var boxTrans = new Ammo.btTransform();
+					boxTrans.setIdentity();
+					shape = new Ammo.btCompoundShape();
+					shape.addChildShape(boxTrans, box);
+					break;
+				case 3:
+					// Cylinder
+					var radius = 1 + Math.random() * objectSize;
+					var height = 1 + Math.random() * objectSize;
+					var mat = createObjectMaterial()
+					var sphereTopMesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 20, 20), mat);
+					var sphereBottomMesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 20, 20), mat);
+					threeObject = new THREE.Mesh(new THREE.CylinderGeometry(radius, radius, height, 20, 1), mat);
+					sphereTopMesh.position.y = height * 0.5;
+					sphereBottomMesh.position.y = -height * 0.5;
+					threeObject.add(sphereTopMesh);
+					threeObject.add(sphereBottomMesh);
+					// shape = new Ammo.btCylinderShape(new Ammo.btVector3(radius, height * 0.5, radius));
+					var capsuleShape = new Ammo.btCapsuleShape(radius, height)
+					var capsuleTrans = new Ammo.btTransform();
+					capsuleTrans.setIdentity();
+					shape = new Ammo.btCompoundShape();
+					shape.addChildShape(capsuleTrans, capsuleShape);
+					// shape.setMargin(margin);
+					break;
+				default:
+				// 	// Cone
+				// 	var radius = 1 + Math.random() * objectSize;
+				// 	var height = 2 + Math.random() * objectSize;
+				// 	threeObject = new THREE.Mesh(new THREE.CylinderGeometry(0, radius, height, 20, 2), createObjectMaterial());
+				// 	shape = new Ammo.btConeShape(radius, height);
+				// 	break;
+			}
+
+			threeObject.position.set((Math.random() - 0.5) * terrainWidth * 0.6, terrainMaxHeight + objectSize + 2, (Math.random() - 0.5) * terrainDepth * 0.6);
+
+			var mass = objectSize * 5;
+			var localInertia = new Ammo.btVector3(0, 0, 0);
+			shape.calculateLocalInertia(mass, localInertia);
+			var transform = new Ammo.btTransform();
+			transform.setIdentity();
+			var pos = threeObject.position;
+			transform.setOrigin(new Ammo.btVector3(pos.x, pos.y, pos.z));
+			var motionState = new Ammo.btDefaultMotionState(transform);
+			var rbInfo = new Ammo.btRigidBodyConstructionInfo(mass, motionState, shape, localInertia);
+			var body = new Ammo.btRigidBody(rbInfo);
+			body.setActivationState(4);
+
+			threeObject.userData.physicsBody = body;
+
+			scene.add(threeObject);
+			dynamicObjects.push(threeObject);
+
+			physicsWorld.addRigidBody(body);
+
+		}
+
+		function createObjectMaterial() {
+			var c = Math.floor(Math.random() * (1 << 24));
+			return new THREE.MeshPhongMaterial({ color: c });
+		}
+
+		function animate() {
+
+			requestAnimationFrame(animate);
+
+			render();
+			stats.update();
+
+		}
+
+		function render() {
+
+			var deltaTime = clock.getDelta();
+
+			if (dynamicObjects.length < maxNumObjects && time > timeNextSpawn) {
+				generateObject();
+				timeNextSpawn = time + objectTimePeriod;
+			}
+
+			updatePhysics(deltaTime);
+
+			controls.update(deltaTime);
+
+			renderer.render(scene, camera);
+
+			time += deltaTime;
+
+		}
+
+		function updatePhysics(deltaTime) {
+
+			updateRotateAndPosition(deltaTime);
+
+			physicsWorld.stepSimulation(deltaTime, 10);
+
+			// Update objects
+			for (var i = 0, il = dynamicObjects.length; i < il; i++) {
+				var objThree = dynamicObjects[i];
+				var objPhys = objThree.userData.physicsBody;
+				// var ms = objPhys.getMotionState();
+				// if (ms) {
+
+				// 	ms.getWorldTransform(transformAux1);
+
+				// 	var p = transformAux1.getOrigin();
+				// 	var q = transformAux1.getRotation();
+				// 	objThree.position.set(p.x(), p.y(), p.z());
+				// 	objThree.quaternion.set(q.x(), q.y(), q.z(), q.w());
+
+				// }
+				var wt0 = objPhys.getWorldTransform();
+				var p = wt0.getOrigin();
+				var q = wt0.getRotation();
+				objThree.position.set(p.x(), p.y(), p.z());
+				objThree.quaternion.set(q.x(), q.y(), q.z(), q.w());
+			}
+
+			/**
+			 * EVENTS
+			 */
+			const numManifolds = dispatcher.getNumManifolds();
+			for (let i = 0; i < numManifolds; i++) {
+				const manifold = dispatcher.getManifoldByIndexInternal(i);
+				const body0 = manifold.getBody0();
+				const body1 = manifold.getBody1();
+				const indexA = body0.getUserIndex();
+				const indexB = body1.getUserIndex();
+				const numContacts = manifold.getNumContacts();
+				for (let j = 0; j < numContacts; j++) {
+					const manifoldPoint = manifold.getContactPoint(j);
+					const d = manifoldPoint.getDistance();
+					if (d <= 0) {
+						// manifoldPoint.getPositionWorldOnA();
+						// manifoldPoint.getPositionWorldOnB();
+						// manifoldPoint.m_localPointA
+						// manifoldPoint.m_localPointB
+						// manifoldPoint.m_normalWorldOnB
+						//   console.log('manifoldPoint', {
+						//     m_distance1: manifoldPoint.m_distance1,
+						//     m_combinedFriction: manifoldPoint.m_combinedFriction,
+						//     m_combinedRollingFriction: manifoldPoint.m_combinedRollingFriction,
+						//     m_combinedRestitution: manifoldPoint.m_combinedRestitution,
+						//     m_partId0: manifoldPoint.m_partId0,
+						//     m_partId1: manifoldPoint.m_partId1,
+						//     m_index0: manifoldPoint.m_index0,
+						//     m_index1: manifoldPoint.m_index1,
+						//     m_userPersistentData: manifoldPoint.m_userPersistentData,
+						//   });
+						console.log(manifoldPoint.m_index0, manifoldPoint.m_index1);
+						break;
+					}
+				}
+			}
+		}
+
+		function updateRotateAndPosition(dt) {
+			if (terrainMesh.position.y < -3) {
+				delY = 0.01;
+			} else if (terrainMesh.position.y > 3) {
+				delY = -0.01;
+			}
+			terrainMesh.position.y += delY;
+			bvhTrans.getOrigin().setY(terrainMesh.position.y);
+
+			if (terrainMesh.rotation.x < -10 * Math.PI / 180) {
+				delRot = 0.001;
+			} else if (terrainMesh.rotation.x > 10 * Math.PI / 180) {
+				delRot = -0.001;
+			}
+			terrainMesh.rotation.x += delRot;
+
+			bvhTrans.setRotation(new Ammo.btQuaternion(
+				terrainMesh.quaternion.x,
+				terrainMesh.quaternion.y,
+				terrainMesh.quaternion.z,
+				terrainMesh.quaternion.w
+			));
+
+			groundShape.updateChildTransform(0, bvhTrans);
+		}
+
+		// });
+
+	</script>
+
+</body>
+
+</html>
