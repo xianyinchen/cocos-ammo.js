@@ -293,6 +293,7 @@ declare namespace Ammo {
     public calculateLocalInertia (mass: number, inertia: btVector3): void;
     public setMargin (margin: number): void;
     public getMargin (): number;
+    public setUserIndex (i: number): void;
   }
 
   class btConvexShape extends btCollisionShape { }
