@@ -236,6 +236,9 @@ declare namespace Ammo {
     public m_userPersistentData: any;
     public m_userPersistentData0: any;
     public m_userPersistentData1: any;
+
+    public getShape0 (): btCollisionShape;
+    public getShape1 (): btCollisionShape;
   }
 
   class ContactResultCallback {
@@ -294,6 +297,7 @@ declare namespace Ammo {
     public setMargin (margin: number): void;
     public getMargin (): number;
     public setUserIndex (i: number): void;
+    public isCompound (): boolean;
   }
 
   class btConvexShape extends btCollisionShape { }
