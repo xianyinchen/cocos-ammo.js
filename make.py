@@ -58,6 +58,7 @@ def build():
   wasm = 'wasm' in sys.argv
   closure = 'closure' in sys.argv
   add_function_support = 'add_func' in sys.argv
+  full = 'full' in sys.argv
 
   args = '-O3 --llvm-lto 1 -s NO_EXIT_RUNTIME=1 -s NO_FILESYSTEM=1'
   # args = '-O3 --llvm-lto 1 -s NO_EXIT_RUNTIME=1 -s NO_FILESYSTEM=1 -s EXPORTED_RUNTIME_METHODS=["UTF8ToString"] -s ASSERTIONS=1'
@@ -80,6 +81,12 @@ def build():
   emcc_args += '-s EXPORT_NAME="Ammo" -s MODULARIZE=1'.split(' ')
 
   target = 'ammo.js' if not wasm else 'ammo.wasm.js'
+
+  this_idl = 'ammo.release.idl'
+  
+  if full:
+    this_idl = 'ammo.idl'
+    target = 'ammo.full.js' if not wasm else 'ammo.full.wasm.js'
 
   print
   print '--------------------------------------------------'
@@ -126,7 +133,7 @@ def build():
 
     stage('Generate bindings')
 
-    Popen([emscripten.PYTHON, os.path.join(EMSCRIPTEN_ROOT, 'tools', 'webidl_binder.py'), os.path.join(this_dir, 'ammo.release.idl'), 'glue']).communicate()
+    Popen([emscripten.PYTHON, os.path.join(EMSCRIPTEN_ROOT, 'tools', 'webidl_binder.py'), os.path.join(this_dir, this_idl), 'glue']).communicate()
     # Popen([emscripten.PYTHON, os.path.join(EMSCRIPTEN_ROOT, 'tools', 'webidl_binder.py'), os.path.join(this_dir, 'ammo.idl'), 'glue']).communicate()
     assert os.path.exists('glue.js')
     assert os.path.exists('glue.cpp')

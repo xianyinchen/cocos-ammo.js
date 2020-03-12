@@ -1,6 +1,4 @@
 #!/bin/sh
-cd bullet
-sh autogen.sh
-cd ..
-python make.py add_func
-npm run port2node
+sh ./build-asm.sh
+sh ./build-wasm.sh
+sh ./build-full.sh
