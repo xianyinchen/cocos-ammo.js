@@ -59,8 +59,20 @@ def build():
   closure = 'closure' in sys.argv
   add_function_support = 'add_func' in sys.argv
   full = 'full' in sys.argv
+  O1 = 'O1' in sys.argv
+  O2 = 'O2' in sys.argv
+  O3 = 'O3' in sys.argv
+  Os = 'Os' in sys.argv
+  Oz = 'Oz' in sys.argv
 
-  args = '-O3 --llvm-lto 1 -s NO_EXIT_RUNTIME=1 -s NO_FILESYSTEM=1'
+  args = '-O3'
+  if O1 : args = '-O1'
+  elif O2 : args = '-O2'
+  elif O3 : args = '-O3'
+  elif Os : args = '-Os'
+  elif Oz : args = '-Oz'
+
+  args += ' --llvm-lto 1 -s NO_EXIT_RUNTIME=1 -s NO_FILESYSTEM=1'
   # args = '-O3 --llvm-lto 1 -s NO_EXIT_RUNTIME=1 -s NO_FILESYSTEM=1 -s EXPORTED_RUNTIME_METHODS=["UTF8ToString"] -s ASSERTIONS=1'
   if add_function_support:
     args += ' -s RESERVED_FUNCTION_POINTERS=20 -s EXTRA_EXPORTED_RUNTIME_METHODS=["addFunction"]'  
