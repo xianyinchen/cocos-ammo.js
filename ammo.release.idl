@@ -349,6 +349,10 @@ interface btCylinderShape {
   void btCylinderShape([Ref] btVector3 halfExtents);
   void setMargin(float margin);
   float getMargin();
+  long getUpAxis();
+
+  // XXX
+  void setUpAxis(long upAxis);
 };
 btCylinderShape implements btConvexInternalShape;
 

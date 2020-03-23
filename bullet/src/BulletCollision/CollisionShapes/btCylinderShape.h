@@ -97,6 +97,35 @@ BT_DECLARE_ALIGNED_ALLOCATOR();
 		return m_upAxis;
 	}
 
+  	// XXX
+	void setUpAxis(int v)
+	{
+		btVector3 oldMargin(getMargin(),getMargin(),getMargin());
+		btVector3 implicitShapeDimensionsWithMargin = m_implicitShapeDimensions+oldMargin;
+		btVector3 usIsd = implicitShapeDimensionsWithMargin / m_localScaling;		
+		btScalar r = usIsd[0];
+		btScalar h = usIsd[1];
+		if (m_upAxis == 1) {
+			r = usIsd[0];
+			h = usIsd[1];
+		} else if (m_upAxis == 2) {
+			r = usIsd[0];
+			h = usIsd[2];
+		} else {
+			r = usIsd[1];
+			h = usIsd[0];
+		}
+		m_upAxis = v;
+		if (m_upAxis == 1) {
+			usIsd.setValue(r, h, r);
+		} else if (m_upAxis == 2) {
+			usIsd.setValue(r, r, h);
+		} else {
+			usIsd.setValue(h, r, r);
+		}
+		m_implicitShapeDimensions = (usIsd * m_localScaling) - oldMargin;
+	}
+
 	virtual btVector3	getAnisotropicRollingFrictionDirection() const
 	{
 		btVector3 aniDir(0,0,0);
