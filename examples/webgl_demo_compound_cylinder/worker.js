@@ -26,8 +26,8 @@ Ammo().then(function (Ammo) {
 
   // var sphere1 = new Ammo.btSphereShape(5);
   var sphere1 = new Ammo.btCylinderShape(new Ammo.btVector3(0.5, 1, 0.5));
-  sphere1.setUpAxis(0);
-  sphere1.setUpAxis(2);
+  sphere1.updateProp(0.5, 1, 0);
+  // sphere1.updateProp(0.5, 1, 2);
   var s1_localPos = new Ammo.btVector3();
   var s1_localRot = new Ammo.btQuaternion();
   var s1_localEuler = new Ammo.btVector3(0, 0, 0);

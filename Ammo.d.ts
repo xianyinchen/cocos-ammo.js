@@ -321,8 +321,9 @@ declare namespace Ammo {
     public getUpAxis (): number;
     public getRadius (): number;
     public getHalfHeight (): number;
-    public setUpAxis (upAxis: number): void;
     public getImplicitShapeDimensions (): btVector3;
+    //XXX
+    public updateProp (r: number, h: number, d: number): void;
   }
 
   class btCapsuleShapeX extends btCapsuleShape {
@@ -341,6 +342,9 @@ declare namespace Ammo {
     constructor (halfExtents: btVector3);
     public setMargin (margin: number): void;
     public getMargin (): number;
+    public getImplicitShapeDimensions (): btVector3;
+    //XXX
+    public updateProp (r: number, h: number, d: number): void;
   }
 
   class btCylinderShapeX extends btCylinderShape {

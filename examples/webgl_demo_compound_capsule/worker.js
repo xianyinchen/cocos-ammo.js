@@ -1,9 +1,9 @@
 
-var Module = { TOTAL_MEMORY: 256*1024*1024 };
+var Module = { TOTAL_MEMORY: 256 * 1024 * 1024 };
 
 importScripts('../../builds/ammo.js');
 
-Ammo().then(function(Ammo) {
+Ammo().then(function (Ammo) {
   var NUM = 0, NUMRANGE = [];
 
   // Bullet-interfacing code
@@ -21,11 +21,12 @@ Ammo().then(function(Ammo) {
 
   // var spVec3 = new Ammo.btVector3(5, 5, 5);
   // var sphere1 = new Ammo.btBoxShape(spVec3);
-  
+
   // sphere1.setLocalScaling(new Ammo.btVector3(2, 2, 2)); working 
 
   // var sphere1 = new Ammo.btSphereShape(5);
   var sphere1 = new Ammo.btCapsuleShape(5, 0.5);
+  sphere1.updateProp(0.5, 1, 1);
   var s1_localPos = new Ammo.btVector3();
   var s1_localRot = new Ammo.btQuaternion();
   var s1_localEuler = new Ammo.btVector3(0, 0, 0);
@@ -45,7 +46,7 @@ Ammo().then(function(Ammo) {
 
   var groundBody;
 
-  (function() {
+  (function () {
     var mass = 0;
     var localInertia = new Ammo.btVector3(0, 0, 0);
     var myMotionState = new Ammo.btDefaultMotionState(groundTransform);
@@ -58,8 +59,8 @@ Ammo().then(function(Ammo) {
 
   var boxShape = new Ammo.btBoxShape(new Ammo.btVector3(1, 1, 1));
 
-  function resetPositions() {
-    var side = Math.ceil(Math.pow(NUM, 1/3));
+  function resetPositions () {
+    var side = Math.ceil(Math.pow(NUM, 1 / 3));
     var i = 1;
     for (var x = 0; x < side; x++) {
       for (var y = 0; y < side; y++) {
@@ -67,9 +68,9 @@ Ammo().then(function(Ammo) {
           if (i == bodies.length) break;
           var body = bodies[i++];
           var origin = body.getWorldTransform().getOrigin();
-          origin.setX((x - side/2)*(2.2 + Math.random()));
+          origin.setX((x - side / 2) * (2.2 + Math.random()));
           origin.setY(y * (3 + Math.random()));
-          origin.setZ((z - side/2)*(2.2 + Math.random()) - side - 3);
+          origin.setZ((z - side / 2) * (2.2 + Math.random()) - side - 3);
           body.activate();
           var rotation = body.getWorldTransform().getRotation();
           rotation.setX(1);
@@ -81,8 +82,8 @@ Ammo().then(function(Ammo) {
     }
   }
 
-  function startUp() {
-    NUMRANGE.forEach(function(i) {
+  function startUp () {
+    NUMRANGE.forEach(function (i) {
       var startTransform = new Ammo.btTransform();
       startTransform.setIdentity();
       var mass = 1;
@@ -92,7 +93,7 @@ Ammo().then(function(Ammo) {
       var myMotionState = new Ammo.btDefaultMotionState(startTransform);
       var rbInfo = new Ammo.btRigidBodyConstructionInfo(mass, myMotionState, boxShape, localInertia);
       var body = new Ammo.btRigidBody(rbInfo);
-      body.setActivationState( 4 );
+      body.setActivationState(4);
       dynamicsWorld.addRigidBody(body);
       bodies.push(body);
     });
@@ -102,7 +103,7 @@ Ammo().then(function(Ammo) {
 
   var transform = new Ammo.btTransform(); // taking this out of readBulletObject reduces the leaking
 
-  function readBulletObject(i, object) {
+  function readBulletObject (i, object) {
     var body = bodies[i];
     body.getMotionState().getWorldTransform(transform);
     var origin = transform.getOrigin();
@@ -117,36 +118,36 @@ Ammo().then(function(Ammo) {
   }
 
   var nextTimeToRestart = 0;
-  function timeToRestart() { // restart if at least one is inactive - the scene is starting to get boring
-    
+  function timeToRestart () { // restart if at least one is inactive - the scene is starting to get boring
+
     globalThis.CC_UPDATE_SCALE = true;
     // globalThis.CC_UPDATE_POSITION = true;
     // globalThis.CC_UPDATE_ROTATION = true;
 
-    if(globalThis.CC_UPDATE_SCALE){
+    if (globalThis.CC_UPDATE_SCALE) {
       /** 更新子形状 scale */
       let y = sphere1.getLocalScaling().y();
-      if(y < 100){
+      if (y < 100) {
         y += 0.01;
         /** scaling sub shape */
-        sphere1.setLocalScaling(new Ammo.btVector3(y,y,y));
+        sphere1.setLocalScaling(new Ammo.btVector3(y, y, y));
         groundShape.updateChildTransform(1, sphere1Trans, true);
-        
+
         // not work
         // sphere1.getLocalScaling().setValue(y,y,y);
         // groundShape.updateChildTransform(1, sphere1Trans, true);
-        
+
         // not work
         // dynamicsWorld.removeRigidBody(groundBody);
         // groundShape.removeChildShape(sphere1);
         // sphere1Trans.setIdentity();
         // groundShape.addChildShape(sphere1Trans, sphere1);
-        
+
         // dynamicsWorld.addRigidBody(groundBody);
 
         // not work
         // dynamicsWorld.updateSingleAabb(groundBody);
-              
+
         // not work
         // groundShape.removeChildShapeByIndex(1);
 
@@ -157,23 +158,23 @@ Ammo().then(function(Ammo) {
         // spVec3.setZ(4 + y);
       }
     }
-    if(globalThis.CC_UPDATE_POSITION){
+    if (globalThis.CC_UPDATE_POSITION) {
       /** translate sub shape */
-      if(sphere1Trans.getOrigin().y() == 2){
+      if (sphere1Trans.getOrigin().y() == 2) {
         sphere1Trans.getOrigin().setY(0);
-      }else{
+      } else {
         sphere1Trans.getOrigin().setY(sphere1Trans.getOrigin().y() + 0.01);
       }
       groundShape.updateChildTransform(1, sphere1Trans, true);
     }
-    if(globalThis.CC_UPDATE_ROTATION){
-      /** rotate sub shape */      
-      if(s1_localEuler.y() == 45){
+    if (globalThis.CC_UPDATE_ROTATION) {
+      /** rotate sub shape */
+      if (s1_localEuler.y() == 45) {
         s1_localEuler.setValue(0, 0, 0);
         s1_localRot.setEulerZYX(s1_localEuler.z(), s1_localEuler.y(), s1_localEuler.x());
-      }else{
+      } else {
         var e = 0.01;
-        s1_localEuler.setValue(0, s1_localEuler.y() + e, 0);        
+        s1_localEuler.setValue(0, s1_localEuler.y() + e, 0);
         s1_localRot.setEulerZYX(s1_localEuler.z(), s1_localEuler.y(), s1_localEuler.x());
       }
       sphere1Trans.setRotation(s1_localRot);
@@ -216,28 +217,28 @@ Ammo().then(function(Ammo) {
 
   var meanDt = 0, meanDt2 = 0, frame = 1;
 
-  function simulate(dt) {
+  function simulate (dt) {
     dt = dt || 1;
 
     dynamicsWorld.stepSimulation(dt, 2);
 
     var alpha;
     if (meanDt > 0) {
-      alpha = Math.min(0.1, dt/1000);
+      alpha = Math.min(0.1, dt / 1000);
     } else {
       alpha = 0.1; // first run
     }
-    meanDt = alpha*dt + (1-alpha)*meanDt;
+    meanDt = alpha * dt + (1 - alpha) * meanDt;
 
-    var alpha2 = 1/frame++;
-    meanDt2 = alpha2*dt + (1-alpha2)*meanDt2;
+    var alpha2 = 1 / frame++;
+    meanDt2 = alpha2 * dt + (1 - alpha2) * meanDt2;
 
-    var data = { objects: [], currFPS: Math.round(1000/meanDt), allFPS: Math.round(1000/meanDt2) };
+    var data = { objects: [], currFPS: Math.round(1000 / meanDt), allFPS: Math.round(1000 / meanDt2) };
 
     // Read bullet data into JS objects
     for (var i = 0; i < NUM; i++) {
       var object = [];
-      readBulletObject(i+1, object);
+      readBulletObject(i + 1, object);
       data.objects[i] = object;
     }
 
@@ -263,10 +264,10 @@ Ammo().then(function(Ammo) {
 
   var interval = null;
 
-  onmessage = function(event) {
+  onmessage = function (event) {
     NUM = event.data;
     NUMRANGE.length = 0;
-    while (NUMRANGE.length < NUM) NUMRANGE.push(NUMRANGE.length+1);
+    while (NUMRANGE.length < NUM) NUMRANGE.push(NUMRANGE.length + 1);
 
     frame = 1;
     meanDt = meanDt2 = 0;
@@ -274,13 +275,13 @@ Ammo().then(function(Ammo) {
     startUp();
 
     var last = Date.now();
-    function mainLoop() {
+    function mainLoop () {
       var now = Date.now();
       simulate(now - last);
       last = now;
     }
 
     if (interval) clearInterval(interval);
-    interval = setInterval(mainLoop, 1000/60);
+    interval = setInterval(mainLoop, 1000 / 60);
   }
 });

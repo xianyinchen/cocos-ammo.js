@@ -322,12 +322,12 @@ interface btCapsuleShape {
   void btCapsuleShape(float radius, float height);
   void setMargin(float margin);
   float getMargin();
-  long getUpAxis();
-  float getRadius();
-  float getHalfHeight();
+  // long getUpAxis();
+  // float getRadius();
+  // float getHalfHeight();
 
   // XXX
-  void setUpAxis(long upAxis);
+  void updateProp(float r, float h, long upAxis);
 };
 btCapsuleShape implements btConvexInternalShape;
 
@@ -349,10 +349,10 @@ interface btCylinderShape {
   void btCylinderShape([Ref] btVector3 halfExtents);
   void setMargin(float margin);
   float getMargin();
-  long getUpAxis();
+  // long getUpAxis();
 
   // XXX
-  void setUpAxis(long upAxis);
+  void updateProp(float r, float h, long upAxis);
 };
 btCylinderShape implements btConvexInternalShape;
 
