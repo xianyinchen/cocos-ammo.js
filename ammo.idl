@@ -322,8 +322,7 @@ interface btCapsuleShape {
   float getHalfHeight();
 
   //XXX
-  void setUpAxis(long upAxis);
-  [Const, Ref] btVector3 getImplicitShapeDimensions();
+  void updateProp(float r, float h, long upAxis);
 };
 btCapsuleShape implements btCollisionShape;
 
@@ -345,6 +344,9 @@ interface btCylinderShape {
   void btCylinderShape([Ref] btVector3 halfExtents);
   void setMargin(float margin);
   float getMargin();
+  
+  //XXX
+  void updateProp(float r, float h, long upAxis);
 };
 btCylinderShape implements btCollisionShape;
 
