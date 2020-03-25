@@ -64,6 +64,7 @@ def build():
   O3 = 'O3' in sys.argv
   Os = 'Os' in sys.argv
   Oz = 'Oz' in sys.argv
+  g2 = 'g2' in sys.argv
 
   args = '-O3'
   if O1 : args = '-O1'
@@ -72,6 +73,7 @@ def build():
   elif Os : args = '-Os'
   elif Oz : args = '-Oz'
 
+  if g2 : args += ' -g2'
   args += ' --llvm-lto 1 -s NO_EXIT_RUNTIME=1 -s NO_FILESYSTEM=1'
   # args = '-O3 --llvm-lto 1 -s NO_EXIT_RUNTIME=1 -s NO_FILESYSTEM=1 -s EXPORTED_RUNTIME_METHODS=["UTF8ToString"] -s ASSERTIONS=1'
   if add_function_support:
