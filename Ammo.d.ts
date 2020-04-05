@@ -3,7 +3,9 @@ declare function Ammo (): Promise<void>;
 
 declare namespace Ammo {
   type VoidPtr = number;
-
+  const HEAPF32: Float32Array;
+  const PHY_FLOAT: number;
+  function _malloc (byte: number): number;
   interface btIDebugDraw {
     drawLine (from: btVector3, to: btVector3, color: btVector3): void;
     drawContactPoint (
@@ -452,7 +454,7 @@ declare namespace Ammo {
       minHeight: number,
       maxHeight: number,
       upAxis: number,
-      hdt: PHY_ScalarType,
+      hdt: string | number,
       flipQuadEdges: boolean,
     );
     public setMargin (margin: number): void;
