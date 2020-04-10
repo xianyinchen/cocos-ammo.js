@@ -297,9 +297,9 @@ interface btCollisionShape {
   void setUserIndex(long index);
 };
 
-// interface btConvexShape {
-// };
-// btConvexShape implements btCollisionShape;
+interface btConvexShape {
+};
+btConvexShape implements btCollisionShape;
 
 interface btConvexInternalShape {
   [Const, Ref] btVector3 getImplicitShapeDimensions();
@@ -924,35 +924,35 @@ btDiscreteDynamicsWorld implements btDynamicsWorld;
 //   attribute float  m_skidInfo;
 // };
 
-// interface btActionInterface {
-//     void updateAction (btCollisionWorld collisionWorld, float deltaTimeStep);
-// };
+interface btActionInterface {
+    void updateAction (btCollisionWorld collisionWorld, float deltaTimeStep);
+};
 
-// interface btKinematicCharacterController {
-//   void btKinematicCharacterController(btPairCachingGhostObject ghostObject, btConvexShape convexShape, float stepHeight, [Const,Ref] optional btVector3 upAxis);
+interface btKinematicCharacterController {
+  void btKinematicCharacterController(btPairCachingGhostObject ghostObject, btConvexShape convexShape, float stepHeight, [Const,Ref] optional btVector3 upAxis);
 
-//   void setUp ([Const,Ref] btVector3 upAxis);
-//   void setWalkDirection ([Const,Ref] btVector3 walkDirection);
-//   void setVelocityForTimeInterval ([Const,Ref] btVector3 velocity, float timeInterval);
-//   //void reset ();
-//   void warp ([Const, Ref]btVector3 origin);
-//   void preStep (btCollisionWorld collisionWorld);
-//   void playerStep (btCollisionWorld collisionWorld, float dt);
-//   void setFallSpeed (float fallSpeed);
-//   void setJumpSpeed (float jumpSpeed);
-//   void setMaxJumpHeight (float maxJumpHeight);
-//   boolean canJump ();
-//   void jump ();
-//   void setGravity ([Const, Ref] btVector3 gravity);
-//   [Value] btVector3 getGravity ();
-//   void setMaxSlope (float slopeRadians);
-//   float getMaxSlope ();
-//   btPairCachingGhostObject getGhostObject ();
-//   void setUseGhostSweepTest (boolean useGhostObjectSweepTest);
-//   boolean onGround ();
-//   void setUpInterpolate (boolean value);
-// };
-// btKinematicCharacterController implements btActionInterface;
+  void setUp ([Const,Ref] btVector3 upAxis);
+  void setWalkDirection ([Const,Ref] btVector3 walkDirection);
+  void setVelocityForTimeInterval ([Const,Ref] btVector3 velocity, float timeInterval);
+  void reset (btCollisionWorld collisionWorld);
+  void warp ([Const, Ref]btVector3 origin);
+  void preStep (btCollisionWorld collisionWorld);
+  void playerStep (btCollisionWorld collisionWorld, float dt);
+  void setFallSpeed (float fallSpeed);
+  void setJumpSpeed (float jumpSpeed);
+  void setMaxJumpHeight (float maxJumpHeight);
+  boolean canJump ();
+  void jump ();
+  void setGravity ([Const, Ref] btVector3 gravity);
+  [Value] btVector3 getGravity ();
+  void setMaxSlope (float slopeRadians);
+  float getMaxSlope ();
+  btPairCachingGhostObject getGhostObject ();
+  void setUseGhostSweepTest (boolean useGhostObjectSweepTest);
+  boolean onGround ();
+  void setUpInterpolate (boolean value);
+};
+btKinematicCharacterController implements btActionInterface;
 
 // interface btRaycastVehicle {
 //   void btRaycastVehicle([Const, Ref] btVehicleTuning tuning, btRigidBody chassis, btVehicleRaycaster raycaster);
@@ -987,19 +987,19 @@ btDiscreteDynamicsWorld implements btDynamicsWorld;
 // };
 // btRaycastVehicle implements btActionInterface;
 
-// // ghost object
+// ghost object
 
-// interface btGhostObject {
-//   void btGhostObject();
-//   long getNumOverlappingObjects();
-//   btCollisionObject getOverlappingObject(long index);
-// };
-// btGhostObject implements btCollisionObject;
+interface btGhostObject {
+  void btGhostObject();
+  long getNumOverlappingObjects();
+  btCollisionObject getOverlappingObject(long index);
+};
+btGhostObject implements btCollisionObject;
 
-// interface btPairCachingGhostObject {
-//   void btPairCachingGhostObject();
-// };
-// btPairCachingGhostObject implements btGhostObject;
+interface btPairCachingGhostObject {
+  void btPairCachingGhostObject();
+};
+btPairCachingGhostObject implements btGhostObject;
 
 // interface btGhostPairCallback {
 //   void btGhostPairCallback();

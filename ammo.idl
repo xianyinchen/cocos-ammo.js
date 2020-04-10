@@ -926,7 +926,7 @@ interface btKinematicCharacterController {
   void setUp ([Const,Ref] btVector3 upAxis);
   void setWalkDirection ([Const,Ref] btVector3 walkDirection);
   void setVelocityForTimeInterval ([Const,Ref] btVector3 velocity, float timeInterval);
-  //void reset ();
+  void reset (btCollisionWorld collisionWorld);
   void warp ([Const, Ref]btVector3 origin);
   void preStep (btCollisionWorld collisionWorld);
   void playerStep (btCollisionWorld collisionWorld, float dt);
