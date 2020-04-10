@@ -810,8 +810,8 @@ interface btContactSolverInfo {
 };
 
 interface btDynamicsWorld {
-  // void addAction(btActionInterface action);
-  // void removeAction(btActionInterface action);
+  void addAction(btActionInterface action);
+  void removeAction(btActionInterface action);
   [Ref] btContactSolverInfo getSolverInfo();
 };
 btDynamicsWorld implements btCollisionWorld;
