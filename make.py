@@ -12,6 +12,7 @@ os.path.join('BulletCollision', 'CollisionShapes', 'btShapeHull.h'),
 os.path.join('BulletCollision', 'CollisionDispatch', 'btGhostObject.h'),
 
 os.path.join('BulletDynamics', 'Character', 'btKinematicCharacterController.h'),
+os.path.join('..', '..', 'extensions', 'ccKinematicCharacterController.cpp'),
 
 os.path.join('BulletSoftBody', 'btSoftBody.h'),
 os.path.join('BulletSoftBody', 'btSoftRigidDynamicsWorld.h'), os.path.join('BulletSoftBody', 'btDefaultSoftBodySolver.h'),

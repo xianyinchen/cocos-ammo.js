@@ -934,7 +934,7 @@ interface btKinematicCharacterController {
   void setJumpSpeed (float jumpSpeed);
   void setMaxJumpHeight (float maxJumpHeight);
   boolean canJump ();
-  void jump ();
+  void jump ([Const,Ref] optional btVector3 v);
   void setGravity ([Const, Ref] btVector3 gravity);
   [Value] btVector3 getGravity ();
   void setMaxSlope (float slopeRadians);
@@ -945,6 +945,32 @@ interface btKinematicCharacterController {
   void setUpInterpolate (boolean value);
 };
 btKinematicCharacterController implements btActionInterface;
+
+interface ccKinematicCharacterController {
+  void ccKinematicCharacterController(btPairCachingGhostObject ghostObject, btConvexShape convexShape, float stepHeight, optional long upAxis);
+
+  void setUpAxis (long axis);
+  void setWalkDirection ([Const,Ref] btVector3 walkDirection);
+  void setVelocityForTimeInterval ([Const,Ref] btVector3 velocity, float timeInterval);
+  //void reset ();
+  void warp ([Const, Ref]btVector3 origin);
+  void preStep (btCollisionWorld collisionWorld);
+  void playerStep (btCollisionWorld collisionWorld, float dt);
+  void setFallSpeed (float fallSpeed);
+  void setJumpSpeed (float jumpSpeed);
+  void setMaxJumpHeight (float maxJumpHeight);
+  boolean canJump ();
+  void jump ();
+  void setGravity (float gravity);
+  float getGravity ();
+  void setMaxSlope (float slopeRadians);
+  float getMaxSlope ();
+  btPairCachingGhostObject getGhostObject ();
+  void setUseGhostSweepTest (boolean useGhostObjectSweepTest);
+  boolean onGround ();
+  void setUpInterpolate (boolean value);
+};
+ccKinematicCharacterController implements btActionInterface;
 
 interface btRaycastVehicle {
   void btRaycastVehicle([Const, Ref] btVehicleTuning tuning, btRigidBody chassis, btVehicleRaycaster raycaster);
