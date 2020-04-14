@@ -202,6 +202,9 @@ bool ccKinematicCharacterController::recoverFromPenetration ( btCollisionWorld* 
 		if ((obj0 && !obj0->hasContactResponse()) || (obj1 && !obj1->hasContactResponse()))
 			continue;
 		
+		if (!needsCollision(obj0, obj1))
+			continue;
+
 		if (collisionPair->m_algorithm)
 			collisionPair->m_algorithm->getAllContactManifolds(m_manifoldArray);
 
@@ -267,7 +270,7 @@ void ccKinematicCharacterController::stepUp ( btCollisionWorld* world)
 		world->convexSweepTest (m_convexShape, start, end, callback);
 	}
 	
-	if (callback.hasHit())
+	if (callback.hasHit() && m_ghostObject->hasContactResponse() && needsCollision(m_ghostObject, callback.m_hitCollisionObject))
 	{
 		// Only modify the position if the hit was a slope and not a wall or ceiling.
 		if(callback.m_hitNormalWorld.dot(getUpAxisDirections()[m_upAxis]) > 0.0)
@@ -377,7 +380,7 @@ void ccKinematicCharacterController::stepForwardAndStrafe ( btCollisionWorld* co
 		
 		fraction -= callback.m_closestHitFraction;
 
-		if (callback.hasHit())
+		if (callback.hasHit() && m_ghostObject->hasContactResponse() && needsCollision(m_ghostObject, callback.m_hitCollisionObject))
 		{	
 			// we moved only a fraction
 			btScalar hitDistance;
@@ -480,9 +483,9 @@ void ccKinematicCharacterController::stepDown ( btCollisionWorld* collisionWorld
 		btScalar downVelocity2 = (m_verticalVelocity<0.f?-m_verticalVelocity:0.f) * dt;
 		bool has_hit = false;
 		if (bounce_fix == true)
-			has_hit = callback.hasHit() || callback2.hasHit();
+			has_hit = (callback.hasHit() || callback2.hasHit()) && m_ghostObject->hasContactResponse() && needsCollision(m_ghostObject, callback.m_hitCollisionObject);
 		else
-			has_hit = callback2.hasHit();
+			has_hit = callback2.hasHit() && m_ghostObject->hasContactResponse() && needsCollision(m_ghostObject, callback2.m_hitCollisionObject);
 
 		if(downVelocity2 > 0.0 && downVelocity2 < m_stepHeight && has_hit == true && runonce == false
 					&& (m_wasOnGround || !m_wasJumping))
@@ -501,7 +504,7 @@ void ccKinematicCharacterController::stepDown ( btCollisionWorld* collisionWorld
 		break;
 	}
 
-	if (callback.hasHit() || runonce == true)
+	if (runonce == true || (m_ghostObject->hasContactResponse() && (callback.hasHit() && needsCollision(m_ghostObject, callback.m_hitCollisionObject))))
 	{
 		// we dropped a fraction of the height -> hit floor
 
@@ -767,4 +770,12 @@ void ccKinematicCharacterController::debugDraw(btIDebugDraw* debugDrawer)
 void ccKinematicCharacterController::setUpInterpolate(bool value)
 {
 	m_interpolateUp = value;
+}
+
+bool ccKinematicCharacterController::needsCollision(const btCollisionObject* body0, const btCollisionObject* body1)
+{
+	bool collides = (body0->getBroadphaseHandle()->m_collisionFilterGroup & body1->getBroadphaseHandle()->m_collisionFilterMask) != 0;
+	collides = collides && (body1->getBroadphaseHandle()->m_collisionFilterGroup & body0->getBroadphaseHandle()->m_collisionFilterMask);
+	collides = collides && body0->checkCollideWith(body1) && body1->checkCollideWith(body0);
+	return collides;
 }

@@ -149,6 +149,9 @@ public:
 
 	bool onGround () const;
 	void setUpInterpolate (bool value);
+
+	// EXTENDS
+	virtual bool needsCollision(const btCollisionObject* body0, const btCollisionObject* body1);
 };
 
 #endif // CC_KINEMATIC_CHARACTER_CONTROLLER_H
