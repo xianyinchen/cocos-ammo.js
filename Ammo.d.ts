@@ -164,6 +164,8 @@ declare namespace Ammo {
     public getUserPointer (): VoidPtr;
     public setUserPointer (userPointer: VoidPtr): void;
     public getBroadphaseHandle (): btBroadphaseProxy;
+    public checkCollideWith (co: btCollisionObject): boolean;
+    public setIgnoreCollisionCheck (co: btCollisionObject, ig: boolean): void;
   }
 
   class btCollisionObjectWrapper { }

@@ -148,6 +148,8 @@ interface btCollisionObject {
   VoidPtr getUserPointer();
   void setUserPointer(VoidPtr userPointer);
   [Const] btBroadphaseProxy getBroadphaseHandle();
+  // boolean checkCollideWith([Const] btCollisionObject co);
+  void setIgnoreCollisionCheck([Const] btCollisionObject co, boolean ig);
 };
 
 [NoDelete]
