@@ -306,10 +306,10 @@ interface btConvexInternalShape {
 };
 btConvexInternalShape implements btCollisionShape;
 
-// interface btConvexTriangleMeshShape {
-//   void btConvexTriangleMeshShape(btStridingMeshInterface meshInterface, optional boolean calcAabb);
-// };
-// btConvexTriangleMeshShape implements btConvexShape;
+interface btConvexTriangleMeshShape {
+  void btConvexTriangleMeshShape(btStridingMeshInterface meshInterface, optional boolean calcAabb);
+};
+btConvexTriangleMeshShape implements btConvexShape;
 
 interface btBoxShape {
   void btBoxShape([Ref] btVector3 boxHalfExtents);
