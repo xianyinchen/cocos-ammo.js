@@ -312,6 +312,11 @@ declare namespace Ammo {
     constructor (meshInterface: btStridingMeshInterface, calcAabb?: boolean);
   }
 
+  class btBU_Simplex1to4 extends btConvexShape {
+    constructor ();
+    addVertex (pt: btVector3): void;
+  }
+
   class btBoxShape extends btCollisionShape {
     constructor (boxHalfExtents: btVector3);
     public setMargin (margin: number): void;
@@ -371,6 +376,7 @@ declare namespace Ammo {
 
   class btConeShape extends btCollisionShape {
     constructor (radius: number, height: number);
+    public setConeUpIndex (i: number): void;
   }
 
   class btConvexHullShape extends btCollisionShape {

@@ -313,7 +313,7 @@ interface btBoxShape {
   void setMargin(float margin);
   float getMargin();
 };
-btBoxShape implements btCollisionShape;
+btBoxShape implements btConvexShape;
 
 interface btCapsuleShape {
   void btCapsuleShape(float radius, float height);
@@ -326,7 +326,7 @@ interface btCapsuleShape {
   //XXX
   void updateProp(float r, float h, long upAxis);
 };
-btCapsuleShape implements btCollisionShape;
+btCapsuleShape implements btConvexShape;
 
 interface btCapsuleShapeX {
   void btCapsuleShapeX(float radius, float height);
@@ -350,7 +350,7 @@ interface btCylinderShape {
   //XXX
   void updateProp(float r, float h, long upAxis);
 };
-btCylinderShape implements btCollisionShape;
+btCylinderShape implements btConvexShape;
 
 interface btCylinderShapeX {
   void btCylinderShapeX([Ref] btVector3 halfExtents);
@@ -371,7 +371,7 @@ interface btSphereShape {
   void setMargin(float margin);
   float getMargin();
 };
-btSphereShape implements btCollisionShape;
+btSphereShape implements btConvexShape;
 
 interface btMultiSphereShape {
   void btMultiSphereShape([Const] btVector3 positions, [Const] float[] radii, long numPoints);
@@ -380,8 +380,15 @@ btMultiSphereShape implements btCollisionShape;
 
 interface btConeShape {
   void btConeShape(float radius, float height);
+  void setConeUpIndex(long upIndex);
 };
-btConeShape implements btCollisionShape;
+btConeShape implements btConvexShape;
+
+interface btBU_Simplex1to4 {
+  void btBU_Simplex1to4();
+  void addVertex([Ref] btVector3 pt);
+};
+btBU_Simplex1to4 implements btConvexShape;
 
 interface btIntArray {
   long size();

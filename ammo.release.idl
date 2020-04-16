@@ -304,7 +304,7 @@ interface btConvexShape {
 btConvexShape implements btCollisionShape;
 
 interface btConvexInternalShape {
-  [Const, Ref] btVector3 getImplicitShapeDimensions();
+  // [Const, Ref] btVector3 getImplicitShapeDimensions();
 };
 btConvexInternalShape implements btCollisionShape;
 
@@ -384,10 +384,17 @@ btSphereShape implements btConvexInternalShape;
 // };
 // btMultiSphereShape implements btCollisionShape;
 
-// interface btConeShape {
-//   void btConeShape(float radius, float height);
-// };
-// btConeShape implements btConvexInternalShape;
+interface btConeShape {
+  void btConeShape(float radius, float height);
+  void setConeUpIndex(long upIndex);
+};
+btConeShape implements btConvexInternalShape;
+
+interface btBU_Simplex1to4 {
+  void btBU_Simplex1to4();
+  void addVertex([Ref] btVector3 pt);
+};
+btBU_Simplex1to4 implements btConvexShape;
 
 interface btIntArray {
   long size();
