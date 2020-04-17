@@ -377,6 +377,8 @@ declare namespace Ammo {
   class btConeShape extends btCollisionShape {
     constructor (radius: number, height: number);
     public setConeUpIndex (i: number): void;
+    public setHeight (h: number): void;
+    public setRadius (r: number): void;
   }
 
   class btConvexHullShape extends btCollisionShape {

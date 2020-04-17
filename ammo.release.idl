@@ -386,6 +386,8 @@ btSphereShape implements btConvexInternalShape;
 
 interface btConeShape {
   void btConeShape(float radius, float height);
+  void setRadius(float radius);
+  void setHeight(float height);
   void setConeUpIndex(long upIndex);
 };
 btConeShape implements btConvexInternalShape;
