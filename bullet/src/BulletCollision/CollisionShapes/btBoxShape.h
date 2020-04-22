@@ -306,6 +306,14 @@ BT_DECLARE_ALIGNED_ALLOCATOR();
 		}
 	}
 
+	// XXX
+	void setUnscaledHalfExtents( const btVector3& boxHalfExtents) {
+			
+		btVector3 margin(getMargin(),getMargin(),getMargin());
+		m_implicitShapeDimensions = (boxHalfExtents * m_localScaling) - margin;
+
+		setSafeMargin(boxHalfExtents);
+	}
 };
 
 

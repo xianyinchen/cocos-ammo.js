@@ -304,9 +304,9 @@ interface btConvexShape {
 btConvexShape implements btCollisionShape;
 
 interface btConvexInternalShape {
-  // [Const, Ref] btVector3 getImplicitShapeDimensions();
+  [Const, Ref] btVector3 getImplicitShapeDimensions();
 };
-btConvexInternalShape implements btCollisionShape;
+btConvexInternalShape implements btConvexShape;
 
 interface btConvexTriangleMeshShape {
   void btConvexTriangleMeshShape(btStridingMeshInterface meshInterface, optional boolean calcAabb);
@@ -317,6 +317,9 @@ interface btBoxShape {
   void btBoxShape([Ref] btVector3 boxHalfExtents);
   void setMargin(float margin);
   float getMargin();
+
+  // XXX
+  void setUnscaledHalfExtents([Ref] btVector3 boxHalfExtents);
 };
 btBoxShape implements btConvexInternalShape;
 
@@ -376,6 +379,7 @@ interface btSphereShape {
   void btSphereShape(float radius);
   void setMargin(float margin);
   float getMargin();
+  void setUnscaledRadius(float radius);
 };
 btSphereShape implements btConvexInternalShape;
 

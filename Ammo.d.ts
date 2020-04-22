@@ -321,6 +321,7 @@ declare namespace Ammo {
     constructor (boxHalfExtents: btVector3);
     public setMargin (margin: number): void;
     public getMargin (): number;
+    public setUnscaledHalfExtents (boxHalfExtents: btVector3): void;
   }
 
   class btCapsuleShape extends btCollisionShape {
@@ -372,6 +373,7 @@ declare namespace Ammo {
     constructor (radius: number);
     public setMargin (margin: number): void;
     public getMargin (): number;
+    public setUnscaledRadius (radius: number): void;
   }
 
   class btConeShape extends btCollisionShape {
