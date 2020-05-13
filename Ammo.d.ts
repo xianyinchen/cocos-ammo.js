@@ -152,6 +152,7 @@ declare namespace Ammo {
     public setRestitution (rest: number): void;
     public setFriction (frict: number): void;
     public setRollingFriction (frict: number): void;
+    public setSpinningFriction (frict: number): void;
     public getWorldTransform (): btTransform;
     public getCollisionFlags (): number;
     public setCollisionFlags (flags: number): void;
@@ -302,6 +303,10 @@ declare namespace Ammo {
     public getMargin (): number;
     public setUserIndex (i: number): void;
     public isCompound (): boolean;
+    public getAabb (t: btTransform, min: btVector3, max: btVector3): void;
+
+    ///XXX
+    public getLocalBoundingSphere (): number;
   }
 
   class btConvexShape extends btCollisionShape { }
@@ -417,7 +422,7 @@ declare namespace Ammo {
     public setMargin (margin: number): void;
     public getMargin (): number;
     public updateChildTransform (childIndex: number, newChildTransform: btTransform, shouldRecalculateLocalAabb?: boolean): void;
-    public setMaterial (childShapeindex: number, f: number, r: number, rf?: number): void;
+    public setMaterial (childShapeindex: number, f: number, r: number, rf?: number, sf?: number): void;
   }
 
   class btStridingMeshInterface { }
@@ -445,6 +450,10 @@ declare namespace Ammo {
 
   class btStaticPlaneShape extends btConcaveShape {
     constructor (planeNormal: btVector3, planeConstant: number);
+    // [Const, Ref] btVector3 getPlaneNormal();
+    getPlaneNormal (): btVector3;
+    // void setPlaneConstant(float v);
+    setPlaneConstant (v: number): void;
   }
 
   class btTriangleMeshShape extends btConcaveShape { }
@@ -474,6 +483,12 @@ declare namespace Ammo {
   }
 
   class btDefaultCollisionConstructionInfo {
+    // m_persistentManifoldPool: btPoolAllocator;
+    // m_collisionAlgorithmPool: btPoolAllocator;
+    m_defaultMaxPersistentManifoldPoolSize: number | 1;
+    m_defaultMaxCollisionAlgorithmPoolSize: number | 1;
+    m_customCollisionAlgorithmMaxElementSize: number | 1;
+    m_useEpaPenetrationAlgorithm: number | 1;
     constructor ();
   }
 
@@ -496,6 +511,7 @@ declare namespace Ammo {
 
   class btCollisionDispatcher extends btDispatcher {
     constructor (conf: btDefaultCollisionConfiguration);
+    public setDispatcherFlags (flags: number): void;
   }
 
   class btOverlappingPairCallback { }
@@ -591,8 +607,11 @@ declare namespace Ammo {
     public getFlags (): number;
     public setFlags (flags: number): void;
     public wantsSleeping (): boolean;
+    public clearForces (): void;
+    public getTotalForce (): btVector3;
+    public getTotalTorque (): btVector3;
 
-    // XXX
+    //XXX
     public clearState (): void;
   }
 

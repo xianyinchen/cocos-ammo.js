@@ -149,6 +149,15 @@ public:
 
 	virtual void	serializeSingleShape(btSerializer* serializer) const;
 
+	///XXX EXTENDS
+	float getLocalBoundingSphere () {
+		btTransform tr;
+		tr.setIdentity();
+		btVector3 aabbMin,aabbMax;
+
+		getAabb(tr,aabbMin,aabbMax);
+		return (aabbMax-aabbMin).length()*btScalar(0.5);
+	}
 };	
 
 ///do not change those serialization structures, it requires an updated sBulletDNAstr/sBulletDNAstr64

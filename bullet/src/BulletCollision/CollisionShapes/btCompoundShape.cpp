@@ -89,6 +89,7 @@ void	btCompoundShape::addChildShape(const btTransform& localTransform,btCollisio
 	m_frictions.push_back(btScalar(0.5));
 	m_restitutions.push_back(btScalar(0.));
 	m_rollingFrictions.push_back(btScalar(0.0f));
+	m_spinningFrictions.push_back(btScalar(0.0f));
 }
 
 void	btCompoundShape::updateChildTransform(int childIndex, const btTransform& newChildTransform,bool shouldRecalculateLocalAabb)
@@ -127,6 +128,7 @@ void btCompoundShape::removeChildShapeByIndex(int childShapeIndex)
 	m_frictions.remove(childShapeIndex);
 	m_restitutions.remove(childShapeIndex);
 	m_rollingFrictions.remove(childShapeIndex);
+	m_spinningFrictions.remove(childShapeIndex);
 }
 
 

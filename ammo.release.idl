@@ -133,9 +133,11 @@ interface btCollisionObject {
   // [Const] float getRestitution();
   // [Const] float getFriction();
   // [Const] float getRollingFriction();
-  void setRestitution(float rest);
-  void setFriction(float frict);
-  void setRollingFriction(float frict);
+  // [Const] float getSpinningFriction();
+  void setRestitution(float r);
+  void setFriction(float f);
+  void setRollingFriction(float rf);
+  void setSpinningFriction(float sf);
   [Ref] btTransform getWorldTransform();
   long getCollisionFlags();
   void setCollisionFlags(long flags);
@@ -297,6 +299,10 @@ interface btCollisionShape {
   // void setUserPointer(VoidPtr userPointer);
   long getUserIndex();
   void setUserIndex(long index);
+  void getAabb([Const, Ref] btTransform t, [Ref] btVector3 min, [Ref] btVector3 max);
+  
+  ///XXX
+  float getLocalBoundingSphere();
 };
 
 interface btConvexShape {
@@ -468,7 +474,9 @@ interface btCompoundShape {
   void updateChildTransform(long childIndex, [Const, Ref] btTransform newChildTransform, optional boolean shouldRecalculateLocalAabb);
   void setMargin(float margin);
   float getMargin();
-  void setMaterial(long childShapeindex, float f, float r, optional float rf);
+  
+  ///XXX
+  void setMaterial(long childShapeindex, float f, float r, optional float rf, optional float sf);
 };
 btCompoundShape implements btCollisionShape;
 
@@ -504,10 +512,14 @@ interface btEmptyShape {
 };
 btEmptyShape implements btConcaveShape;
 
-// interface btStaticPlaneShape {
-//   void btStaticPlaneShape([Const, Ref] btVector3 planeNormal, float planeConstant);
-// };
-// btStaticPlaneShape implements btConcaveShape;
+interface btStaticPlaneShape {
+  void btStaticPlaneShape([Const, Ref] btVector3 planeNormal, float planeConstant);
+  [Const, Ref] btVector3 getPlaneNormal();
+
+  ///XXX
+  void setPlaneConstant(float v);
+};
+btStaticPlaneShape implements btConcaveShape;
 
 interface btTriangleMeshShape {
 };
@@ -574,6 +586,7 @@ interface btDispatcher {
 
 interface btCollisionDispatcher {
   void btCollisionDispatcher(btDefaultCollisionConfiguration conf);
+  void setDispatcherFlags(long flags);
 };
 btCollisionDispatcher implements btDispatcher;
 
@@ -616,6 +629,7 @@ interface btRigidBodyConstructionInfo {
   attribute float m_angularDamping;
   attribute float m_friction;
   attribute float m_rollingFriction;
+  // attribute float m_spinningFriction;
   attribute float m_restitution;
   attribute float m_linearSleepingThreshold;
   attribute float m_angularSleepingThreshold;
@@ -664,8 +678,11 @@ interface btRigidBody {
   [Const] long getFlags();
   void setFlags(long flags);
   boolean wantsSleeping();
+  void clearForces();
+  [Const, Ref] btVector3 getTotalForce();
+  [Const, Ref] btVector3 getTotalTorque();
 
-  // xxx
+  ///XXX
   void clearState();
 };
 btRigidBody implements btCollisionObject;
