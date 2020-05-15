@@ -977,7 +977,7 @@ declare namespace Ammo {
       ghostObject: btPairCachingGhostObject,
       convexShape: btConvexShape,
       stepHeight: number,
-      upAxis?: number,
+      upAxis?: btVector3,
     );
     public setUpAxis (axis: number): void;
     public setWalkDirection (walkDirection: btVector3): void;
@@ -989,8 +989,8 @@ declare namespace Ammo {
     public setJumpSpeed (jumpSpeed: number): void;
     public setMaxJumpHeight (maxJumpHeight: number): void;
     public canJump (): boolean;
-    public jump (): void;
-    public setGravity (gravity: number): void;
+    public jump (v?: btVector3): void;
+    public setGravity (gravity: btVector3): void;
     public getGravity (): number;
     public setMaxSlope (slopeRadians: number): void;
     public getMaxSlope (): number;
