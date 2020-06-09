@@ -2,10 +2,21 @@
 declare function Ammo (): Promise<void>;
 
 declare namespace Ammo {
+  type Constructor<T = {}> = new (...args: any[]) => T;
   type VoidPtr = number;
-  const HEAPF32: Float32Array;
+  const NULL: {};
   const PHY_FLOAT: number;
+  const HEAPF32: Float32Array;
+  function destroy (obj: Ammo.Type): void;
+  function castObject<T1, T2 extends Ammo.Type> (obj: T1, fun: Constructor<T2>): T2;
+  function wrapPointer<T extends Ammo.Type> (params: number, obj: Constructor<T>): T;
+  function addFunction (params: Function): number;
+  function getClass (obj: Ammo.Type): void;
+  function getPointer (obj: Ammo.Type): void;
+  function getCache (fun: Constructor<Ammo.Type>): void;
   function _malloc (byte: number): number;
+  function _free (...args: any): any;
+
   interface btIDebugDraw {
     drawLine (from: btVector3, to: btVector3, color: btVector3): void;
     drawContactPoint (
@@ -198,15 +209,16 @@ declare namespace Ammo {
   }
   interface btNumberArray extends btArray<number> { }
   interface btConstCollisionObjectArray extends btArray<btCollisionObject> { }
+  interface btVector3Array extends btArray<btVector3> { }
 
   class AllHitsRayResultCallback extends RayResultCallback {
     public m_rayFromWorld: btVector3;
     public m_rayToWorld: btVector3;
-    public m_hitNormalWorld: btVector3;
-    public m_hitPointWorld: btVector3;
+    public m_hitNormalWorld: btVector3Array;
+    public m_hitPointWorld: btVector3Array;
     constructor (from: btVector3, to: btVector3);
-    public get_m_hitPointWorld (): btVector3;
-    public get_m_hitNormalWorld (): btVector3;
+    public get_m_hitPointWorld (): btVector3Array;
+    public get_m_hitNormalWorld (): btVector3Array;
     public m_hitFractions: btNumberArray;
     public m_collisionObjects: btConstCollisionObjectArray;
     public m_shapeParts: btNumberArray;
@@ -1398,14 +1410,6 @@ declare namespace Ammo {
     | btSoftBodyArray
     | btSoftRigidDynamicsWorld
     | btSoftBodyHelpers;
-
-  function destroy (obj: Ammo.Type): void;
-
-  function castObject<T> (...args: any): any;
-
-  function wrapPointer<T extends Ammo.Type> (params: number, obj: new (...args: any[]) => T): T;
-
-  function addFunction (params: Function): number;
 }
 
 declare module '@cocos/ammo' {
