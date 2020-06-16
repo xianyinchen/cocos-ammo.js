@@ -16,6 +16,7 @@ declare namespace Ammo {
   function getCache (fun: Constructor<Ammo.Type>): void;
   function _malloc (byte: number): number;
   function _free (...args: any): any;
+  function compare (obj1: Ammo.Type, obj2: Ammo.Type): boolean;
 
   interface btIDebugDraw {
     drawLine (from: btVector3, to: btVector3, color: btVector3): void;
