@@ -30,7 +30,7 @@ Ammo().then(function(Ammo) {
     var rbInfo = new Ammo.btRigidBodyConstructionInfo(0, myMotionState, groundShape, localInertia);
     var body = new Ammo.btRigidBody(rbInfo);
 
-    dynamicsWorld.addRigidBody(body);
+    dynamicsWorld.addRigidBody(body, 1<<30, -1);
     bodies.push(body);
   })();
 
@@ -71,7 +71,7 @@ Ammo().then(function(Ammo) {
       var rbInfo = new Ammo.btRigidBodyConstructionInfo(mass, myMotionState, boxShape, localInertia);
       var body = new Ammo.btRigidBody(rbInfo);
 
-      dynamicsWorld.addRigidBody(body);
+      dynamicsWorld.addRigidBody(body, 1<<30, -1);
       bodies.push(body);
     });
 
