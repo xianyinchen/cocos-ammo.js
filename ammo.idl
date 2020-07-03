@@ -165,8 +165,8 @@ interface btCollisionObjectWrapper {
 interface RayResultCallback {
   //abstract base class, no constructor
   boolean hasHit();
-  attribute short m_collisionFilterGroup;
-  attribute short m_collisionFilterMask;
+  attribute long m_collisionFilterGroup;
+  attribute long m_collisionFilterMask;
   attribute long m_shapePart;
   attribute float m_closestHitFraction;
   [Const] attribute btCollisionObject m_collisionObject;
@@ -272,8 +272,8 @@ interface LocalConvexResult  {
 interface ConvexResultCallback {
   //abstract base class, no constructor
   boolean hasHit();
-  attribute short m_collisionFilterGroup;
-  attribute short m_collisionFilterMask;
+  attribute long m_collisionFilterGroup;
+  attribute long m_collisionFilterMask;
   attribute float m_closestHitFraction;
 };
 
@@ -815,7 +815,7 @@ interface btCollisionWorld {
   void rayTest([Const, Ref] btVector3 rayFromWorld, [Const, Ref] btVector3 rayToWorld, [Ref] RayResultCallback resultCallback);
   btOverlappingPairCache getPairCache();
   [Ref] btDispatcherInfo getDispatchInfo();
-  void addCollisionObject(btCollisionObject collisionObject, optional short collisionFilterGroup, optional short collisionFilterMask);
+  void addCollisionObject(btCollisionObject collisionObject, optional long collisionFilterGroup, optional long collisionFilterMask);
   void removeCollisionObject(btCollisionObject collisionObject);
   [Const] btBroadphaseInterface getBroadphase ();
   void convexSweepTest([Const] btConvexShape castShape, [Const, Ref] btTransform from, [Const, Ref] btTransform to, [Ref] ConvexResultCallback resultCallback, float allowedCcdPenetration);
@@ -848,7 +848,7 @@ interface btDiscreteDynamicsWorld {
   [Value] btVector3 getGravity();
 
   void addRigidBody(btRigidBody body);
-  void addRigidBody(btRigidBody body, short group, short mask);
+  void addRigidBody(btRigidBody body, long group, long mask);
   void removeRigidBody(btRigidBody body);
 
   void addConstraint(btTypedConstraint constraint, optional boolean disableCollisionsBetweenLinkedBodies);
@@ -1204,7 +1204,7 @@ interface btSoftBodyArray {
 interface btSoftRigidDynamicsWorld {
   void btSoftRigidDynamicsWorld(btDispatcher dispatcher, btBroadphaseInterface pairCache, btConstraintSolver constraintSolver, btCollisionConfiguration collisionConfiguration, btSoftBodySolver softBodySolver);
 
-  void addSoftBody(btSoftBody body, short collisionFilterGroup, short collisionFilterMask);
+  void addSoftBody(btSoftBody body, long collisionFilterGroup, long collisionFilterMask);
   void removeSoftBody(btSoftBody body);
   void removeCollisionObject(btCollisionObject collisionObject);
 
