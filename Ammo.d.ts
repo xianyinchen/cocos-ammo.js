@@ -588,6 +588,7 @@ declare namespace Ammo {
     public getCenterOfMassTransform (): btTransform;
     public setCenterOfMassTransform (xform: btTransform): void;
     public setSleepingThresholds (linear: number, angular: number): void;
+    public getLinearSleepingThreshold (): number;
     public getLinearDamping (): number;
     public getAngularDamping (): number;
     public setDamping (lin_damping: number, ang_damping: number): void;
