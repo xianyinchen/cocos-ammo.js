@@ -65,5 +65,5 @@ if (typeof exports === 'object' && typeof module === 'object')
     else if (typeof exports === 'object')
       exports["Ammo"] = Ammo;
     
-  return new Ammo();
+  return Ammo;
 });
