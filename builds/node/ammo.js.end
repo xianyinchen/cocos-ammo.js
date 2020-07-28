@@ -1,2 +1,2 @@
-  return new Ammo();
+  return Ammo;
 });
