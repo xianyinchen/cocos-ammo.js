@@ -821,6 +821,7 @@ interface btConstraintSolver {
 interface btCollisionWorld {
   btDispatcher getDispatcher();
   void rayTest([Const, Ref] btVector3 rayFromWorld, [Const, Ref] btVector3 rayToWorld, [Ref] RayResultCallback resultCallback);
+  void rayTestSingle([Const, Ref] btTransform rayFromTrans, [Const, Ref] btTransform rayToTrans, btCollisionObject collisionObject, [const] btCollisionShape collisionShape, [Const, Ref] btTransform colObjWorldTransform, [Ref] RayResultCallback resultCallback);
   // btOverlappingPairCache getPairCache();
   // [Ref] btDispatcherInfo getDispatchInfo();
   void addCollisionObject(btCollisionObject collisionObject, optional long collisionFilterGroup, optional long collisionFilterMask);
