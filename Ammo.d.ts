@@ -818,6 +818,7 @@ declare namespace Ammo {
       rayToWorld: btVector3,
       resultCallback: RayResultCallback,
     ): void;
+    public rayTestSingle (rayFromWorld: btTransform, rayToWorld: btTransform, co: btCollisionObject, cs: btCollisionShape, coTran: btTransform, resultCallback: RayResultCallback);
     public getPairCache (): btOverlappingPairCache;
     public getDispatchInfo (): btDispatcherInfo;
     public addCollisionObject (
