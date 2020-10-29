@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "*.idl": "idl"
-    }
+    },
+    "C_Cpp.default.includePath": ["bullet/src"]
 }

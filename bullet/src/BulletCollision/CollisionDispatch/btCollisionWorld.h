@@ -259,7 +259,7 @@ public:
 		{
 			//caller already does the filter on the m_closestHitFraction
 			btAssert(rayResult.m_hitFraction <= m_closestHitFraction);
-			m_shapePart = rayResult.m_localShapeInfo->m_shapePart;
+			m_shapePart = rayResult.m_localShapeInfo?rayResult.m_localShapeInfo->m_shapePart:0;
 			m_closestHitFraction = rayResult.m_hitFraction;
 			m_collisionObject = rayResult.m_collisionObject;
 			if (normalInWorldSpace)
