@@ -185,7 +185,23 @@ void	BasicDemo::initPhysics()
 	groundTransform.setIdentity();
 	groundTransform.setOrigin(btVector3(0, -50, 0));
 
+	{
+		btBoxShape* s0 = new btBoxShape(btVector3(0.5, 0.5, 0.5));
+		btCollisionObject* co = new btCollisionObject();
+		co->setWorldTransform(btTransform(btQuaternion(), btVector3(0, 2, 0)));
+		co->setCollisionShape(s0);
+		m_dynamicsWorld->addCollisionObject(co);
+
+		btCapsuleShape* s1 = new btCapsuleShape(0.5, 1);
+		btCollisionObject* co2 = new btCollisionObject();
+		co2->setWorldTransform(btTransform(btQuaternion(), btVector3(0, 3, 0)));
+		co2->setCollisionShape(s1);
+		co2->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
+		m_dynamicsWorld->addCollisionObject(co2);
+	}
+
 	//We can also use DemoApplication::localCreateRigidBody, but for clarity it is provided here:
+	if (false)
 	{
 		btScalar mass(0.);
 
@@ -205,7 +221,7 @@ void	BasicDemo::initPhysics()
 		m_dynamicsWorld->addRigidBody(body);
 	}
 
-
+	if (false)
 	{
 		//create a few dynamic rigidbodies
 		// Re-using the same collision is better for memory usage and performance
@@ -277,7 +293,7 @@ void	BasicDemo::initPhysics()
 
 	}
 
-
+	if (false)
 	{
 		ConvexDecomposition::WavefrontObj wo;
 
