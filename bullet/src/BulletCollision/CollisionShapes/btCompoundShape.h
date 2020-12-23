@@ -69,6 +69,7 @@ protected:
 	btAlignedObjectArray<btScalar> m_rollingFrictions;
 	btAlignedObjectArray<btScalar> m_restitutions;
 	btAlignedObjectArray<btScalar> m_spinningFrictions;
+	btAlignedObjectArray<btScalar> m_CombinedModes;
 	bool m_isMutiMaterial;
 
 protected:
@@ -179,12 +180,13 @@ public:
 	///fills the dataBuffer and returns the struct name (and 0 on failure)
 	virtual	const char*	serialize(void* dataBuffer, btSerializer* serializer) const;
 
-	void setMaterial(int index, btScalar friction, btScalar restitution, btScalar rollingFriction = btScalar(0.), btScalar spinningFriction = btScalar(0.))
+	void setMaterial(int index, btScalar friction, btScalar restitution, btScalar rollingFriction = btScalar(0.), btScalar spinningFriction = btScalar(0.), int mode = 2)
 	{
 		m_frictions[index] = friction;
 		m_restitutions[index] = restitution;
 		m_rollingFrictions[index] = rollingFriction;
 		m_spinningFrictions[index] = spinningFriction;
+		m_CombinedModes[index] = mode;
 		m_isMutiMaterial = true;
 	}
 
@@ -202,6 +204,10 @@ public:
 	
 	btScalar getSpinningFriction(const int index) const {
 		return m_spinningFrictions[index];
+	}
+
+	int getCombinedMode(const int index) const {
+		return m_CombinedModes[index];
 	}
 
 	bool isMutiMaterial() const

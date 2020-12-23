@@ -147,6 +147,7 @@ interface btCollisionObject {
   void setCcdSweptSphereRadius (float radius);
   long getUserIndex();
   void setUserIndex(long index);
+  void setUserIndex2(long index);
   VoidPtr getUserPointer();
   void setUserPointer(VoidPtr userPointer);
   [Const] btBroadphaseProxy getBroadphaseHandle();
@@ -471,7 +472,7 @@ interface btCompoundShape {
   float getMargin();
   
   ///XXX
-  void setMaterial(long childShapeindex, float f, float r, optional float rf, optional float sf);
+  void setMaterial(long childShapeindex, float f, float r, optional float rf, optional float sf, optional long m);
 };
 btCompoundShape implements btCollisionShape;
 
@@ -588,8 +589,17 @@ btCollisionDispatcher implements btDispatcher;
 interface btOverlappingPairCallback {
 };
 
+interface btOverlapFilterCallback {
+};
+
+interface ccOverlapFilterCallback {
+  void ccOverlapFilterCallback();
+};
+ccOverlapFilterCallback implements btOverlapFilterCallback;
+
 interface btOverlappingPairCache {
   void setInternalGhostPairCallback(btOverlappingPairCallback ghostPairCallback);
+  void setOverlapFilterCallback(btOverlapFilterCallback cb);
   [Const] float getNumOverlappingPairs();
 };
 
@@ -770,6 +780,10 @@ interface btHingeConstraint {
   void setMaxMotorImpulse(float maxMotorImpulse);
   //void setMotorTarget([Const,Ref] btQuaternion qAinB, float dt);
   void setMotorTarget(float targetAngle, float dt);
+
+  void setFrames([Const,Ref] btTransform frameA, [Const,Ref] btTransform frameB);
+  void setAxis([Ref] btVector3 axisInA);
+  void setUseReferenceFrameA(boolean urfa);
 };
 btHingeConstraint implements btTypedConstraint;
 
@@ -814,7 +828,7 @@ interface btDispatcherInfo {
 interface btCollisionWorld {
   btDispatcher getDispatcher();
   void rayTest([Const, Ref] btVector3 rayFromWorld, [Const, Ref] btVector3 rayToWorld, [Ref] RayResultCallback resultCallback);
-  void rayTestSingle([Const, Ref] btTransform rayFromTrans, [Const, Ref] btTransform rayToTrans, btCollisionObject collisionObject, [const] btCollisionShape collisionShape, [Const, Ref] btTransform colObjWorldTransform, [Ref] RayResultCallback resultCallback);
+  void rayTestSingle([Const, Ref] btTransform rayFromTrans, [Const, Ref] btTransform rayToTrans, btCollisionObject collisionObject, [Const] btCollisionShape collisionShape, [Const, Ref] btTransform colObjWorldTransform, [Ref] RayResultCallback resultCallback);
   btOverlappingPairCache getPairCache();
   [Ref] btDispatcherInfo getDispatchInfo();
   void addCollisionObject(btCollisionObject collisionObject, optional long collisionFilterGroup, optional long collisionFilterMask);
@@ -828,6 +842,7 @@ interface btCollisionWorld {
   btIDebugDraw getDebugDrawer();
   void debugDrawWorld();
   void debugDrawObject([Const, Ref] btTransform worldTransform, [Const] btCollisionShape shape, [Const, Ref] btVector3 color);
+  void setContactBreakingThreshold(float b);
 };
 
 interface btContactSolverInfo {
@@ -840,6 +855,7 @@ interface btDynamicsWorld {
   void addAction(btActionInterface action);
   void removeAction(btActionInterface action);
   [Ref] btContactSolverInfo getSolverInfo();
+  [Ref] btRigidBody getFixedBody();
 };
 btDynamicsWorld implements btCollisionWorld;
 

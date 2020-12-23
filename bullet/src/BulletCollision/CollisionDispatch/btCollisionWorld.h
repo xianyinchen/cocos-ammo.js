@@ -526,6 +526,9 @@ public:
 	///Preliminary serialization test for Bullet 2.76. Loading those files requires a separate parser (Bullet/Demos/SerializeDemo)
 	virtual	void	serialize(btSerializer* serializer);
 
+	static void setContactBreakingThreshold(btScalar b) {
+		gContactBreakingThreshold = b;
+	}
 };
 
 

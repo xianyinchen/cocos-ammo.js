@@ -174,6 +174,7 @@ declare namespace Ammo {
     public setCcdSweptSphereRadius (radius: number): void;
     public getUserIndex (): number;
     public setUserIndex (index: number): void;
+    public setUserIndex2 (index: number): void;
     public getUserPointer (): VoidPtr;
     public setUserPointer (userPointer: VoidPtr): void;
     public getBroadphaseHandle (): btBroadphaseProxy;
@@ -435,7 +436,7 @@ declare namespace Ammo {
     public setMargin (margin: number): void;
     public getMargin (): number;
     public updateChildTransform (childIndex: number, newChildTransform: btTransform, shouldRecalculateLocalAabb?: boolean): void;
-    public setMaterial (childShapeindex: number, f: number, r: number, rf?: number, sf?: number): void;
+    public setMaterial (childShapeindex: number, f: number, r: number, rf?: number, sf?: number, m?: number): void;
   }
 
   class btStridingMeshInterface { }
@@ -534,6 +535,7 @@ declare namespace Ammo {
       ghostPairCallback: btOverlappingPairCallback,
     ): void;
     getNumOverlappingPairs (): number;
+    public setOverlapFilterCallback (x: any): void;
   }
 
   class btAxisSweep3 {
@@ -853,6 +855,7 @@ declare namespace Ammo {
       shape: btCollisionShape,
       color: btVector3,
     ): void;
+    public setContactBreakingThreshold (b: number): void;
   }
 
   class btContactSolverInfo {
