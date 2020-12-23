@@ -1,2 +1,11 @@
 bullet
 examples
+node_modules
+tests
+test.js
+*.py
+*.sh
+*.yml
+Dockerfile
+.vscode
+.gitignore
