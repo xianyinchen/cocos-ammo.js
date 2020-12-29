@@ -171,6 +171,7 @@ interface RayResultCallback {
   attribute long m_shapePart;
   attribute float m_closestHitFraction;
   [Const] attribute btCollisionObject m_collisionObject;
+  void setUseCC(boolean val);
 };
 
 [Prefix="btCollisionWorld::"]
