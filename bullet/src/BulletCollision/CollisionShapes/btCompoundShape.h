@@ -69,7 +69,7 @@ protected:
 	btAlignedObjectArray<btScalar> m_rollingFrictions;
 	btAlignedObjectArray<btScalar> m_restitutions;
 	btAlignedObjectArray<btScalar> m_spinningFrictions;
-	btAlignedObjectArray<btScalar> m_CombinedModes;
+	btAlignedObjectArray<int> m_combinedModes;
 	bool m_isMutiMaterial;
 
 protected:
@@ -186,7 +186,7 @@ public:
 		m_restitutions[index] = restitution;
 		m_rollingFrictions[index] = rollingFriction;
 		m_spinningFrictions[index] = spinningFriction;
-		m_CombinedModes[index] = mode;
+		m_combinedModes[index] = mode;
 		m_isMutiMaterial = true;
 	}
 
@@ -207,7 +207,7 @@ public:
 	}
 
 	int getCombinedMode(const int index) const {
-		return m_CombinedModes[index];
+		return m_combinedModes[index];
 	}
 
 	bool isMutiMaterial() const

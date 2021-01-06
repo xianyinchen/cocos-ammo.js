@@ -211,11 +211,12 @@ void btManifoldResult::addContactPoint(const btVector3& normalOnBInWorld,const b
 			const btCompoundShape* comShapeForTrimesh = static_cast<const btCompoundShape*>(tmp_shape);
 			if (comShapeForTrimesh->isMutiMaterial())
 			{
-				friction0 = comShapeForTrimesh->getFriction(collisionShape0->getUserIndex());
-				restitution0 = comShapeForTrimesh->getRestitution(collisionShape0->getUserIndex());
-				rollingFriction0 = comShapeForTrimesh->getRollingFriction(collisionShape0->getUserIndex());
-				spinningFriction0 = comShapeForTrimesh->getSpinningFriction(collisionShape0->getUserIndex());
-				combineMode0 = comShapeForTrimesh->getCombinedMode(collisionShape0->getUserIndex());
+				const int index = collisionShape0->getUserIndex();
+				friction0 = comShapeForTrimesh->getFriction(index);
+				restitution0 = comShapeForTrimesh->getRestitution(index);
+				rollingFriction0 = comShapeForTrimesh->getRollingFriction(index);
+				spinningFriction0 = comShapeForTrimesh->getSpinningFriction(index);
+				combineMode0 = comShapeForTrimesh->getCombinedMode(index);
 			}
 		}
 	}
@@ -246,11 +247,12 @@ void btManifoldResult::addContactPoint(const btVector3& normalOnBInWorld,const b
 			const btCompoundShape* comShapeForTrimesh = static_cast<const btCompoundShape*>(tmp_shape);
 			if (comShapeForTrimesh->isMutiMaterial())
 			{
-				friction1 = comShapeForTrimesh->getFriction(collisionShape1->getUserIndex());
-				restitution1 = comShapeForTrimesh->getRestitution(collisionShape1->getUserIndex());
-				rollingFriction1 = comShapeForTrimesh->getRollingFriction(collisionShape1->getUserIndex());
-				spinningFriction1 = comShapeForTrimesh->getSpinningFriction(collisionShape1->getUserIndex());
-				combineMode1 = comShapeForTrimesh->getCombinedMode(collisionShape1->getUserIndex());
+				const int index = collisionShape1->getUserIndex();
+				friction1 = comShapeForTrimesh->getFriction(index);
+				restitution1 = comShapeForTrimesh->getRestitution(index);
+				rollingFriction1 = comShapeForTrimesh->getRollingFriction(index);
+				spinningFriction1 = comShapeForTrimesh->getSpinningFriction(index);
+				combineMode1 = comShapeForTrimesh->getCombinedMode(index);
 			}
 		}
 	}
