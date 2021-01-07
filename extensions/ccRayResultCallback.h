@@ -4,49 +4,34 @@
 
 #include "BulletCollision/CollisionDispatch/btCollisionWorld.h"
 
-ATTRIBUTE_ALIGNED16(class) ccOverlapFilterCallback : public btCollisionWorld::RaycastReslute{
-	
-}
+ATTRIBUTE_ALIGNED16(class) ccClosestRayResultCallback : public btCollisionWorld::ClosestRayResultCallback
+{
+private:
+	/* data */
+public:
 
-	// class cc 	RayResultCallback
-	// {
-	// 	btScalar	m_closestHitFraction;
-	// 	const btCollisionObject*		m_collisionObject;
-	// 	short int	m_collisionFilterGroup;
-	// 	short int	m_collisionFilterMask;		
-	// 	int	m_shapePart;
-	// 	//@BP Mod - Custom flags, currently used to enable backface culling on tri-meshes, see btRaycastCallback.h. Apply any of the EFlags defined there on m_flags here to invoke.
-	// 	unsigned int m_flags;
+	BT_DECLARE_ALIGNED_ALLOCATOR();
 
-	// 	virtual ~RayResultCallback()
-	// 	{
-	// 	}
-	// 	bool	hasHit() const
-	// 	{
-	// 		return (m_collisionObject != 0);
-	// 	}
+	// return true when pairs need collision
+	virtual bool needsCollision(btBroadphaseProxy* proxy0) const
+	{
+		return (proxy0->m_collisionFilterGroup & m_collisionFilterMask) != 0;
+	}
+};
 
-	// 	RayResultCallback()
-	// 		:m_closestHitFraction(btScalar(1.)),
-	// 		m_collisionObject(0),
-	// 		m_collisionFilterGroup(btBroadphaseProxy::DefaultFilter),
-	// 		m_collisionFilterMask(btBroadphaseProxy::AllFilter),
-	// 		//@BP Mod
-	// 		m_flags(0),
-	// 		m_shapePart(-1)
-	// 	{
-	// 	}
+ATTRIBUTE_ALIGNED16(class) ccAllHitsRayResultCallback : public btCollisionWorld::AllHitsRayResultCallback
+{
+private:
+	/* data */
+public:
 
-	// 	virtual bool needsCollision(btBroadphaseProxy* proxy0) const
-	// 	{
-	// 		bool collides = (proxy0->m_collisionFilterGroup & m_collisionFilterMask) != 0;
-	// 		collides = collides && (m_collisionFilterGroup & proxy0->m_collisionFilterMask);
-	// 		return collides;
-	// 	}
+	BT_DECLARE_ALIGNED_ALLOCATOR();
 
-
-	// 	virtual	btScalar	addSingleResult(LocalRayResult& rayResult,bool normalInWorldSpace) = 0;
-	// };
-
+	// return true when pairs need collision
+	virtual bool needsCollision(btBroadphaseProxy* proxy0) const
+	{
+		return (proxy0->m_collisionFilterGroup & m_collisionFilterMask) != 0;
+	}
+};
 
 #endif //CC_RAY_RESULT_CALLBACK_H
