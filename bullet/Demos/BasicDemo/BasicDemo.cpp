@@ -37,6 +37,7 @@ subject to the following restrictions:
 #include "GLDebugDrawer.h"
 #include "LinearMath/btAabbUtil2.h"
 #include "../Extras/ConvexDecomposition/cd_wavefront.cpp"
+#include "../../extensions/ccOverlapFilterCallback.h"
 
 static GLDebugDrawer gDebugDraw;
 
@@ -62,38 +63,6 @@ struct	MyOverlapCallback : public btBroadphaseAabbCallback
 	}
 };
 
-
-struct CCFilterCallback : public btOverlapFilterCallback
-{
-	// return true when pairs need collision
-	virtual bool needBroadphaseCollision(btBroadphaseProxy *proxy0, btBroadphaseProxy *proxy1) const
-	{
-		bool collides = (proxy0->m_collisionFilterGroup & proxy1->m_collisionFilterMask) != 0;
-		collides = collides && (proxy1->m_collisionFilterGroup & proxy0->m_collisionFilterMask);
-
-		//add some additional logic here that modified 'collides'
-		if (collides)
-		{
-			btCollisionObject *co0 = (btCollisionObject *)proxy0->m_clientObject;
-			btCollisionObject *co1 = (btCollisionObject *)proxy1->m_clientObject;
-
-			if (co0->hasContactResponse() && co1->hasContactResponse())
-			{
-				// collision
-				if (co0->isStaticOrKinematicObject() && co1->isStaticOrKinematicObject())
-					return false;
-			}
-			else
-			{
-				// trigger
-				if (co0->isStaticObject() && co1->isStaticObject())
-					return false;
-			}
-		}
-		return collides;
-	}
-};
-
 void BasicDemo::clientMoveAndDisplay()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -116,6 +85,13 @@ void BasicDemo::clientMoveAndDisplay()
 
 		if (aabbOverlap.m_numOverlap)
 			printf("#aabb overlap = %d\n", aabbOverlap.m_numOverlap);
+
+		auto num = m_dynamicsWorld->getDispatcher()->getNumManifolds();
+		if (num > 0) {
+			auto mmm = m_dynamicsWorld->getDispatcher()->getManifoldByIndexInternal(0);
+			auto mm2 = mmm->getNumContacts();
+			printf("#num manifolds = %d , num contacts = %d\n", num, mm2);
+		}
 	}
 
 	renderme();
@@ -159,7 +135,7 @@ void	BasicDemo::initPhysics()
 
 	///use the default collision dispatcher. For parallel processing you can use a diffent dispatcher (see Extras/BulletMultiThreaded)
 	m_dispatcher = new	btCollisionDispatcher(m_collisionConfiguration);
-
+	//m_dispatcher->setDispatcherFlags(btCollisionDispatcher::CD_STATIC_STATIC_REPORTED | m_dispatcher->getDispatcherFlags());
 	m_broadphase = new btDbvtBroadphase();
 
 	///the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
@@ -171,7 +147,7 @@ void	BasicDemo::initPhysics()
 
 	m_dynamicsWorld->setGravity(btVector3(0, -10, 0));
 
-	btOverlapFilterCallback * filterCallback = new CCFilterCallback();
+	btOverlapFilterCallback * filterCallback = new ccOverlapFilterCallback();
 	m_dynamicsWorld->getPairCache()->setOverlapFilterCallback(filterCallback);
 
 	///create a few basic rigid bodies
@@ -185,16 +161,51 @@ void	BasicDemo::initPhysics()
 	groundTransform.setIdentity();
 	groundTransform.setOrigin(btVector3(0, -50, 0));
 
+	// if (false)
 	{
-		btBoxShape* s0 = new btBoxShape(btVector3(0.5, 0.5, 0.5));
+		btBoxShape* s0 = new btBoxShape(btVector3(5, 5, 5));
+		m_collisionShapes.push_back(s0);
+		//btCollisionObject* co = new btCollisionObject();
+
+		btScalar mass(0.);
+		btVector3 localInertia(0, 0, 0);
+		btDefaultMotionState* myMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 2, 0)));
+		btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, s0, localInertia);
+		btRigidBody* co = new btRigidBody(rbInfo);
+		co->setWorldTransform(btTransform(btQuaternion(0,0,0,1), btVector3(0, 2, 0)));
+		co->setCollisionShape(s0);
+		co->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
+		co->setActivationState(DISABLE_DEACTIVATION);
+		m_dynamicsWorld->addCollisionObject(co);
+
+		//btCapsuleShape* s1 = new btCapsuleShape(5, 10);
+		btBoxShape* s1 = new btBoxShape(btVector3(5, 5, 5));
+		m_collisionShapes.push_back(s1);
+		//btCollisionObject* co2 = new btCollisionObject();
+		btDefaultMotionState* myMotionState2 = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(2.5, 4.5, 2.5)));
+		btRigidBody::btRigidBodyConstructionInfo rbInfo2(mass, myMotionState2, s1, localInertia);
+		btRigidBody* co2 = new btRigidBody(rbInfo2);
+		co2->setWorldTransform(btTransform(btQuaternion(0,0,0,1), btVector3(2.5, 4.5, 2.5)));
+		co2->setCollisionShape(s1);
+		//co2->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
+		co2->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
+		co2->setActivationState(DISABLE_DEACTIVATION);
+		m_dynamicsWorld->addCollisionObject(co2);
+	}
+
+	if (false)
+	{
+		btBoxShape* s0 = new btBoxShape(btVector3(5, 5, 5));
+		m_collisionShapes.push_back(s0);
 		btCollisionObject* co = new btCollisionObject();
-		co->setWorldTransform(btTransform(btQuaternion(), btVector3(0, 2, 0)));
+		co->setWorldTransform(btTransform(btQuaternion(0,0,0,1), btVector3(0, 2, 0)));
 		co->setCollisionShape(s0);
 		m_dynamicsWorld->addCollisionObject(co);
 
-		btCapsuleShape* s1 = new btCapsuleShape(0.5, 1);
+		btCapsuleShape* s1 = new btCapsuleShape(5, 10);
+		m_collisionShapes.push_back(s1);
 		btCollisionObject* co2 = new btCollisionObject();
-		co2->setWorldTransform(btTransform(btQuaternion(), btVector3(0, 3, 0)));
+		co2->setWorldTransform(btTransform(btQuaternion(0,0,0,1), btVector3(0, 3, 0)));
 		co2->setCollisionShape(s1);
 		co2->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
 		m_dynamicsWorld->addCollisionObject(co2);
