@@ -24,19 +24,9 @@ public:
         {
             btCollisionObject *co0 = (btCollisionObject *)proxy0->m_clientObject;
             btCollisionObject *co1 = (btCollisionObject *)proxy1->m_clientObject;
-
-            if (co0->hasContactResponse() && co1->hasContactResponse())
-            {
-                // collision
-                if (co0->isStaticOrKinematicObject() && co1->isStaticOrKinematicObject())
-                    return false;
-            }
-            else
-            {
-                // trigger
-                if (co0->isStaticObject() && co1->isStaticObject())
-                    return false;
-            }
+            
+            if (co0->isStaticObject() && co1->isStaticObject())
+                    return false;            
         }
         return collides;
     }
