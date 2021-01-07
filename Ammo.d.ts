@@ -192,6 +192,7 @@ declare namespace Ammo {
     public m_collisionObject: btCollisionObject;
     public hasHit (): boolean;
     public get_m_collisionObject (): btCollisionObject;
+    public setUseCC (v: boolean): void;
   }
 
   class ClosestRayResultCallback extends RayResultCallback {
@@ -530,12 +531,13 @@ declare namespace Ammo {
 
   class btOverlappingPairCallback { }
 
+  interface btOverlapFilterCallback { }
+  class ccOverlapFilterCallback implements btOverlapFilterCallback { }
+
   class btOverlappingPairCache {
-    public setInternalGhostPairCallback (
-      ghostPairCallback: btOverlappingPairCallback,
-    ): void;
+    public setInternalGhostPairCallback (x: btOverlappingPairCallback): void;
     getNumOverlappingPairs (): number;
-    public setOverlapFilterCallback (x: any): void;
+    public setOverlapFilterCallback (x: btOverlapFilterCallback): void;
   }
 
   class btAxisSweep3 {
