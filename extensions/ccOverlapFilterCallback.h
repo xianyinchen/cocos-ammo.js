@@ -26,7 +26,10 @@ public:
             btCollisionObject *co1 = (btCollisionObject *)proxy1->m_clientObject;
             
             if (co0->isStaticObject() && co1->isStaticObject())
-                    return false;            
+                return false;
+
+            if ((co0->getActivationState() == ISLAND_SLEEPING) && co1->getActivationState() == ISLAND_SLEEPING)
+                return false;
         }
         return collides;
     }
