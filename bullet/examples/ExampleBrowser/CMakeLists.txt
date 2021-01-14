@@ -344,7 +344,7 @@ SET(BulletExampleBrowser_SRCS
 	../ThirdPartyLibs/tinyxml/tinyxmlerror.cpp
 	../ThirdPartyLibs/tinyxml/tinyxmlparser.cpp
 	InProcessExampleBrowser.cpp
-	${BULLET_PHYSICS_SOURCE_DIR}/build3/bullet.rc
+	${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
 )
 
 

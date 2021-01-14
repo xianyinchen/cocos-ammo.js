@@ -56,7 +56,7 @@ endforeach(f)
 
 
 
-ADD_LIBRARY(BulletSoftBodySolvers_DX11  ${BulletSoftBodyDX11Solvers_SRCS} ${BulletSoftBodyDX11Solvers_HDRS} ${BulletSoftBodyDX11Solvers_HLSL})
+ADD_LIBRARY(BulletSoftBodySolvers_DX11  ${BulletSoftBodyDX11Solvers_SRCS} ${BulletSoftBodyDX11Solvers_HDRS})# ${BulletSoftBodyDX11Solvers_HLSL})
 SET_TARGET_PROPERTIES(BulletSoftBodySolvers_DX11 PROPERTIES VERSION ${BULLET_VERSION})
 SET_TARGET_PROPERTIES(BulletSoftBodySolvers_DX11 PROPERTIES SOVERSION ${BULLET_VERSION})
 IF (BUILD_SHARED_LIBS)

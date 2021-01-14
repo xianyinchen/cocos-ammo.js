@@ -90,7 +90,7 @@ void CharacterDemo::initPhysics()
 	m_ghostObject->setCollisionFlags (btCollisionObject::CF_CHARACTER_OBJECT);
 
 	btScalar stepHeight = btScalar(0.35);
-	m_character = new btKinematicCharacterController (m_ghostObject,capsule,stepHeight);
+	m_character = new btKinematicCharacterController (m_ghostObject,capsule,stepHeight, btVector3(0.0, 1.0,0.0));
 #endif
 
 	////////////////
@@ -270,6 +270,10 @@ void CharacterDemo::clientMoveAndDisplay()
 
 		m_character->setWalkDirection(walkDirection*walkSpeed);
 
+		if (gJump) {
+			m_character->jump(btVector3(0, 10, 0));
+			gJump = 0;
+		}
 
 		int numSimSteps = m_dynamicsWorld->stepSimulation(dt,maxSimSubSteps);
 
