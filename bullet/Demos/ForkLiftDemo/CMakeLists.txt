@@ -23,7 +23,7 @@ IF (WIN32)
 	ADD_EXECUTABLE(AppForkLiftDemo
 		ForkLiftDemo.cpp
 		main.cpp
-		${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+		${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 	)
 	
 	IF (WIN32)

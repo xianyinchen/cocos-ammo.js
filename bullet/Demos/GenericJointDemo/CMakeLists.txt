@@ -25,7 +25,7 @@ IF (USE_GLUT)
 			GenericJointDemo.h
 			Ragdoll.cpp
 			main.cpp
-			${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+			${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 		)
 	ELSE()
 		ADD_EXECUTABLE(AppGenericJointDemo
@@ -70,7 +70,7 @@ ELSE(USE_GLUT)
 		GenericJointDemo.cpp
 		GenericJointDemo.h
 		Ragdoll.cpp
-		${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+		${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 		
 	)
 ENDIF (USE_GLUT)

@@ -22,7 +22,7 @@ IF (WIN32)
 	ADD_EXECUTABLE(AppConcaveRayCastDemo
 			ConcaveRaycastDemo.cpp
 			main.cpp
-			${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+			${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 	)
 ELSE()
 	ADD_EXECUTABLE(AppConcaveRayCastDemo

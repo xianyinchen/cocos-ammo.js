@@ -34,7 +34,7 @@ IF (USE_GLUT)
 			main.cpp
 			SerializeDemo.cpp 
 			SerializeDemo.h
-			${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+			${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 		)
 	ELSE()
 		ADD_EXECUTABLE(AppSerializeDemo
@@ -73,7 +73,7 @@ ELSE (USE_GLUT)
 		Win32SerializeDemo.cpp
 		SerializeDemo.cpp 
 		SerializeDemo.h
-		${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+		${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 	)
 ENDIF (USE_GLUT)
 

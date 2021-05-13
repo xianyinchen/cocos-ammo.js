@@ -31,7 +31,7 @@ ADD_EXECUTABLE(AppFractureDemo
 		btFractureBody.cpp
 		btFractureDynamicsWorld.cpp
 		btFractureDynamicsWorld.h
-		${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+		${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 	)
 ELSE()
 	ADD_EXECUTABLE(AppFractureDemo
@@ -87,7 +87,7 @@ ELSE (USE_GLUT)
 		btFractureBody.cpp
 		btFractureDynamicsWorld.cpp
 		btFractureDynamicsWorld.h
-		${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+		${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 	)
 	
 	

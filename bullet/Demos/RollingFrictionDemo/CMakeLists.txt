@@ -27,7 +27,7 @@ ADD_EXECUTABLE(AppRollingFrictionDemo
 		main.cpp
 		RollingFrictionDemo.cpp 
 		RollingFrictionDemo.h
-		${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+		${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 	)
 ELSE()
 	ADD_EXECUTABLE(AppRollingFrictionDemo
@@ -74,7 +74,7 @@ ELSE (USE_GLUT)
 		Win32RollingFrictionDemo.cpp
 		RollingFrictionDemo.cpp 
 		RollingFrictionDemo.h
-		${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+		${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 	)
 	
 	

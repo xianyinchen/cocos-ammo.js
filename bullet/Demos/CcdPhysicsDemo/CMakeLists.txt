@@ -23,7 +23,7 @@ IF (WIN32)
 	ADD_EXECUTABLE(AppCcdPhysicsDemo
 		main.cpp
 		CcdPhysicsDemo.cpp
-		${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+		${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 	)
 ELSE()
 	ADD_EXECUTABLE(AppCcdPhysicsDemo

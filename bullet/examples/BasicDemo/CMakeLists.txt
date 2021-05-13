@@ -12,7 +12,7 @@ IF (WIN32)
 	ADD_EXECUTABLE(App_BasicExample
 		BasicExample.cpp
 		main.cpp
-		${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+		${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 	)
 ELSE()
 	ADD_EXECUTABLE(App_BasicExample
@@ -48,7 +48,7 @@ INCLUDE_DIRECTORIES(
 
 SET(AppBasicExampleGui_SRCS
 	BasicExample.cpp
-        ${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+        ${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 	../StandaloneMain/main_opengl_single_example.cpp
         ../ExampleBrowser/OpenGLGuiHelper.cpp
         ../ExampleBrowser/GL_ShapeDrawer.cpp

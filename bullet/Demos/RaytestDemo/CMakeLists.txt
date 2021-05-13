@@ -27,7 +27,7 @@ ADD_EXECUTABLE(AppRaytestDemo
 		main.cpp
 		RaytestDemo.cpp 
 		RaytestDemo.h
-		${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+		${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 	)
 ELSE()
 	ADD_EXECUTABLE(AppRaytestDemo
@@ -74,7 +74,7 @@ ELSE (USE_GLUT)
 		Win32RaytestDemo.cpp
 		RaytestDemo.cpp 
 		RaytestDemo.h
-		${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+		${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 	)
 	
 	

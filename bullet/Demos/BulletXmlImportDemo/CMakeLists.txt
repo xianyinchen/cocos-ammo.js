@@ -32,7 +32,7 @@ IF (USE_GLUT)
 			main.cpp
 			BulletXmlImportDemo.cpp 
 			BulletXmlImportDemo.h
-			${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+			${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 		)
 	ELSE()
 		ADD_EXECUTABLE(AppBulletXmlImportDemo
@@ -71,7 +71,7 @@ ELSE (USE_GLUT)
 		Win32BulletXmlImportDemo.cpp
 		BulletXmlImportDemo.cpp 
 		BulletXmlImportDemo.h
-		${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+		${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 	)
 ENDIF (USE_GLUT)
 

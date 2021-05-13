@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.4.3)
+cmake_minimum_required(VERSION 2.4.3...4.13)
 set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS true)
 
 #this line has to appear before 'PROJECT' in order to be able to disable incremental linking
@@ -432,11 +432,11 @@ list (APPEND BULLET_LIBRARIES BulletCollisions)
 list (APPEND BULLET_LIBRARIES BulletDynamics)
 list (APPEND BULLET_LIBRARIES BulletSoftBody)
 set (BULLET_USE_FILE ${CMAKE_INSTALL_PREFIX}/${BULLET_CONFIG_CMAKE_PATH}/UseBullet.cmake)
-configure_file ( ${CMAKE_SOURCE_DIR}/BulletConfig.cmake.in
+configure_file ( ${CMAKE_CURRENT_SOURCE_DIR}/BulletConfig.cmake.in
                  ${CMAKE_CURRENT_BINARY_DIR}/BulletConfig.cmake
                  @ONLY ESCAPE_QUOTES
                )
-install ( FILES ${CMAKE_SOURCE_DIR}/UseBullet.cmake
+install ( FILES ${CMAKE_CURRENT_SOURCE_DIR}/UseBullet.cmake
                 ${CMAKE_CURRENT_BINARY_DIR}/BulletConfig.cmake
           DESTINATION ${BULLET_CONFIG_CMAKE_PATH}
         )

@@ -55,7 +55,7 @@ ADD_DEFINITIONS("-DBT_USE_DOUBLE_PRECISION=1")
 SET(PROJECT_GUI_SRCS
         App_GripperCloth.cpp
 		main_opengl_single_example.cpp
-        ${BULLET_PHYSICS_SOURCE_DIR}/build/bullet.rc
+        ${BULLET_PHYSICS_SOURCE_DIR}/bullet.rc
 )
 
 ADD_EXECUTABLE(${PROJECT}
