@@ -1,0 +1,9 @@
+
+project(BULLET)
+cmake_minimum_required(VERSION 2.4.3...4.13)
+
+subdirs(bullet)
+subdirs(extensions)
+
+add_library(ROOT ./root.h)
+set_target_properties(ROOT PROPERTIES LINKER_LANGUAGE CXX)

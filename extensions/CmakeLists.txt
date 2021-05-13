@@ -1,0 +1,16 @@
+
+INCLUDE_DIRECTORIES(
+	${BULLET_PHYSICS_SOURCE_DIR}/src
+)
+
+SET(Extensions_SRCS
+ccKinematicCharacterController.cpp
+)
+
+SET(Extensions_HDRS
+ccKinematicCharacterController.h
+ccOverlapFilterCallback.h
+ccRayResultCallback.h
+)
+
+add_library(Extensions ${Extensions_SRCS} ${Extensions_HDRS})
