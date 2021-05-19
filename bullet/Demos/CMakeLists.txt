@@ -11,7 +11,7 @@ IF (USE_GLUT)
 		IF(BUILD_CPU_DEMOS)
 			SET(SharedDemoSubdirs
 				OpenGL AllBulletDemos  ConvexDecompositionDemo
-				CcdPhysicsDemo BulletXmlImportDemo ConstraintDemo SliderConstraintDemo GenericJointDemo Raytracer
+				CcdPhysicsDemo BulletXmlImportDemo ConstraintDemo SliderConstraintDemo GenericJointDemo Raytracer DampingDemo
 				RagdollDemo ForkLiftDemo BasicDemo FeatherstoneMultiBodyDemo RollingFrictionDemo RaytestDemo VoronoiFractureDemo 
 				GyroscopicDemo FractureDemo Box2dDemo BspDemo MovingConcaveDemo VehicleDemo
 				UserCollisionAlgorithm CharacterDemo SoftDemo 
@@ -51,6 +51,7 @@ ELSE (USE_GLUT)
 		CollisionInterfaceDemo 
 		ConcaveDemo 
 		ConstraintDemo
+		DampingDemo
 		RollingFrictionDemo
 		ConvexDecompositionDemo 
 		InternalEdgeDemo
