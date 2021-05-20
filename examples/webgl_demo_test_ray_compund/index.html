@@ -73,11 +73,11 @@
 			var tempVRayDest = new Ammo.btVector3();
 			var tempbtVector3 = new Ammo.btVector3();
 			var tempbtQuat = new Ammo.btQuaternion();
-			var closestRayResultCallback = new Ammo.ClosestRayResultCallback(tempVRayOrigin, tempVRayDest);
+			var closestRayResultCallback = new Ammo.ccClosestRayResultCallback(tempVRayOrigin, tempVRayDest);
 
 			var tempV3_0 = new Ammo.btVector3();
 			var tempV3_1 = new Ammo.btVector3();
-			var AllHitsRayResultCallback = new Ammo.AllHitsRayResultCallback(tempV3_0, tempV3_1);
+			var AllHitsRayResultCallback = new Ammo.ccAllHitsRayResultCallback(tempV3_0, tempV3_1);
 
 			var fly;
 			var rays;
@@ -402,7 +402,7 @@
 					body.setActivationState(4);
 				}
 
-				physicsWorld.addRigidBody(body, 1 , 0);
+				physicsWorld.addRigidBody(body);
 
 			}
 
@@ -569,14 +569,12 @@
 				var rayCallBack = Ammo.castObject(closestRayResultCallback, Ammo.RayResultCallback);
 				rayCallBack.set_m_closestHitFraction(1);
 				rayCallBack.set_m_collisionObject(null);
-				rayCallBack.setUseCC(true)
 
 				// Set closestRayResultCallback origin and dest
 				tempVRayOrigin.setValue(origin.x, origin.y, origin.z);
 				tempVRayDest.setValue(dest.x, dest.y, dest.z);
 				closestRayResultCallback.get_m_rayFromWorld().setValue(origin.x, origin.y, origin.z);
 				closestRayResultCallback.get_m_rayToWorld().setValue(dest.x, dest.y, dest.z);
-				closestRayResultCallback.setUseCC(true)
 
 				// Perform ray test
 				physicsWorld.rayTest(tempVRayOrigin, tempVRayDest, closestRayResultCallback);
@@ -622,9 +620,8 @@
 				var rayCallBack = Ammo.castObject(AllHitsRayResultCallback, Ammo.RayResultCallback);
 				rayCallBack.set_m_closestHitFraction(1);
 				rayCallBack.set_m_collisionObject(null);
-				rayCallBack.setUseCC(true)
 				AllHitsRayResultCallback.m_shapePart = -1;
-				AllHitsRayResultCallback.m_shapeParts.clear();
+				AllHitsRayResultCallback.s.clear();
 				AllHitsRayResultCallback.m_collisionObjects.clear();
 				AllHitsRayResultCallback.m_hitFractions.clear();
 
@@ -633,14 +630,13 @@
 				tempV3_1.setValue(dest.x, dest.y, dest.z);
 				AllHitsRayResultCallback.get_m_rayFromWorld().setValue(origin.x, origin.y, origin.z);
 				AllHitsRayResultCallback.get_m_rayToWorld().setValue(dest.x, dest.y, dest.z);
-				AllHitsRayResultCallback.setUseCC(true)
 
 				// Perform ray test
 				physicsWorld.rayTest(tempV3_0, tempV3_1, AllHitsRayResultCallback);
 
 				if (AllHitsRayResultCallback.hasHit()) {
 					if (0) {
-						var sps = AllHitsRayResultCallback.m_shapeParts;
+						var sps = AllHitsRayResultCallback.s;
 						var sp = AllHitsRayResultCallback.m_shapePart;
 						var cos = AllHitsRayResultCallback.m_collisionObjects;
 						console.log("size", cos.size(), sps.size(), sp)

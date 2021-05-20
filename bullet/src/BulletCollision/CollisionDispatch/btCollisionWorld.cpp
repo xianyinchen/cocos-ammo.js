@@ -441,7 +441,6 @@ void	btCollisionWorld::rayTestSingleInternal(const btTransform& rayFromTrans,con
 					{ 
 						m_closestHitFraction = m_userCallback->m_closestHitFraction;
 						m_flags = m_userCallback->m_flags;
-						m_shapePart = m_userCallback->m_shapePart = i;
 					}
 					virtual bool needsCollision(btBroadphaseProxy* p) const
 					{

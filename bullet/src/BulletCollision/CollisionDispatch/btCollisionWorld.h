@@ -206,11 +206,9 @@ public:
 		btScalar	m_closestHitFraction;
 		const btCollisionObject*		m_collisionObject;
 		short int	m_collisionFilterGroup;
-		short int	m_collisionFilterMask;		
-		int	m_shapePart;
+		short int	m_collisionFilterMask;
 		//@BP Mod - Custom flags, currently used to enable backface culling on tri-meshes, see btRaycastCallback.h. Apply any of the EFlags defined there on m_flags here to invoke.
 		unsigned int m_flags;
-		bool m_useCC;
 
 		virtual ~RayResultCallback()
 		{
@@ -226,17 +224,12 @@ public:
 			m_collisionFilterGroup(btBroadphaseProxy::DefaultFilter),
 			m_collisionFilterMask(btBroadphaseProxy::AllFilter),
 			//@BP Mod
-			m_flags(0),
-			m_shapePart(-1),
-			m_useCC(false)
+			m_flags(0)
 		{
 		}
 
 		virtual bool needsCollision(btBroadphaseProxy* proxy0) const
 		{
-			if (m_useCC) {
-				return (proxy0->m_collisionFilterGroup & m_collisionFilterMask) != 0;
-			}
 			bool collides = (proxy0->m_collisionFilterGroup & m_collisionFilterMask) != 0;
 			collides = collides && (m_collisionFilterGroup & proxy0->m_collisionFilterMask);
 			return collides;
@@ -244,7 +237,6 @@ public:
 
 
 		virtual	btScalar	addSingleResult(LocalRayResult& rayResult,bool normalInWorldSpace) = 0;
-		inline void setUseCC(bool val) { m_useCC = val; }
 	};
 
 	struct	ClosestRayResultCallback : public RayResultCallback
@@ -265,7 +257,6 @@ public:
 		{
 			//caller already does the filter on the m_closestHitFraction
 			btAssert(rayResult.m_hitFraction <= m_closestHitFraction);
-			m_shapePart = rayResult.m_localShapeInfo?rayResult.m_localShapeInfo->m_shapePart:0;
 			m_closestHitFraction = rayResult.m_hitFraction;
 			m_collisionObject = rayResult.m_collisionObject;
 			if (normalInWorldSpace)
@@ -297,7 +288,6 @@ public:
 		btAlignedObjectArray<btVector3>	m_hitNormalWorld;
 		btAlignedObjectArray<btVector3>	m_hitPointWorld;
 		btAlignedObjectArray<btScalar> m_hitFractions;
-		btAlignedObjectArray<int> m_shapeParts;
 			
 		virtual	btScalar	addSingleResult(LocalRayResult& rayResult,bool normalInWorldSpace)
 		{
@@ -317,12 +307,6 @@ public:
 			hitPointWorld.setInterpolate3(m_rayFromWorld,m_rayToWorld,rayResult.m_hitFraction);
 			m_hitPointWorld.push_back(hitPointWorld);
 			m_hitFractions.push_back(rayResult.m_hitFraction);
-			if (rayResult.m_localShapeInfo) {
-				m_shapeParts.push_back(rayResult.m_localShapeInfo->m_shapePart);
-			}
-			else {
-				m_shapeParts.push_back(0);
-			}
 			return m_closestHitFraction;
 		}
 	};

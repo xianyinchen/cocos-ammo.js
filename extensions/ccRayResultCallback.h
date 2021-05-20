@@ -4,33 +4,51 @@
 
 #include "BulletCollision/CollisionDispatch/btCollisionWorld.h"
 
-ATTRIBUTE_ALIGNED16(class) ccClosestRayResultCallback : public btCollisionWorld::ClosestRayResultCallback
-{
-private:
-	/* data */
-public:
+typedef btCollisionWorld::ClosestRayResultCallback ClosestRayResultCallback;
+typedef btCollisionWorld::AllHitsRayResultCallback AllHitsRayResultCallback;
+typedef btCollisionWorld::LocalRayResult LocalRayResult;
 
-	BT_DECLARE_ALIGNED_ALLOCATOR();
+struct ccClosestRayResultCallback : public ClosestRayResultCallback
+{
+	int m_shapePart;
+	
+	ccClosestRayResultCallback(const btVector3&	rayFromWorld,const btVector3&	rayToWorld)
+	:ClosestRayResultCallback(rayFromWorld, rayToWorld), m_shapePart(0)
+	{
+	}
 
 	// return true when pairs need collision
 	virtual bool needsCollision(btBroadphaseProxy* proxy0) const
 	{
 		return (proxy0->m_collisionFilterGroup & m_collisionFilterMask) != 0;
 	}
+	
+	virtual	btScalar	addSingleResult(LocalRayResult& rayResult,bool normalInWorldSpace)
+	{
+		m_shapePart = rayResult.m_localShapeInfo?rayResult.m_localShapeInfo->m_shapePart:0;
+		return ClosestRayResultCallback::addSingleResult(rayResult, normalInWorldSpace);
+	}
 };
 
-ATTRIBUTE_ALIGNED16(class) ccAllHitsRayResultCallback : public btCollisionWorld::AllHitsRayResultCallback
+struct ccAllHitsRayResultCallback : public AllHitsRayResultCallback
 {
-private:
-	/* data */
-public:
+	btAlignedObjectArray<int> m_shapeParts;
 
-	BT_DECLARE_ALIGNED_ALLOCATOR();
+	ccAllHitsRayResultCallback(const btVector3&	rayFromWorld,const btVector3&	rayToWorld)
+	:AllHitsRayResultCallback(rayFromWorld, rayToWorld)
+	{
+	}
 
 	// return true when pairs need collision
 	virtual bool needsCollision(btBroadphaseProxy* proxy0) const
 	{
 		return (proxy0->m_collisionFilterGroup & m_collisionFilterMask) != 0;
+	}
+	
+	virtual	btScalar	addSingleResult(LocalRayResult& rayResult,bool normalInWorldSpace)
+	{
+		m_shapeParts.push_back(rayResult.m_localShapeInfo?rayResult.m_localShapeInfo->m_shapePart:0);
+		return AllHitsRayResultCallback::addSingleResult(rayResult, normalInWorldSpace);
 	}
 };
 
