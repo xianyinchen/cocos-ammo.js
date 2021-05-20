@@ -309,7 +309,7 @@
 					shape.addChildShape(boxTrans, box);
 					break;
 				case 3:
-					// Cylinder
+					// Cylinder or capsule
 					var radius = 1 + Math.random() * objectSize;
 					var height = 1 + Math.random() * objectSize;
 					var mat = createObjectMaterial()
@@ -350,7 +350,7 @@
 			var rbInfo = new Ammo.btRigidBodyConstructionInfo(mass, motionState, shape, localInertia);
 			var body = new Ammo.btRigidBody(rbInfo);
 			body.setActivationState(4);
-
+			body.setDamping(objectType/3,objectType/3);
 			threeObject.userData.physicsBody = body;
 
 			scene.add(threeObject);
