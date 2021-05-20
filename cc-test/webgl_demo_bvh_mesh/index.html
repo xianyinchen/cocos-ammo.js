@@ -199,7 +199,7 @@
 			dispatcher = new Ammo.btCollisionDispatcher(collisionConfiguration);
 			broadphase = new Ammo.btDbvtBroadphase();
 			solver = new Ammo.btSequentialImpulseConstraintSolver();
-			physicsWorld = new Ammo.btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
+			physicsWorld = new Ammo.ccDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
 			physicsWorld.setGravity(new Ammo.btVector3(0, - 10, 0));
 
 			// Create the terrain body

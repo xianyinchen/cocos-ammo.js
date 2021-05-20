@@ -187,7 +187,7 @@
 				dispatcher = new Ammo.btCollisionDispatcher(collisionConfiguration);
 				broadphase = new Ammo.btDbvtBroadphase();
 				solver = new Ammo.btSequentialImpulseConstraintSolver();
-				physicsWorld = new Ammo.btDiscreteDynamicsWorld(dispatcher, broadphase, solver,
+				physicsWorld = new Ammo.ccDiscreteDynamicsWorld(dispatcher, broadphase, solver,
 					collisionConfiguration);
 				physicsWorld.setGravity(new Ammo.btVector3(0, gravityConstant, 0));
 				// physicsWorld.getWorldInfo().set_m_gravity(new Ammo.btVector3(0, gravityConstant, 0));
@@ -620,8 +620,7 @@
 				var rayCallBack = Ammo.castObject(AllHitsRayResultCallback, Ammo.RayResultCallback);
 				rayCallBack.set_m_closestHitFraction(1);
 				rayCallBack.set_m_collisionObject(null);
-				AllHitsRayResultCallback.m_shapePart = -1;
-				AllHitsRayResultCallback.s.clear();
+				AllHitsRayResultCallback.m_shapeParts.clear();
 				AllHitsRayResultCallback.m_collisionObjects.clear();
 				AllHitsRayResultCallback.m_hitFractions.clear();
 
@@ -636,8 +635,7 @@
 
 				if (AllHitsRayResultCallback.hasHit()) {
 					if (0) {
-						var sps = AllHitsRayResultCallback.s;
-						var sp = AllHitsRayResultCallback.m_shapePart;
+						var sps = AllHitsRayResultCallback.m_shapeParts;
 						var cos = AllHitsRayResultCallback.m_collisionObjects;
 						console.log("size", cos.size(), sps.size(), sp)
 						for (let i = sps.size(); i--;) {
