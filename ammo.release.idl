@@ -898,6 +898,11 @@ interface btDiscreteDynamicsWorld {
 };
 btDiscreteDynamicsWorld implements btDynamicsWorld;
 
+interface ccDiscreteDynamicsWorld {
+  void ccDiscreteDynamicsWorld(btDispatcher dispatcher, btBroadphaseInterface pairCache, btConstraintSolver constraintSolver, btCollisionConfiguration collisionConfiguration);
+};
+ccDiscreteDynamicsWorld implements btDiscreteDynamicsWorld;
+
 // // vehicle
 
 // [Prefix="btRaycastVehicle::", NoDelete]

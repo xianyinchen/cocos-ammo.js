@@ -15,9 +15,9 @@ subject to the following restrictions:
 
 
 ///create 125 (5x5x5) dynamic object
-#define ARRAY_SIZE_X 1
-#define ARRAY_SIZE_Y 1
-#define ARRAY_SIZE_Z 1
+#define ARRAY_SIZE_X 5
+#define ARRAY_SIZE_Y 5
+#define ARRAY_SIZE_Z 5
 
 //maximum number of objects (and allow user to shoot additional boxes)
 #define MAX_PROXIES (ARRAY_SIZE_X*ARRAY_SIZE_Y*ARRAY_SIZE_Z + 1024)
@@ -35,6 +35,7 @@ subject to the following restrictions:
 #include "GLDebugDrawer.h"
 static GLDebugDrawer sDebugDraw;
 #include <stdio.h> //printf debugging
+#include "../../../extensions/ccDiscreteDynamicsWorld.h"
 
 
 void DampingDemo::clientMoveAndDisplay()
@@ -100,11 +101,11 @@ void	DampingDemo::initPhysics()
 	btSequentialImpulseConstraintSolver* sol = new btSequentialImpulseConstraintSolver;
 	m_solver = sol;
 
-	m_dynamicsWorld = new btDiscreteDynamicsWorld(m_dispatcher,m_broadphase,m_solver,m_collisionConfiguration);
+	m_dynamicsWorld = new ccDiscreteDynamicsWorld(m_dispatcher,m_broadphase,m_solver,m_collisionConfiguration);
 	m_dynamicsWorld->setDebugDrawer(&sDebugDraw);
 //	m_dynamicsWorld->getSolverInfo().m_singleAxisRollingFrictionThreshold = 0.f;//faster but lower quality
 	m_dynamicsWorld->setGravity(btVector3(0,-10,0));
-/*
+
 	{
 
 		///create a few basic rigid bodies
@@ -167,7 +168,7 @@ void	DampingDemo::initPhysics()
 		//add the body to the dynamics world
 		m_dynamicsWorld->addRigidBody(body);
 	}
-*/
+
 	{
 		//create a few dynamic rigidbodies
 		// Re-using the same collision is better for memory usage and performance
@@ -209,12 +210,13 @@ void	DampingDemo::initPhysics()
 					{
 						startTransform.setOrigin(SCALING*btVector3(
 											btScalar(2.0*i + start_x),
-											btScalar(20+2.0*k + start_y),
+											btScalar(10+5.0*k + start_y),
 											btScalar(2.0*j + start_z)));
 
 
 						shapeIndex++;
-						btCollisionShape* colShape = colShapes[shapeIndex%NUM_SHAPES];
+						//btCollisionShape* colShape = colShapes[shapeIndex%NUM_SHAPES];
+						btCollisionShape* colShape = colShapes[0];
 						bool isDynamic = (mass != 0.f);
 						btVector3 localInertia(0,0,0);
 
@@ -228,8 +230,12 @@ void	DampingDemo::initPhysics()
 						body->setFriction(1.f);
 						body->setRollingFriction(.3);
 						body->setAnisotropicFriction(colShape->getAnisotropicRollingFrictionDirection(),btCollisionObject::CF_ANISOTROPIC_ROLLING_FRICTION);
-						body->setDamping(1.0f, 1.0f);
-						body->forceActivationState(DISABLE_DEACTIVATION);
+						body->setDamping((float)(ARRAY_SIZE_Y - k) / ARRAY_SIZE_Y, (float)(ARRAY_SIZE_Y - k) / ARRAY_SIZE_Y);
+						
+						//body->setMassProps(0, btVector3());
+						//body->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
+						//body->forceActivationState(DISABLE_DEACTIVATION);
+
 						m_dynamicsWorld->addRigidBody(body);
 					}
 				}

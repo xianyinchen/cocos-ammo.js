@@ -1,6 +1,7 @@
 .cache
 compile_commands.json
 build-for-vscode
+build-win
 cocos
 bullet/build
 bullet/build-win
