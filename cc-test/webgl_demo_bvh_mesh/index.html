@@ -35,9 +35,9 @@
 	<div id="container"><br /><br /><br /><br /><br />Loading...</div>
 	<div id="info">Ammo.js bvh mesh demo</div>
 
-	<!-- <script src="../../builds/node/ammo.cocos.js"></script> -->
+	<script src="../../builds/node/ammo.cocos.js"></script>
 	<!-- <script src="../../builds/ammo.js"></script> -->
-	<script src="../../builds/ammo.wasm.js"></script>
+	<!-- <script src="../../builds/ammo.wasm.js"></script> -->
 
 	<script src="../js/three/three.min.js"></script>
 	<script src="../js/three/OrbitControls.js"></script>
@@ -200,6 +200,7 @@
 			broadphase = new Ammo.btDbvtBroadphase();
 			solver = new Ammo.btSequentialImpulseConstraintSolver();
 			physicsWorld = new Ammo.ccDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
+			physicsWorld.getPairCache().setOverlapFilterCallback(new Ammo.ccOverlapFilterCallback());
 			physicsWorld.setGravity(new Ammo.btVector3(0, - 10, 0));
 
 			// Create the terrain body
@@ -215,7 +216,7 @@
 			var groundMotionState = new Ammo.btDefaultMotionState(groundTransform);
 			var groundBody = new Ammo.btRigidBody(new Ammo.btRigidBodyConstructionInfo(groundMass, groundMotionState, groundShape, groundLocalInertia));
 			physicsWorld.addRigidBody(groundBody);
-
+			groundBody.setCollisionFlags(2);
 			bvhMeshShape = createBvhStaticMeshShape(terrainMesh);
 			// bvhMeshShape.setUserIndex(groundShape.getNumChildShapes());
 			bvhTrans = new Ammo.btTransform();
@@ -349,7 +350,7 @@
 			var motionState = new Ammo.btDefaultMotionState(transform);
 			var rbInfo = new Ammo.btRigidBodyConstructionInfo(mass, motionState, shape, localInertia);
 			var body = new Ammo.btRigidBody(rbInfo);
-			body.setActivationState(4);
+			// body.setActivationState(4);
 			body.setDamping(objectType/3,objectType/3);
 			threeObject.userData.physicsBody = body;
 
@@ -397,7 +398,7 @@
 
 			updateRotateAndPosition(deltaTime);
 
-			physicsWorld.stepSimulation(deltaTime, 10);
+			physicsWorld.stepSimulation(deltaTime);
 
 			// Update objects
 			for (var i = 0, il = dynamicObjects.length; i < il; i++) {

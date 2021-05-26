@@ -191,7 +191,6 @@ declare namespace Ammo {
     public m_collisionObject: btCollisionObject;
     public hasHit (): boolean;
     public get_m_collisionObject (): btCollisionObject;
-    public setUseCC (v: boolean): void;
   }
 
   class ClosestRayResultCallback extends RayResultCallback {
