@@ -205,6 +205,7 @@ declare namespace Ammo {
 
   class ccClosestRayResultCallback extends ClosestRayResultCallback {
     public m_shapePart: number;
+    public setQueryTrigger (v:boolean): void;
     constructor (from: btVector3, to: btVector3);
   }
 
@@ -231,6 +232,7 @@ declare namespace Ammo {
 
   class ccAllHitsRayResultCallback extends AllHitsRayResultCallback {
     public m_shapeParts: btNumberArray;
+    public setQueryTrigger (v:boolean): void;
     constructor (from: btVector3, to: btVector3);
   }
 
@@ -906,6 +908,11 @@ declare namespace Ammo {
     public setContactAddedCallback (funcpointer: number): void;
     public setContactProcessedCallback (funcpointer: number): void;
     public setContactDestroyedCallback (funcpointer: number): void;
+  }
+
+  class ccDiscreteDynamicsWorld extends btDiscreteDynamicsWorld {
+    public setAllowSleep (v:boolean): void;
+    public setDeactivationTime (v:number): void;
   }
 
   class btVehicleTuning {
