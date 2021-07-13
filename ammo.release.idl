@@ -186,6 +186,7 @@ ClosestRayResultCallback implements RayResultCallback;
 interface ccClosestRayResultCallback {
   void ccClosestRayResultCallback([Const, Ref] btVector3 from, [Const, Ref] btVector3 to);
   attribute long m_shapePart;
+  void setQueryTrigger(boolean v);
 };
 ccClosestRayResultCallback implements ClosestRayResultCallback;
 
@@ -217,6 +218,7 @@ AllHitsRayResultCallback implements RayResultCallback;
 interface ccAllHitsRayResultCallback {
   void ccAllHitsRayResultCallback([Const, Ref] btVector3 from, [Const, Ref] btVector3 to);
   [Value] attribute btIntArray m_shapeParts;
+  void setQueryTrigger(boolean v);
 };
 ccAllHitsRayResultCallback implements AllHitsRayResultCallback;
 
