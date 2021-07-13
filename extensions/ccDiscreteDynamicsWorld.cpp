@@ -1,5 +1,6 @@
 
 #include "ccDiscreteDynamicsWorld.h"
+#include "BulletDynamics/Dynamics/btRigidBody.h"
 #include "LinearMath/btScalar.h"
 #include "LinearMath/btVector3.h"
 
@@ -8,7 +9,10 @@ ccDiscreteDynamicsWorld::ccDiscreteDynamicsWorld(
 	btConstraintSolver *constraintSolver,
 	btCollisionConfiguration *collisionConfiguration)
 	: btDiscreteDynamicsWorld(dispatcher, pairCache, constraintSolver,
-		collisionConfiguration) {}
+		collisionConfiguration) {
+			// reset default to 0.1
+			gDeactivationTime = btScalar(0.1);
+		}
 
 void ccDiscreteDynamicsWorld::applyGravity() {
 	///@todo: iterate over awake simulation islands!

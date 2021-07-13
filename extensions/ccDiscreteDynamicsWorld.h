@@ -2,6 +2,7 @@
 #ifndef CC_DISCRETE_DYNAMICS_WORLD_H
 #define CC_DISCRETE_DYNAMICS_WORLD_H
 
+#include "BulletDynamics/Dynamics/btRigidBody.h"
 #include "BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h"
 #include "LinearMath/btScalar.h"
 
@@ -13,6 +14,14 @@ public:
 
 	///apply gravity, call this once per timestep
 	virtual void	applyGravity();
+
+	void setAllowSleep(bool v) {
+		gDisableDeactivation = !v;
+	}
+
+	void setDeactivationTime(btScalar v) {
+		gDeactivationTime = v;
+	}
 };
 
 #endif // CC_DISCRETE_DYNAMICS_WORLD_H

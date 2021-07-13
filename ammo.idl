@@ -902,6 +902,8 @@ btDiscreteDynamicsWorld implements btDynamicsWorld;
 
 interface ccDiscreteDynamicsWorld {
   void ccDiscreteDynamicsWorld(btDispatcher dispatcher, btBroadphaseInterface pairCache, btConstraintSolver constraintSolver, btCollisionConfiguration collisionConfiguration);
+  void setAllowSleep(boolean v);
+  void setDeactivationTime(float v);
 };
 ccDiscreteDynamicsWorld implements btDiscreteDynamicsWorld;
 
