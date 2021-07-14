@@ -139,154 +139,136 @@
       });
 
 
-      // Ammo().then(function (Ammo) {
+      Ammo().then(function (Ammo) {
 
-      var collisionConfiguration = new Ammo.btDefaultCollisionConfiguration();
-      var dispatcher = new Ammo.btCollisionDispatcher(collisionConfiguration);
-      var overlappingPairCache = new Ammo.btDbvtBroadphase();
-      var solver = new Ammo.btSequentialImpulseConstraintSolver();
-      var dynamicsWorld = new Ammo.btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver,
-        collisionConfiguration);
-      dynamicsWorld.setGravity(new Ammo.btVector3(0, -10, 0));
+        var collisionConfiguration = new Ammo.btDefaultCollisionConfiguration();
+        var dispatcher = new Ammo.btCollisionDispatcher(collisionConfiguration);
+        var overlappingPairCache = new Ammo.btDbvtBroadphase();
+        var solver = new Ammo.btSequentialImpulseConstraintSolver();
+        var dynamicsWorld = new Ammo.btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver,
+          collisionConfiguration);
+        dynamicsWorld.setGravity(new Ammo.btVector3(0, -10, 0));
 
-      var bodies = [];
+        var bodies = [];
 
+        // var sphereSubShape = new Ammo.btSphereShape(radius);
+        // var sphereSubTransform = new Ammo.btTransform();
+        // sphereSubTransform.setIdentity();
+        // sphereSubTransform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
 
-      // var sphereSubShape = new Ammo.btSphereShape(radius);
-      // var sphereSubTransform = new Ammo.btTransform();
-      // sphereSubTransform.setIdentity();
-      // sphereSubTransform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
+        // var sphereShape = new Ammo.btCompoundShape();
+        // sphereShape.addChildShape(sphereSubTransform, sphereSubShape);
 
-      // var sphereShape = new Ammo.btCompoundShape();
-      // sphereShape.addChildShape(sphereSubTransform, sphereSubShape);
+        // var startTransform = new Ammo.btTransform();
+        // startTransform.setIdentity();
+        // startTransform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
 
-      // var startTransform = new Ammo.btTransform();
-      // startTransform.setIdentity();
-      // startTransform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
+        // var mass = 10;
+        // var localInertia = new Ammo.btVector3(1.6666666269302368, 1.6666666269302368, 1.6666666269302368);
+        // sphereShape.calculateLocalInertia(mass, localInertia);
 
-      // var mass = 10;
-      // var localInertia = new Ammo.btVector3(1.6666666269302368, 1.6666666269302368, 1.6666666269302368);
-      // sphereShape.calculateLocalInertia(mass, localInertia);
+        // var myMotionState = new Ammo.btDefaultMotionState(startTransform);
+        // var rbInfo = new Ammo.btRigidBodyConstructionInfo(mass, myMotionState, sphereShape, localInertia);
+        // var body1 = new Ammo.btRigidBody(rbInfo);
+        // body1.setActivationState(4);
+        // body1.setUserIndex(0);
+        // dynamicsWorld.addRigidBody(body1);
+        // bodies[NUM] = body1;
 
-      // var myMotionState = new Ammo.btDefaultMotionState(startTransform);
-      // var rbInfo = new Ammo.btRigidBodyConstructionInfo(mass, myMotionState, sphereShape, localInertia);
-      // var body1 = new Ammo.btRigidBody(rbInfo);
-      // body1.setActivationState(4);
-      // body1.setUserIndex(0);
-      // dynamicsWorld.addRigidBody(body1);
-      // bodies[NUM] = body1;
+        for (let i = 0; i < NUM; i++) {
 
-      for (let i = 0; i < NUM; i++) {
+          var sphereSubShape = new Ammo.btSphereShape(radius);
+          var sphereSubTransform = new Ammo.btTransform();
+          sphereSubTransform.setIdentity();
+          sphereSubTransform.setRotation(new Ammo.btQuaternion(0, 1, 0, 1));
 
-        var sphereSubShape = new Ammo.btSphereShape(radius);
-        var sphereSubTransform = new Ammo.btTransform();
-        sphereSubTransform.setIdentity();
-        sphereSubTransform.setRotation(new Ammo.btQuaternion(0, 1, 0, 1));
+          var sphereShape = new Ammo.btCompoundShape();
 
-        var sphereShape = new Ammo.btCompoundShape();
+          var startTransform = new Ammo.btTransform();
+          startTransform.setIdentity();
+          startTransform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
 
-        var startTransform = new Ammo.btTransform();
-        startTransform.setIdentity();
-        startTransform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
+          var mass = 10;
+          var localInertia = new Ammo.btVector3(1.6666666269302368, 1.6666666269302368, 1.6666666269302368);
+          sphereShape.calculateLocalInertia(mass, localInertia);
 
-        var mass = 10;
-        var localInertia = new Ammo.btVector3(1.6666666269302368, 1.6666666269302368, 1.6666666269302368);
-        sphereShape.calculateLocalInertia(mass, localInertia);
+          var myMotionState = new Ammo.btDefaultMotionState(startTransform);
+          var rbInfo = new Ammo.btRigidBodyConstructionInfo(mass, myMotionState, sphereShape, localInertia);
+          var bodyd = new Ammo.btRigidBody(rbInfo);
+          bodyd.setActivationState(4);
+          bodyd.setUserIndex(i + 2);
 
-        var myMotionState = new Ammo.btDefaultMotionState(startTransform);
-        var rbInfo = new Ammo.btRigidBodyConstructionInfo(mass, myMotionState, sphereShape, localInertia);
-        var bodyd = new Ammo.btRigidBody(rbInfo);
-        bodyd.setActivationState(4);
-        bodyd.setUserIndex(i + 2);
+          sphereSubShape.setLocalScaling(new Ammo.btVector3(1, 1, 1));
+          sphereShape.addChildShape(sphereSubTransform, sphereSubShape);
+          sphereShape.setMaterial(0, 0.5, 0);
 
-        sphereSubShape.setLocalScaling(new Ammo.btVector3(1, 1, 1));
-        sphereShape.addChildShape(sphereSubTransform, sphereSubShape);
-        sphereShape.setMaterial(0, 0.5, 0);
+          dynamicsWorld.addRigidBody(bodyd);
+          bodies[i + 1] = bodyd;
 
-        dynamicsWorld.addRigidBody(bodyd);
-        bodies[i + 1] = bodyd;
+          if (i == Math.floor(NUM / 2)) {
+            {
+              var groundShape = new Ammo.btCompoundShape();
 
-        if (i == Math.floor(NUM / 2)) {
-          {
-            var groundShape = new Ammo.btCompoundShape();
+              var localInertia = new Ammo.btVector3(1.6666666269302368, 1.6666666269302368, 1.6666666269302368);
+              var groundTransform = new Ammo.btTransform();
+              groundTransform.setIdentity();
+              groundTransform.setOrigin(new Ammo.btVector3(0, -6, 0));
+              groundTransform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
+              var myMotionState = new Ammo.btDefaultMotionState(groundTransform);
+              var rbInfo = new Ammo.btRigidBodyConstructionInfo(0, myMotionState, groundShape, localInertia);
+              var bodyc = new Ammo.btRigidBody(rbInfo);
 
-            var localInertia = new Ammo.btVector3(1.6666666269302368, 1.6666666269302368, 1.6666666269302368);
-            var groundTransform = new Ammo.btTransform();
-            groundTransform.setIdentity();
-            groundTransform.setOrigin(new Ammo.btVector3(0, -6, 0));
-            groundTransform.setRotation(new Ammo.btQuaternion(0, 0, 0, 1));
-            var myMotionState = new Ammo.btDefaultMotionState(groundTransform);
-            var rbInfo = new Ammo.btRigidBodyConstructionInfo(0, myMotionState, groundShape, localInertia);
-            var bodyc = new Ammo.btRigidBody(rbInfo);
+              var groundSubShape = new Ammo.btBoxShape(new Ammo.btVector3(50, 0.00000001, 50));
+              groundSubShape.setLocalScaling(new Ammo.btVector3(1, 1, 1));
+              var groundSubTransform = new Ammo.btTransform();
+              groundSubTransform.setIdentity();
+              groundShape.addChildShape(groundSubTransform, groundSubShape);
+              groundShape.setMaterial(0, 0.5, 0);
 
-            var groundSubShape = new Ammo.btBoxShape(new Ammo.btVector3(50, 0.00000001, 50));
-            groundSubShape.setLocalScaling(new Ammo.btVector3(1, 1, 1));
-            var groundSubTransform = new Ammo.btTransform();
-            groundSubTransform.setIdentity();
-            groundShape.addChildShape(groundSubTransform, groundSubShape);
-            groundShape.setMaterial(0, 0.5, 0);
-
-            bodyc.setUserIndex(1);
-            dynamicsWorld.addRigidBody(bodyc);
-            bodies[0] = bodyc;
-          }
-        }
-      }
-
-      // dynamicsWorld.removeRigidBody(bodies[1]);
-      // dynamicsWorld.addRigidBody(bodies[1]);
-      // dynamicsWorld.removeRigidBody(bodies[0]);
-      // dynamicsWorld.addRigidBody(bodies[0]);
-      // dynamicsWorld.removeRigidBody(bodies[1]);
-      // dynamicsWorld.addRigidBody(bodies[1]);
-      // dynamicsWorld.removeRigidBody(bodies[0]);
-      // dynamicsWorld.addRigidBody(bodies[0]);
-
-      function resetPositions() {
-        var side = Math.ceil(Math.pow(NUM, 1 / 3));
-        var i = 1;
-        for (var x = 0; x < side; x++) {
-          for (var y = 0; y < side; y++) {
-            for (var z = 0; z < side; z++) {
-              if (i == bodies.length) break;
-              var body = bodies[i++];
-              var origin = body.getWorldTransform().getOrigin();
-              origin.setX((x - side / 2) * (2.2 + Math.random()));
-              origin.setY(y * (15 + Math.random()));
-              origin.setZ((z - side / 2) * (2.2 + Math.random()) - side - 3);
-              body.activate();
-              var rotation = body.getWorldTransform().getRotation();
-              rotation.setX(1);
-              rotation.setY(1);
-              rotation.setZ(0);
-              rotation.setW(1);
+              bodyc.setUserIndex(1);
+              dynamicsWorld.addRigidBody(bodyc);
+              bodies[0] = bodyc;
             }
           }
         }
-      }
 
-      var transform = new Ammo.btTransform(); // taking this out of readBulletObject reduces the leaking
-      function readBulletObject(i, object) {
-        var body = bodies[i];
-        body.getMotionState().getWorldTransform(transform);
-        var origin = transform.getOrigin();
-        object[0] = origin.x();
-        object[1] = origin.y();
-        object[2] = origin.z();
-        var rotation = transform.getRotation();
-        object[3] = rotation.x();
-        object[4] = rotation.y();
-        object[5] = rotation.z();
-        object[6] = rotation.w();
-      }
+        // dynamicsWorld.removeRigidBody(bodies[1]);
+        // dynamicsWorld.addRigidBody(bodies[1]);
+        // dynamicsWorld.removeRigidBody(bodies[0]);
+        // dynamicsWorld.addRigidBody(bodies[0]);
+        // dynamicsWorld.removeRigidBody(bodies[1]);
+        // dynamicsWorld.addRigidBody(bodies[1]);
+        // dynamicsWorld.removeRigidBody(bodies[0]);
+        // dynamicsWorld.addRigidBody(bodies[0]);
 
-      function update(dt) {
+        function resetPositions() {
+          var side = Math.ceil(Math.pow(NUM, 1 / 3));
+          var i = 1;
+          for (var x = 0; x < side; x++) {
+            for (var y = 0; y < side; y++) {
+              for (var z = 0; z < side; z++) {
+                if (i == bodies.length) break;
+                var body = bodies[i++];
+                var origin = body.getWorldTransform().getOrigin();
+                origin.setX((x - side / 2) * (2.2 + Math.random()));
+                origin.setY(y * (15 + Math.random()));
+                origin.setZ((z - side / 2) * (2.2 + Math.random()) - side - 3);
+                body.activate();
+                var rotation = body.getWorldTransform().getRotation();
+                rotation.setX(1);
+                rotation.setY(1);
+                rotation.setZ(0);
+                rotation.setW(1);
+              }
+            }
+          }
+        }
 
-        for (var i = 0; i < NUM; i++) {
+        var transform = new Ammo.btTransform(); // taking this out of readBulletObject reduces the leaking
+        function readBulletObject(i, object) {
           var body = bodies[i];
-          body.getWorldTransform(transform);
+          body.getMotionState().getWorldTransform(transform);
           var origin = transform.getOrigin();
-          var object = [];
           object[0] = origin.x();
           object[1] = origin.y();
           object[2] = origin.z();
@@ -295,50 +277,67 @@
           object[4] = rotation.y();
           object[5] = rotation.z();
           object[6] = rotation.w();
-
-          origin.setValue(object[0], object[1], object[2]);
-          rotation.setValue(object[3], object[4], object[5], object[6]);
         }
 
-        dynamicsWorld.stepSimulation(dt, 2);
+        function update(dt) {
 
-        var data = {
-          objects: [],
-          currFPS: Math.round(1000 / 1),
-          allFPS: Math.round(1000 / 1)
-        };
+          for (var i = 0; i < NUM; i++) {
+            var body = bodies[i];
+            body.getWorldTransform(transform);
+            var origin = transform.getOrigin();
+            var object = [];
+            object[0] = origin.x();
+            object[1] = origin.y();
+            object[2] = origin.z();
+            var rotation = transform.getRotation();
+            object[3] = rotation.x();
+            object[4] = rotation.y();
+            object[5] = rotation.z();
+            object[6] = rotation.w();
 
-        // Read bullet data into JS objects
-        for (var i = 0; i < NUM; i++) {
-          var object = [];
-          readBulletObject(i + 1, object);
-          data.objects[i] = object;
+            origin.setValue(object[0], object[1], object[2]);
+            rotation.setValue(object[3], object[4], object[5], object[6]);
+          }
+
+          dynamicsWorld.stepSimulation(dt, 2);
+
+          var data = {
+            objects: [],
+            currFPS: Math.round(1000 / 1),
+            allFPS: Math.round(1000 / 1)
+          };
+
+          // Read bullet data into JS objects
+          for (var i = 0; i < NUM; i++) {
+            var object = [];
+            readBulletObject(i + 1, object);
+            data.objects[i] = object;
+          }
+
+          // if (data.objects.length != NUM) return;
+          for (var i = 0; i < NUM; i++) {
+            var physicsObject = data.objects[i];
+            var renderObject = boxes[i];
+            renderObject.position[0] = physicsObject[0];
+            renderObject.position[1] = physicsObject[1];
+            renderObject.position[2] = physicsObject[2];
+            quaternion.x = physicsObject[3];
+            quaternion.y = physicsObject[4];
+            quaternion.z = physicsObject[5];
+            quaternion.w = physicsObject[6];
+            renderObject.rotation = quaternion.toEuler();
+          }
+
+          currFPS = data.currFPS;
+          allFPS = data.allFPS;
+
+          window.requestAnimationFrame(update);
         }
 
-        // if (data.objects.length != NUM) return;
-        for (var i = 0; i < NUM; i++) {
-          var physicsObject = data.objects[i];
-          var renderObject = boxes[i];
-          renderObject.position[0] = physicsObject[0];
-          renderObject.position[1] = physicsObject[1];
-          renderObject.position[2] = physicsObject[2];
-          quaternion.x = physicsObject[3];
-          quaternion.y = physicsObject[4];
-          quaternion.z = physicsObject[5];
-          quaternion.w = physicsObject[6];
-          renderObject.rotation = quaternion.toEuler();
-        }
+        resetPositions();
+        update(0);
 
-        currFPS = data.currFPS;
-        allFPS = data.allFPS;
-
-        window.requestAnimationFrame(update);
-      }
-
-      resetPositions();
-      update(0);
-
-      // })
+      })
 
     }
   </script>
