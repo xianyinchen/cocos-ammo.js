@@ -16,6 +16,7 @@ os.path.join('..', '..', 'extensions', 'ccKinematicCharacterController.cpp'),
 os.path.join('..', '..', 'extensions', 'ccOverlapFilterCallback.h'),
 os.path.join('..', '..', 'extensions', 'ccRayResultCallback.h'),
 os.path.join('..', '..', 'extensions', 'ccDiscreteDynamicsWorld.cpp'),
+os.path.join('..', '..', 'extensions', 'ccConvexCastCallBack.h'),
 
 os.path.join('BulletSoftBody', 'btSoftBody.h'),
 os.path.join('BulletSoftBody', 'btSoftRigidDynamicsWorld.h'), os.path.join('BulletSoftBody', 'btDefaultSoftBodySolver.h'),
@@ -85,7 +86,9 @@ def build():
   elif g3 : args += ' -g3'
   elif g4 : args += ' -g4'
 
-  args += ' --llvm-lto 1 -s NO_EXIT_RUNTIME=1 -s NO_FILESYSTEM=1 -s ASSERTIONS=0 -s ENVIRONMENT=web,worker'
+  args += ' -g4'
+
+  args += ' --llvm-lto 1 -s NO_EXIT_RUNTIME=1 -s NO_FILESYSTEM=1 -s ASSERTIONS=1 -s ENVIRONMENT=web,worker'
   # args = '-O3 --llvm-lto 1 -s NO_EXIT_RUNTIME=1 -s NO_FILESYSTEM=1 -s EXPORTED_RUNTIME_METHODS=["UTF8ToString"] -s ASSERTIONS=1'
   if add_function_support:
     args += ' -s RESERVED_FUNCTION_POINTERS=20 -s EXTRA_EXPORTED_RUNTIME_METHODS=["addFunction"]'  

@@ -904,6 +904,9 @@ interface ccDiscreteDynamicsWorld {
   void ccDiscreteDynamicsWorld(btDispatcher dispatcher, btBroadphaseInterface pairCache, btConstraintSolver constraintSolver, btCollisionConfiguration collisionConfiguration);
   void setAllowSleep(boolean v);
   void setDeactivationTime(float v);
+  void setNarrowPhaseMethod(long v);
+  void setAllowCcdPenetration(float v);
+  [Ref] btIntArray getCcdTriggerRecorder();
 };
 ccDiscreteDynamicsWorld implements btDiscreteDynamicsWorld;
 

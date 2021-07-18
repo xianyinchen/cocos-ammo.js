@@ -80,3 +80,4 @@ bullet/src/BulletDynamics/libBulletDynamics.a
 bullet/Extras/HACD/libHACD.a
 bullet/src/BulletSoftBody/libBulletSoftBody.a
 bullet/CMakeCache.txt
+bullet/extensions

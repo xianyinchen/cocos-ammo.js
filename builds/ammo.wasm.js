@@ -8,308 +8,12689 @@ var Ammo = (function() {
 function(Ammo) {
   Ammo = Ammo || {};
 
+/**
+ * @license
+ * Copyright 2010 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
 
-var a;a||(a=typeof Ammo !== 'undefined' ? Ammo : {});var aa;a.ready=new Promise(function(b){aa=b});var ba={},ca;for(ca in a)a.hasOwnProperty(ca)&&(ba[ca]=a[ca]);var da=!1,ea=!1;da="object"===typeof window;ea="function"===typeof importScripts;var fa="",ha;
-if(da||ea)ea?fa=self.location.href:document.currentScript&&(fa=document.currentScript.src),_scriptDir&&(fa=_scriptDir),fa=0!==fa.indexOf("blob:")?fa.substr(0,fa.lastIndexOf("/")+1):"",ea&&(ha=function(b){var c=new XMLHttpRequest;c.open("GET",b,!1);c.responseType="arraybuffer";c.send(null);return new Uint8Array(c.response)});var ia=a.print||console.log.bind(console),ja=a.printErr||console.warn.bind(console);for(ca in ba)ba.hasOwnProperty(ca)&&(a[ca]=ba[ca]);ba=null;var ka=[],la,ma;
-a.wasmBinary&&(ma=a.wasmBinary);var noExitRuntime;a.noExitRuntime&&(noExitRuntime=a.noExitRuntime);"object"!==typeof WebAssembly&&ja("no native wasm support detected");var na,oa=new WebAssembly.Table({initial:675,maximum:695,element:"anyfunc"}),pa=!1,qa,sa,ta,ua=a.INITIAL_MEMORY||67108864;if(na=a.wasmMemory?a.wasmMemory:new WebAssembly.Memory({initial:ua/65536,maximum:ua/65536}))qa=na.buffer;ua=qa.byteLength;var va=qa;qa=va;a.HEAP8=new Int8Array(va);a.HEAP16=new Int16Array(va);a.HEAP32=ta=new Int32Array(va);
-a.HEAPU8=sa=new Uint8Array(va);a.HEAPU16=new Uint16Array(va);a.HEAPU32=new Uint32Array(va);a.HEAPF32=new Float32Array(va);a.HEAPF64=new Float64Array(va);ta[6348]=5268432;function wa(b){for(;0<b.length;){var c=b.shift();if("function"==typeof c)c(a);else{var d=c.dn;"number"===typeof d?void 0===c.Xm?a.dynCall_v(d):a.dynCall_vi(d,c.Xm):d(void 0===c.Xm?null:c.Xm)}}}var xa=[],ya=[],za=[],Aa=[],Ba=!1;function Ca(){var b=a.preRun.shift();xa.unshift(b)}var Da=0,Ea=null,Fa=null;a.preloadedImages={};
-a.preloadedAudios={};function Ga(b){if(a.onAbort)a.onAbort(b);b+="";ia(b);ja(b);pa=!0;throw new WebAssembly.RuntimeError("abort("+b+"). Build with -s ASSERTIONS=1 for more info.");}function Ha(){var b=Ia;return String.prototype.startsWith?b.startsWith("data:application/octet-stream;base64,"):0===b.indexOf("data:application/octet-stream;base64,")}var Ia="ammo.wasm.wasm";if(!Ha()){var Ja=Ia;Ia=a.locateFile?a.locateFile(Ja,fa):fa+Ja}
-function Ka(){try{if(ma)return new Uint8Array(ma);if(ha)return ha(Ia);throw"both async and sync fetching of the wasm failed";}catch(b){Ga(b)}}function La(){return ma||!da&&!ea||"function"!==typeof fetch?new Promise(function(b){b(Ka())}):fetch(Ia,{credentials:"same-origin"}).then(function(b){if(!b.ok)throw"failed to load wasm binary file at '"+Ia+"'";return b.arrayBuffer()}).catch(function(){return Ka()})}ya.push({dn:function(){Ma()}});
-var Na={d:function(){Ga()},b:function(b,c,d){sa.copyWithin(b,c,c+d)},c:function(){Ga("OOM")},a:function(b){var c=Date.now();ta[b>>2]=c/1E3|0;ta[b+4>>2]=c%1E3*1E3|0;return 0},memory:na,table:oa},Oa=function(){function b(l){a.asm=l.exports;Da--;a.monitorRunDependencies&&a.monitorRunDependencies(Da);0==Da&&(null!==Ea&&(clearInterval(Ea),Ea=null),Fa&&(l=Fa,Fa=null,l()))}function c(l){b(l.instance)}function d(l){return La().then(function(t){return WebAssembly.instantiate(t,e)}).then(l,function(t){ja("failed to asynchronously prepare wasm: "+
-t);Ga(t)})}var e={a:Na};Da++;a.monitorRunDependencies&&a.monitorRunDependencies(Da);if(a.instantiateWasm)try{return a.instantiateWasm(e,b)}catch(l){return ja("Module.instantiateWasm callback failed with error: "+l),!1}(function(){if(ma||"function"!==typeof WebAssembly.instantiateStreaming||Ha()||"function"!==typeof fetch)return d(c);fetch(Ia,{credentials:"same-origin"}).then(function(l){return WebAssembly.instantiateStreaming(l,e).then(c,function(t){ja("wasm streaming compile failed: "+t);ja("falling back to ArrayBuffer instantiation");
-d(c)})})})();return{}}();a.asm=Oa;var Ma=a.___wasm_call_ctors=function(){return(Ma=a.___wasm_call_ctors=a.asm.e).apply(null,arguments)};a.___em_js__array_bounds_check_error=function(){return(a.___em_js__array_bounds_check_error=a.asm.f).apply(null,arguments)};
-var Pa=a._a0_1=function(){return(Pa=a._a0_1=a.asm.g).apply(null,arguments)},Qa=a._a1_0=function(){return(Qa=a._a1_0=a.asm.h).apply(null,arguments)},Ra=a._a2_2=function(){return(Ra=a._a2_2=a.asm.i).apply(null,arguments)},Sa=a._a3_1=function(){return(Sa=a._a3_1=a.asm.j).apply(null,arguments)},Ta=a._a4_0=function(){return(Ta=a._a4_0=a.asm.k).apply(null,arguments)},Va=a._a5_0=function(){return(Va=a._a5_0=a.asm.l).apply(null,arguments)},Wa=a._a6_0=function(){return(Wa=a._a6_0=a.asm.m).apply(null,arguments)},
-Xa=a._a7_1=function(){return(Xa=a._a7_1=a.asm.n).apply(null,arguments)},Ya=a._a8_3=function(){return(Ya=a._a8_3=a.asm.o).apply(null,arguments)},Za=a._a9_0=function(){return(Za=a._a9_0=a.asm.p).apply(null,arguments)},$a=a._a10_0=function(){return($a=a._a10_0=a.asm.q).apply(null,arguments)},ab=a._a11_3=function(){return(ab=a._a11_3=a.asm.r).apply(null,arguments)},bb=a._a12_6=function(){return(bb=a._a12_6=a.asm.s).apply(null,arguments)},cb=a._a13_0=function(){return(cb=a._a13_0=a.asm.t).apply(null,arguments)},
-db=a._a14_1=function(){return(db=a._a14_1=a.asm.u).apply(null,arguments)},eb=a._a14_2=function(){return(eb=a._a14_2=a.asm.v).apply(null,arguments)},fb=a._a14_3=function(){return(fb=a._a14_3=a.asm.w).apply(null,arguments)},gb=a._a15_1=function(){return(gb=a._a15_1=a.asm.x).apply(null,arguments)},hb=a._a16_1=function(){return(hb=a._a16_1=a.asm.y).apply(null,arguments)},ib=a._a17_0=function(){return(ib=a._a17_0=a.asm.z).apply(null,arguments)},jb=a._a18_1=function(){return(jb=a._a18_1=a.asm.A).apply(null,
-arguments)},kb=a._a19_0=function(){return(kb=a._a19_0=a.asm.B).apply(null,arguments)},lb=a._a20_2=function(){return(lb=a._a20_2=a.asm.C).apply(null,arguments)},mb=a._a21_1=function(){return(mb=a._a21_1=a.asm.D).apply(null,arguments)},nb=a._a22_0=function(){return(nb=a._a22_0=a.asm.E).apply(null,arguments)},ob=a._a23_0=function(){return(ob=a._a23_0=a.asm.F).apply(null,arguments)},pb=a._a24_0=function(){return(pb=a._a24_0=a.asm.G).apply(null,arguments)},qb=a._a25_1=function(){return(qb=a._a25_1=a.asm.H).apply(null,
-arguments)},rb=a._a26_3=function(){return(rb=a._a26_3=a.asm.I).apply(null,arguments)},sb=a._a27_0=function(){return(sb=a._a27_0=a.asm.J).apply(null,arguments)},tb=a._a28_0=function(){return(tb=a._a28_0=a.asm.K).apply(null,arguments)},ub=a._a29_1=function(){return(ub=a._a29_1=a.asm.L).apply(null,arguments)},vb=a._a30_1=function(){return(vb=a._a30_1=a.asm.M).apply(null,arguments)},wb=a._a31_0=function(){return(wb=a._a31_0=a.asm.N).apply(null,arguments)},xb=a._a32_0=function(){return(xb=a._a32_0=a.asm.O).apply(null,
-arguments)},yb=a._a33_3=function(){return(yb=a._a33_3=a.asm.P).apply(null,arguments)},zb=a._a34_6=function(){return(zb=a._a34_6=a.asm.Q).apply(null,arguments)},Ab=a._a35_0=function(){return(Ab=a._a35_0=a.asm.R).apply(null,arguments)},Bb=a._a36_1=function(){return(Bb=a._a36_1=a.asm.S).apply(null,arguments)},Cb=a._a36_2=function(){return(Cb=a._a36_2=a.asm.T).apply(null,arguments)},Db=a._a36_3=function(){return(Db=a._a36_3=a.asm.U).apply(null,arguments)},Eb=a._a37_1=function(){return(Eb=a._a37_1=a.asm.V).apply(null,
-arguments)},Fb=a._a38_1=function(){return(Fb=a._a38_1=a.asm.W).apply(null,arguments)},Gb=a._a39_0=function(){return(Gb=a._a39_0=a.asm.X).apply(null,arguments)},Hb=a._a40_0=function(){return(Hb=a._a40_0=a.asm.Y).apply(null,arguments)},Ib=a._a41_0=function(){return(Ib=a._a41_0=a.asm.Z).apply(null,arguments)},Jb=a._a42_1=function(){return(Jb=a._a42_1=a.asm._).apply(null,arguments)},Kb=a._a43_0=function(){return(Kb=a._a43_0=a.asm.$).apply(null,arguments)},Lb=a._a44_1=function(){return(Lb=a._a44_1=a.asm.aa).apply(null,
-arguments)},Mb=a._a45_0=function(){return(Mb=a._a45_0=a.asm.ba).apply(null,arguments)},Nb=a._a46_1=function(){return(Nb=a._a46_1=a.asm.ca).apply(null,arguments)},Ob=a._a47_0=function(){return(Ob=a._a47_0=a.asm.da).apply(null,arguments)},Pb=a._a48_1=function(){return(Pb=a._a48_1=a.asm.ea).apply(null,arguments)},Qb=a._a49_0=function(){return(Qb=a._a49_0=a.asm.fa).apply(null,arguments)},Rb=a._a50_1=function(){return(Rb=a._a50_1=a.asm.ga).apply(null,arguments)},Sb=a._a51_0=function(){return(Sb=a._a51_0=
-a.asm.ha).apply(null,arguments)},Tb=a._a52_2=function(){return(Tb=a._a52_2=a.asm.ia).apply(null,arguments)},Ub=a._a53_0=function(){return(Ub=a._a53_0=a.asm.ja).apply(null,arguments)},Vb=a._a54_0=function(){return(Vb=a._a54_0=a.asm.ka).apply(null,arguments)},Wb=a._a55_1=function(){return(Wb=a._a55_1=a.asm.la).apply(null,arguments)},Xb=a._a56_3=function(){return(Xb=a._a56_3=a.asm.ma).apply(null,arguments)},Yb=a._a57_0=function(){return(Yb=a._a57_0=a.asm.na).apply(null,arguments)},Zb=a._a58_0=function(){return(Zb=
-a._a58_0=a.asm.oa).apply(null,arguments)},$b=a._a59_1=function(){return($b=a._a59_1=a.asm.pa).apply(null,arguments)},ac=a._a60_0=function(){return(ac=a._a60_0=a.asm.qa).apply(null,arguments)},bc=a._a61_0=function(){return(bc=a._a61_0=a.asm.ra).apply(null,arguments)},cc=a._a62_0=function(){return(cc=a._a62_0=a.asm.sa).apply(null,arguments)},dc=a._a63_0=function(){return(dc=a._a63_0=a.asm.ta).apply(null,arguments)},ec=a._a64_0=function(){return(ec=a._a64_0=a.asm.ua).apply(null,arguments)},fc=a._a65_0=
-function(){return(fc=a._a65_0=a.asm.va).apply(null,arguments)},gc=a._a66_1=function(){return(gc=a._a66_1=a.asm.wa).apply(null,arguments)},hc=a._a67_1=function(){return(hc=a._a67_1=a.asm.xa).apply(null,arguments)},ic=a._a68_0=function(){return(ic=a._a68_0=a.asm.ya).apply(null,arguments)},jc=a._a68_1=function(){return(jc=a._a68_1=a.asm.za).apply(null,arguments)},kc=a._a69_0=function(){return(kc=a._a69_0=a.asm.Aa).apply(null,arguments)},lc=a._a70_0=function(){return(lc=a._a70_0=a.asm.Ba).apply(null,
-arguments)},mc=a._a71_0=function(){return(mc=a._a71_0=a.asm.Ca).apply(null,arguments)},nc=a._a72_0=function(){return(nc=a._a72_0=a.asm.Da).apply(null,arguments)},oc=a._a73_1=function(){return(oc=a._a73_1=a.asm.Ea).apply(null,arguments)},pc=a._a74_1=function(){return(pc=a._a74_1=a.asm.Fa).apply(null,arguments)},qc=a._a75_1=function(){return(qc=a._a75_1=a.asm.Ga).apply(null,arguments)},rc=a._a76_1=function(){return(rc=a._a76_1=a.asm.Ha).apply(null,arguments)},sc=a._a77_0=function(){return(sc=a._a77_0=
-a.asm.Ia).apply(null,arguments)},tc=a._a78_0=function(){return(tc=a._a78_0=a.asm.Ja).apply(null,arguments)},uc=a._a79_1=function(){return(uc=a._a79_1=a.asm.Ka).apply(null,arguments)},vc=a._a80_1=function(){return(vc=a._a80_1=a.asm.La).apply(null,arguments)},wc=a._a81_1=function(){return(wc=a._a81_1=a.asm.Ma).apply(null,arguments)},xc=a._a82_1=function(){return(xc=a._a82_1=a.asm.Na).apply(null,arguments)},yc=a._a83_1=function(){return(yc=a._a83_1=a.asm.Oa).apply(null,arguments)},zc=a._a84_0=function(){return(zc=
-a._a84_0=a.asm.Pa).apply(null,arguments)},Ac=a._a85_1=function(){return(Ac=a._a85_1=a.asm.Qa).apply(null,arguments)},Bc=a._a86_1=function(){return(Bc=a._a86_1=a.asm.Ra).apply(null,arguments)},Cc=a._a87_2=function(){return(Cc=a._a87_2=a.asm.Sa).apply(null,arguments)},Dc=a._a88_0=function(){return(Dc=a._a88_0=a.asm.Ta).apply(null,arguments)},Ec=a._a89_4=function(){return(Ec=a._a89_4=a.asm.Ua).apply(null,arguments)},Fc=a._a90_1=function(){return(Fc=a._a90_1=a.asm.Va).apply(null,arguments)},Gc=a._a91_0=
-function(){return(Gc=a._a91_0=a.asm.Wa).apply(null,arguments)},Hc=a._a92_1=function(){return(Hc=a._a92_1=a.asm.Xa).apply(null,arguments)},Ic=a._a92_3=function(){return(Ic=a._a92_3=a.asm.Ya).apply(null,arguments)},Jc=a._a93_1=function(){return(Jc=a._a93_1=a.asm.Za).apply(null,arguments)},Kc=a._a94_1=function(){return(Kc=a._a94_1=a.asm._a).apply(null,arguments)},Lc=a._a94_2=function(){return(Lc=a._a94_2=a.asm.$a).apply(null,arguments)},Mc=a._a95_1=function(){return(Mc=a._a95_1=a.asm.ab).apply(null,
-arguments)},Nc=a._a96_1=function(){return(Nc=a._a96_1=a.asm.bb).apply(null,arguments)},Oc=a._a96_2=function(){return(Oc=a._a96_2=a.asm.cb).apply(null,arguments)},Pc=a._a96_3=function(){return(Pc=a._a96_3=a.asm.db).apply(null,arguments)},Qc=a._a97_3=function(){return(Qc=a._a97_3=a.asm.eb).apply(null,arguments)},Rc=a._a98_6=function(){return(Rc=a._a98_6=a.asm.fb).apply(null,arguments)},Sc=a._a99_0=function(){return(Sc=a._a99_0=a.asm.gb).apply(null,arguments)},Tc=a._a100_1=function(){return(Tc=a._a100_1=
-a.asm.hb).apply(null,arguments)},Uc=a._a100_2=function(){return(Uc=a._a100_2=a.asm.ib).apply(null,arguments)},Vc=a._a100_3=function(){return(Vc=a._a100_3=a.asm.jb).apply(null,arguments)},Wc=a._a101_1=function(){return(Wc=a._a101_1=a.asm.kb).apply(null,arguments)},Xc=a._a102_1=function(){return(Xc=a._a102_1=a.asm.lb).apply(null,arguments)},Yc=a._a103_1=function(){return(Yc=a._a103_1=a.asm.mb).apply(null,arguments)},Zc=a._a104_1=function(){return(Zc=a._a104_1=a.asm.nb).apply(null,arguments)},$c=a._a105_0=
-function(){return($c=a._a105_0=a.asm.ob).apply(null,arguments)},ad=a._a106_0=function(){return(ad=a._a106_0=a.asm.pb).apply(null,arguments)},bd=a._a107_0=function(){return(bd=a._a107_0=a.asm.qb).apply(null,arguments)},cd=a._a108_1=function(){return(cd=a._a108_1=a.asm.rb).apply(null,arguments)},dd=a._a109_1=function(){return(dd=a._a109_1=a.asm.sb).apply(null,arguments)},ed=a._a110_0=function(){return(ed=a._a110_0=a.asm.tb).apply(null,arguments)},fd=a._a111_0=function(){return(fd=a._a111_0=a.asm.ub).apply(null,
-arguments)},gd=a._a112_1=function(){return(gd=a._a112_1=a.asm.vb).apply(null,arguments)},hd=a._a113_0=function(){return(hd=a._a113_0=a.asm.wb).apply(null,arguments)},id=a._a114_2=function(){return(id=a._a114_2=a.asm.xb).apply(null,arguments)},jd=a._a115_1=function(){return(jd=a._a115_1=a.asm.yb).apply(null,arguments)},kd=a._a116_0=function(){return(kd=a._a116_0=a.asm.zb).apply(null,arguments)},ld=a._a117_0=function(){return(ld=a._a117_0=a.asm.Ab).apply(null,arguments)},md=a._a118_0=function(){return(md=
-a._a118_0=a.asm.Bb).apply(null,arguments)},nd=a._a119_1=function(){return(nd=a._a119_1=a.asm.Cb).apply(null,arguments)},od=a._a120_3=function(){return(od=a._a120_3=a.asm.Db).apply(null,arguments)},pd=a._a121_0=function(){return(pd=a._a121_0=a.asm.Eb).apply(null,arguments)},qd=a._a122_0=function(){return(qd=a._a122_0=a.asm.Fb).apply(null,arguments)},rd=a._a123_2=function(){return(rd=a._a123_2=a.asm.Gb).apply(null,arguments)},sd=a._a124_0=function(){return(sd=a._a124_0=a.asm.Hb).apply(null,arguments)},
-td=a._a125_0=function(){return(td=a._a125_0=a.asm.Ib).apply(null,arguments)},ud=a._a126_1=function(){return(ud=a._a126_1=a.asm.Jb).apply(null,arguments)},vd=a._a127_0=function(){return(vd=a._a127_0=a.asm.Kb).apply(null,arguments)},wd=a._a128_1=function(){return(wd=a._a128_1=a.asm.Lb).apply(null,arguments)},xd=a._a129_0=function(){return(xd=a._a129_0=a.asm.Mb).apply(null,arguments)},yd=a._a130_1=function(){return(yd=a._a130_1=a.asm.Nb).apply(null,arguments)},zd=a._a131_0=function(){return(zd=a._a131_0=
-a.asm.Ob).apply(null,arguments)},Ad=a._a132_1=function(){return(Ad=a._a132_1=a.asm.Pb).apply(null,arguments)},Bd=a._a133_0=function(){return(Bd=a._a133_0=a.asm.Qb).apply(null,arguments)},Cd=a._a134_1=function(){return(Cd=a._a134_1=a.asm.Rb).apply(null,arguments)},Dd=a._a135_0=function(){return(Dd=a._a135_0=a.asm.Sb).apply(null,arguments)},Ed=a._a136_1=function(){return(Ed=a._a136_1=a.asm.Tb).apply(null,arguments)},Fd=a._a137_0=function(){return(Fd=a._a137_0=a.asm.Ub).apply(null,arguments)},Gd=a._a138_1=
-function(){return(Gd=a._a138_1=a.asm.Vb).apply(null,arguments)},Hd=a._a139_0=function(){return(Hd=a._a139_0=a.asm.Wb).apply(null,arguments)},Id=a._a140_1=function(){return(Id=a._a140_1=a.asm.Xb).apply(null,arguments)},Jd=a._a141_0=function(){return(Jd=a._a141_0=a.asm.Yb).apply(null,arguments)},Kd=a._a142_1=function(){return(Kd=a._a142_1=a.asm.Zb).apply(null,arguments)},Ld=a._a143_0=function(){return(Ld=a._a143_0=a.asm._b).apply(null,arguments)},Md=a._a144_1=function(){return(Md=a._a144_1=a.asm.$b).apply(null,
-arguments)},Nd=a._a145_0=function(){return(Nd=a._a145_0=a.asm.ac).apply(null,arguments)},Od=a._a146_0=function(){return(Od=a._a146_0=a.asm.bc).apply(null,arguments)},Pd=a._a147_1=function(){return(Pd=a._a147_1=a.asm.cc).apply(null,arguments)},Qd=a._a148_0=function(){return(Qd=a._a148_0=a.asm.dc).apply(null,arguments)},Rd=a._a149_2=function(){return(Rd=a._a149_2=a.asm.ec).apply(null,arguments)},Sd=a._a150_0=function(){return(Sd=a._a150_0=a.asm.fc).apply(null,arguments)},Td=a._a151_0=function(){return(Td=
-a._a151_0=a.asm.gc).apply(null,arguments)},Ud=a._a152_1=function(){return(Ud=a._a152_1=a.asm.hc).apply(null,arguments)},Vd=a._a153_0=function(){return(Vd=a._a153_0=a.asm.ic).apply(null,arguments)},Wd=a._a154_1=function(){return(Wd=a._a154_1=a.asm.jc).apply(null,arguments)},Xd=a._a155_0=function(){return(Xd=a._a155_0=a.asm.kc).apply(null,arguments)},Yd=a._a156_1=function(){return(Yd=a._a156_1=a.asm.lc).apply(null,arguments)},Zd=a._a157_0=function(){return(Zd=a._a157_0=a.asm.mc).apply(null,arguments)},
-$d=a._a158_1=function(){return($d=a._a158_1=a.asm.nc).apply(null,arguments)},ae=a._a159_0=function(){return(ae=a._a159_0=a.asm.oc).apply(null,arguments)},be=a._a160_1=function(){return(be=a._a160_1=a.asm.pc).apply(null,arguments)},ce=a._a161_0=function(){return(ce=a._a161_0=a.asm.qc).apply(null,arguments)},de=a._a162_1=function(){return(de=a._a162_1=a.asm.rc).apply(null,arguments)},ee=a._a163_0=function(){return(ee=a._a163_0=a.asm.sc).apply(null,arguments)},fe=a._a164_1=function(){return(fe=a._a164_1=
-a.asm.tc).apply(null,arguments)},ge=a._a165_0=function(){return(ge=a._a165_0=a.asm.uc).apply(null,arguments)},he=a._a166_1=function(){return(he=a._a166_1=a.asm.vc).apply(null,arguments)},ie=a._a167_0=function(){return(ie=a._a167_0=a.asm.wc).apply(null,arguments)},je=a._a168_1=function(){return(je=a._a168_1=a.asm.xc).apply(null,arguments)},ke=a._a169_0=function(){return(ke=a._a169_0=a.asm.yc).apply(null,arguments)},le=a._a170_2=function(){return(le=a._a170_2=a.asm.zc).apply(null,arguments)},me=a._a171_0=
-function(){return(me=a._a171_0=a.asm.Ac).apply(null,arguments)},ne=a._a172_0=function(){return(ne=a._a172_0=a.asm.Bc).apply(null,arguments)},oe=a._a173_1=function(){return(oe=a._a173_1=a.asm.Cc).apply(null,arguments)},pe=a._a174_3=function(){return(pe=a._a174_3=a.asm.Dc).apply(null,arguments)},qe=a._a175_0=function(){return(qe=a._a175_0=a.asm.Ec).apply(null,arguments)},re=a._a176_0=function(){return(re=a._a176_0=a.asm.Fc).apply(null,arguments)},se=a._a177_0=function(){return(se=a._a177_0=a.asm.Gc).apply(null,
-arguments)},te=a._a178_0=function(){return(te=a._a178_0=a.asm.Hc).apply(null,arguments)},ue=a._a179_0=function(){return(ue=a._a179_0=a.asm.Ic).apply(null,arguments)},ve=a._a180_0=function(){return(ve=a._a180_0=a.asm.Jc).apply(null,arguments)},we=a._a181_0=function(){return(we=a._a181_0=a.asm.Kc).apply(null,arguments)},xe=a._a182_1=function(){return(xe=a._a182_1=a.asm.Lc).apply(null,arguments)},ye=a._a183_1=function(){return(ye=a._a183_1=a.asm.Mc).apply(null,arguments)},ze=a._a184_1=function(){return(ze=
-a._a184_1=a.asm.Nc).apply(null,arguments)},Ae=a._a185_1=function(){return(Ae=a._a185_1=a.asm.Oc).apply(null,arguments)},Be=a._a186_0=function(){return(Be=a._a186_0=a.asm.Pc).apply(null,arguments)},Ce=a._a187_1=function(){return(Ce=a._a187_1=a.asm.Qc).apply(null,arguments)},De=a._a188_0=function(){return(De=a._a188_0=a.asm.Rc).apply(null,arguments)},Ee=a._a189_1=function(){return(Ee=a._a189_1=a.asm.Sc).apply(null,arguments)},Fe=a._a190_2=function(){return(Fe=a._a190_2=a.asm.Tc).apply(null,arguments)},
-Ge=a._a191_3=function(){return(Ge=a._a191_3=a.asm.Uc).apply(null,arguments)},He=a._a192_0=function(){return(He=a._a192_0=a.asm.Vc).apply(null,arguments)},Ie=a._a193_1=function(){return(Ie=a._a193_1=a.asm.Wc).apply(null,arguments)},Je=a._a194_0=function(){return(Je=a._a194_0=a.asm.Xc).apply(null,arguments)},Ke=a._a195_0=function(){return(Ke=a._a195_0=a.asm.Yc).apply(null,arguments)},Le=a._a196_1=function(){return(Le=a._a196_1=a.asm.Zc).apply(null,arguments)},Me=a._a197_0=function(){return(Me=a._a197_0=
-a.asm._c).apply(null,arguments)},Ne=a._a198_0=function(){return(Ne=a._a198_0=a.asm.$c).apply(null,arguments)},Oe=a._a199_2=function(){return(Oe=a._a199_2=a.asm.ad).apply(null,arguments)},Pe=a._a199_3=function(){return(Pe=a._a199_3=a.asm.bd).apply(null,arguments)},Qe=a._a200_1=function(){return(Qe=a._a200_1=a.asm.cd).apply(null,arguments)},Re=a._a201_0=function(){return(Re=a._a201_0=a.asm.dd).apply(null,arguments)},Se=a._a202_2=function(){return(Se=a._a202_2=a.asm.ed).apply(null,arguments)},Te=a._a203_0=
-function(){return(Te=a._a203_0=a.asm.fd).apply(null,arguments)},Ue=a._a204_0=function(){return(Ue=a._a204_0=a.asm.gd).apply(null,arguments)},Ve=a._a205_1=function(){return(Ve=a._a205_1=a.asm.hd).apply(null,arguments)},We=a._a206_3=function(){return(We=a._a206_3=a.asm.id).apply(null,arguments)},Xe=a._a207_0=function(){return(Xe=a._a207_0=a.asm.jd).apply(null,arguments)},Ye=a._a208_0=function(){return(Ye=a._a208_0=a.asm.kd).apply(null,arguments)},Ze=a._a209_0=function(){return(Ze=a._a209_0=a.asm.ld).apply(null,
-arguments)},$e=a._a210_0=function(){return($e=a._a210_0=a.asm.md).apply(null,arguments)},af=a._a211_0=function(){return(af=a._a211_0=a.asm.nd).apply(null,arguments)},bf=a._a212_0=function(){return(bf=a._a212_0=a.asm.od).apply(null,arguments)},cf=a._a213_1=function(){return(cf=a._a213_1=a.asm.pd).apply(null,arguments)},df=a._a214_0=function(){return(df=a._a214_0=a.asm.qd).apply(null,arguments)},ef=a._a215_0=function(){return(ef=a._a215_0=a.asm.rd).apply(null,arguments)},ff=a._a216_2=function(){return(ff=
-a._a216_2=a.asm.sd).apply(null,arguments)},gf=a._a217_1=function(){return(gf=a._a217_1=a.asm.td).apply(null,arguments)},hf=a._a218_0=function(){return(hf=a._a218_0=a.asm.ud).apply(null,arguments)},jf=a._a219_0=function(){return(jf=a._a219_0=a.asm.vd).apply(null,arguments)},kf=a._a220_1=function(){return(kf=a._a220_1=a.asm.wd).apply(null,arguments)},lf=a._a221_0=function(){return(lf=a._a221_0=a.asm.xd).apply(null,arguments)},mf=a._a222_1=function(){return(mf=a._a222_1=a.asm.yd).apply(null,arguments)},
-nf=a._a223_0=function(){return(nf=a._a223_0=a.asm.zd).apply(null,arguments)},of=a._a224_1=function(){return(of=a._a224_1=a.asm.Ad).apply(null,arguments)},pf=a._a225_0=function(){return(pf=a._a225_0=a.asm.Bd).apply(null,arguments)},qf=a._a226_1=function(){return(qf=a._a226_1=a.asm.Cd).apply(null,arguments)},rf=a._a227_0=function(){return(rf=a._a227_0=a.asm.Dd).apply(null,arguments)},sf=a._a228_1=function(){return(sf=a._a228_1=a.asm.Ed).apply(null,arguments)},tf=a._a229_0=function(){return(tf=a._a229_0=
-a.asm.Fd).apply(null,arguments)},uf=a._a230_1=function(){return(uf=a._a230_1=a.asm.Gd).apply(null,arguments)},vf=a._a231_0=function(){return(vf=a._a231_0=a.asm.Hd).apply(null,arguments)},wf=a._a232_1=function(){return(wf=a._a232_1=a.asm.Id).apply(null,arguments)},xf=a._a233_0=function(){return(xf=a._a233_0=a.asm.Jd).apply(null,arguments)},yf=a._a234_1=function(){return(yf=a._a234_1=a.asm.Kd).apply(null,arguments)},zf=a._a235_0=function(){return(zf=a._a235_0=a.asm.Ld).apply(null,arguments)},Af=a._a236_1=
-function(){return(Af=a._a236_1=a.asm.Md).apply(null,arguments)},Bf=a._a237_0=function(){return(Bf=a._a237_0=a.asm.Nd).apply(null,arguments)},Cf=a._a238_1=function(){return(Cf=a._a238_1=a.asm.Od).apply(null,arguments)},Df=a._a239_0=function(){return(Df=a._a239_0=a.asm.Pd).apply(null,arguments)},Ef=a._a240_1=function(){return(Ef=a._a240_1=a.asm.Qd).apply(null,arguments)},Ff=a._a241_0=function(){return(Ff=a._a241_0=a.asm.Rd).apply(null,arguments)},Gf=a._a242_0=function(){return(Gf=a._a242_0=a.asm.Sd).apply(null,
-arguments)},Hf=a._a243_1=function(){return(Hf=a._a243_1=a.asm.Td).apply(null,arguments)},If=a._a244_0=function(){return(If=a._a244_0=a.asm.Ud).apply(null,arguments)},Jf=a._a245_0=function(){return(Jf=a._a245_0=a.asm.Vd).apply(null,arguments)},Kf=a._a246_0=function(){return(Kf=a._a246_0=a.asm.Wd).apply(null,arguments)},Lf=a._a247_1=function(){return(Lf=a._a247_1=a.asm.Xd).apply(null,arguments)},Mf=a._a248_0=function(){return(Mf=a._a248_0=a.asm.Yd).apply(null,arguments)},Nf=a._a249_1=function(){return(Nf=
-a._a249_1=a.asm.Zd).apply(null,arguments)},Of=a._a250_0=function(){return(Of=a._a250_0=a.asm._d).apply(null,arguments)},Pf=a._a251_0=function(){return(Pf=a._a251_0=a.asm.$d).apply(null,arguments)},Qf=a._a252_1=function(){return(Qf=a._a252_1=a.asm.ae).apply(null,arguments)},Rf=a._a253_0=function(){return(Rf=a._a253_0=a.asm.be).apply(null,arguments)},Sf=a._a254_3=function(){return(Sf=a._a254_3=a.asm.ce).apply(null,arguments)},Tf=a._a254_4=function(){return(Tf=a._a254_4=a.asm.de).apply(null,arguments)},
-Uf=a._a255_0=function(){return(Uf=a._a255_0=a.asm.ee).apply(null,arguments)},Vf=a._a256_1=function(){return(Vf=a._a256_1=a.asm.fe).apply(null,arguments)},Wf=a._a257_0=function(){return(Wf=a._a257_0=a.asm.ge).apply(null,arguments)},Xf=a._a258_1=function(){return(Xf=a._a258_1=a.asm.he).apply(null,arguments)},Yf=a._a259_0=function(){return(Yf=a._a259_0=a.asm.ie).apply(null,arguments)},Zf=a._a260_1=function(){return(Zf=a._a260_1=a.asm.je).apply(null,arguments)},$f=a._a261_0=function(){return($f=a._a261_0=
-a.asm.ke).apply(null,arguments)},ag=a._a262_1=function(){return(ag=a._a262_1=a.asm.le).apply(null,arguments)},bg=a._a263_0=function(){return(bg=a._a263_0=a.asm.me).apply(null,arguments)},cg=a._a264_1=function(){return(cg=a._a264_1=a.asm.ne).apply(null,arguments)},dg=a._a265_0=function(){return(dg=a._a265_0=a.asm.oe).apply(null,arguments)},eg=a._a266_1=function(){return(eg=a._a266_1=a.asm.pe).apply(null,arguments)},fg=a._a267_0=function(){return(fg=a._a267_0=a.asm.qe).apply(null,arguments)},gg=a._a268_1=
-function(){return(gg=a._a268_1=a.asm.re).apply(null,arguments)},hg=a._a269_0=function(){return(hg=a._a269_0=a.asm.se).apply(null,arguments)},ig=a._a270_0=function(){return(ig=a._a270_0=a.asm.te).apply(null,arguments)},jg=a._a271_0=function(){return(jg=a._a271_0=a.asm.ue).apply(null,arguments)},kg=a._a272_0=function(){return(kg=a._a272_0=a.asm.ve).apply(null,arguments)},lg=a._a273_0=function(){return(lg=a._a273_0=a.asm.we).apply(null,arguments)},mg=a._a274_0=function(){return(mg=a._a274_0=a.asm.xe).apply(null,
-arguments)},ng=a._a275_1=function(){return(ng=a._a275_1=a.asm.ye).apply(null,arguments)},og=a._a276_0=function(){return(og=a._a276_0=a.asm.ze).apply(null,arguments)},pg=a._a277_1=function(){return(pg=a._a277_1=a.asm.Ae).apply(null,arguments)},qg=a._a278_0=function(){return(qg=a._a278_0=a.asm.Be).apply(null,arguments)},rg=a._a279_1=function(){return(rg=a._a279_1=a.asm.Ce).apply(null,arguments)},sg=a._a280_0=function(){return(sg=a._a280_0=a.asm.De).apply(null,arguments)},tg=a._a281_1=function(){return(tg=
-a._a281_1=a.asm.Ee).apply(null,arguments)},ug=a._a282_0=function(){return(ug=a._a282_0=a.asm.Fe).apply(null,arguments)},vg=a._a283_1=function(){return(vg=a._a283_1=a.asm.Ge).apply(null,arguments)},wg=a._a284_0=function(){return(wg=a._a284_0=a.asm.He).apply(null,arguments)},xg=a._a285_1=function(){return(xg=a._a285_1=a.asm.Ie).apply(null,arguments)},yg=a._a286_0=function(){return(yg=a._a286_0=a.asm.Je).apply(null,arguments)},zg=a._a287_1=function(){return(zg=a._a287_1=a.asm.Ke).apply(null,arguments)},
-Ag=a._a288_0=function(){return(Ag=a._a288_0=a.asm.Le).apply(null,arguments)},Bg=a._a289_1=function(){return(Bg=a._a289_1=a.asm.Me).apply(null,arguments)},Cg=a._a290_0=function(){return(Cg=a._a290_0=a.asm.Ne).apply(null,arguments)},Dg=a._a291_1=function(){return(Dg=a._a291_1=a.asm.Oe).apply(null,arguments)},Eg=a._a292_0=function(){return(Eg=a._a292_0=a.asm.Pe).apply(null,arguments)},Fg=a._a293_1=function(){return(Fg=a._a293_1=a.asm.Qe).apply(null,arguments)},Gg=a._a294_0=function(){return(Gg=a._a294_0=
-a.asm.Re).apply(null,arguments)},Hg=a._a295_1=function(){return(Hg=a._a295_1=a.asm.Se).apply(null,arguments)},Ig=a._a296_0=function(){return(Ig=a._a296_0=a.asm.Te).apply(null,arguments)},Jg=a._a297_0=function(){return(Jg=a._a297_0=a.asm.Ue).apply(null,arguments)},Kg=a._a298_0=function(){return(Kg=a._a298_0=a.asm.Ve).apply(null,arguments)},Lg=a._a299_2=function(){return(Lg=a._a299_2=a.asm.We).apply(null,arguments)},Mg=a._a299_4=function(){return(Mg=a._a299_4=a.asm.Xe).apply(null,arguments)},Ng=a._a300_1=
-function(){return(Ng=a._a300_1=a.asm.Ye).apply(null,arguments)},Og=a._a301_1=function(){return(Og=a._a301_1=a.asm.Ze).apply(null,arguments)},Pg=a._a302_0=function(){return(Pg=a._a302_0=a.asm._e).apply(null,arguments)},Qg=a._a303_0=function(){return(Qg=a._a303_0=a.asm.$e).apply(null,arguments)},Rg=a._a304_1=function(){return(Rg=a._a304_1=a.asm.af).apply(null,arguments)},Sg=a._a305_0=function(){return(Sg=a._a305_0=a.asm.bf).apply(null,arguments)},Tg=a._a306_1=function(){return(Tg=a._a306_1=a.asm.cf).apply(null,
-arguments)},Ug=a._a307_2=function(){return(Ug=a._a307_2=a.asm.df).apply(null,arguments)},Vg=a._a308_3=function(){return(Vg=a._a308_3=a.asm.ef).apply(null,arguments)},Wg=a._a309_0=function(){return(Wg=a._a309_0=a.asm.ff).apply(null,arguments)},Xg=a._a310_1=function(){return(Xg=a._a310_1=a.asm.gf).apply(null,arguments)},Yg=a._a311_0=function(){return(Yg=a._a311_0=a.asm.hf).apply(null,arguments)},Zg=a._a312_0=function(){return(Zg=a._a312_0=a.asm.jf).apply(null,arguments)},$g=a._a313_0=function(){return($g=
-a._a313_0=a.asm.kf).apply(null,arguments)},ah=a._a314_1=function(){return(ah=a._a314_1=a.asm.lf).apply(null,arguments)},bh=a._a314_2=function(){return(bh=a._a314_2=a.asm.mf).apply(null,arguments)},ch=a._a315_1=function(){return(ch=a._a315_1=a.asm.nf).apply(null,arguments)},dh=a._a316_0=function(){return(dh=a._a316_0=a.asm.of).apply(null,arguments)},eh=a._a317_2=function(){return(eh=a._a317_2=a.asm.pf).apply(null,arguments)},fh=a._a318_1=function(){return(fh=a._a318_1=a.asm.qf).apply(null,arguments)},
-gh=a._a319_0=function(){return(gh=a._a319_0=a.asm.rf).apply(null,arguments)},hh=a._a320_0=function(){return(hh=a._a320_0=a.asm.sf).apply(null,arguments)},ih=a._a321_0=function(){return(ih=a._a321_0=a.asm.tf).apply(null,arguments)},jh=a._a322_1=function(){return(jh=a._a322_1=a.asm.uf).apply(null,arguments)},kh=a._a323_3=function(){return(kh=a._a323_3=a.asm.vf).apply(null,arguments)},lh=a._a324_0=function(){return(lh=a._a324_0=a.asm.wf).apply(null,arguments)},mh=a._a325_0=function(){return(mh=a._a325_0=
-a.asm.xf).apply(null,arguments)},nh=a._a326_2=function(){return(nh=a._a326_2=a.asm.yf).apply(null,arguments)},oh=a._a327_1=function(){return(oh=a._a327_1=a.asm.zf).apply(null,arguments)},ph=a._a328_0=function(){return(ph=a._a328_0=a.asm.Af).apply(null,arguments)},qh=a._a329_0=function(){return(qh=a._a329_0=a.asm.Bf).apply(null,arguments)},rh=a._a330_1=function(){return(rh=a._a330_1=a.asm.Cf).apply(null,arguments)},sh=a._a331_0=function(){return(sh=a._a331_0=a.asm.Df).apply(null,arguments)},th=a._a332_1=
-function(){return(th=a._a332_1=a.asm.Ef).apply(null,arguments)},uh=a._a333_0=function(){return(uh=a._a333_0=a.asm.Ff).apply(null,arguments)},vh=a._a334_1=function(){return(vh=a._a334_1=a.asm.Gf).apply(null,arguments)},wh=a._a335_0=function(){return(wh=a._a335_0=a.asm.Hf).apply(null,arguments)},xh=a._a336_1=function(){return(xh=a._a336_1=a.asm.If).apply(null,arguments)},yh=a._a337_0=function(){return(yh=a._a337_0=a.asm.Jf).apply(null,arguments)},zh=a._a338_1=function(){return(zh=a._a338_1=a.asm.Kf).apply(null,
-arguments)},Ah=a._a339_0=function(){return(Ah=a._a339_0=a.asm.Lf).apply(null,arguments)},Bh=a._a340_1=function(){return(Bh=a._a340_1=a.asm.Mf).apply(null,arguments)},Ch=a._a341_0=function(){return(Ch=a._a341_0=a.asm.Nf).apply(null,arguments)},Dh=a._a342_1=function(){return(Dh=a._a342_1=a.asm.Of).apply(null,arguments)},Eh=a._a343_0=function(){return(Eh=a._a343_0=a.asm.Pf).apply(null,arguments)},Fh=a._a344_1=function(){return(Fh=a._a344_1=a.asm.Qf).apply(null,arguments)},Gh=a._a345_0=function(){return(Gh=
-a._a345_0=a.asm.Rf).apply(null,arguments)},Hh=a._a346_1=function(){return(Hh=a._a346_1=a.asm.Sf).apply(null,arguments)},Ih=a._a347_0=function(){return(Ih=a._a347_0=a.asm.Tf).apply(null,arguments)},Jh=a._a348_9=function(){return(Jh=a._a348_9=a.asm.Uf).apply(null,arguments)},Kh=a._a349_1=function(){return(Kh=a._a349_1=a.asm.Vf).apply(null,arguments)},Lh=a._a350_0=function(){return(Lh=a._a350_0=a.asm.Wf).apply(null,arguments)},Mh=a._a351_1=function(){return(Mh=a._a351_1=a.asm.Xf).apply(null,arguments)},
-Nh=a._a352_0=function(){return(Nh=a._a352_0=a.asm.Yf).apply(null,arguments)},Oh=a._a353_2=function(){return(Oh=a._a353_2=a.asm.Zf).apply(null,arguments)},Ph=a._a354_0=function(){return(Ph=a._a354_0=a.asm._f).apply(null,arguments)},Qh=a._a355_0=function(){return(Qh=a._a355_0=a.asm.$f).apply(null,arguments)},Rh=a._a356_1=function(){return(Rh=a._a356_1=a.asm.ag).apply(null,arguments)},Sh=a._a357_3=function(){return(Sh=a._a357_3=a.asm.bg).apply(null,arguments)},Th=a._a358_0=function(){return(Th=a._a358_0=
-a.asm.cg).apply(null,arguments)},Uh=a._a359_0=function(){return(Uh=a._a359_0=a.asm.dg).apply(null,arguments)},Vh=a._a360_0=function(){return(Vh=a._a360_0=a.asm.eg).apply(null,arguments)},Wh=a._a361_0=function(){return(Wh=a._a361_0=a.asm.fg).apply(null,arguments)},Xh=a._a361_1=function(){return(Xh=a._a361_1=a.asm.gg).apply(null,arguments)},Yh=a._a362_0=function(){return(Yh=a._a362_0=a.asm.hg).apply(null,arguments)},Zh=a._a363_0=function(){return(Zh=a._a363_0=a.asm.ig).apply(null,arguments)},$h=a._a364_0=
-function(){return($h=a._a364_0=a.asm.jg).apply(null,arguments)},ai=a._a364_1=function(){return(ai=a._a364_1=a.asm.kg).apply(null,arguments)},bi=a._a364_2=function(){return(bi=a._a364_2=a.asm.lg).apply(null,arguments)},ci=a._a365_3=function(){return(ci=a._a365_3=a.asm.mg).apply(null,arguments)},di=a._a365_4=function(){return(di=a._a365_4=a.asm.ng).apply(null,arguments)},ei=a._a366_3=function(){return(ei=a._a366_3=a.asm.og).apply(null,arguments)},fi=a._a367_0=function(){return(fi=a._a367_0=a.asm.pg).apply(null,
-arguments)},gi=a._a368_1=function(){return(gi=a._a368_1=a.asm.qg).apply(null,arguments)},hi=a._a369_0=function(){return(hi=a._a369_0=a.asm.rg).apply(null,arguments)},ii=a._a370_0=function(){return(ii=a._a370_0=a.asm.sg).apply(null,arguments)},ji=a._a371_0=function(){return(ji=a._a371_0=a.asm.tg).apply(null,arguments)},ki=a._a372_0=function(){return(ki=a._a372_0=a.asm.ug).apply(null,arguments)},li=a._a373_0=function(){return(li=a._a373_0=a.asm.vg).apply(null,arguments)},mi=a._a374_0=function(){return(mi=
-a._a374_0=a.asm.wg).apply(null,arguments)},ni=a._a375_1=function(){return(ni=a._a375_1=a.asm.xg).apply(null,arguments)},oi=a._a376_0=function(){return(oi=a._a376_0=a.asm.yg).apply(null,arguments)},pi=a._a377_1=function(){return(pi=a._a377_1=a.asm.zg).apply(null,arguments)},qi=a._a378_1=function(){return(qi=a._a378_1=a.asm.Ag).apply(null,arguments)},ri=a._a379_0=function(){return(ri=a._a379_0=a.asm.Bg).apply(null,arguments)},si=a._a380_1=function(){return(si=a._a380_1=a.asm.Cg).apply(null,arguments)},
-ti=a._a381_1=function(){return(ti=a._a381_1=a.asm.Dg).apply(null,arguments)},ui=a._a382_0=function(){return(ui=a._a382_0=a.asm.Eg).apply(null,arguments)},vi=a._a383_2=function(){return(vi=a._a383_2=a.asm.Fg).apply(null,arguments)},wi=a._a384_0=function(){return(wi=a._a384_0=a.asm.Gg).apply(null,arguments)},xi=a._a385_0=function(){return(xi=a._a385_0=a.asm.Hg).apply(null,arguments)},yi=a._a386_1=function(){return(yi=a._a386_1=a.asm.Ig).apply(null,arguments)},zi=a._a387_3=function(){return(zi=a._a387_3=
-a.asm.Jg).apply(null,arguments)},Ai=a._a388_0=function(){return(Ai=a._a388_0=a.asm.Kg).apply(null,arguments)},Bi=a._a389_0=function(){return(Bi=a._a389_0=a.asm.Lg).apply(null,arguments)},Ci=a._a390_0=function(){return(Ci=a._a390_0=a.asm.Mg).apply(null,arguments)},Di=a._a391_2=function(){return(Di=a._a391_2=a.asm.Ng).apply(null,arguments)},Ei=a._a392_1=function(){return(Ei=a._a392_1=a.asm.Og).apply(null,arguments)},Fi=a._a393_0=function(){return(Fi=a._a393_0=a.asm.Pg).apply(null,arguments)},Gi=a._a394_3=
-function(){return(Gi=a._a394_3=a.asm.Qg).apply(null,arguments)},Hi=a._a395_1=function(){return(Hi=a._a395_1=a.asm.Rg).apply(null,arguments)},Ii=a._a396_0=function(){return(Ii=a._a396_0=a.asm.Sg).apply(null,arguments)},Ji=a._a397_2=function(){return(Ji=a._a397_2=a.asm.Tg).apply(null,arguments)},Ki=a._a398_0=function(){return(Ki=a._a398_0=a.asm.Ug).apply(null,arguments)},Li=a._a399_0=function(){return(Li=a._a399_0=a.asm.Vg).apply(null,arguments)},Mi=a._a400_1=function(){return(Mi=a._a400_1=a.asm.Wg).apply(null,
-arguments)},Ni=a._a401_3=function(){return(Ni=a._a401_3=a.asm.Xg).apply(null,arguments)},Oi=a._a402_0=function(){return(Oi=a._a402_0=a.asm.Yg).apply(null,arguments)},Pi=a._a403_0=function(){return(Pi=a._a403_0=a.asm.Zg).apply(null,arguments)},Qi=a._a404_0=function(){return(Qi=a._a404_0=a.asm._g).apply(null,arguments)},Ri=a._a405_0=function(){return(Ri=a._a405_0=a.asm.$g).apply(null,arguments)},Si=a._a405_1=function(){return(Si=a._a405_1=a.asm.ah).apply(null,arguments)},Ti=a._a406_2=function(){return(Ti=
-a._a406_2=a.asm.bh).apply(null,arguments)},Ui=a._a407_1=function(){return(Ui=a._a407_1=a.asm.ch).apply(null,arguments)},Vi=a._a408_1=function(){return(Vi=a._a408_1=a.asm.dh).apply(null,arguments)},Wi=a._a409_0=function(){return(Wi=a._a409_0=a.asm.eh).apply(null,arguments)},Xi=a._a410_1=function(){return(Xi=a._a410_1=a.asm.fh).apply(null,arguments)},Yi=a._a411_2=function(){return(Yi=a._a411_2=a.asm.gh).apply(null,arguments)},Zi=a._a411_3=function(){return(Zi=a._a411_3=a.asm.hh).apply(null,arguments)},
-$i=a._a412_1=function(){return($i=a._a412_1=a.asm.ih).apply(null,arguments)},aj=a._a413_0=function(){return(aj=a._a413_0=a.asm.jh).apply(null,arguments)},bj=a._a414_3=function(){return(bj=a._a414_3=a.asm.kh).apply(null,arguments)},cj=a._a414_4=function(){return(cj=a._a414_4=a.asm.lh).apply(null,arguments)},dj=a._a414_5=function(){return(dj=a._a414_5=a.asm.mh).apply(null,arguments)},ej=a._a414_6=function(){return(ej=a._a414_6=a.asm.nh).apply(null,arguments)},fj=a._a415_1=function(){return(fj=a._a415_1=
-a.asm.oh).apply(null,arguments)},gj=a._a416_0=function(){return(gj=a._a416_0=a.asm.ph).apply(null,arguments)},hj=a._a417_2=function(){return(hj=a._a417_2=a.asm.qh).apply(null,arguments)},ij=a._a418_0=function(){return(ij=a._a418_0=a.asm.rh).apply(null,arguments)},jj=a._a419_0=function(){return(jj=a._a419_0=a.asm.sh).apply(null,arguments)},kj=a._a420_1=function(){return(kj=a._a420_1=a.asm.th).apply(null,arguments)},lj=a._a421_3=function(){return(lj=a._a421_3=a.asm.uh).apply(null,arguments)},mj=a._a422_0=
-function(){return(mj=a._a422_0=a.asm.vh).apply(null,arguments)},nj=a._a423_0=function(){return(nj=a._a423_0=a.asm.wh).apply(null,arguments)},oj=a._a424_0=function(){return(oj=a._a424_0=a.asm.xh).apply(null,arguments)},pj=a._a424_1=function(){return(pj=a._a424_1=a.asm.yh).apply(null,arguments)},qj=a._a424_2=function(){return(qj=a._a424_2=a.asm.zh).apply(null,arguments)},rj=a._a425_1=function(){return(rj=a._a425_1=a.asm.Ah).apply(null,arguments)},sj=a._a426_1=function(){return(sj=a._a426_1=a.asm.Bh).apply(null,
-arguments)},tj=a._a427_0=function(){return(tj=a._a427_0=a.asm.Ch).apply(null,arguments)},uj=a._a428_4=function(){return(uj=a._a428_4=a.asm.Dh).apply(null,arguments)},vj=a._a428_5=function(){return(vj=a._a428_5=a.asm.Eh).apply(null,arguments)},wj=a._a429_4=function(){return(wj=a._a429_4=a.asm.Fh).apply(null,arguments)},xj=a._a429_5=function(){return(xj=a._a429_5=a.asm.Gh).apply(null,arguments)},yj=a._a430_3=function(){return(yj=a._a430_3=a.asm.Hh).apply(null,arguments)},zj=a._a431_1=function(){return(zj=
-a._a431_1=a.asm.Ih).apply(null,arguments)},Aj=a._a432_1=function(){return(Aj=a._a432_1=a.asm.Jh).apply(null,arguments)},Bj=a._a433_1=function(){return(Bj=a._a433_1=a.asm.Kh).apply(null,arguments)},Cj=a._a434_2=function(){return(Cj=a._a434_2=a.asm.Lh).apply(null,arguments)},Dj=a._a435_2=function(){return(Dj=a._a435_2=a.asm.Mh).apply(null,arguments)},Ej=a._a436_1=function(){return(Ej=a._a436_1=a.asm.Nh).apply(null,arguments)},Fj=a._a437_1=function(){return(Fj=a._a437_1=a.asm.Oh).apply(null,arguments)},
-Gj=a._a438_1=function(){return(Gj=a._a438_1=a.asm.Ph).apply(null,arguments)},Hj=a._a439_0=function(){return(Hj=a._a439_0=a.asm.Qh).apply(null,arguments)},Ij=a._a440_1=function(){return(Ij=a._a440_1=a.asm.Rh).apply(null,arguments)},Jj=a._a441_2=function(){return(Jj=a._a441_2=a.asm.Sh).apply(null,arguments)},Kj=a._a442_3=function(){return(Kj=a._a442_3=a.asm.Th).apply(null,arguments)},Lj=a._a443_0=function(){return(Lj=a._a443_0=a.asm.Uh).apply(null,arguments)},Mj=a._a444_4=function(){return(Mj=a._a444_4=
-a.asm.Vh).apply(null,arguments)},Nj=a._a445_4=function(){return(Nj=a._a445_4=a.asm.Wh).apply(null,arguments)},Oj=a._a446_0=function(){return(Oj=a._a446_0=a.asm.Xh).apply(null,arguments)},Pj=a._a447_0=function(){return(Pj=a._a447_0=a.asm.Yh).apply(null,arguments)},Qj=a._a448_0=function(){return(Qj=a._a448_0=a.asm.Zh).apply(null,arguments)},Rj=a._a449_0=function(){return(Rj=a._a449_0=a.asm._h).apply(null,arguments)},Sj=a._a450_1=function(){return(Sj=a._a450_1=a.asm.$h).apply(null,arguments)},Tj=a._a451_1=
-function(){return(Tj=a._a451_1=a.asm.ai).apply(null,arguments)},Uj=a._a452_1=function(){return(Uj=a._a452_1=a.asm.bi).apply(null,arguments)},Vj=a._a453_1=function(){return(Vj=a._a453_1=a.asm.ci).apply(null,arguments)},Wj=a._a454_0=function(){return(Wj=a._a454_0=a.asm.di).apply(null,arguments)},Xj=a._a455_2=function(){return(Xj=a._a455_2=a.asm.ei).apply(null,arguments)},Yj=a._a456_1=function(){return(Yj=a._a456_1=a.asm.fi).apply(null,arguments)},Zj=a._a457_1=function(){return(Zj=a._a457_1=a.asm.gi).apply(null,
-arguments)},ak=a._a458_1=function(){return(ak=a._a458_1=a.asm.hi).apply(null,arguments)},bk=a._a459_1=function(){return(bk=a._a459_1=a.asm.ii).apply(null,arguments)},ck=a._a460_0=function(){return(ck=a._a460_0=a.asm.ji).apply(null,arguments)},dk=a._a461_2=function(){return(dk=a._a461_2=a.asm.ki).apply(null,arguments)},ek=a._a462_0=function(){return(ek=a._a462_0=a.asm.li).apply(null,arguments)},fk=a._a463_0=function(){return(fk=a._a463_0=a.asm.mi).apply(null,arguments)},gk=a._a464_1=function(){return(gk=
-a._a464_1=a.asm.ni).apply(null,arguments)},hk=a._a465_3=function(){return(hk=a._a465_3=a.asm.oi).apply(null,arguments)},ik=a._a466_0=function(){return(ik=a._a466_0=a.asm.pi).apply(null,arguments)},jk=a._a467_0=function(){return(jk=a._a467_0=a.asm.qi).apply(null,arguments)},kk=a._a468_0=function(){return(kk=a._a468_0=a.asm.ri).apply(null,arguments)},lk=a._a469_0=function(){return(lk=a._a469_0=a.asm.si).apply(null,arguments)},mk=a._a470_1=function(){return(mk=a._a470_1=a.asm.ti).apply(null,arguments)},
-nk=a._a471_1=function(){return(nk=a._a471_1=a.asm.ui).apply(null,arguments)},ok=a._a472_0=function(){return(ok=a._a472_0=a.asm.vi).apply(null,arguments)},pk=a._a473_2=function(){return(pk=a._a473_2=a.asm.wi).apply(null,arguments)},qk=a._a474_0=function(){return(qk=a._a474_0=a.asm.xi).apply(null,arguments)},rk=a._a475_0=function(){return(rk=a._a475_0=a.asm.yi).apply(null,arguments)},sk=a._a476_1=function(){return(sk=a._a476_1=a.asm.zi).apply(null,arguments)},tk=a._a477_3=function(){return(tk=a._a477_3=
-a.asm.Ai).apply(null,arguments)},uk=a._a478_0=function(){return(uk=a._a478_0=a.asm.Bi).apply(null,arguments)},vk=a._a479_0=function(){return(vk=a._a479_0=a.asm.Ci).apply(null,arguments)},wk=a._a480_0=function(){return(wk=a._a480_0=a.asm.Di).apply(null,arguments)},xk=a._a481_1=function(){return(xk=a._a481_1=a.asm.Ei).apply(null,arguments)},yk=a._a482_0=function(){return(yk=a._a482_0=a.asm.Fi).apply(null,arguments)},zk=a._a483_1=function(){return(zk=a._a483_1=a.asm.Gi).apply(null,arguments)},Ak=a._a484_0=
-function(){return(Ak=a._a484_0=a.asm.Hi).apply(null,arguments)},Bk=a._a485_1=function(){return(Bk=a._a485_1=a.asm.Ii).apply(null,arguments)},Ck=a._a486_0=function(){return(Ck=a._a486_0=a.asm.Ji).apply(null,arguments)},Dk=a._a487_2=function(){return(Dk=a._a487_2=a.asm.Ki).apply(null,arguments)},Ek=a._a488_0=function(){return(Ek=a._a488_0=a.asm.Li).apply(null,arguments)},Fk=a._a489_1=function(){return(Fk=a._a489_1=a.asm.Mi).apply(null,arguments)},Gk=a._a490_1=function(){return(Gk=a._a490_1=a.asm.Ni).apply(null,
-arguments)},Hk=a._a491_0=function(){return(Hk=a._a491_0=a.asm.Oi).apply(null,arguments)},Ik=a._a492_2=function(){return(Ik=a._a492_2=a.asm.Pi).apply(null,arguments)},Jk=a._a493_0=function(){return(Jk=a._a493_0=a.asm.Qi).apply(null,arguments)},Kk=a._a494_0=function(){return(Kk=a._a494_0=a.asm.Ri).apply(null,arguments)},Lk=a._a495_1=function(){return(Lk=a._a495_1=a.asm.Si).apply(null,arguments)},Mk=a._a496_3=function(){return(Mk=a._a496_3=a.asm.Ti).apply(null,arguments)},Nk=a._a497_0=function(){return(Nk=
-a._a497_0=a.asm.Ui).apply(null,arguments)},Ok=a._a498_0=function(){return(Ok=a._a498_0=a.asm.Vi).apply(null,arguments)},Pk=a._a499_2=function(){return(Pk=a._a499_2=a.asm.Wi).apply(null,arguments)},Qk=a._a500_0=function(){return(Qk=a._a500_0=a.asm.Xi).apply(null,arguments)},Rk=a._a501_1=function(){return(Rk=a._a501_1=a.asm.Yi).apply(null,arguments)},Sk=a._a502_1=function(){return(Sk=a._a502_1=a.asm.Zi).apply(null,arguments)},Tk=a._a503_0=function(){return(Tk=a._a503_0=a.asm._i).apply(null,arguments)},
-Uk=a._a504_0=function(){return(Uk=a._a504_0=a.asm.$i).apply(null,arguments)},Vk=a._a505_0=function(){return(Vk=a._a505_0=a.asm.aj).apply(null,arguments)},Wk=a._a505_3=function(){return(Wk=a._a505_3=a.asm.bj).apply(null,arguments)},Xk=a._a506_0=function(){return(Xk=a._a506_0=a.asm.cj).apply(null,arguments)},Yk=a._a507_0=function(){return(Yk=a._a507_0=a.asm.dj).apply(null,arguments)},Zk=a._a508_0=function(){return(Zk=a._a508_0=a.asm.ej).apply(null,arguments)},$k=a._a509_1=function(){return($k=a._a509_1=
-a.asm.fj).apply(null,arguments)},al=a._a510_1=function(){return(al=a._a510_1=a.asm.gj).apply(null,arguments)},bl=a._a511_1=function(){return(bl=a._a511_1=a.asm.hj).apply(null,arguments)},cl=a._a512_3=function(){return(cl=a._a512_3=a.asm.ij).apply(null,arguments)},dl=a._a513_0=function(){return(dl=a._a513_0=a.asm.jj).apply(null,arguments)},el=a._a514_1=function(){return(el=a._a514_1=a.asm.kj).apply(null,arguments)},fl=a._a515_1=function(){return(fl=a._a515_1=a.asm.lj).apply(null,arguments)},gl=a._a516_0=
-function(){return(gl=a._a516_0=a.asm.mj).apply(null,arguments)},hl=a._a517_1=function(){return(hl=a._a517_1=a.asm.nj).apply(null,arguments)},il=a._a518_1=function(){return(il=a._a518_1=a.asm.oj).apply(null,arguments)},jl=a._a519_0=function(){return(jl=a._a519_0=a.asm.pj).apply(null,arguments)},kl=a._a520_2=function(){return(kl=a._a520_2=a.asm.qj).apply(null,arguments)},ll=a._a521_0=function(){return(ll=a._a521_0=a.asm.rj).apply(null,arguments)},ml=a._a522_0=function(){return(ml=a._a522_0=a.asm.sj).apply(null,
-arguments)},nl=a._a523_1=function(){return(nl=a._a523_1=a.asm.tj).apply(null,arguments)},ol=a._a524_3=function(){return(ol=a._a524_3=a.asm.uj).apply(null,arguments)},pl=a._a525_0=function(){return(pl=a._a525_0=a.asm.vj).apply(null,arguments)},ql=a._a526_0=function(){return(ql=a._a526_0=a.asm.wj).apply(null,arguments)},rl=a._a527_0=function(){return(rl=a._a527_0=a.asm.xj).apply(null,arguments)},sl=a._a528_0=function(){return(sl=a._a528_0=a.asm.yj).apply(null,arguments)},tl=a._a529_0=function(){return(tl=
-a._a529_0=a.asm.zj).apply(null,arguments)},ul=a._a530_0=function(){return(ul=a._a530_0=a.asm.Aj).apply(null,arguments)},vl=a._a531_1=function(){return(vl=a._a531_1=a.asm.Bj).apply(null,arguments)},wl=a._a532_0=function(){return(wl=a._a532_0=a.asm.Cj).apply(null,arguments)},xl=a._a533_2=function(){return(xl=a._a533_2=a.asm.Dj).apply(null,arguments)},yl=a._a534_0=function(){return(yl=a._a534_0=a.asm.Ej).apply(null,arguments)},zl=a._a535_0=function(){return(zl=a._a535_0=a.asm.Fj).apply(null,arguments)},
-Al=a._a536_1=function(){return(Al=a._a536_1=a.asm.Gj).apply(null,arguments)},Bl=a._a537_3=function(){return(Bl=a._a537_3=a.asm.Hj).apply(null,arguments)},Cl=a._a538_0=function(){return(Cl=a._a538_0=a.asm.Ij).apply(null,arguments)},Dl=a._a539_0=function(){return(Dl=a._a539_0=a.asm.Jj).apply(null,arguments)},El=a._a540_0=function(){return(El=a._a540_0=a.asm.Kj).apply(null,arguments)},Fl=a._a541_0=function(){return(Fl=a._a541_0=a.asm.Lj).apply(null,arguments)},Gl=a._a542_1=function(){return(Gl=a._a542_1=
-a.asm.Mj).apply(null,arguments)},Hl=a._a543_0=function(){return(Hl=a._a543_0=a.asm.Nj).apply(null,arguments)},Il=a._a544_1=function(){return(Il=a._a544_1=a.asm.Oj).apply(null,arguments)},Jl=a._a545_0=function(){return(Jl=a._a545_0=a.asm.Pj).apply(null,arguments)},Kl=a._a546_1=function(){return(Kl=a._a546_1=a.asm.Qj).apply(null,arguments)},Ll=a._a547_0=function(){return(Ll=a._a547_0=a.asm.Rj).apply(null,arguments)},Ml=a._a548_0=function(){return(Ml=a._a548_0=a.asm.Sj).apply(null,arguments)},Nl=a._a549_1=
-function(){return(Nl=a._a549_1=a.asm.Tj).apply(null,arguments)},Ol=a._a550_0=function(){return(Ol=a._a550_0=a.asm.Uj).apply(null,arguments)},Pl=a._a551_1=function(){return(Pl=a._a551_1=a.asm.Vj).apply(null,arguments)},Ql=a._a552_0=function(){return(Ql=a._a552_0=a.asm.Wj).apply(null,arguments)},Rl=a._a553_0=function(){return(Rl=a._a553_0=a.asm.Xj).apply(null,arguments)},Sl=a._a554_1=function(){return(Sl=a._a554_1=a.asm.Yj).apply(null,arguments)},Tl=a._a555_0=function(){return(Tl=a._a555_0=a.asm.Zj).apply(null,
-arguments)},Ul=a._a556_0=function(){return(Ul=a._a556_0=a.asm._j).apply(null,arguments)},Vl=a._a557_0=function(){return(Vl=a._a557_0=a.asm.$j).apply(null,arguments)},Wl=a._a558_4=function(){return(Wl=a._a558_4=a.asm.ak).apply(null,arguments)},Xl=a._a559_1=function(){return(Xl=a._a559_1=a.asm.bk).apply(null,arguments)},Yl=a._a560_0=function(){return(Yl=a._a560_0=a.asm.ck).apply(null,arguments)},Zl=a._a561_1=function(){return(Zl=a._a561_1=a.asm.dk).apply(null,arguments)},$l=a._a562_2=function(){return($l=
-a._a562_2=a.asm.ek).apply(null,arguments)},am=a._a563_3=function(){return(am=a._a563_3=a.asm.fk).apply(null,arguments)},bm=a._a564_0=function(){return(bm=a._a564_0=a.asm.gk).apply(null,arguments)},cm=a._a565_1=function(){return(cm=a._a565_1=a.asm.hk).apply(null,arguments)},dm=a._a566_1=function(){return(dm=a._a566_1=a.asm.ik).apply(null,arguments)},em=a._a567_0=function(){return(em=a._a567_0=a.asm.jk).apply(null,arguments)},fm=a._a568_1=function(){return(fm=a._a568_1=a.asm.kk).apply(null,arguments)},
-gm=a._a569_0=function(){return(gm=a._a569_0=a.asm.lk).apply(null,arguments)},hm=a._a570_1=function(){return(hm=a._a570_1=a.asm.mk).apply(null,arguments)},im=a._a571_0=function(){return(im=a._a571_0=a.asm.nk).apply(null,arguments)},jm=a._a572_1=function(){return(jm=a._a572_1=a.asm.ok).apply(null,arguments)},km=a._a573_2=function(){return(km=a._a573_2=a.asm.pk).apply(null,arguments)},lm=a._a574_0=function(){return(lm=a._a574_0=a.asm.qk).apply(null,arguments)},mm=a._a575_2=function(){return(mm=a._a575_2=
-a.asm.rk).apply(null,arguments)},nm=a._a576_2=function(){return(nm=a._a576_2=a.asm.sk).apply(null,arguments)},om=a._a577_0=function(){return(om=a._a577_0=a.asm.tk).apply(null,arguments)},pm=a._a578_1=function(){return(pm=a._a578_1=a.asm.uk).apply(null,arguments)},qm=a._a579_1=function(){return(qm=a._a579_1=a.asm.vk).apply(null,arguments)},rm=a._a580_2=function(){return(rm=a._a580_2=a.asm.wk).apply(null,arguments)},sm=a._a581_1=function(){return(sm=a._a581_1=a.asm.xk).apply(null,arguments)},tm=a._a582_1=
-function(){return(tm=a._a582_1=a.asm.yk).apply(null,arguments)},um=a._a583_2=function(){return(um=a._a583_2=a.asm.zk).apply(null,arguments)},vm=a._a584_0=function(){return(vm=a._a584_0=a.asm.Ak).apply(null,arguments)},wm=a._a585_0=function(){return(wm=a._a585_0=a.asm.Bk).apply(null,arguments)},xm=a._a586_0=function(){return(xm=a._a586_0=a.asm.Ck).apply(null,arguments)},ym=a._a587_1=function(){return(ym=a._a587_1=a.asm.Dk).apply(null,arguments)},zm=a._a588_1=function(){return(zm=a._a588_1=a.asm.Ek).apply(null,
-arguments)},Am=a._a589_0=function(){return(Am=a._a589_0=a.asm.Fk).apply(null,arguments)},Bm=a._a590_0=function(){return(Bm=a._a590_0=a.asm.Gk).apply(null,arguments)},Cm=a._a591_1=function(){return(Cm=a._a591_1=a.asm.Hk).apply(null,arguments)},Dm=a._a592_2=function(){return(Dm=a._a592_2=a.asm.Ik).apply(null,arguments)},Em=a._a593_1=function(){return(Em=a._a593_1=a.asm.Jk).apply(null,arguments)},Fm=a._a594_0=function(){return(Fm=a._a594_0=a.asm.Kk).apply(null,arguments)},Gm=a._a595_1=function(){return(Gm=
-a._a595_1=a.asm.Lk).apply(null,arguments)},Hm=a._a596_0=function(){return(Hm=a._a596_0=a.asm.Mk).apply(null,arguments)},Im=a._a597_0=function(){return(Im=a._a597_0=a.asm.Nk).apply(null,arguments)},Jm=a._a598_0=function(){return(Jm=a._a598_0=a.asm.Ok).apply(null,arguments)},Km=a._a599_0=function(){return(Km=a._a599_0=a.asm.Pk).apply(null,arguments)},Lm=a._a600_0=function(){return(Lm=a._a600_0=a.asm.Qk).apply(null,arguments)},Mm=a._a601_0=function(){return(Mm=a._a601_0=a.asm.Rk).apply(null,arguments)},
-Nm=a._a602_0=function(){return(Nm=a._a602_0=a.asm.Sk).apply(null,arguments)},Om=a._a603_1=function(){return(Om=a._a603_1=a.asm.Tk).apply(null,arguments)},Pm=a._a604_1=function(){return(Pm=a._a604_1=a.asm.Uk).apply(null,arguments)},Qm=a._a605_0=function(){return(Qm=a._a605_0=a.asm.Vk).apply(null,arguments)},Rm=a._a605_1=function(){return(Rm=a._a605_1=a.asm.Wk).apply(null,arguments)},Sm=a._a606_0=function(){return(Sm=a._a606_0=a.asm.Xk).apply(null,arguments)},Tm=a._a607_0=function(){return(Tm=a._a607_0=
-a.asm.Yk).apply(null,arguments)},Um=a._a608_0=function(){return(Um=a._a608_0=a.asm.Zk).apply(null,arguments)},Vm=a._a609_0=function(){return(Vm=a._a609_0=a.asm._k).apply(null,arguments)},Wm=a._a610_1=function(){return(Wm=a._a610_1=a.asm.$k).apply(null,arguments)},Xm=a._a611_1=function(){return(Xm=a._a611_1=a.asm.al).apply(null,arguments)},Ym=a._a612_1=function(){return(Ym=a._a612_1=a.asm.bl).apply(null,arguments)},Zm=a._a613_1=function(){return(Zm=a._a613_1=a.asm.cl).apply(null,arguments)},$m=a._a614_0=
-function(){return($m=a._a614_0=a.asm.dl).apply(null,arguments)},an=a._a615_0=function(){return(an=a._a615_0=a.asm.el).apply(null,arguments)},bn=a._a616_1=function(){return(bn=a._a616_1=a.asm.fl).apply(null,arguments)},cn=a._a617_1=function(){return(cn=a._a617_1=a.asm.gl).apply(null,arguments)},dn=a._a618_1=function(){return(dn=a._a618_1=a.asm.hl).apply(null,arguments)},en=a._a619_1=function(){return(en=a._a619_1=a.asm.il).apply(null,arguments)},fn=a._a620_1=function(){return(fn=a._a620_1=a.asm.jl).apply(null,
-arguments)},gn=a._a621_0=function(){return(gn=a._a621_0=a.asm.kl).apply(null,arguments)},hn=a._a622_1=function(){return(hn=a._a622_1=a.asm.ll).apply(null,arguments)},jn=a._a623_1=function(){return(jn=a._a623_1=a.asm.ml).apply(null,arguments)},kn=a._a624_2=function(){return(kn=a._a624_2=a.asm.nl).apply(null,arguments)},ln=a._a625_0=function(){return(ln=a._a625_0=a.asm.ol).apply(null,arguments)},mn=a._a626_0=function(){return(mn=a._a626_0=a.asm.pl).apply(null,arguments)},nn=a._a627_1=function(){return(nn=
-a._a627_1=a.asm.ql).apply(null,arguments)},on=a._a628_0=function(){return(on=a._a628_0=a.asm.rl).apply(null,arguments)},pn=a._a629_4=function(){return(pn=a._a629_4=a.asm.sl).apply(null,arguments)},qn=a._a630_1=function(){return(qn=a._a630_1=a.asm.tl).apply(null,arguments)},rn=a._a631_1=function(){return(rn=a._a631_1=a.asm.ul).apply(null,arguments)},sn=a._a632_3=function(){return(sn=a._a632_3=a.asm.vl).apply(null,arguments)},tn=a._a633_6=function(){return(tn=a._a633_6=a.asm.wl).apply(null,arguments)},
-un=a._a634_0=function(){return(un=a._a634_0=a.asm.xl).apply(null,arguments)},vn=a._a635_1=function(){return(vn=a._a635_1=a.asm.yl).apply(null,arguments)},wn=a._a635_2=function(){return(wn=a._a635_2=a.asm.zl).apply(null,arguments)},xn=a._a635_3=function(){return(xn=a._a635_3=a.asm.Al).apply(null,arguments)},yn=a._a636_1=function(){return(yn=a._a636_1=a.asm.Bl).apply(null,arguments)},zn=a._a637_1=function(){return(zn=a._a637_1=a.asm.Cl).apply(null,arguments)},An=a._a638_1=function(){return(An=a._a638_1=
-a.asm.Dl).apply(null,arguments)},Bn=a._a639_0=function(){return(Bn=a._a639_0=a.asm.El).apply(null,arguments)},Cn=a._a640_1=function(){return(Cn=a._a640_1=a.asm.Fl).apply(null,arguments)},Dn=a._a640_3=function(){return(Dn=a._a640_3=a.asm.Gl).apply(null,arguments)},En=a._a641_1=function(){return(En=a._a641_1=a.asm.Hl).apply(null,arguments)},Fn=a._a642_1=function(){return(Fn=a._a642_1=a.asm.Il).apply(null,arguments)},Gn=a._a642_2=function(){return(Gn=a._a642_2=a.asm.Jl).apply(null,arguments)},Hn=a._a643_1=
-function(){return(Hn=a._a643_1=a.asm.Kl).apply(null,arguments)},In=a._a644_1=function(){return(In=a._a644_1=a.asm.Ll).apply(null,arguments)},Jn=a._a644_2=function(){return(Jn=a._a644_2=a.asm.Ml).apply(null,arguments)},Kn=a._a644_3=function(){return(Kn=a._a644_3=a.asm.Nl).apply(null,arguments)},Ln=a._a645_1=function(){return(Ln=a._a645_1=a.asm.Ol).apply(null,arguments)},Mn=a._a646_1=function(){return(Mn=a._a646_1=a.asm.Pl).apply(null,arguments)},Nn=a._a647_0=function(){return(Nn=a._a647_0=a.asm.Ql).apply(null,
-arguments)},On=a._a648_0=function(){return(On=a._a648_0=a.asm.Rl).apply(null,arguments)},Pn=a._a649_0=function(){return(Pn=a._a649_0=a.asm.Sl).apply(null,arguments)},Qn=a._a650_0=function(){return(Qn=a._a650_0=a.asm.Tl).apply(null,arguments)},Rn=a._a650_2=function(){return(Rn=a._a650_2=a.asm.Ul).apply(null,arguments)},Sn=a._a651_0=function(){return(Sn=a._a651_0=a.asm.Vl).apply(null,arguments)},Tn=a._a652_1=function(){return(Tn=a._a652_1=a.asm.Wl).apply(null,arguments)},Un=a._a653_1=function(){return(Un=
-a._a653_1=a.asm.Xl).apply(null,arguments)},Vn=a._a654_0=function(){return(Vn=a._a654_0=a.asm.Yl).apply(null,arguments)},Wn=a._a655_0=function(){return(Wn=a._a655_0=a.asm.Zl).apply(null,arguments)},Xn=a._a656_0=function(){return(Xn=a._a656_0=a.asm._l).apply(null,arguments)},Yn=a._a657_0=function(){return(Yn=a._a657_0=a.asm.$l).apply(null,arguments)},Zn=a._a658_1=function(){return(Zn=a._a658_1=a.asm.am).apply(null,arguments)},$n=a._a659_0=function(){return($n=a._a659_0=a.asm.bm).apply(null,arguments)},
-ao=a._a660_1=function(){return(ao=a._a660_1=a.asm.cm).apply(null,arguments)},bo=a._a661_1=function(){return(bo=a._a661_1=a.asm.dm).apply(null,arguments)},co=a._a662_0=function(){return(co=a._a662_0=a.asm.em).apply(null,arguments)},eo=a._a663_3=function(){return(eo=a._a663_3=a.asm.fm).apply(null,arguments)},fo=a._a664_1=function(){return(fo=a._a664_1=a.asm.gm).apply(null,arguments)},go=a._a665_0=function(){return(go=a._a665_0=a.asm.hm).apply(null,arguments)},ho=a._a666_2=function(){return(ho=a._a666_2=
-a.asm.im).apply(null,arguments)},io=a._a667_0=function(){return(io=a._a667_0=a.asm.jm).apply(null,arguments)},jo=a._a668_0=function(){return(jo=a._a668_0=a.asm.km).apply(null,arguments)},ko=a._a669_1=function(){return(ko=a._a669_1=a.asm.lm).apply(null,arguments)},lo=a._a670_3=function(){return(lo=a._a670_3=a.asm.mm).apply(null,arguments)},mo=a._a671_0=function(){return(mo=a._a671_0=a.asm.nm).apply(null,arguments)},no=a._a672_0=function(){return(no=a._a672_0=a.asm.om).apply(null,arguments)},oo=a._a673_0=
-function(){return(oo=a._a673_0=a.asm.pm).apply(null,arguments)},po=a._a674a675=function(){return(po=a._a674a675=a.asm.qm).apply(null,arguments)},qo=a._a674a676=function(){return(qo=a._a674a676=a.asm.rm).apply(null,arguments)},ro=a._a674a677=function(){return(ro=a._a674a677=a.asm.sm).apply(null,arguments)},so=a._a674a678=function(){return(so=a._a674a678=a.asm.tm).apply(null,arguments)},to=a._a679a680=function(){return(to=a._a679a680=a.asm.um).apply(null,arguments)},uo=a._a679a681=function(){return(uo=
-a._a679a681=a.asm.vm).apply(null,arguments)},vo=a._a679a682=function(){return(vo=a._a679a682=a.asm.wm).apply(null,arguments)},wo=a._a679a683=function(){return(wo=a._a679a683=a.asm.xm).apply(null,arguments)},xo=a._a679a684=function(){return(xo=a._a679a684=a.asm.ym).apply(null,arguments)},yo=a._a679a685=function(){return(yo=a._a679a685=a.asm.zm).apply(null,arguments)};a._malloc=function(){return(a._malloc=a.asm.Am).apply(null,arguments)};a._free=function(){return(a._free=a.asm.Bm).apply(null,arguments)};
-a.dynCall_vi=function(){return(a.dynCall_vi=a.asm.Cm).apply(null,arguments)};a.dynCall_v=function(){return(a.dynCall_v=a.asm.Dm).apply(null,arguments)};a.asm=Oa;
-a.addFunction=function(b,c){if(!la){la=new WeakMap;for(var d=0;d<oa.length;d++){var e=oa.get(d);e&&la.set(e,d)}}if(la.has(b))b=la.get(b);else{if(ka.length)d=ka.pop();else{d=oa.length;try{oa.grow(1)}catch(ra){if(!(ra instanceof RangeError))throw ra;throw"Unable to grow wasm table. Set ALLOW_TABLE_GROWTH.";}}try{oa.set(d,b)}catch(ra){if(!(ra instanceof TypeError))throw ra;if("function"===typeof WebAssembly.Function){var l={i:"i32",j:"i64",f:"f32",d:"f64"},t={parameters:[],results:"v"==c[0]?[]:[l[c[0]]]};
-for(e=1;e<c.length;++e)t.parameters.push(l[c[e]]);c=new WebAssembly.Function(t,b)}else{l=[1,0,1,96];t=c.slice(0,1);c=c.slice(1);var L={i:127,j:126,f:125,d:124};l.push(c.length);for(e=0;e<c.length;++e)l.push(L[c[e]]);"v"==t?l.push(0):l=l.concat([1,L[t]]);l[1]=l.length-2;c=new Uint8Array([0,97,115,109,1,0,0,0].concat(l,[2,7,1,1,101,1,102,0,0,7,5,1,1,102,0,0]));c=new WebAssembly.Module(c);c=(new WebAssembly.Instance(c,{e:{f:b}})).exports.f}oa.set(d,c)}la.set(b,d);b=d}return b};var zo;
-Fa=function Ao(){zo||Bo();zo||(Fa=Ao)};
-function Bo(){function b(){if(!zo&&(zo=!0,a.calledRun=!0,!pa)){Ba=!0;wa(ya);wa(za);aa(a);if(a.onRuntimeInitialized)a.onRuntimeInitialized();if(a.postRun)for("function"==typeof a.postRun&&(a.postRun=[a.postRun]);a.postRun.length;){var c=a.postRun.shift();Aa.unshift(c)}wa(Aa)}}if(!(0<Da)){if(a.preRun)for("function"==typeof a.preRun&&(a.preRun=[a.preRun]);a.preRun.length;)Ca();wa(xa);0<Da||(a.setStatus?(a.setStatus("Running..."),setTimeout(function(){setTimeout(function(){a.setStatus("")},1);b()},1)):
-b())}}a.run=Bo;if(a.preInit)for("function"==typeof a.preInit&&(a.preInit=[a.preInit]);0<a.preInit.length;)a.preInit.pop()();noExitRuntime=!0;Bo();function f(){}f.prototype=Object.create(f.prototype);f.prototype.constructor=f;f.prototype.Fm=f;f.Gm={};a.WrapperObject=f;function g(b){return(b||f).Gm}a.getCache=g;function h(b,c){var d=g(c),e=d[b];if(e)return e;e=Object.create((c||f).prototype);e.Em=b;return d[b]=e}a.wrapPointer=h;a.castObject=function(b,c){return h(b.Em,c)};a.NULL=h(0);
-a.destroy=function(b){if(!b.__destroy__)throw"Error: Cannot destroy object. (Did you create it yourself?)";b.__destroy__();delete g(b.Fm)[b.Em]};a.compare=function(b,c){return b.Em===c.Em};a.getPointer=function(b){return b.Em};a.getClass=function(b){return b.Fm};function k(){throw"cannot construct a btCollisionShape, no constructor in IDL";}k.prototype=Object.create(f.prototype);k.prototype.constructor=k;k.prototype.Fm=k;k.Gm={};a.btCollisionShape=k;
-k.prototype.setLocalScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Pa(c,b)};k.prototype.getLocalScaling=function(){return h(Qa(this.Em),m)};k.prototype.calculateLocalInertia=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);Ra(d,b,c)};k.prototype.setMargin=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Sa(c,b)};k.prototype.getMargin=function(){return Ta(this.Em)};k.prototype.isCompound=function(){return!!Va(this.Em)};
-k.prototype.getUserIndex=function(){return Wa(this.Em)};k.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Xa(c,b)};k.prototype.getAabb=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);Ya(e,b,c,d)};k.prototype.getLocalBoundingSphere=function(){return Za(this.Em)};k.prototype.__destroy__=function(){$a(this.Em)};
-function Co(){throw"cannot construct a btCollisionWorld, no constructor in IDL";}Co.prototype=Object.create(f.prototype);Co.prototype.constructor=Co;Co.prototype.Fm=Co;Co.Gm={};a.btCollisionWorld=Co;Co.prototype.rayTest=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);ab(e,b,c,d)};
-Co.prototype.rayTestSingle=function(b,c,d,e,l,t){var L=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);e&&"object"===typeof e&&(e=e.Em);l&&"object"===typeof l&&(l=l.Em);t&&"object"===typeof t&&(t=t.Em);bb(L,b,c,d,e,l,t)};Co.prototype.getPairCache=function(){return h(cb(this.Em),n)};
-Co.prototype.addCollisionObject=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);void 0===c?db(e,b):void 0===d?eb(e,b,c):fb(e,b,c,d)};Co.prototype.removeCollisionObject=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);gb(c,b)};Co.prototype.setContactBreakingThreshold=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);hb(c,b)};Co.prototype.__destroy__=function(){ib(this.Em)};
-function p(){throw"cannot construct a btConvexShape, no constructor in IDL";}p.prototype=Object.create(k.prototype);p.prototype.constructor=p;p.prototype.Fm=p;p.Gm={};a.btConvexShape=p;p.prototype.setLocalScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);jb(c,b)};p.prototype.getLocalScaling=function(){return h(kb(this.Em),m)};p.prototype.calculateLocalInertia=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);lb(d,b,c)};
-p.prototype.setMargin=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);mb(c,b)};p.prototype.getMargin=function(){return nb(this.Em)};p.prototype.isCompound=function(){return!!ob(this.Em)};p.prototype.getUserIndex=function(){return pb(this.Em)};p.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);qb(c,b)};
-p.prototype.getAabb=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);rb(e,b,c,d)};p.prototype.getLocalBoundingSphere=function(){return sb(this.Em)};p.prototype.__destroy__=function(){tb(this.Em)};function q(){throw"cannot construct a btDynamicsWorld, no constructor in IDL";}q.prototype=Object.create(Co.prototype);q.prototype.constructor=q;q.prototype.Fm=q;q.Gm={};a.btDynamicsWorld=q;
-q.prototype.addAction=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);ub(c,b)};q.prototype.removeAction=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);vb(c,b)};q.prototype.getSolverInfo=function(){return h(wb(this.Em),r)};q.prototype.getFixedBody=function(){return h(xb(this.Em),u)};q.prototype.rayTest=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);yb(e,b,c,d)};
-q.prototype.rayTestSingle=function(b,c,d,e,l,t){var L=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);e&&"object"===typeof e&&(e=e.Em);l&&"object"===typeof l&&(l=l.Em);t&&"object"===typeof t&&(t=t.Em);zb(L,b,c,d,e,l,t)};q.prototype.getPairCache=function(){return h(Ab(this.Em),n)};
-q.prototype.addCollisionObject=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);void 0===c?Bb(e,b):void 0===d?Cb(e,b,c):Db(e,b,c,d)};q.prototype.removeCollisionObject=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Eb(c,b)};q.prototype.setContactBreakingThreshold=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Fb(c,b)};q.prototype.__destroy__=function(){Gb(this.Em)};
-function v(){throw"cannot construct a RayResultCallback, no constructor in IDL";}v.prototype=Object.create(f.prototype);v.prototype.constructor=v;v.prototype.Fm=v;v.Gm={};a.RayResultCallback=v;v.prototype.hasHit=function(){return!!Hb(this.Em)};v.prototype.get_m_collisionFilterGroup=v.prototype.Hm=function(){return Ib(this.Em)};v.prototype.set_m_collisionFilterGroup=v.prototype.Jm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Jb(c,b)};
-Object.defineProperty(v.prototype,"m_collisionFilterGroup",{get:v.prototype.Hm,set:v.prototype.Jm});v.prototype.get_m_collisionFilterMask=v.prototype.Im=function(){return Kb(this.Em)};v.prototype.set_m_collisionFilterMask=v.prototype.Km=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Lb(c,b)};Object.defineProperty(v.prototype,"m_collisionFilterMask",{get:v.prototype.Im,set:v.prototype.Km});v.prototype.get_m_closestHitFraction=v.prototype.Lm=function(){return Mb(this.Em)};
-v.prototype.set_m_closestHitFraction=v.prototype.Nm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Nb(c,b)};Object.defineProperty(v.prototype,"m_closestHitFraction",{get:v.prototype.Lm,set:v.prototype.Nm});v.prototype.get_m_collisionObject=v.prototype.Mm=function(){return h(Ob(this.Em),w)};v.prototype.set_m_collisionObject=v.prototype.Om=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Pb(c,b)};Object.defineProperty(v.prototype,"m_collisionObject",{get:v.prototype.Mm,set:v.prototype.Om});
-v.prototype.__destroy__=function(){Qb(this.Em)};function x(){throw"cannot construct a btConcaveShape, no constructor in IDL";}x.prototype=Object.create(k.prototype);x.prototype.constructor=x;x.prototype.Fm=x;x.Gm={};a.btConcaveShape=x;x.prototype.setLocalScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Rb(c,b)};x.prototype.getLocalScaling=function(){return h(Sb(this.Em),m)};
-x.prototype.calculateLocalInertia=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);Tb(d,b,c)};x.prototype.isCompound=function(){return!!Ub(this.Em)};x.prototype.getUserIndex=function(){return Vb(this.Em)};x.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Wb(c,b)};
-x.prototype.getAabb=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);Xb(e,b,c,d)};x.prototype.getLocalBoundingSphere=function(){return Yb(this.Em)};x.prototype.__destroy__=function(){Zb(this.Em)};function Do(){throw"cannot construct a btStridingMeshInterface, no constructor in IDL";}Do.prototype=Object.create(f.prototype);Do.prototype.constructor=Do;Do.prototype.Fm=Do;Do.Gm={};a.btStridingMeshInterface=Do;
-Do.prototype.setScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);$b(c,b)};Do.prototype.__destroy__=function(){ac(this.Em)};function Eo(){throw"cannot construct a btBroadphaseInterface, no constructor in IDL";}Eo.prototype=Object.create(f.prototype);Eo.prototype.constructor=Eo;Eo.prototype.Fm=Eo;Eo.Gm={};a.btBroadphaseInterface=Eo;Eo.prototype.getOverlappingPairCache=function(){return h(bc(this.Em),n)};Eo.prototype.__destroy__=function(){cc(this.Em)};
-function w(){this.Em=dc();g(w)[this.Em]=this}w.prototype=Object.create(f.prototype);w.prototype.constructor=w;w.prototype.Fm=w;w.Gm={};a.btCollisionObject=w;w.prototype.getCollisionShape=function(){return h(ec(this.Em),k)};w.prototype.getActivationState=function(){return fc(this.Em)};w.prototype.setActivationState=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);gc(c,b)};w.prototype.forceActivationState=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);hc(c,b)};
-w.prototype.activate=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);void 0===b?ic(c):jc(c,b)};w.prototype.isActive=function(){return!!kc(this.Em)};w.prototype.isKinematicObject=function(){return!!lc(this.Em)};w.prototype.isStaticObject=function(){return!!mc(this.Em)};w.prototype.isStaticOrKinematicObject=function(){return!!nc(this.Em)};w.prototype.setRestitution=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);oc(c,b)};
-w.prototype.setFriction=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);pc(c,b)};w.prototype.setRollingFriction=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);qc(c,b)};w.prototype.setSpinningFriction=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);rc(c,b)};w.prototype.getWorldTransform=function(){return h(sc(this.Em),y)};w.prototype.getCollisionFlags=function(){return tc(this.Em)};
-w.prototype.setCollisionFlags=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);uc(c,b)};w.prototype.setWorldTransform=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);vc(c,b)};w.prototype.setCollisionShape=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);wc(c,b)};w.prototype.setCcdMotionThreshold=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);xc(c,b)};w.prototype.setCcdSweptSphereRadius=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);yc(c,b)};
-w.prototype.getUserIndex=function(){return zc(this.Em)};w.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Ac(c,b)};w.prototype.setUserIndex2=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Bc(c,b)};w.prototype.setIgnoreCollisionCheck=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);Cc(d,b,c)};w.prototype.__destroy__=function(){Dc(this.Em)};
-function z(b,c,d,e){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);e&&"object"===typeof e&&(e=e.Em);this.Em=Ec(b,c,d,e);g(z)[this.Em]=this}z.prototype=Object.create(q.prototype);z.prototype.constructor=z;z.prototype.Fm=z;z.Gm={};a.btDiscreteDynamicsWorld=z;z.prototype.setGravity=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Fc(c,b)};z.prototype.getGravity=function(){return h(Gc(this.Em),m)};
-z.prototype.addRigidBody=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);void 0===c?Hc(e,b):void 0===d?_a92_2(e,b,c):Ic(e,b,c,d)};z.prototype.removeRigidBody=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Jc(c,b)};z.prototype.addConstraint=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);void 0===c?Kc(d,b):Lc(d,b,c)};
-z.prototype.removeConstraint=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Mc(c,b)};z.prototype.stepSimulation=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);return void 0===c?Nc(e,b):void 0===d?Oc(e,b,c):Pc(e,b,c,d)};z.prototype.rayTest=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);Qc(e,b,c,d)};
-z.prototype.rayTestSingle=function(b,c,d,e,l,t){var L=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);e&&"object"===typeof e&&(e=e.Em);l&&"object"===typeof l&&(l=l.Em);t&&"object"===typeof t&&(t=t.Em);Rc(L,b,c,d,e,l,t)};z.prototype.getPairCache=function(){return h(Sc(this.Em),n)};
-z.prototype.addCollisionObject=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);void 0===c?Tc(e,b):void 0===d?Uc(e,b,c):Vc(e,b,c,d)};z.prototype.removeCollisionObject=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Wc(c,b)};z.prototype.setContactBreakingThreshold=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Xc(c,b)};
-z.prototype.addAction=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Yc(c,b)};z.prototype.removeAction=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Zc(c,b)};z.prototype.getSolverInfo=function(){return h($c(this.Em),r)};z.prototype.getFixedBody=function(){return h(ad(this.Em),u)};z.prototype.__destroy__=function(){bd(this.Em)};function Fo(){throw"cannot construct a btMotionState, no constructor in IDL";}Fo.prototype=Object.create(f.prototype);Fo.prototype.constructor=Fo;
-Fo.prototype.Fm=Fo;Fo.Gm={};a.btMotionState=Fo;Fo.prototype.getWorldTransform=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);cd(c,b)};Fo.prototype.setWorldTransform=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);dd(c,b)};Fo.prototype.__destroy__=function(){ed(this.Em)};function A(){throw"cannot construct a btConvexInternalShape, no constructor in IDL";}A.prototype=Object.create(p.prototype);A.prototype.constructor=A;A.prototype.Fm=A;A.Gm={};a.btConvexInternalShape=A;
-A.prototype.getImplicitShapeDimensions=function(){return h(fd(this.Em),m)};A.prototype.setLocalScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);gd(c,b)};A.prototype.getLocalScaling=function(){return h(hd(this.Em),m)};A.prototype.calculateLocalInertia=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);id(d,b,c)};A.prototype.setMargin=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);jd(c,b)};A.prototype.getMargin=function(){return kd(this.Em)};
-A.prototype.isCompound=function(){return!!ld(this.Em)};A.prototype.getUserIndex=function(){return md(this.Em)};A.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);nd(c,b)};A.prototype.getAabb=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);od(e,b,c,d)};A.prototype.getLocalBoundingSphere=function(){return pd(this.Em)};A.prototype.__destroy__=function(){qd(this.Em)};
-function B(b,c){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);this.Em=rd(b,c);g(B)[this.Em]=this}B.prototype=Object.create(v.prototype);B.prototype.constructor=B;B.prototype.Fm=B;B.Gm={};a.AllHitsRayResultCallback=B;B.prototype.hasHit=function(){return!!sd(this.Em)};B.prototype.get_m_collisionObjects=B.prototype.Ym=function(){return h(td(this.Em),Go)};B.prototype.set_m_collisionObjects=B.prototype.an=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);ud(c,b)};
-Object.defineProperty(B.prototype,"m_collisionObjects",{get:B.prototype.Ym,set:B.prototype.an});B.prototype.get_m_rayFromWorld=B.prototype.Rm=function(){return h(vd(this.Em),m)};B.prototype.set_m_rayFromWorld=B.prototype.Vm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);wd(c,b)};Object.defineProperty(B.prototype,"m_rayFromWorld",{get:B.prototype.Rm,set:B.prototype.Vm});B.prototype.get_m_rayToWorld=B.prototype.Sm=function(){return h(xd(this.Em),m)};
-B.prototype.set_m_rayToWorld=B.prototype.Wm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);yd(c,b)};Object.defineProperty(B.prototype,"m_rayToWorld",{get:B.prototype.Sm,set:B.prototype.Wm});B.prototype.get_m_hitNormalWorld=B.prototype.Pm=function(){return h(zd(this.Em),Ho)};B.prototype.set_m_hitNormalWorld=B.prototype.Tm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Ad(c,b)};Object.defineProperty(B.prototype,"m_hitNormalWorld",{get:B.prototype.Pm,set:B.prototype.Tm});
-B.prototype.get_m_hitPointWorld=B.prototype.Qm=function(){return h(Bd(this.Em),Ho)};B.prototype.set_m_hitPointWorld=B.prototype.Um=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Cd(c,b)};Object.defineProperty(B.prototype,"m_hitPointWorld",{get:B.prototype.Qm,set:B.prototype.Um});B.prototype.get_m_hitFractions=B.prototype.Zm=function(){return h(Dd(this.Em),Io)};B.prototype.set_m_hitFractions=B.prototype.bn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Ed(c,b)};
-Object.defineProperty(B.prototype,"m_hitFractions",{get:B.prototype.Zm,set:B.prototype.bn});B.prototype.get_m_collisionFilterGroup=B.prototype.Hm=function(){return Fd(this.Em)};B.prototype.set_m_collisionFilterGroup=B.prototype.Jm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Gd(c,b)};Object.defineProperty(B.prototype,"m_collisionFilterGroup",{get:B.prototype.Hm,set:B.prototype.Jm});B.prototype.get_m_collisionFilterMask=B.prototype.Im=function(){return Hd(this.Em)};
-B.prototype.set_m_collisionFilterMask=B.prototype.Km=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Id(c,b)};Object.defineProperty(B.prototype,"m_collisionFilterMask",{get:B.prototype.Im,set:B.prototype.Km});B.prototype.get_m_closestHitFraction=B.prototype.Lm=function(){return Jd(this.Em)};B.prototype.set_m_closestHitFraction=B.prototype.Nm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Kd(c,b)};Object.defineProperty(B.prototype,"m_closestHitFraction",{get:B.prototype.Lm,set:B.prototype.Nm});
-B.prototype.get_m_collisionObject=B.prototype.Mm=function(){return h(Ld(this.Em),w)};B.prototype.set_m_collisionObject=B.prototype.Om=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Md(c,b)};Object.defineProperty(B.prototype,"m_collisionObject",{get:B.prototype.Mm,set:B.prototype.Om});B.prototype.__destroy__=function(){Nd(this.Em)};function Jo(){throw"cannot construct a btDispatcher, no constructor in IDL";}Jo.prototype=Object.create(f.prototype);Jo.prototype.constructor=Jo;
-Jo.prototype.Fm=Jo;Jo.Gm={};a.btDispatcher=Jo;Jo.prototype.getNumManifolds=function(){return Od(this.Em)};Jo.prototype.getManifoldByIndexInternal=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);return h(Pd(c,b),Ko)};Jo.prototype.__destroy__=function(){Qd(this.Em)};function C(b,c){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);this.Em=Rd(b,c);g(C)[this.Em]=this}C.prototype=Object.create(v.prototype);C.prototype.constructor=C;C.prototype.Fm=C;C.Gm={};
-a.ClosestRayResultCallback=C;C.prototype.hasHit=function(){return!!Sd(this.Em)};C.prototype.get_m_rayFromWorld=C.prototype.Rm=function(){return h(Td(this.Em),m)};C.prototype.set_m_rayFromWorld=C.prototype.Vm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Ud(c,b)};Object.defineProperty(C.prototype,"m_rayFromWorld",{get:C.prototype.Rm,set:C.prototype.Vm});C.prototype.get_m_rayToWorld=C.prototype.Sm=function(){return h(Vd(this.Em),m)};
-C.prototype.set_m_rayToWorld=C.prototype.Wm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Wd(c,b)};Object.defineProperty(C.prototype,"m_rayToWorld",{get:C.prototype.Sm,set:C.prototype.Wm});C.prototype.get_m_hitNormalWorld=C.prototype.Pm=function(){return h(Xd(this.Em),m)};C.prototype.set_m_hitNormalWorld=C.prototype.Tm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Yd(c,b)};Object.defineProperty(C.prototype,"m_hitNormalWorld",{get:C.prototype.Pm,set:C.prototype.Tm});
-C.prototype.get_m_hitPointWorld=C.prototype.Qm=function(){return h(Zd(this.Em),m)};C.prototype.set_m_hitPointWorld=C.prototype.Um=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);$d(c,b)};Object.defineProperty(C.prototype,"m_hitPointWorld",{get:C.prototype.Qm,set:C.prototype.Um});C.prototype.get_m_collisionFilterGroup=C.prototype.Hm=function(){return ae(this.Em)};C.prototype.set_m_collisionFilterGroup=C.prototype.Jm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);be(c,b)};
-Object.defineProperty(C.prototype,"m_collisionFilterGroup",{get:C.prototype.Hm,set:C.prototype.Jm});C.prototype.get_m_collisionFilterMask=C.prototype.Im=function(){return ce(this.Em)};C.prototype.set_m_collisionFilterMask=C.prototype.Km=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);de(c,b)};Object.defineProperty(C.prototype,"m_collisionFilterMask",{get:C.prototype.Im,set:C.prototype.Km});C.prototype.get_m_closestHitFraction=C.prototype.Lm=function(){return ee(this.Em)};
-C.prototype.set_m_closestHitFraction=C.prototype.Nm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);fe(c,b)};Object.defineProperty(C.prototype,"m_closestHitFraction",{get:C.prototype.Lm,set:C.prototype.Nm});C.prototype.get_m_collisionObject=C.prototype.Mm=function(){return h(ge(this.Em),w)};C.prototype.set_m_collisionObject=C.prototype.Om=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);he(c,b)};Object.defineProperty(C.prototype,"m_collisionObject",{get:C.prototype.Mm,set:C.prototype.Om});
-C.prototype.__destroy__=function(){ie(this.Em)};function Lo(){throw"cannot construct a btTriangleMeshShape, no constructor in IDL";}Lo.prototype=Object.create(x.prototype);Lo.prototype.constructor=Lo;Lo.prototype.Fm=Lo;Lo.Gm={};a.btTriangleMeshShape=Lo;Lo.prototype.setLocalScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);je(c,b)};Lo.prototype.getLocalScaling=function(){return h(ke(this.Em),m)};
-Lo.prototype.calculateLocalInertia=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);le(d,b,c)};Lo.prototype.isCompound=function(){return!!me(this.Em)};Lo.prototype.getUserIndex=function(){return ne(this.Em)};Lo.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);oe(c,b)};
-Lo.prototype.getAabb=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);pe(e,b,c,d)};Lo.prototype.getLocalBoundingSphere=function(){return qe(this.Em)};Lo.prototype.__destroy__=function(){re(this.Em)};function Mo(){throw"cannot construct a btOverlapFilterCallback, no constructor in IDL";}Mo.prototype=Object.create(f.prototype);Mo.prototype.constructor=Mo;Mo.prototype.Fm=Mo;Mo.Gm={};a.btOverlapFilterCallback=Mo;
-Mo.prototype.__destroy__=function(){se(this.Em)};function D(){throw"cannot construct a btQuadWord, no constructor in IDL";}D.prototype=Object.create(f.prototype);D.prototype.constructor=D;D.prototype.Fm=D;D.Gm={};a.btQuadWord=D;D.prototype.x=D.prototype.x=function(){return te(this.Em)};D.prototype.y=D.prototype.y=function(){return ue(this.Em)};D.prototype.z=D.prototype.z=function(){return ve(this.Em)};D.prototype.w=function(){return we(this.Em)};
-D.prototype.setX=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);xe(c,b)};D.prototype.setY=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);ye(c,b)};D.prototype.setZ=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);ze(c,b)};D.prototype.setW=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Ae(c,b)};D.prototype.__destroy__=function(){Be(this.Em)};function No(){throw"cannot construct a btTypedConstraint, no constructor in IDL";}No.prototype=Object.create(f.prototype);
-No.prototype.constructor=No;No.prototype.Fm=No;No.Gm={};a.btTypedConstraint=No;No.prototype.enableFeedback=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Ce(c,b)};No.prototype.getBreakingImpulseThreshold=function(){return De(this.Em)};No.prototype.setBreakingImpulseThreshold=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Ee(c,b)};No.prototype.getParam=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);return Fe(d,b,c)};
-No.prototype.setParam=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);Ge(e,b,c,d)};No.prototype.__destroy__=function(){He(this.Em)};function Oo(){throw"cannot construct a btMatrix3x3, no constructor in IDL";}Oo.prototype=Object.create(f.prototype);Oo.prototype.constructor=Oo;Oo.prototype.Fm=Oo;Oo.Gm={};a.btMatrix3x3=Oo;Oo.prototype.getRotation=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Ie(c,b)};
-Oo.prototype.__destroy__=function(){Je(this.Em)};function Io(){throw"cannot construct a btScalarArray, no constructor in IDL";}Io.prototype=Object.create(f.prototype);Io.prototype.constructor=Io;Io.prototype.Fm=Io;Io.Gm={};a.btScalarArray=Io;Io.prototype.size=Io.prototype.size=function(){return Ke(this.Em)};Io.prototype.at=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);return Le(c,b)};Io.prototype.clear=Io.prototype.clear=function(){Me(this.Em)};Io.prototype.__destroy__=function(){Ne(this.Em)};
-function Po(b,c,d){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);this.Em=void 0===d?Oe(b,c):Pe(b,c,d);g(Po)[this.Em]=this}Po.prototype=Object.create(Lo.prototype);Po.prototype.constructor=Po;Po.prototype.Fm=Po;Po.Gm={};a.btBvhTriangleMeshShape=Po;Po.prototype.setLocalScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Qe(c,b)};Po.prototype.getLocalScaling=function(){return h(Re(this.Em),m)};
-Po.prototype.calculateLocalInertia=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);Se(d,b,c)};Po.prototype.isCompound=function(){return!!Te(this.Em)};Po.prototype.getUserIndex=function(){return Ue(this.Em)};Po.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Ve(c,b)};
-Po.prototype.getAabb=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);We(e,b,c,d)};Po.prototype.getLocalBoundingSphere=function(){return Xe(this.Em)};Po.prototype.__destroy__=function(){Ye(this.Em)};function Qo(){this.Em=Ze();g(Qo)[this.Em]=this}Qo.prototype=Object.create(Eo.prototype);Qo.prototype.constructor=Qo;Qo.prototype.Fm=Qo;Qo.Gm={};a.btDbvtBroadphase=Qo;
-Qo.prototype.getOverlappingPairCache=function(){return h($e(this.Em),n)};Qo.prototype.__destroy__=function(){af(this.Em)};function Ro(){throw"cannot construct a btIntArray, no constructor in IDL";}Ro.prototype=Object.create(f.prototype);Ro.prototype.constructor=Ro;Ro.prototype.Fm=Ro;Ro.Gm={};a.btIntArray=Ro;Ro.prototype.size=Ro.prototype.size=function(){return bf(this.Em)};Ro.prototype.at=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);return cf(c,b)};
-Ro.prototype.clear=Ro.prototype.clear=function(){df(this.Em)};Ro.prototype.__destroy__=function(){ef(this.Em)};function E(b,c){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);this.Em=ff(b,c);g(E)[this.Em]=this}E.prototype=Object.create(B.prototype);E.prototype.constructor=E;E.prototype.Fm=E;E.Gm={};a.ccAllHitsRayResultCallback=E;E.prototype.setQueryTrigger=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);gf(c,b)};E.prototype.hasHit=function(){return!!hf(this.Em)};
-E.prototype.get_m_shapeParts=E.prototype.zn=function(){return h(jf(this.Em),Ro)};E.prototype.set_m_shapeParts=E.prototype.ao=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);kf(c,b)};Object.defineProperty(E.prototype,"m_shapeParts",{get:E.prototype.zn,set:E.prototype.ao});E.prototype.get_m_collisionObjects=E.prototype.Ym=function(){return h(lf(this.Em),Go)};E.prototype.set_m_collisionObjects=E.prototype.an=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);mf(c,b)};
-Object.defineProperty(E.prototype,"m_collisionObjects",{get:E.prototype.Ym,set:E.prototype.an});E.prototype.get_m_rayFromWorld=E.prototype.Rm=function(){return h(nf(this.Em),m)};E.prototype.set_m_rayFromWorld=E.prototype.Vm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);of(c,b)};Object.defineProperty(E.prototype,"m_rayFromWorld",{get:E.prototype.Rm,set:E.prototype.Vm});E.prototype.get_m_rayToWorld=E.prototype.Sm=function(){return h(pf(this.Em),m)};
-E.prototype.set_m_rayToWorld=E.prototype.Wm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);qf(c,b)};Object.defineProperty(E.prototype,"m_rayToWorld",{get:E.prototype.Sm,set:E.prototype.Wm});E.prototype.get_m_hitNormalWorld=E.prototype.Pm=function(){return h(rf(this.Em),Ho)};E.prototype.set_m_hitNormalWorld=E.prototype.Tm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);sf(c,b)};Object.defineProperty(E.prototype,"m_hitNormalWorld",{get:E.prototype.Pm,set:E.prototype.Tm});
-E.prototype.get_m_hitPointWorld=E.prototype.Qm=function(){return h(tf(this.Em),Ho)};E.prototype.set_m_hitPointWorld=E.prototype.Um=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);uf(c,b)};Object.defineProperty(E.prototype,"m_hitPointWorld",{get:E.prototype.Qm,set:E.prototype.Um});E.prototype.get_m_hitFractions=E.prototype.Zm=function(){return h(vf(this.Em),Io)};E.prototype.set_m_hitFractions=E.prototype.bn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);wf(c,b)};
-Object.defineProperty(E.prototype,"m_hitFractions",{get:E.prototype.Zm,set:E.prototype.bn});E.prototype.get_m_collisionFilterGroup=E.prototype.Hm=function(){return xf(this.Em)};E.prototype.set_m_collisionFilterGroup=E.prototype.Jm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);yf(c,b)};Object.defineProperty(E.prototype,"m_collisionFilterGroup",{get:E.prototype.Hm,set:E.prototype.Jm});E.prototype.get_m_collisionFilterMask=E.prototype.Im=function(){return zf(this.Em)};
-E.prototype.set_m_collisionFilterMask=E.prototype.Km=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Af(c,b)};Object.defineProperty(E.prototype,"m_collisionFilterMask",{get:E.prototype.Im,set:E.prototype.Km});E.prototype.get_m_closestHitFraction=E.prototype.Lm=function(){return Bf(this.Em)};E.prototype.set_m_closestHitFraction=E.prototype.Nm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Cf(c,b)};Object.defineProperty(E.prototype,"m_closestHitFraction",{get:E.prototype.Lm,set:E.prototype.Nm});
-E.prototype.get_m_collisionObject=E.prototype.Mm=function(){return h(Df(this.Em),w)};E.prototype.set_m_collisionObject=E.prototype.Om=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Ef(c,b)};Object.defineProperty(E.prototype,"m_collisionObject",{get:E.prototype.Mm,set:E.prototype.Om});E.prototype.__destroy__=function(){Ff(this.Em)};function Go(){throw"cannot construct a btConstCollisionObjectArray, no constructor in IDL";}Go.prototype=Object.create(f.prototype);
-Go.prototype.constructor=Go;Go.prototype.Fm=Go;Go.Gm={};a.btConstCollisionObjectArray=Go;Go.prototype.size=Go.prototype.size=function(){return Gf(this.Em)};Go.prototype.at=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);return h(Hf(c,b),w)};Go.prototype.clear=Go.prototype.clear=function(){If(this.Em)};Go.prototype.__destroy__=function(){Jf(this.Em)};function F(){throw"cannot construct a btBroadphaseProxy, no constructor in IDL";}F.prototype=Object.create(f.prototype);
-F.prototype.constructor=F;F.prototype.Fm=F;F.Gm={};a.btBroadphaseProxy=F;F.prototype.get_m_collisionFilterGroup=F.prototype.Hm=function(){return Kf(this.Em)};F.prototype.set_m_collisionFilterGroup=F.prototype.Jm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Lf(c,b)};Object.defineProperty(F.prototype,"m_collisionFilterGroup",{get:F.prototype.Hm,set:F.prototype.Jm});F.prototype.get_m_collisionFilterMask=F.prototype.Im=function(){return Mf(this.Em)};
-F.prototype.set_m_collisionFilterMask=F.prototype.Km=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Nf(c,b)};Object.defineProperty(F.prototype,"m_collisionFilterMask",{get:F.prototype.Im,set:F.prototype.Km});F.prototype.__destroy__=function(){Of(this.Em)};function So(){throw"cannot construct a btIndexedMesh, no constructor in IDL";}So.prototype=Object.create(f.prototype);So.prototype.constructor=So;So.prototype.Fm=So;So.Gm={};a.btIndexedMesh=So;
-So.prototype.get_m_numTriangles=So.prototype.tn=function(){return Pf(this.Em)};So.prototype.set_m_numTriangles=So.prototype.Vn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Qf(c,b)};Object.defineProperty(So.prototype,"m_numTriangles",{get:So.prototype.tn,set:So.prototype.Vn});So.prototype.__destroy__=function(){Rf(this.Em)};
-function G(b,c,d,e){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);e&&"object"===typeof e&&(e=e.Em);this.Em=void 0===e?Sf(b,c,d):Tf(b,c,d,e);g(G)[this.Em]=this}G.prototype=Object.create(f.prototype);G.prototype.constructor=G;G.prototype.Fm=G;G.Gm={};a.btRigidBodyConstructionInfo=G;G.prototype.get_m_linearDamping=G.prototype.nn=function(){return Uf(this.Em)};
-G.prototype.set_m_linearDamping=G.prototype.Pn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Vf(c,b)};Object.defineProperty(G.prototype,"m_linearDamping",{get:G.prototype.nn,set:G.prototype.Pn});G.prototype.get_m_angularDamping=G.prototype.en=function(){return Wf(this.Em)};G.prototype.set_m_angularDamping=G.prototype.Hn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Xf(c,b)};Object.defineProperty(G.prototype,"m_angularDamping",{get:G.prototype.en,set:G.prototype.Hn});
-G.prototype.get_m_friction=G.prototype.jn=function(){return Yf(this.Em)};G.prototype.set_m_friction=G.prototype.Ln=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Zf(c,b)};Object.defineProperty(G.prototype,"m_friction",{get:G.prototype.jn,set:G.prototype.Ln});G.prototype.get_m_rollingFriction=G.prototype.xn=function(){return $f(this.Em)};G.prototype.set_m_rollingFriction=G.prototype.Zn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);ag(c,b)};
-Object.defineProperty(G.prototype,"m_rollingFriction",{get:G.prototype.xn,set:G.prototype.Zn});G.prototype.get_m_restitution=G.prototype.wn=function(){return bg(this.Em)};G.prototype.set_m_restitution=G.prototype.Yn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);cg(c,b)};Object.defineProperty(G.prototype,"m_restitution",{get:G.prototype.wn,set:G.prototype.Yn});G.prototype.get_m_linearSleepingThreshold=G.prototype.on=function(){return dg(this.Em)};
-G.prototype.set_m_linearSleepingThreshold=G.prototype.Qn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);eg(c,b)};Object.defineProperty(G.prototype,"m_linearSleepingThreshold",{get:G.prototype.on,set:G.prototype.Qn});G.prototype.get_m_angularSleepingThreshold=G.prototype.fn=function(){return fg(this.Em)};G.prototype.set_m_angularSleepingThreshold=G.prototype.In=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);gg(c,b)};
-Object.defineProperty(G.prototype,"m_angularSleepingThreshold",{get:G.prototype.fn,set:G.prototype.In});G.prototype.__destroy__=function(){hg(this.Em)};function H(){throw"cannot construct a btManifoldPoint, no constructor in IDL";}H.prototype=Object.create(f.prototype);H.prototype.constructor=H;H.prototype.Fm=H;H.Gm={};a.btManifoldPoint=H;H.prototype.getAppliedImpulse=function(){return ig(this.Em)};H.prototype.getDistance=function(){return jg(this.Em)};
-H.prototype.getShape0=function(){return h(kg(this.Em),k)};H.prototype.getShape1=function(){return h(lg(this.Em),k)};H.prototype.get_m_localPointA=H.prototype.pn=function(){return h(mg(this.Em),m)};H.prototype.set_m_localPointA=H.prototype.Rn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);ng(c,b)};Object.defineProperty(H.prototype,"m_localPointA",{get:H.prototype.pn,set:H.prototype.Rn});H.prototype.get_m_localPointB=H.prototype.qn=function(){return h(og(this.Em),m)};
-H.prototype.set_m_localPointB=H.prototype.Sn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);pg(c,b)};Object.defineProperty(H.prototype,"m_localPointB",{get:H.prototype.qn,set:H.prototype.Sn});H.prototype.get_m_positionWorldOnA=H.prototype.un=function(){return h(qg(this.Em),m)};H.prototype.set_m_positionWorldOnA=H.prototype.Wn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);rg(c,b)};Object.defineProperty(H.prototype,"m_positionWorldOnA",{get:H.prototype.un,set:H.prototype.Wn});
-H.prototype.get_m_positionWorldOnB=H.prototype.vn=function(){return h(sg(this.Em),m)};H.prototype.set_m_positionWorldOnB=H.prototype.Xn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);tg(c,b)};Object.defineProperty(H.prototype,"m_positionWorldOnB",{get:H.prototype.vn,set:H.prototype.Xn});H.prototype.get_m_normalWorldOnB=H.prototype.rn=function(){return h(ug(this.Em),m)};H.prototype.set_m_normalWorldOnB=H.prototype.Tn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);vg(c,b)};
-Object.defineProperty(H.prototype,"m_normalWorldOnB",{get:H.prototype.rn,set:H.prototype.Tn});H.prototype.get_m_distance1=H.prototype.hn=function(){return wg(this.Em)};H.prototype.set_m_distance1=H.prototype.Kn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);xg(c,b)};Object.defineProperty(H.prototype,"m_distance1",{get:H.prototype.hn,set:H.prototype.Kn});H.prototype.get_m_index0=H.prototype.ln=function(){return yg(this.Em)};
-H.prototype.set_m_index0=H.prototype.Nn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);zg(c,b)};Object.defineProperty(H.prototype,"m_index0",{get:H.prototype.ln,set:H.prototype.Nn});H.prototype.get_m_index1=H.prototype.mn=function(){return Ag(this.Em)};H.prototype.set_m_index1=H.prototype.On=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Bg(c,b)};Object.defineProperty(H.prototype,"m_index1",{get:H.prototype.mn,set:H.prototype.On});
-H.prototype.get_m_userPersistentData=H.prototype.En=function(){return Cg(this.Em)};H.prototype.set_m_userPersistentData=H.prototype.ho=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Dg(c,b)};Object.defineProperty(H.prototype,"m_userPersistentData",{get:H.prototype.En,set:H.prototype.ho});H.prototype.get_m_userPersistentData0=H.prototype.Fn=function(){return Eg(this.Em)};
-H.prototype.set_m_userPersistentData0=H.prototype.io=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Fg(c,b)};Object.defineProperty(H.prototype,"m_userPersistentData0",{get:H.prototype.Fn,set:H.prototype.io});H.prototype.get_m_userPersistentData1=H.prototype.Gn=function(){return Gg(this.Em)};H.prototype.set_m_userPersistentData1=H.prototype.jo=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Hg(c,b)};
-Object.defineProperty(H.prototype,"m_userPersistentData1",{get:H.prototype.Gn,set:H.prototype.jo});H.prototype.__destroy__=function(){Ig(this.Em)};function To(){this.Em=Jg();g(To)[this.Em]=this}To.prototype=Object.create(f.prototype);To.prototype.constructor=To;To.prototype.Fm=To;To.Gm={};a.btSequentialImpulseConstraintSolver=To;To.prototype.__destroy__=function(){Kg(this.Em)};
-function I(b,c,d,e){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);e&&"object"===typeof e&&(e=e.Em);this.Em=void 0===d?Lg(b,c):void 0===e?_a299_3(b,c,d):Mg(b,c,d,e);g(I)[this.Em]=this}I.prototype=Object.create(No.prototype);I.prototype.constructor=I;I.prototype.Fm=I;I.Gm={};a.btPoint2PointConstraint=I;I.prototype.setPivotA=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Ng(c,b)};
-I.prototype.setPivotB=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Og(c,b)};I.prototype.getPivotInA=function(){return h(Pg(this.Em),m)};I.prototype.getPivotInB=function(){return h(Qg(this.Em),m)};I.prototype.enableFeedback=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Rg(c,b)};I.prototype.getBreakingImpulseThreshold=function(){return Sg(this.Em)};I.prototype.setBreakingImpulseThreshold=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Tg(c,b)};
-I.prototype.getParam=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);return Ug(d,b,c)};I.prototype.setParam=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);Vg(e,b,c,d)};I.prototype.get_m_setting=I.prototype.yn=function(){return h(Wg(this.Em),J)};I.prototype.set_m_setting=I.prototype.$n=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Xg(c,b)};
-Object.defineProperty(I.prototype,"m_setting",{get:I.prototype.yn,set:I.prototype.$n});I.prototype.__destroy__=function(){Yg(this.Em)};function Uo(){this.Em=Zg();g(Uo)[this.Em]=this}Uo.prototype=Object.create(Mo.prototype);Uo.prototype.constructor=Uo;Uo.prototype.Fm=Uo;Uo.Gm={};a.ccOverlapFilterCallback=Uo;Uo.prototype.__destroy__=function(){$g(this.Em)};function K(b,c){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);this.Em=void 0===c?ah(b):bh(b,c);g(K)[this.Em]=this}
-K.prototype=Object.create(p.prototype);K.prototype.constructor=K;K.prototype.Fm=K;K.Gm={};a.btConvexTriangleMeshShape=K;K.prototype.setLocalScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);ch(c,b)};K.prototype.getLocalScaling=function(){return h(dh(this.Em),m)};K.prototype.calculateLocalInertia=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);eh(d,b,c)};
-K.prototype.setMargin=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);fh(c,b)};K.prototype.getMargin=function(){return gh(this.Em)};K.prototype.isCompound=function(){return!!hh(this.Em)};K.prototype.getUserIndex=function(){return ih(this.Em)};K.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);jh(c,b)};
-K.prototype.getAabb=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);kh(e,b,c,d)};K.prototype.getLocalBoundingSphere=function(){return lh(this.Em)};K.prototype.__destroy__=function(){mh(this.Em)};function M(b,c){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);this.Em=nh(b,c);g(M)[this.Em]=this}M.prototype=Object.create(C.prototype);M.prototype.constructor=M;M.prototype.Fm=M;M.Gm={};
-a.ccClosestRayResultCallback=M;M.prototype.setQueryTrigger=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);oh(c,b)};M.prototype.hasHit=function(){return!!ph(this.Em)};M.prototype.get_m_shapePart=M.prototype.$m=function(){return qh(this.Em)};M.prototype.set_m_shapePart=M.prototype.cn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);rh(c,b)};Object.defineProperty(M.prototype,"m_shapePart",{get:M.prototype.$m,set:M.prototype.cn});
-M.prototype.get_m_rayFromWorld=M.prototype.Rm=function(){return h(sh(this.Em),m)};M.prototype.set_m_rayFromWorld=M.prototype.Vm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);th(c,b)};Object.defineProperty(M.prototype,"m_rayFromWorld",{get:M.prototype.Rm,set:M.prototype.Vm});M.prototype.get_m_rayToWorld=M.prototype.Sm=function(){return h(uh(this.Em),m)};M.prototype.set_m_rayToWorld=M.prototype.Wm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);vh(c,b)};
-Object.defineProperty(M.prototype,"m_rayToWorld",{get:M.prototype.Sm,set:M.prototype.Wm});M.prototype.get_m_hitNormalWorld=M.prototype.Pm=function(){return h(wh(this.Em),m)};M.prototype.set_m_hitNormalWorld=M.prototype.Tm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);xh(c,b)};Object.defineProperty(M.prototype,"m_hitNormalWorld",{get:M.prototype.Pm,set:M.prototype.Tm});M.prototype.get_m_hitPointWorld=M.prototype.Qm=function(){return h(yh(this.Em),m)};
-M.prototype.set_m_hitPointWorld=M.prototype.Um=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);zh(c,b)};Object.defineProperty(M.prototype,"m_hitPointWorld",{get:M.prototype.Qm,set:M.prototype.Um});M.prototype.get_m_collisionFilterGroup=M.prototype.Hm=function(){return Ah(this.Em)};M.prototype.set_m_collisionFilterGroup=M.prototype.Jm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Bh(c,b)};Object.defineProperty(M.prototype,"m_collisionFilterGroup",{get:M.prototype.Hm,set:M.prototype.Jm});
-M.prototype.get_m_collisionFilterMask=M.prototype.Im=function(){return Ch(this.Em)};M.prototype.set_m_collisionFilterMask=M.prototype.Km=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Dh(c,b)};Object.defineProperty(M.prototype,"m_collisionFilterMask",{get:M.prototype.Im,set:M.prototype.Km});M.prototype.get_m_closestHitFraction=M.prototype.Lm=function(){return Eh(this.Em)};
-M.prototype.set_m_closestHitFraction=M.prototype.Nm=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Fh(c,b)};Object.defineProperty(M.prototype,"m_closestHitFraction",{get:M.prototype.Lm,set:M.prototype.Nm});M.prototype.get_m_collisionObject=M.prototype.Mm=function(){return h(Gh(this.Em),w)};M.prototype.set_m_collisionObject=M.prototype.Om=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Hh(c,b)};Object.defineProperty(M.prototype,"m_collisionObject",{get:M.prototype.Mm,set:M.prototype.Om});
-M.prototype.__destroy__=function(){Ih(this.Em)};function N(b,c,d,e,l,t,L,ra,Ua){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);e&&"object"===typeof e&&(e=e.Em);l&&"object"===typeof l&&(l=l.Em);t&&"object"===typeof t&&(t=t.Em);L&&"object"===typeof L&&(L=L.Em);ra&&"object"===typeof ra&&(ra=ra.Em);Ua&&"object"===typeof Ua&&(Ua=Ua.Em);this.Em=Jh(b,c,d,e,l,t,L,ra,Ua);g(N)[this.Em]=this}N.prototype=Object.create(x.prototype);N.prototype.constructor=N;
-N.prototype.Fm=N;N.Gm={};a.btHeightfieldTerrainShape=N;N.prototype.setMargin=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Kh(c,b)};N.prototype.getMargin=function(){return Lh(this.Em)};N.prototype.setLocalScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Mh(c,b)};N.prototype.getLocalScaling=function(){return h(Nh(this.Em),m)};N.prototype.calculateLocalInertia=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);Oh(d,b,c)};
-N.prototype.isCompound=function(){return!!Ph(this.Em)};N.prototype.getUserIndex=function(){return Qh(this.Em)};N.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Rh(c,b)};N.prototype.getAabb=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);Sh(e,b,c,d)};N.prototype.getLocalBoundingSphere=function(){return Th(this.Em)};N.prototype.__destroy__=function(){Uh(this.Em)};
-function Vo(){throw"cannot construct a VoidPtr, no constructor in IDL";}Vo.prototype=Object.create(f.prototype);Vo.prototype.constructor=Vo;Vo.prototype.Fm=Vo;Vo.Gm={};a.VoidPtr=Vo;Vo.prototype.__destroy__=function(){Vh(this.Em)};function Wo(b){b&&"object"===typeof b&&(b=b.Em);this.Em=void 0===b?Wh():Xh(b);g(Wo)[this.Em]=this}Wo.prototype=Object.create(f.prototype);Wo.prototype.constructor=Wo;Wo.prototype.Fm=Wo;Wo.Gm={};a.btDefaultCollisionConfiguration=Wo;Wo.prototype.__destroy__=function(){Yh(this.Em)};
-function Xo(){throw"cannot construct a btOverlappingPairCallback, no constructor in IDL";}Xo.prototype=Object.create(f.prototype);Xo.prototype.constructor=Xo;Xo.prototype.Fm=Xo;Xo.Gm={};a.btOverlappingPairCallback=Xo;Xo.prototype.__destroy__=function(){Zh(this.Em)};function Yo(b,c){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);this.Em=void 0===b?$h():void 0===c?ai(b):bi(b,c);g(Yo)[this.Em]=this}Yo.prototype=Object.create(Do.prototype);Yo.prototype.constructor=Yo;
-Yo.prototype.Fm=Yo;Yo.Gm={};a.btTriangleMesh=Yo;Yo.prototype.addTriangle=function(b,c,d,e){var l=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);e&&"object"===typeof e&&(e=e.Em);void 0===e?ci(l,b,c,d):di(l,b,c,d,e)};Yo.prototype.addTriangleIndices=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);ei(e,b,c,d)};
-Yo.prototype.getIndexedMeshArray=function(){return h(fi(this.Em),Zo)};Yo.prototype.setScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);gi(c,b)};Yo.prototype.__destroy__=function(){hi(this.Em)};function $o(){throw"cannot construct a btCollisionConfiguration, no constructor in IDL";}$o.prototype=Object.create(f.prototype);$o.prototype.constructor=$o;$o.prototype.Fm=$o;$o.Gm={};a.btCollisionConfiguration=$o;$o.prototype.__destroy__=function(){ii(this.Em)};
-function Ko(){this.Em=ji();g(Ko)[this.Em]=this}Ko.prototype=Object.create(f.prototype);Ko.prototype.constructor=Ko;Ko.prototype.Fm=Ko;Ko.Gm={};a.btPersistentManifold=Ko;Ko.prototype.getBody0=function(){return h(ki(this.Em),w)};Ko.prototype.getBody1=function(){return h(li(this.Em),w)};Ko.prototype.getNumContacts=function(){return mi(this.Em)};Ko.prototype.getContactPoint=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);return h(ni(c,b),H)};Ko.prototype.__destroy__=function(){oi(this.Em)};
-function O(b){b&&"object"===typeof b&&(b=b.Em);this.Em=pi(b);g(O)[this.Em]=this}O.prototype=Object.create(A.prototype);O.prototype.constructor=O;O.prototype.Fm=O;O.Gm={};a.btBoxShape=O;O.prototype.setMargin=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);qi(c,b)};O.prototype.getMargin=function(){return ri(this.Em)};O.prototype.setUnscaledHalfExtents=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);si(c,b)};
-O.prototype.setLocalScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);ti(c,b)};O.prototype.getLocalScaling=function(){return h(ui(this.Em),m)};O.prototype.calculateLocalInertia=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);vi(d,b,c)};O.prototype.isCompound=function(){return!!wi(this.Em)};O.prototype.getUserIndex=function(){return xi(this.Em)};O.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);yi(c,b)};
-O.prototype.getAabb=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);zi(e,b,c,d)};O.prototype.getLocalBoundingSphere=function(){return Ai(this.Em)};O.prototype.getImplicitShapeDimensions=function(){return h(Bi(this.Em),m)};O.prototype.__destroy__=function(){Ci(this.Em)};function P(b,c){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);this.Em=Di(b,c);g(P)[this.Em]=this}P.prototype=Object.create(A.prototype);
-P.prototype.constructor=P;P.prototype.Fm=P;P.Gm={};a.btCapsuleShape=P;P.prototype.setMargin=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Ei(c,b)};P.prototype.getMargin=function(){return Fi(this.Em)};P.prototype.updateProp=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);Gi(e,b,c,d)};P.prototype.setLocalScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Hi(c,b)};
-P.prototype.getLocalScaling=function(){return h(Ii(this.Em),m)};P.prototype.calculateLocalInertia=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);Ji(d,b,c)};P.prototype.isCompound=function(){return!!Ki(this.Em)};P.prototype.getUserIndex=function(){return Li(this.Em)};P.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Mi(c,b)};
-P.prototype.getAabb=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);Ni(e,b,c,d)};P.prototype.getLocalBoundingSphere=function(){return Oi(this.Em)};P.prototype.getImplicitShapeDimensions=function(){return h(Pi(this.Em),m)};P.prototype.__destroy__=function(){Qi(this.Em)};function Q(b){b&&"object"===typeof b&&(b=b.Em);this.Em=void 0===b?Ri():Si(b);g(Q)[this.Em]=this}Q.prototype=Object.create(k.prototype);
-Q.prototype.constructor=Q;Q.prototype.Fm=Q;Q.Gm={};a.btCompoundShape=Q;Q.prototype.addChildShape=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);Ti(d,b,c)};Q.prototype.removeChildShape=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Ui(c,b)};Q.prototype.removeChildShapeByIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Vi(c,b)};Q.prototype.getNumChildShapes=function(){return Wi(this.Em)};
-Q.prototype.getChildShape=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);return h(Xi(c,b),k)};Q.prototype.updateChildTransform=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);void 0===d?Yi(e,b,c):Zi(e,b,c,d)};Q.prototype.setMargin=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);$i(c,b)};Q.prototype.getMargin=function(){return aj(this.Em)};
-Q.prototype.setMaterial=function(b,c,d,e,l,t){var L=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);e&&"object"===typeof e&&(e=e.Em);l&&"object"===typeof l&&(l=l.Em);t&&"object"===typeof t&&(t=t.Em);void 0===e?bj(L,b,c,d):void 0===l?cj(L,b,c,d,e):void 0===t?dj(L,b,c,d,e,l):ej(L,b,c,d,e,l,t)};Q.prototype.setLocalScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);fj(c,b)};
-Q.prototype.getLocalScaling=function(){return h(gj(this.Em),m)};Q.prototype.calculateLocalInertia=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);hj(d,b,c)};Q.prototype.isCompound=function(){return!!ij(this.Em)};Q.prototype.getUserIndex=function(){return jj(this.Em)};Q.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);kj(c,b)};
-Q.prototype.getAabb=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);lj(e,b,c,d)};Q.prototype.getLocalBoundingSphere=function(){return mj(this.Em)};Q.prototype.__destroy__=function(){nj(this.Em)};function ap(b,c){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);this.Em=void 0===b?oj():void 0===c?pj(b):qj(b,c);g(ap)[this.Em]=this}ap.prototype=Object.create(Fo.prototype);ap.prototype.constructor=ap;
-ap.prototype.Fm=ap;ap.Gm={};a.btDefaultMotionState=ap;ap.prototype.getWorldTransform=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);rj(c,b)};ap.prototype.setWorldTransform=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);sj(c,b)};ap.prototype.__destroy__=function(){tj(this.Em)};
-function R(b,c,d,e,l){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);e&&"object"===typeof e&&(e=e.Em);l&&"object"===typeof l&&(l=l.Em);this.Em=void 0===l?uj(b,c,d,e):vj(b,c,d,e,l);g(R)[this.Em]=this}R.prototype=Object.create(No.prototype);R.prototype.constructor=R;R.prototype.Fm=R;R.Gm={};a.btHingeConstraint=R;
-R.prototype.setLimit=function(b,c,d,e,l){var t=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);e&&"object"===typeof e&&(e=e.Em);l&&"object"===typeof l&&(l=l.Em);void 0===l?wj(t,b,c,d,e):xj(t,b,c,d,e,l)};R.prototype.enableAngularMotor=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);yj(e,b,c,d)};
-R.prototype.setAngularOnly=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);zj(c,b)};R.prototype.enableMotor=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Aj(c,b)};R.prototype.setMaxMotorImpulse=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Bj(c,b)};R.prototype.setMotorTarget=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);Cj(d,b,c)};
-R.prototype.setFrames=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);Dj(d,b,c)};R.prototype.setAxis=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Ej(c,b)};R.prototype.setUseReferenceFrameA=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Fj(c,b)};R.prototype.enableFeedback=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Gj(c,b)};R.prototype.getBreakingImpulseThreshold=function(){return Hj(this.Em)};
-R.prototype.setBreakingImpulseThreshold=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Ij(c,b)};R.prototype.getParam=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);return Jj(d,b,c)};R.prototype.setParam=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);Kj(e,b,c,d)};R.prototype.__destroy__=function(){Lj(this.Em)};
-function S(b,c,d,e){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);e&&"object"===typeof e&&(e=e.Em);this.Em=Mj(b,c,d,e);g(S)[this.Em]=this}S.prototype=Object.create(D.prototype);S.prototype.constructor=S;S.prototype.Fm=S;S.Gm={};a.btQuaternion=S;S.prototype.setValue=function(b,c,d,e){var l=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);e&&"object"===typeof e&&(e=e.Em);Nj(l,b,c,d,e)};
-S.prototype.x=S.prototype.x=function(){return Oj(this.Em)};S.prototype.y=S.prototype.y=function(){return Pj(this.Em)};S.prototype.z=S.prototype.z=function(){return Qj(this.Em)};S.prototype.w=function(){return Rj(this.Em)};S.prototype.setX=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Sj(c,b)};S.prototype.setY=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Tj(c,b)};S.prototype.setZ=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Uj(c,b)};
-S.prototype.setW=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Vj(c,b)};S.prototype.__destroy__=function(){Wj(this.Em)};function T(b,c){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);this.Em=Xj(b,c);g(T)[this.Em]=this}T.prototype=Object.create(A.prototype);T.prototype.constructor=T;T.prototype.Fm=T;T.Gm={};a.btConeShape=T;T.prototype.setRadius=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Yj(c,b)};
-T.prototype.setHeight=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Zj(c,b)};T.prototype.setConeUpIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);ak(c,b)};T.prototype.setLocalScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);bk(c,b)};T.prototype.getLocalScaling=function(){return h(ck(this.Em),m)};T.prototype.calculateLocalInertia=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);dk(d,b,c)};
-T.prototype.isCompound=function(){return!!ek(this.Em)};T.prototype.getUserIndex=function(){return fk(this.Em)};T.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);gk(c,b)};T.prototype.getAabb=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);hk(e,b,c,d)};T.prototype.getLocalBoundingSphere=function(){return ik(this.Em)};
-T.prototype.getImplicitShapeDimensions=function(){return h(jk(this.Em),m)};T.prototype.__destroy__=function(){kk(this.Em)};function U(){this.Em=lk();g(U)[this.Em]=this}U.prototype=Object.create(p.prototype);U.prototype.constructor=U;U.prototype.Fm=U;U.Gm={};a.btBU_Simplex1to4=U;U.prototype.addVertex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);mk(c,b)};U.prototype.setLocalScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);nk(c,b)};
-U.prototype.getLocalScaling=function(){return h(ok(this.Em),m)};U.prototype.calculateLocalInertia=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);pk(d,b,c)};U.prototype.isCompound=function(){return!!qk(this.Em)};U.prototype.getUserIndex=function(){return rk(this.Em)};U.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);sk(c,b)};
-U.prototype.getAabb=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);tk(e,b,c,d)};U.prototype.getLocalBoundingSphere=function(){return uk(this.Em)};U.prototype.__destroy__=function(){vk(this.Em)};function r(){throw"cannot construct a btContactSolverInfo, no constructor in IDL";}r.prototype=Object.create(f.prototype);r.prototype.constructor=r;r.prototype.Fm=r;r.Gm={};a.btContactSolverInfo=r;
-r.prototype.get_m_splitImpulse=r.prototype.An=function(){return!!wk(this.Em)};r.prototype.set_m_splitImpulse=r.prototype.bo=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);xk(c,b)};Object.defineProperty(r.prototype,"m_splitImpulse",{get:r.prototype.An,set:r.prototype.bo});r.prototype.get_m_splitImpulsePenetrationThreshold=r.prototype.Bn=function(){return yk(this.Em)};
-r.prototype.set_m_splitImpulsePenetrationThreshold=r.prototype.co=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);zk(c,b)};Object.defineProperty(r.prototype,"m_splitImpulsePenetrationThreshold",{get:r.prototype.Bn,set:r.prototype.co});r.prototype.get_m_numIterations=r.prototype.sn=function(){return Ak(this.Em)};r.prototype.set_m_numIterations=r.prototype.Un=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Bk(c,b)};
-Object.defineProperty(r.prototype,"m_numIterations",{get:r.prototype.sn,set:r.prototype.Un});r.prototype.__destroy__=function(){Ck(this.Em)};function V(b,c){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);this.Em=Dk(b,c);g(V)[this.Em]=this}V.prototype=Object.create(x.prototype);V.prototype.constructor=V;V.prototype.Fm=V;V.Gm={};a.btStaticPlaneShape=V;V.prototype.getPlaneNormal=function(){return h(Ek(this.Em),m)};
-V.prototype.setPlaneConstant=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Fk(c,b)};V.prototype.setLocalScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Gk(c,b)};V.prototype.getLocalScaling=function(){return h(Hk(this.Em),m)};V.prototype.calculateLocalInertia=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);Ik(d,b,c)};V.prototype.isCompound=function(){return!!Jk(this.Em)};V.prototype.getUserIndex=function(){return Kk(this.Em)};
-V.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Lk(c,b)};V.prototype.getAabb=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);Mk(e,b,c,d)};V.prototype.getLocalBoundingSphere=function(){return Nk(this.Em)};V.prototype.__destroy__=function(){Ok(this.Em)};function bp(){throw"cannot construct a btActionInterface, no constructor in IDL";}bp.prototype=Object.create(f.prototype);
-bp.prototype.constructor=bp;bp.prototype.Fm=bp;bp.Gm={};a.btActionInterface=bp;bp.prototype.updateAction=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);Pk(d,b,c)};bp.prototype.__destroy__=function(){Qk(this.Em)};function n(){throw"cannot construct a btOverlappingPairCache, no constructor in IDL";}n.prototype=Object.create(f.prototype);n.prototype.constructor=n;n.prototype.Fm=n;n.Gm={};a.btOverlappingPairCache=n;
-n.prototype.setInternalGhostPairCallback=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Rk(c,b)};n.prototype.setOverlapFilterCallback=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Sk(c,b)};n.prototype.getNumOverlappingPairs=function(){return Tk(this.Em)};n.prototype.__destroy__=function(){Uk(this.Em)};
-function m(b,c,d){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);this.Em=void 0===b?Vk():void 0===c?_a505_1(b):void 0===d?_a505_2(b,c):Wk(b,c,d);g(m)[this.Em]=this}m.prototype=Object.create(f.prototype);m.prototype.constructor=m;m.prototype.Fm=m;m.Gm={};a.btVector3=m;m.prototype.x=m.prototype.x=function(){return Xk(this.Em)};m.prototype.y=m.prototype.y=function(){return Yk(this.Em)};m.prototype.z=m.prototype.z=function(){return Zk(this.Em)};
-m.prototype.setX=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);$k(c,b)};m.prototype.setY=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);al(c,b)};m.prototype.setZ=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);bl(c,b)};m.prototype.setValue=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);cl(e,b,c,d)};m.prototype.__destroy__=function(){dl(this.Em)};
-function W(b){b&&"object"===typeof b&&(b=b.Em);this.Em=el(b);g(W)[this.Em]=this}W.prototype=Object.create(A.prototype);W.prototype.constructor=W;W.prototype.Fm=W;W.Gm={};a.btSphereShape=W;W.prototype.setMargin=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);fl(c,b)};W.prototype.getMargin=function(){return gl(this.Em)};W.prototype.setUnscaledRadius=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);hl(c,b)};
-W.prototype.setLocalScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);il(c,b)};W.prototype.getLocalScaling=function(){return h(jl(this.Em),m)};W.prototype.calculateLocalInertia=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);kl(d,b,c)};W.prototype.isCompound=function(){return!!ll(this.Em)};W.prototype.getUserIndex=function(){return ml(this.Em)};W.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);nl(c,b)};
-W.prototype.getAabb=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);ol(e,b,c,d)};W.prototype.getLocalBoundingSphere=function(){return pl(this.Em)};W.prototype.getImplicitShapeDimensions=function(){return h(ql(this.Em),m)};W.prototype.__destroy__=function(){rl(this.Em)};function cp(){this.Em=sl();g(cp)[this.Em]=this}cp.prototype=Object.create(f.prototype);cp.prototype.constructor=cp;cp.prototype.Fm=cp;cp.Gm={};
-a.btDefaultCollisionConstructionInfo=cp;cp.prototype.__destroy__=function(){tl(this.Em)};function dp(){this.Em=ul();g(dp)[this.Em]=this}dp.prototype=Object.create(x.prototype);dp.prototype.constructor=dp;dp.prototype.Fm=dp;dp.Gm={};a.btEmptyShape=dp;dp.prototype.setLocalScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);vl(c,b)};dp.prototype.getLocalScaling=function(){return h(wl(this.Em),m)};
-dp.prototype.calculateLocalInertia=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);xl(d,b,c)};dp.prototype.isCompound=function(){return!!yl(this.Em)};dp.prototype.getUserIndex=function(){return zl(this.Em)};dp.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Al(c,b)};
-dp.prototype.getAabb=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);Bl(e,b,c,d)};dp.prototype.getLocalBoundingSphere=function(){return Cl(this.Em)};dp.prototype.__destroy__=function(){Dl(this.Em)};function J(){this.Em=El();g(J)[this.Em]=this}J.prototype=Object.create(f.prototype);J.prototype.constructor=J;J.prototype.Fm=J;J.Gm={};a.btConstraintSetting=J;J.prototype.get_m_tau=J.prototype.Cn=function(){return Fl(this.Em)};
-J.prototype.set_m_tau=J.prototype.eo=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Gl(c,b)};Object.defineProperty(J.prototype,"m_tau",{get:J.prototype.Cn,set:J.prototype.eo});J.prototype.get_m_damping=J.prototype.gn=function(){return Hl(this.Em)};J.prototype.set_m_damping=J.prototype.Jn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Il(c,b)};Object.defineProperty(J.prototype,"m_damping",{get:J.prototype.gn,set:J.prototype.Jn});
-J.prototype.get_m_impulseClamp=J.prototype.kn=function(){return Jl(this.Em)};J.prototype.set_m_impulseClamp=J.prototype.Mn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Kl(c,b)};Object.defineProperty(J.prototype,"m_impulseClamp",{get:J.prototype.kn,set:J.prototype.Mn});J.prototype.__destroy__=function(){Ll(this.Em)};function X(){throw"cannot construct a LocalShapeInfo, no constructor in IDL";}X.prototype=Object.create(f.prototype);X.prototype.constructor=X;X.prototype.Fm=X;X.Gm={};
-a.LocalShapeInfo=X;X.prototype.get_m_shapePart=X.prototype.$m=function(){return Ml(this.Em)};X.prototype.set_m_shapePart=X.prototype.cn=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Nl(c,b)};Object.defineProperty(X.prototype,"m_shapePart",{get:X.prototype.$m,set:X.prototype.cn});X.prototype.get_m_triangleIndex=X.prototype.Dn=function(){return Ol(this.Em)};X.prototype.set_m_triangleIndex=X.prototype.fo=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Pl(c,b)};
-Object.defineProperty(X.prototype,"m_triangleIndex",{get:X.prototype.Dn,set:X.prototype.fo});X.prototype.__destroy__=function(){Ql(this.Em)};function Ho(){throw"cannot construct a btVector3Array, no constructor in IDL";}Ho.prototype=Object.create(f.prototype);Ho.prototype.constructor=Ho;Ho.prototype.Fm=Ho;Ho.Gm={};a.btVector3Array=Ho;Ho.prototype.size=Ho.prototype.size=function(){return Rl(this.Em)};Ho.prototype.at=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);return h(Sl(c,b),m)};
-Ho.prototype.clear=Ho.prototype.clear=function(){Tl(this.Em)};Ho.prototype.__destroy__=function(){Ul(this.Em)};function ep(){throw"cannot construct a btConstraintSolver, no constructor in IDL";}ep.prototype=Object.create(f.prototype);ep.prototype.constructor=ep;ep.prototype.Fm=ep;ep.Gm={};a.btConstraintSolver=ep;ep.prototype.__destroy__=function(){Vl(this.Em)};
-function fp(b,c,d,e){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);e&&"object"===typeof e&&(e=e.Em);this.Em=Wl(b,c,d,e);g(fp)[this.Em]=this}fp.prototype=Object.create(No.prototype);fp.prototype.constructor=fp;fp.prototype.Fm=fp;fp.Gm={};a.btFixedConstraint=fp;fp.prototype.enableFeedback=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Xl(c,b)};fp.prototype.getBreakingImpulseThreshold=function(){return Yl(this.Em)};
-fp.prototype.setBreakingImpulseThreshold=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Zl(c,b)};fp.prototype.getParam=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);return $l(d,b,c)};fp.prototype.setParam=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);am(e,b,c,d)};fp.prototype.__destroy__=function(){bm(this.Em)};
-function gp(b){b&&"object"===typeof b&&(b=b.Em);this.Em=cm(b);g(gp)[this.Em]=this}gp.prototype=Object.create(Jo.prototype);gp.prototype.constructor=gp;gp.prototype.Fm=gp;gp.Gm={};a.btCollisionDispatcher=gp;gp.prototype.setDispatcherFlags=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);dm(c,b)};gp.prototype.getNumManifolds=function(){return em(this.Em)};gp.prototype.getManifoldByIndexInternal=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);return h(fm(c,b),Ko)};
-gp.prototype.__destroy__=function(){gm(this.Em)};function u(b){b&&"object"===typeof b&&(b=b.Em);this.Em=hm(b);g(u)[this.Em]=this}u.prototype=Object.create(w.prototype);u.prototype.constructor=u;u.prototype.Fm=u;u.Gm={};a.btRigidBody=u;u.prototype.getCenterOfMassTransform=function(){return h(im(this.Em),y)};u.prototype.setCenterOfMassTransform=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);jm(c,b)};
-u.prototype.setSleepingThresholds=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);km(d,b,c)};u.prototype.getLinearSleepingThreshold=function(){return lm(this.Em)};u.prototype.setDamping=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);mm(d,b,c)};u.prototype.setMassProps=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);nm(d,b,c)};
-u.prototype.getLinearFactor=function(){return h(om(this.Em),m)};u.prototype.setLinearFactor=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);pm(c,b)};u.prototype.applyTorque=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);qm(c,b)};u.prototype.applyForce=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);rm(d,b,c)};u.prototype.applyCentralForce=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);sm(c,b)};
-u.prototype.applyTorqueImpulse=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);tm(c,b)};u.prototype.applyImpulse=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);um(d,b,c)};u.prototype.updateInertiaTensor=function(){vm(this.Em)};u.prototype.getLinearVelocity=function(){return h(wm(this.Em),m)};u.prototype.getAngularVelocity=function(){return h(xm(this.Em),m)};
-u.prototype.setLinearVelocity=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);ym(c,b)};u.prototype.setAngularVelocity=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);zm(c,b)};u.prototype.getMotionState=function(){return h(Am(this.Em),Fo)};u.prototype.getAngularFactor=function(){return h(Bm(this.Em),m)};u.prototype.setAngularFactor=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Cm(c,b)};
-u.prototype.getAabb=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);Dm(d,b,c)};u.prototype.setGravity=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Em(c,b)};u.prototype.getFlags=function(){return Fm(this.Em)};u.prototype.setFlags=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Gm(c,b)};u.prototype.wantsSleeping=function(){return!!Hm(this.Em)};u.prototype.clearForces=function(){Im(this.Em)};
-u.prototype.getTotalForce=function(){return h(Jm(this.Em),m)};u.prototype.getTotalTorque=function(){return h(Km(this.Em),m)};u.prototype.clearState=function(){Lm(this.Em)};u.prototype.getCollisionShape=function(){return h(Mm(this.Em),k)};u.prototype.getActivationState=function(){return Nm(this.Em)};u.prototype.setActivationState=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Om(c,b)};u.prototype.forceActivationState=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Pm(c,b)};
-u.prototype.activate=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);void 0===b?Qm(c):Rm(c,b)};u.prototype.isActive=function(){return!!Sm(this.Em)};u.prototype.isKinematicObject=function(){return!!Tm(this.Em)};u.prototype.isStaticObject=function(){return!!Um(this.Em)};u.prototype.isStaticOrKinematicObject=function(){return!!Vm(this.Em)};u.prototype.setRestitution=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Wm(c,b)};
-u.prototype.setFriction=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Xm(c,b)};u.prototype.setRollingFriction=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Ym(c,b)};u.prototype.setSpinningFriction=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Zm(c,b)};u.prototype.getWorldTransform=function(){return h($m(this.Em),y)};u.prototype.getCollisionFlags=function(){return an(this.Em)};
-u.prototype.setCollisionFlags=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);bn(c,b)};u.prototype.setWorldTransform=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);cn(c,b)};u.prototype.setCollisionShape=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);dn(c,b)};u.prototype.setCcdMotionThreshold=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);en(c,b)};u.prototype.setCcdSweptSphereRadius=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);fn(c,b)};
-u.prototype.getUserIndex=function(){return gn(this.Em)};u.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);hn(c,b)};u.prototype.setUserIndex2=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);jn(c,b)};u.prototype.setIgnoreCollisionCheck=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);kn(d,b,c)};u.prototype.__destroy__=function(){ln(this.Em)};
-function Zo(){throw"cannot construct a btIndexedMeshArray, no constructor in IDL";}Zo.prototype=Object.create(f.prototype);Zo.prototype.constructor=Zo;Zo.prototype.Fm=Zo;Zo.Gm={};a.btIndexedMeshArray=Zo;Zo.prototype.size=Zo.prototype.size=function(){return mn(this.Em)};Zo.prototype.at=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);return h(nn(c,b),So)};Zo.prototype.__destroy__=function(){on(this.Em)};
-function Y(b,c,d,e){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);e&&"object"===typeof e&&(e=e.Em);this.Em=pn(b,c,d,e);g(Y)[this.Em]=this}Y.prototype=Object.create(z.prototype);Y.prototype.constructor=Y;Y.prototype.Fm=Y;Y.Gm={};a.ccDiscreteDynamicsWorld=Y;Y.prototype.setAllowSleep=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);qn(c,b)};Y.prototype.setDeactivationTime=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);rn(c,b)};
-Y.prototype.rayTest=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);sn(e,b,c,d)};Y.prototype.rayTestSingle=function(b,c,d,e,l,t){var L=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);e&&"object"===typeof e&&(e=e.Em);l&&"object"===typeof l&&(l=l.Em);t&&"object"===typeof t&&(t=t.Em);tn(L,b,c,d,e,l,t)};Y.prototype.getPairCache=function(){return h(un(this.Em),n)};
-Y.prototype.addCollisionObject=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);void 0===c?vn(e,b):void 0===d?wn(e,b,c):xn(e,b,c,d)};Y.prototype.removeCollisionObject=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);yn(c,b)};Y.prototype.setContactBreakingThreshold=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);zn(c,b)};
-Y.prototype.setGravity=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);An(c,b)};Y.prototype.getGravity=function(){return h(Bn(this.Em),m)};Y.prototype.addRigidBody=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);void 0===c?Cn(e,b):void 0===d?_a640_2(e,b,c):Dn(e,b,c,d)};Y.prototype.removeRigidBody=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);En(c,b)};
-Y.prototype.addConstraint=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);void 0===c?Fn(d,b):Gn(d,b,c)};Y.prototype.removeConstraint=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Hn(c,b)};Y.prototype.stepSimulation=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);return void 0===c?In(e,b):void 0===d?Jn(e,b,c):Kn(e,b,c,d)};
-Y.prototype.addAction=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Ln(c,b)};Y.prototype.removeAction=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Mn(c,b)};Y.prototype.getSolverInfo=function(){return h(Nn(this.Em),r)};Y.prototype.getFixedBody=function(){return h(On(this.Em),u)};Y.prototype.__destroy__=function(){Pn(this.Em)};
-function y(b,c){b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);this.Em=void 0===b?Qn():void 0===c?_a650_1(b):Rn(b,c);g(y)[this.Em]=this}y.prototype=Object.create(f.prototype);y.prototype.constructor=y;y.prototype.Fm=y;y.Gm={};a.btTransform=y;y.prototype.setIdentity=function(){Sn(this.Em)};y.prototype.setOrigin=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Tn(c,b)};y.prototype.setRotation=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);Un(c,b)};
-y.prototype.getOrigin=function(){return h(Vn(this.Em),m)};y.prototype.getRotation=function(){return h(Wn(this.Em),S)};y.prototype.getBasis=function(){return h(Xn(this.Em),Oo)};y.prototype.inverse=y.prototype.inverse=function(){return h(Yn(this.Em),y)};y.prototype.op_mul=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);return h(Zn(c,b),y)};y.prototype.__destroy__=function(){$n(this.Em)};function Z(b){b&&"object"===typeof b&&(b=b.Em);this.Em=ao(b);g(Z)[this.Em]=this}Z.prototype=Object.create(A.prototype);
-Z.prototype.constructor=Z;Z.prototype.Fm=Z;Z.Gm={};a.btCylinderShape=Z;Z.prototype.setMargin=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);bo(c,b)};Z.prototype.getMargin=function(){return co(this.Em)};Z.prototype.updateProp=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);eo(e,b,c,d)};Z.prototype.setLocalScaling=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);fo(c,b)};
-Z.prototype.getLocalScaling=function(){return h(go(this.Em),m)};Z.prototype.calculateLocalInertia=function(b,c){var d=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);ho(d,b,c)};Z.prototype.isCompound=function(){return!!io(this.Em)};Z.prototype.getUserIndex=function(){return jo(this.Em)};Z.prototype.setUserIndex=function(b){var c=this.Em;b&&"object"===typeof b&&(b=b.Em);ko(c,b)};
-Z.prototype.getAabb=function(b,c,d){var e=this.Em;b&&"object"===typeof b&&(b=b.Em);c&&"object"===typeof c&&(c=c.Em);d&&"object"===typeof d&&(d=d.Em);lo(e,b,c,d)};Z.prototype.getLocalBoundingSphere=function(){return mo(this.Em)};Z.prototype.getImplicitShapeDimensions=function(){return h(no(this.Em),m)};Z.prototype.__destroy__=function(){oo(this.Em)};
-(function(){function b(){a.BT_CONSTRAINT_ERP=po();a.BT_CONSTRAINT_STOP_ERP=qo();a.BT_CONSTRAINT_CFM=ro();a.BT_CONSTRAINT_STOP_CFM=so();a.PHY_FLOAT=to();a.PHY_DOUBLE=uo();a.PHY_INTEGER=vo();a.PHY_SHORT=wo();a.PHY_FIXEDPOINT88=xo();a.PHY_UCHAR=yo()}Ba?b():za.unshift(b)})();this.Ammo=a;
+// The Module object: Our interface to the outside world. We import
+// and export values on it. There are various ways Module can be used:
+// 1. Not defined. We create it here
+// 2. A function parameter, function(Module) { ..generated code.. }
+// 3. pre-run appended it, var Module = {}; ..generated code..
+// 4. External script tag defines var Module.
+// We need to check if Module already exists (e.g. case 3 above).
+// Substitution will be replaced with actual code on later stage of the build,
+// this way Closure Compiler will not mangle it (e.g. case 4. above).
+// Note that if you want to run closure, and also to use Module
+// after the generated code, you will need to define   var Module = {};
+// before the code. Then that object will be used in the code, and you
+// can continue to use Module afterwards as well.
+var Module = typeof Ammo !== 'undefined' ? Ammo : {};
+
+// Set up the promise that indicates the Module is initialized
+var readyPromiseResolve, readyPromiseReject;
+Module['ready'] = new Promise(function(resolve, reject) {
+  readyPromiseResolve = resolve;
+  readyPromiseReject = reject;
+});
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_main')) {
+        Object.defineProperty(Module['ready'], '_main', { configurable: true, get: function() { abort('You are getting _main on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_main', { configurable: true, set: function() { abort('You are setting _main on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_malloc')) {
+        Object.defineProperty(Module['ready'], '_malloc', { configurable: true, get: function() { abort('You are getting _malloc on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_malloc', { configurable: true, set: function() { abort('You are setting _malloc on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_free')) {
+        Object.defineProperty(Module['ready'], '_free', { configurable: true, get: function() { abort('You are getting _free on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_free', { configurable: true, set: function() { abort('You are setting _free on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '___data_end')) {
+        Object.defineProperty(Module['ready'], '___data_end', { configurable: true, get: function() { abort('You are getting ___data_end on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '___data_end', { configurable: true, set: function() { abort('You are setting ___data_end on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '___wasm_call_ctors')) {
+        Object.defineProperty(Module['ready'], '___wasm_call_ctors', { configurable: true, get: function() { abort('You are getting ___wasm_call_ctors on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '___wasm_call_ctors', { configurable: true, set: function() { abort('You are setting ___wasm_call_ctors on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '___errno_location')) {
+        Object.defineProperty(Module['ready'], '___errno_location', { configurable: true, get: function() { abort('You are getting ___errno_location on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '___errno_location', { configurable: true, set: function() { abort('You are setting ___errno_location on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '__ZSt18uncaught_exceptionv')) {
+        Object.defineProperty(Module['ready'], '__ZSt18uncaught_exceptionv', { configurable: true, get: function() { abort('You are getting __ZSt18uncaught_exceptionv on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '__ZSt18uncaught_exceptionv', { configurable: true, set: function() { abort('You are setting __ZSt18uncaught_exceptionv on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_setThrew')) {
+        Object.defineProperty(Module['ready'], '_setThrew', { configurable: true, get: function() { abort('You are getting _setThrew on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_setThrew', { configurable: true, set: function() { abort('You are setting _setThrew on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], 'onRuntimeInitialized')) {
+        Object.defineProperty(Module['ready'], 'onRuntimeInitialized', { configurable: true, get: function() { abort('You are getting onRuntimeInitialized on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], 'onRuntimeInitialized', { configurable: true, set: function() { abort('You are setting onRuntimeInitialized on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+// --pre-jses are emitted after the Module integration code, so that they can
+// refer to Module (if they choose; they can also define Module)
+// {{PRE_JSES}}
+
+// Sometimes an existing Module object exists with properties
+// meant to overwrite the default module functionality. Here
+// we collect those properties and reapply _after_ we configure
+// the current environment's defaults to avoid having to be so
+// defensive during initialization.
+var moduleOverrides = {};
+var key;
+for (key in Module) {
+  if (Module.hasOwnProperty(key)) {
+    moduleOverrides[key] = Module[key];
+  }
+}
+
+var arguments_ = [];
+var thisProgram = './this.program';
+var quit_ = function(status, toThrow) {
+  throw toThrow;
+};
+
+// Determine the runtime environment we are in. You can customize this by
+// setting the ENVIRONMENT setting at compile time (see settings.js).
+
+var ENVIRONMENT_IS_WEB = false;
+var ENVIRONMENT_IS_WORKER = false;
+var ENVIRONMENT_IS_NODE = false;
+var ENVIRONMENT_IS_SHELL = false;
+ENVIRONMENT_IS_WEB = typeof window === 'object';
+ENVIRONMENT_IS_WORKER = typeof importScripts === 'function';
+// N.b. Electron.js environment is simultaneously a NODE-environment, but
+// also a web environment.
+ENVIRONMENT_IS_NODE = typeof process === 'object' && typeof process.versions === 'object' && typeof process.versions.node === 'string';
+ENVIRONMENT_IS_SHELL = !ENVIRONMENT_IS_WEB && !ENVIRONMENT_IS_NODE && !ENVIRONMENT_IS_WORKER;
+
+if (Module['ENVIRONMENT']) {
+  throw new Error('Module.ENVIRONMENT has been deprecated. To force the environment, use the ENVIRONMENT compile-time option (for example, -s ENVIRONMENT=web or -s ENVIRONMENT=node)');
+}
+
+
+
+// `/` should be present at the end if `scriptDirectory` is not empty
+var scriptDirectory = '';
+function locateFile(path) {
+  if (Module['locateFile']) {
+    return Module['locateFile'](path, scriptDirectory);
+  }
+  return scriptDirectory + path;
+}
+
+// Hooks that are implemented differently in different runtime environments.
+var read_,
+    readAsync,
+    readBinary,
+    setWindowTitle;
+
+
+// Note that this includes Node.js workers when relevant (pthreads is enabled).
+// Node.js workers are detected as a combination of ENVIRONMENT_IS_WORKER and
+// ENVIRONMENT_IS_NODE.
+if (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER) {
+  if (ENVIRONMENT_IS_WORKER) { // Check worker, not web, since window could be polyfilled
+    scriptDirectory = self.location.href;
+  } else if (document.currentScript) { // web
+    scriptDirectory = document.currentScript.src;
+  }
+  // When MODULARIZE, this JS may be executed later, after document.currentScript
+  // is gone, so we saved it, and we use it here instead of any other info.
+  if (_scriptDir) {
+    scriptDirectory = _scriptDir;
+  }
+  // blob urls look like blob:http://site.com/etc/etc and we cannot infer anything from them.
+  // otherwise, slice off the final part of the url to find the script directory.
+  // if scriptDirectory does not contain a slash, lastIndexOf will return -1,
+  // and scriptDirectory will correctly be replaced with an empty string.
+  if (scriptDirectory.indexOf('blob:') !== 0) {
+    scriptDirectory = scriptDirectory.substr(0, scriptDirectory.lastIndexOf('/')+1);
+  } else {
+    scriptDirectory = '';
+  }
+
+  if (!(typeof window === 'object' || typeof importScripts === 'function')) throw new Error('not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)');
+
+  // Differentiate the Web Worker from the Node Worker case, as reading must
+  // be done differently.
+  {
+
+
+/**
+ * @license
+ * Copyright 2019 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+  read_ = function shell_read(url) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', url, false);
+      xhr.send(null);
+      return xhr.responseText;
+  };
+
+  if (ENVIRONMENT_IS_WORKER) {
+    readBinary = function readBinary(url) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, false);
+        xhr.responseType = 'arraybuffer';
+        xhr.send(null);
+        return new Uint8Array(/** @type{!ArrayBuffer} */(xhr.response));
+    };
+  }
+
+  readAsync = function readAsync(url, onload, onerror) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'arraybuffer';
+    xhr.onload = function xhr_onload() {
+      if (xhr.status == 200 || (xhr.status == 0 && xhr.response)) { // file URLs can return 0
+        onload(xhr.response);
+        return;
+      }
+      onerror();
+    };
+    xhr.onerror = onerror;
+    xhr.send(null);
+  };
+
+
+
+
+  }
+
+  setWindowTitle = function(title) { document.title = title };
+} else
+{
+  throw new Error('environment detection error');
+}
+
+
+// Set up the out() and err() hooks, which are how we can print to stdout or
+// stderr, respectively.
+var out = Module['print'] || console.log.bind(console);
+var err = Module['printErr'] || console.warn.bind(console);
+
+// Merge back in the overrides
+for (key in moduleOverrides) {
+  if (moduleOverrides.hasOwnProperty(key)) {
+    Module[key] = moduleOverrides[key];
+  }
+}
+// Free the object hierarchy contained in the overrides, this lets the GC
+// reclaim data used e.g. in memoryInitializerRequest, which is a large typed array.
+moduleOverrides = null;
+
+// Emit code to handle expected values on the Module object. This applies Module.x
+// to the proper local x. This has two benefits: first, we only emit it if it is
+// expected to arrive, and second, by using a local everywhere else that can be
+// minified.
+if (Module['arguments']) arguments_ = Module['arguments'];if (!Object.getOwnPropertyDescriptor(Module, 'arguments')) Object.defineProperty(Module, 'arguments', { configurable: true, get: function() { abort('Module.arguments has been replaced with plain arguments_') } });
+if (Module['thisProgram']) thisProgram = Module['thisProgram'];if (!Object.getOwnPropertyDescriptor(Module, 'thisProgram')) Object.defineProperty(Module, 'thisProgram', { configurable: true, get: function() { abort('Module.thisProgram has been replaced with plain thisProgram') } });
+if (Module['quit']) quit_ = Module['quit'];if (!Object.getOwnPropertyDescriptor(Module, 'quit')) Object.defineProperty(Module, 'quit', { configurable: true, get: function() { abort('Module.quit has been replaced with plain quit_') } });
+
+// perform assertions in shell.js after we set up out() and err(), as otherwise if an assertion fails it cannot print the message
+// Assertions on removed incoming Module JS APIs.
+assert(typeof Module['memoryInitializerPrefixURL'] === 'undefined', 'Module.memoryInitializerPrefixURL option was removed, use Module.locateFile instead');
+assert(typeof Module['pthreadMainPrefixURL'] === 'undefined', 'Module.pthreadMainPrefixURL option was removed, use Module.locateFile instead');
+assert(typeof Module['cdInitializerPrefixURL'] === 'undefined', 'Module.cdInitializerPrefixURL option was removed, use Module.locateFile instead');
+assert(typeof Module['filePackagePrefixURL'] === 'undefined', 'Module.filePackagePrefixURL option was removed, use Module.locateFile instead');
+assert(typeof Module['read'] === 'undefined', 'Module.read option was removed (modify read_ in JS)');
+assert(typeof Module['readAsync'] === 'undefined', 'Module.readAsync option was removed (modify readAsync in JS)');
+assert(typeof Module['readBinary'] === 'undefined', 'Module.readBinary option was removed (modify readBinary in JS)');
+assert(typeof Module['setWindowTitle'] === 'undefined', 'Module.setWindowTitle option was removed (modify setWindowTitle in JS)');
+assert(typeof Module['TOTAL_MEMORY'] === 'undefined', 'Module.TOTAL_MEMORY has been renamed Module.INITIAL_MEMORY');
+if (!Object.getOwnPropertyDescriptor(Module, 'read')) Object.defineProperty(Module, 'read', { configurable: true, get: function() { abort('Module.read has been replaced with plain read_') } });
+if (!Object.getOwnPropertyDescriptor(Module, 'readAsync')) Object.defineProperty(Module, 'readAsync', { configurable: true, get: function() { abort('Module.readAsync has been replaced with plain readAsync') } });
+if (!Object.getOwnPropertyDescriptor(Module, 'readBinary')) Object.defineProperty(Module, 'readBinary', { configurable: true, get: function() { abort('Module.readBinary has been replaced with plain readBinary') } });
+if (!Object.getOwnPropertyDescriptor(Module, 'setWindowTitle')) Object.defineProperty(Module, 'setWindowTitle', { configurable: true, get: function() { abort('Module.setWindowTitle has been replaced with plain setWindowTitle') } });
+var IDBFS = 'IDBFS is no longer included by default; build with -lidbfs.js';
+var PROXYFS = 'PROXYFS is no longer included by default; build with -lproxyfs.js';
+var WORKERFS = 'WORKERFS is no longer included by default; build with -lworkerfs.js';
+var NODEFS = 'NODEFS is no longer included by default; build with -lnodefs.js';
+
+
+
+
+/**
+ * @license
+ * Copyright 2017 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+// {{PREAMBLE_ADDITIONS}}
+
+var STACK_ALIGN = 16;
+
+// stack management, and other functionality that is provided by the compiled code,
+// should not be used before it is ready
+
+/** @suppress{duplicate} */
+var stackSave;
+/** @suppress{duplicate} */
+var stackRestore;
+/** @suppress{duplicate} */
+var stackAlloc;
+
+stackSave = stackRestore = stackAlloc = function() {
+  abort('cannot use the stack before compiled code is ready to run, and has provided stack access');
+};
+
+function staticAlloc(size) {
+  abort('staticAlloc is no longer available at runtime; instead, perform static allocations at compile time (using makeStaticAlloc)');
+}
+
+function dynamicAlloc(size) {
+  assert(DYNAMICTOP_PTR);
+  var ret = HEAP32[DYNAMICTOP_PTR>>2];
+  var end = (ret + size + 15) & -16;
+  assert(end <= HEAP8.length, 'failure to dynamicAlloc - memory growth etc. is not supported there, call malloc/sbrk directly');
+  HEAP32[DYNAMICTOP_PTR>>2] = end;
+  return ret;
+}
+
+function alignMemory(size, factor) {
+  if (!factor) factor = STACK_ALIGN; // stack alignment (16-byte) by default
+  return Math.ceil(size / factor) * factor;
+}
+
+function getNativeTypeSize(type) {
+  switch (type) {
+    case 'i1': case 'i8': return 1;
+    case 'i16': return 2;
+    case 'i32': return 4;
+    case 'i64': return 8;
+    case 'float': return 4;
+    case 'double': return 8;
+    default: {
+      if (type[type.length-1] === '*') {
+        return 4; // A pointer
+      } else if (type[0] === 'i') {
+        var bits = Number(type.substr(1));
+        assert(bits % 8 === 0, 'getNativeTypeSize invalid bits ' + bits + ', type ' + type);
+        return bits / 8;
+      } else {
+        return 0;
+      }
+    }
+  }
+}
+
+function warnOnce(text) {
+  if (!warnOnce.shown) warnOnce.shown = {};
+  if (!warnOnce.shown[text]) {
+    warnOnce.shown[text] = 1;
+    err(text);
+  }
+}
+
+
+
+
+
+/**
+ * @license
+ * Copyright 2020 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+
+// Wraps a JS function as a wasm function with a given signature.
+function convertJsFunctionToWasm(func, sig) {
+
+  // If the type reflection proposal is available, use the new
+  // "WebAssembly.Function" constructor.
+  // Otherwise, construct a minimal wasm module importing the JS function and
+  // re-exporting it.
+  if (typeof WebAssembly.Function === "function") {
+    var typeNames = {
+      'i': 'i32',
+      'j': 'i64',
+      'f': 'f32',
+      'd': 'f64'
+    };
+    var type = {
+      parameters: [],
+      results: sig[0] == 'v' ? [] : [typeNames[sig[0]]]
+    };
+    for (var i = 1; i < sig.length; ++i) {
+      type.parameters.push(typeNames[sig[i]]);
+    }
+    return new WebAssembly.Function(type, func);
+  }
+
+  // The module is static, with the exception of the type section, which is
+  // generated based on the signature passed in.
+  var typeSection = [
+    0x01, // id: section,
+    0x00, // length: 0 (placeholder)
+    0x01, // count: 1
+    0x60, // form: func
+  ];
+  var sigRet = sig.slice(0, 1);
+  var sigParam = sig.slice(1);
+  var typeCodes = {
+    'i': 0x7f, // i32
+    'j': 0x7e, // i64
+    'f': 0x7d, // f32
+    'd': 0x7c, // f64
+  };
+
+  // Parameters, length + signatures
+  typeSection.push(sigParam.length);
+  for (var i = 0; i < sigParam.length; ++i) {
+    typeSection.push(typeCodes[sigParam[i]]);
+  }
+
+  // Return values, length + signatures
+  // With no multi-return in MVP, either 0 (void) or 1 (anything else)
+  if (sigRet == 'v') {
+    typeSection.push(0x00);
+  } else {
+    typeSection = typeSection.concat([0x01, typeCodes[sigRet]]);
+  }
+
+  // Write the overall length of the type section back into the section header
+  // (excepting the 2 bytes for the section id and length)
+  typeSection[1] = typeSection.length - 2;
+
+  // Rest of the module is static
+  var bytes = new Uint8Array([
+    0x00, 0x61, 0x73, 0x6d, // magic ("\0asm")
+    0x01, 0x00, 0x00, 0x00, // version: 1
+  ].concat(typeSection, [
+    0x02, 0x07, // import section
+      // (import "e" "f" (func 0 (type 0)))
+      0x01, 0x01, 0x65, 0x01, 0x66, 0x00, 0x00,
+    0x07, 0x05, // export section
+      // (export "f" (func 0 (type 0)))
+      0x01, 0x01, 0x66, 0x00, 0x00,
+  ]));
+
+   // We can compile this wasm module synchronously because it is very small.
+  // This accepts an import (at "e.f"), that it reroutes to an export (at "f")
+  var module = new WebAssembly.Module(bytes);
+  var instance = new WebAssembly.Instance(module, {
+    'e': {
+      'f': func
+    }
+  });
+  var wrappedFunc = instance.exports['f'];
+  return wrappedFunc;
+}
+
+var freeTableIndexes = [];
+
+// Weak map of functions in the table to their indexes, created on first use.
+var functionsInTableMap;
+
+// Add a wasm function to the table.
+function addFunctionWasm(func, sig) {
+  var table = wasmTable;
+
+  // Check if the function is already in the table, to ensure each function
+  // gets a unique index. First, create the map if this is the first use.
+  if (!functionsInTableMap) {
+    functionsInTableMap = new WeakMap();
+    for (var i = 0; i < table.length; i++) {
+      var item = table.get(i);
+      // Ignore null values.
+      if (item) {
+        functionsInTableMap.set(item, i);
+      }
+    }
+  }
+  if (functionsInTableMap.has(func)) {
+    return functionsInTableMap.get(func);
+  }
+
+  // It's not in the table, add it now.
+
+
+  var ret;
+  // Reuse a free index if there is one, otherwise grow.
+  if (freeTableIndexes.length) {
+    ret = freeTableIndexes.pop();
+  } else {
+    ret = table.length;
+    // Grow the table
+    try {
+      table.grow(1);
+    } catch (err) {
+      if (!(err instanceof RangeError)) {
+        throw err;
+      }
+      throw 'Unable to grow wasm table. Set ALLOW_TABLE_GROWTH.';
+    }
+  }
+
+  // Set the new value.
+  try {
+    // Attempting to call this with JS function will cause of table.set() to fail
+    table.set(ret, func);
+  } catch (err) {
+    if (!(err instanceof TypeError)) {
+      throw err;
+    }
+    assert(typeof sig !== 'undefined', 'Missing signature argument to addFunction');
+    var wrapped = convertJsFunctionToWasm(func, sig);
+    table.set(ret, wrapped);
+  }
+
+  functionsInTableMap.set(func, ret);
+
+  return ret;
+}
+
+function removeFunctionWasm(index) {
+  functionsInTableMap.delete(wasmTable.get(index));
+  freeTableIndexes.push(index);
+}
+
+// 'sig' parameter is required for the llvm backend but only when func is not
+// already a WebAssembly function.
+function addFunction(func, sig) {
+  assert(typeof func !== 'undefined');
+
+  return addFunctionWasm(func, sig);
+}
+
+function removeFunction(index) {
+  removeFunctionWasm(index);
+}
+
+
+
+var funcWrappers = {};
+
+function getFuncWrapper(func, sig) {
+  if (!func) return; // on null pointer, return undefined
+  assert(sig);
+  if (!funcWrappers[sig]) {
+    funcWrappers[sig] = {};
+  }
+  var sigCache = funcWrappers[sig];
+  if (!sigCache[func]) {
+    // optimize away arguments usage in common cases
+    if (sig.length === 1) {
+      sigCache[func] = function dynCall_wrapper() {
+        return dynCall(sig, func);
+      };
+    } else if (sig.length === 2) {
+      sigCache[func] = function dynCall_wrapper(arg) {
+        return dynCall(sig, func, [arg]);
+      };
+    } else {
+      // general case
+      sigCache[func] = function dynCall_wrapper() {
+        return dynCall(sig, func, Array.prototype.slice.call(arguments));
+      };
+    }
+  }
+  return sigCache[func];
+}
+
+
+/**
+ * @license
+ * Copyright 2020 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+
+
+
+function makeBigInt(low, high, unsigned) {
+  return unsigned ? ((+((low>>>0)))+((+((high>>>0)))*4294967296.0)) : ((+((low>>>0)))+((+((high|0)))*4294967296.0));
+}
+
+/** @param {Array=} args */
+function dynCall(sig, ptr, args) {
+  if (args && args.length) {
+    // j (64-bit integer) must be passed in as two numbers [low 32, high 32].
+    assert(args.length === sig.substring(1).replace(/j/g, '--').length);
+    assert(('dynCall_' + sig) in Module, 'bad function pointer type - no table for sig \'' + sig + '\'');
+    return Module['dynCall_' + sig].apply(null, [ptr].concat(args));
+  } else {
+    assert(sig.length == 1);
+    assert(('dynCall_' + sig) in Module, 'bad function pointer type - no table for sig \'' + sig + '\'');
+    return Module['dynCall_' + sig].call(null, ptr);
+  }
+}
+
+var tempRet0 = 0;
+
+var setTempRet0 = function(value) {
+  tempRet0 = value;
+};
+
+var getTempRet0 = function() {
+  return tempRet0;
+};
+
+function getCompilerSetting(name) {
+  throw 'You must build with -s RETAIN_COMPILER_SETTINGS=1 for getCompilerSetting or emscripten_get_compiler_setting to work';
+}
+
+// The address globals begin at. Very low in memory, for code size and optimization opportunities.
+// Above 0 is static memory, starting with globals.
+// Then the stack.
+// Then 'dynamic' memory for sbrk.
+var GLOBAL_BASE = 1024;
+
+
+
+/**
+ * @license
+ * Copyright 2010 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+// === Preamble library stuff ===
+
+// Documentation for the public APIs defined in this file must be updated in:
+//    site/source/docs/api_reference/preamble.js.rst
+// A prebuilt local version of the documentation is available at:
+//    site/build/text/docs/api_reference/preamble.js.txt
+// You can also build docs locally as HTML or other formats in site/
+// An online HTML version (which may be of a different version of Emscripten)
+//    is up at http://kripken.github.io/emscripten-site/docs/api_reference/preamble.js.html
+
+
+var wasmBinary;if (Module['wasmBinary']) wasmBinary = Module['wasmBinary'];if (!Object.getOwnPropertyDescriptor(Module, 'wasmBinary')) Object.defineProperty(Module, 'wasmBinary', { configurable: true, get: function() { abort('Module.wasmBinary has been replaced with plain wasmBinary') } });
+var noExitRuntime;if (Module['noExitRuntime']) noExitRuntime = Module['noExitRuntime'];if (!Object.getOwnPropertyDescriptor(Module, 'noExitRuntime')) Object.defineProperty(Module, 'noExitRuntime', { configurable: true, get: function() { abort('Module.noExitRuntime has been replaced with plain noExitRuntime') } });
+
+
+if (typeof WebAssembly !== 'object') {
+  abort('No WebAssembly support found. Build with -s WASM=0 to target JavaScript instead.');
+}
+
+
+/**
+ * @license
+ * Copyright 2019 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+// In MINIMAL_RUNTIME, setValue() and getValue() are only available when building with safe heap enabled, for heap safety checking.
+// In traditional runtime, setValue() and getValue() are always available (although their use is highly discouraged due to perf penalties)
+
+/** @param {number} ptr
+    @param {number} value
+    @param {string} type
+    @param {number|boolean=} noSafe */
+function setValue(ptr, value, type, noSafe) {
+  type = type || 'i8';
+  if (type.charAt(type.length-1) === '*') type = 'i32'; // pointers are 32-bit
+    switch(type) {
+      case 'i1': HEAP8[((ptr)>>0)]=value; break;
+      case 'i8': HEAP8[((ptr)>>0)]=value; break;
+      case 'i16': HEAP16[((ptr)>>1)]=value; break;
+      case 'i32': HEAP32[((ptr)>>2)]=value; break;
+      case 'i64': (tempI64 = [value>>>0,(tempDouble=value,(+(Math_abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? ((Math_min((+(Math_floor((tempDouble)/4294967296.0))), 4294967295.0))|0)>>>0 : (~~((+(Math_ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)],HEAP32[((ptr)>>2)]=tempI64[0],HEAP32[(((ptr)+(4))>>2)]=tempI64[1]); break;
+      case 'float': HEAPF32[((ptr)>>2)]=value; break;
+      case 'double': HEAPF64[((ptr)>>3)]=value; break;
+      default: abort('invalid type for setValue: ' + type);
+    }
+}
+
+/** @param {number} ptr
+    @param {string} type
+    @param {number|boolean=} noSafe */
+function getValue(ptr, type, noSafe) {
+  type = type || 'i8';
+  if (type.charAt(type.length-1) === '*') type = 'i32'; // pointers are 32-bit
+    switch(type) {
+      case 'i1': return HEAP8[((ptr)>>0)];
+      case 'i8': return HEAP8[((ptr)>>0)];
+      case 'i16': return HEAP16[((ptr)>>1)];
+      case 'i32': return HEAP32[((ptr)>>2)];
+      case 'i64': return HEAP32[((ptr)>>2)];
+      case 'float': return HEAPF32[((ptr)>>2)];
+      case 'double': return HEAPF64[((ptr)>>3)];
+      default: abort('invalid type for getValue: ' + type);
+    }
+  return null;
+}
+
+
+
+
+
+
+// Wasm globals
+
+var wasmMemory;
+
+// In fastcomp asm.js, we don't need a wasm Table at all.
+// In the wasm backend, we polyfill the WebAssembly object,
+// so this creates a (non-native-wasm) table for us.
+var wasmTable = new WebAssembly.Table({
+  'initial': 685,
+  'maximum': 685 + 20,
+  'element': 'anyfunc'
+});
+
+
+//========================================
+// Runtime essentials
+//========================================
+
+// whether we are quitting the application. no code should run after this.
+// set in exit() and abort()
+var ABORT = false;
+
+// set by exit() and abort().  Passed to 'onExit' handler.
+// NOTE: This is also used as the process return code code in shell environments
+// but only when noExitRuntime is false.
+var EXITSTATUS = 0;
+
+/** @type {function(*, string=)} */
+function assert(condition, text) {
+  if (!condition) {
+    abort('Assertion failed: ' + text);
+  }
+}
+
+// Returns the C function with a specified identifier (for C++, you need to do manual name mangling)
+function getCFunc(ident) {
+  var func = Module['_' + ident]; // closure exported function
+  assert(func, 'Cannot call unknown function ' + ident + ', make sure it is exported');
+  return func;
+}
+
+// C calling interface.
+/** @param {string|null=} returnType
+    @param {Array=} argTypes
+    @param {Arguments|Array=} args
+    @param {Object=} opts */
+function ccall(ident, returnType, argTypes, args, opts) {
+  // For fast lookup of conversion functions
+  var toC = {
+    'string': function(str) {
+      var ret = 0;
+      if (str !== null && str !== undefined && str !== 0) { // null string
+        // at most 4 bytes per UTF-8 code point, +1 for the trailing '\0'
+        var len = (str.length << 2) + 1;
+        ret = stackAlloc(len);
+        stringToUTF8(str, ret, len);
+      }
+      return ret;
+    },
+    'array': function(arr) {
+      var ret = stackAlloc(arr.length);
+      writeArrayToMemory(arr, ret);
+      return ret;
+    }
+  };
+
+  function convertReturnValue(ret) {
+    if (returnType === 'string') return UTF8ToString(ret);
+    if (returnType === 'boolean') return Boolean(ret);
+    return ret;
+  }
+
+  var func = getCFunc(ident);
+  var cArgs = [];
+  var stack = 0;
+  assert(returnType !== 'array', 'Return type should not be "array".');
+  if (args) {
+    for (var i = 0; i < args.length; i++) {
+      var converter = toC[argTypes[i]];
+      if (converter) {
+        if (stack === 0) stack = stackSave();
+        cArgs[i] = converter(args[i]);
+      } else {
+        cArgs[i] = args[i];
+      }
+    }
+  }
+  var ret = func.apply(null, cArgs);
+
+  ret = convertReturnValue(ret);
+  if (stack !== 0) stackRestore(stack);
+  return ret;
+}
+
+/** @param {string=} returnType
+    @param {Array=} argTypes
+    @param {Object=} opts */
+function cwrap(ident, returnType, argTypes, opts) {
+  return function() {
+    return ccall(ident, returnType, argTypes, arguments, opts);
+  }
+}
+
+var ALLOC_NORMAL = 0; // Tries to use _malloc()
+var ALLOC_STACK = 1; // Lives for the duration of the current function call
+var ALLOC_DYNAMIC = 2; // Cannot be freed except through sbrk
+var ALLOC_NONE = 3; // Do not allocate
+
+// allocate(): This is for internal use. You can use it yourself as well, but the interface
+//             is a little tricky (see docs right below). The reason is that it is optimized
+//             for multiple syntaxes to save space in generated code. So you should
+//             normally not use allocate(), and instead allocate memory using _malloc(),
+//             initialize it with setValue(), and so forth.
+// @slab: An array of data, or a number. If a number, then the size of the block to allocate,
+//        in *bytes* (note that this is sometimes confusing: the next parameter does not
+//        affect this!)
+// @types: Either an array of types, one for each byte (or 0 if no type at that position),
+//         or a single type which is used for the entire block. This only matters if there
+//         is initial data - if @slab is a number, then this does not matter at all and is
+//         ignored.
+// @allocator: How to allocate memory, see ALLOC_*
+/** @type {function((TypedArray|Array<number>|number), string, number, number=)} */
+function allocate(slab, types, allocator, ptr) {
+  var zeroinit, size;
+  if (typeof slab === 'number') {
+    zeroinit = true;
+    size = slab;
+  } else {
+    zeroinit = false;
+    size = slab.length;
+  }
+
+  var singleType = typeof types === 'string' ? types : null;
+
+  var ret;
+  if (allocator == ALLOC_NONE) {
+    ret = ptr;
+  } else {
+    ret = [_malloc,
+    stackAlloc,
+    dynamicAlloc][allocator](Math.max(size, singleType ? 1 : types.length));
+  }
+
+  if (zeroinit) {
+    var stop;
+    ptr = ret;
+    assert((ret & 3) == 0);
+    stop = ret + (size & ~3);
+    for (; ptr < stop; ptr += 4) {
+      HEAP32[((ptr)>>2)]=0;
+    }
+    stop = ret + size;
+    while (ptr < stop) {
+      HEAP8[((ptr++)>>0)]=0;
+    }
+    return ret;
+  }
+
+  if (singleType === 'i8') {
+    if (slab.subarray || slab.slice) {
+      HEAPU8.set(/** @type {!Uint8Array} */ (slab), ret);
+    } else {
+      HEAPU8.set(new Uint8Array(slab), ret);
+    }
+    return ret;
+  }
+
+  var i = 0, type, typeSize, previousType;
+  while (i < size) {
+    var curr = slab[i];
+
+    type = singleType || types[i];
+    if (type === 0) {
+      i++;
+      continue;
+    }
+    assert(type, 'Must know what type to store in allocate!');
+
+    if (type == 'i64') type = 'i32'; // special case: we have one i32 here, and one i32 later
+
+    setValue(ret+i, curr, type);
+
+    // no need to look up size unless type changes, so cache it
+    if (previousType !== type) {
+      typeSize = getNativeTypeSize(type);
+      previousType = type;
+    }
+    i += typeSize;
+  }
+
+  return ret;
+}
+
+// Allocate memory during any stage of startup - static memory early on, dynamic memory later, malloc when ready
+function getMemory(size) {
+  if (!runtimeInitialized) return dynamicAlloc(size);
+  return _malloc(size);
+}
+
+
+/**
+ * @license
+ * Copyright 2019 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+// runtime_strings.js: Strings related runtime functions that are part of both MINIMAL_RUNTIME and regular runtime.
+
+// Given a pointer 'ptr' to a null-terminated UTF8-encoded string in the given array that contains uint8 values, returns
+// a copy of that string as a Javascript String object.
+
+var UTF8Decoder = typeof TextDecoder !== 'undefined' ? new TextDecoder('utf8') : undefined;
+
+/**
+ * @param {number} idx
+ * @param {number=} maxBytesToRead
+ * @return {string}
+ */
+function UTF8ArrayToString(heap, idx, maxBytesToRead) {
+  var endIdx = idx + maxBytesToRead;
+  var endPtr = idx;
+  // TextDecoder needs to know the byte length in advance, it doesn't stop on null terminator by itself.
+  // Also, use the length info to avoid running tiny strings through TextDecoder, since .subarray() allocates garbage.
+  // (As a tiny code save trick, compare endPtr against endIdx using a negation, so that undefined means Infinity)
+  while (heap[endPtr] && !(endPtr >= endIdx)) ++endPtr;
+
+  if (endPtr - idx > 16 && heap.subarray && UTF8Decoder) {
+    return UTF8Decoder.decode(heap.subarray(idx, endPtr));
+  } else {
+    var str = '';
+    // If building with TextDecoder, we have already computed the string length above, so test loop end condition against that
+    while (idx < endPtr) {
+      // For UTF8 byte structure, see:
+      // http://en.wikipedia.org/wiki/UTF-8#Description
+      // https://www.ietf.org/rfc/rfc2279.txt
+      // https://tools.ietf.org/html/rfc3629
+      var u0 = heap[idx++];
+      if (!(u0 & 0x80)) { str += String.fromCharCode(u0); continue; }
+      var u1 = heap[idx++] & 63;
+      if ((u0 & 0xE0) == 0xC0) { str += String.fromCharCode(((u0 & 31) << 6) | u1); continue; }
+      var u2 = heap[idx++] & 63;
+      if ((u0 & 0xF0) == 0xE0) {
+        u0 = ((u0 & 15) << 12) | (u1 << 6) | u2;
+      } else {
+        if ((u0 & 0xF8) != 0xF0) warnOnce('Invalid UTF-8 leading byte 0x' + u0.toString(16) + ' encountered when deserializing a UTF-8 string on the asm.js/wasm heap to a JS string!');
+        u0 = ((u0 & 7) << 18) | (u1 << 12) | (u2 << 6) | (heap[idx++] & 63);
+      }
+
+      if (u0 < 0x10000) {
+        str += String.fromCharCode(u0);
+      } else {
+        var ch = u0 - 0x10000;
+        str += String.fromCharCode(0xD800 | (ch >> 10), 0xDC00 | (ch & 0x3FF));
+      }
+    }
+  }
+  return str;
+}
+
+// Given a pointer 'ptr' to a null-terminated UTF8-encoded string in the emscripten HEAP, returns a
+// copy of that string as a Javascript String object.
+// maxBytesToRead: an optional length that specifies the maximum number of bytes to read. You can omit
+//                 this parameter to scan the string until the first \0 byte. If maxBytesToRead is
+//                 passed, and the string at [ptr, ptr+maxBytesToReadr[ contains a null byte in the
+//                 middle, then the string will cut short at that byte index (i.e. maxBytesToRead will
+//                 not produce a string of exact length [ptr, ptr+maxBytesToRead[)
+//                 N.B. mixing frequent uses of UTF8ToString() with and without maxBytesToRead may
+//                 throw JS JIT optimizations off, so it is worth to consider consistently using one
+//                 style or the other.
+/**
+ * @param {number} ptr
+ * @param {number=} maxBytesToRead
+ * @return {string}
+ */
+function UTF8ToString(ptr, maxBytesToRead) {
+  return ptr ? UTF8ArrayToString(HEAPU8, ptr, maxBytesToRead) : '';
+}
+
+// Copies the given Javascript String object 'str' to the given byte array at address 'outIdx',
+// encoded in UTF8 form and null-terminated. The copy will require at most str.length*4+1 bytes of space in the HEAP.
+// Use the function lengthBytesUTF8 to compute the exact number of bytes (excluding null terminator) that this function will write.
+// Parameters:
+//   str: the Javascript string to copy.
+//   heap: the array to copy to. Each index in this array is assumed to be one 8-byte element.
+//   outIdx: The starting offset in the array to begin the copying.
+//   maxBytesToWrite: The maximum number of bytes this function can write to the array.
+//                    This count should include the null terminator,
+//                    i.e. if maxBytesToWrite=1, only the null terminator will be written and nothing else.
+//                    maxBytesToWrite=0 does not write any bytes to the output, not even the null terminator.
+// Returns the number of bytes written, EXCLUDING the null terminator.
+
+function stringToUTF8Array(str, heap, outIdx, maxBytesToWrite) {
+  if (!(maxBytesToWrite > 0)) // Parameter maxBytesToWrite is not optional. Negative values, 0, null, undefined and false each don't write out any bytes.
+    return 0;
+
+  var startIdx = outIdx;
+  var endIdx = outIdx + maxBytesToWrite - 1; // -1 for string null terminator.
+  for (var i = 0; i < str.length; ++i) {
+    // Gotcha: charCodeAt returns a 16-bit word that is a UTF-16 encoded code unit, not a Unicode code point of the character! So decode UTF16->UTF32->UTF8.
+    // See http://unicode.org/faq/utf_bom.html#utf16-3
+    // For UTF8 byte structure, see http://en.wikipedia.org/wiki/UTF-8#Description and https://www.ietf.org/rfc/rfc2279.txt and https://tools.ietf.org/html/rfc3629
+    var u = str.charCodeAt(i); // possibly a lead surrogate
+    if (u >= 0xD800 && u <= 0xDFFF) {
+      var u1 = str.charCodeAt(++i);
+      u = 0x10000 + ((u & 0x3FF) << 10) | (u1 & 0x3FF);
+    }
+    if (u <= 0x7F) {
+      if (outIdx >= endIdx) break;
+      heap[outIdx++] = u;
+    } else if (u <= 0x7FF) {
+      if (outIdx + 1 >= endIdx) break;
+      heap[outIdx++] = 0xC0 | (u >> 6);
+      heap[outIdx++] = 0x80 | (u & 63);
+    } else if (u <= 0xFFFF) {
+      if (outIdx + 2 >= endIdx) break;
+      heap[outIdx++] = 0xE0 | (u >> 12);
+      heap[outIdx++] = 0x80 | ((u >> 6) & 63);
+      heap[outIdx++] = 0x80 | (u & 63);
+    } else {
+      if (outIdx + 3 >= endIdx) break;
+      if (u >= 0x200000) warnOnce('Invalid Unicode code point 0x' + u.toString(16) + ' encountered when serializing a JS string to an UTF-8 string on the asm.js/wasm heap! (Valid unicode code points should be in range 0-0x1FFFFF).');
+      heap[outIdx++] = 0xF0 | (u >> 18);
+      heap[outIdx++] = 0x80 | ((u >> 12) & 63);
+      heap[outIdx++] = 0x80 | ((u >> 6) & 63);
+      heap[outIdx++] = 0x80 | (u & 63);
+    }
+  }
+  // Null-terminate the pointer to the buffer.
+  heap[outIdx] = 0;
+  return outIdx - startIdx;
+}
+
+// Copies the given Javascript String object 'str' to the emscripten HEAP at address 'outPtr',
+// null-terminated and encoded in UTF8 form. The copy will require at most str.length*4+1 bytes of space in the HEAP.
+// Use the function lengthBytesUTF8 to compute the exact number of bytes (excluding null terminator) that this function will write.
+// Returns the number of bytes written, EXCLUDING the null terminator.
+
+function stringToUTF8(str, outPtr, maxBytesToWrite) {
+  assert(typeof maxBytesToWrite == 'number', 'stringToUTF8(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!');
+  return stringToUTF8Array(str, HEAPU8,outPtr, maxBytesToWrite);
+}
+
+// Returns the number of bytes the given Javascript string takes if encoded as a UTF8 byte array, EXCLUDING the null terminator byte.
+function lengthBytesUTF8(str) {
+  var len = 0;
+  for (var i = 0; i < str.length; ++i) {
+    // Gotcha: charCodeAt returns a 16-bit word that is a UTF-16 encoded code unit, not a Unicode code point of the character! So decode UTF16->UTF32->UTF8.
+    // See http://unicode.org/faq/utf_bom.html#utf16-3
+    var u = str.charCodeAt(i); // possibly a lead surrogate
+    if (u >= 0xD800 && u <= 0xDFFF) u = 0x10000 + ((u & 0x3FF) << 10) | (str.charCodeAt(++i) & 0x3FF);
+    if (u <= 0x7F) ++len;
+    else if (u <= 0x7FF) len += 2;
+    else if (u <= 0xFFFF) len += 3;
+    else len += 4;
+  }
+  return len;
+}
+
+
+
+/**
+ * @license
+ * Copyright 2020 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+// runtime_strings_extra.js: Strings related runtime functions that are available only in regular runtime.
+
+// Given a pointer 'ptr' to a null-terminated ASCII-encoded string in the emscripten HEAP, returns
+// a copy of that string as a Javascript String object.
+
+function AsciiToString(ptr) {
+  var str = '';
+  while (1) {
+    var ch = HEAPU8[((ptr++)>>0)];
+    if (!ch) return str;
+    str += String.fromCharCode(ch);
+  }
+}
+
+// Copies the given Javascript String object 'str' to the emscripten HEAP at address 'outPtr',
+// null-terminated and encoded in ASCII form. The copy will require at most str.length+1 bytes of space in the HEAP.
+
+function stringToAscii(str, outPtr) {
+  return writeAsciiToMemory(str, outPtr, false);
+}
+
+// Given a pointer 'ptr' to a null-terminated UTF16LE-encoded string in the emscripten HEAP, returns
+// a copy of that string as a Javascript String object.
+
+var UTF16Decoder = typeof TextDecoder !== 'undefined' ? new TextDecoder('utf-16le') : undefined;
+
+function UTF16ToString(ptr, maxBytesToRead) {
+  assert(ptr % 2 == 0, 'Pointer passed to UTF16ToString must be aligned to two bytes!');
+  var endPtr = ptr;
+  // TextDecoder needs to know the byte length in advance, it doesn't stop on null terminator by itself.
+  // Also, use the length info to avoid running tiny strings through TextDecoder, since .subarray() allocates garbage.
+  var idx = endPtr >> 1;
+  var maxIdx = idx + maxBytesToRead / 2;
+  // If maxBytesToRead is not passed explicitly, it will be undefined, and this
+  // will always evaluate to true. This saves on code size.
+  while (!(idx >= maxIdx) && HEAPU16[idx]) ++idx;
+  endPtr = idx << 1;
+
+  if (endPtr - ptr > 32 && UTF16Decoder) {
+    return UTF16Decoder.decode(HEAPU8.subarray(ptr, endPtr));
+  } else {
+    var i = 0;
+
+    var str = '';
+    while (1) {
+      var codeUnit = HEAP16[(((ptr)+(i*2))>>1)];
+      if (codeUnit == 0 || i == maxBytesToRead / 2) return str;
+      ++i;
+      // fromCharCode constructs a character from a UTF-16 code unit, so we can pass the UTF16 string right through.
+      str += String.fromCharCode(codeUnit);
+    }
+  }
+}
+
+// Copies the given Javascript String object 'str' to the emscripten HEAP at address 'outPtr',
+// null-terminated and encoded in UTF16 form. The copy will require at most str.length*4+2 bytes of space in the HEAP.
+// Use the function lengthBytesUTF16() to compute the exact number of bytes (excluding null terminator) that this function will write.
+// Parameters:
+//   str: the Javascript string to copy.
+//   outPtr: Byte address in Emscripten HEAP where to write the string to.
+//   maxBytesToWrite: The maximum number of bytes this function can write to the array. This count should include the null
+//                    terminator, i.e. if maxBytesToWrite=2, only the null terminator will be written and nothing else.
+//                    maxBytesToWrite<2 does not write any bytes to the output, not even the null terminator.
+// Returns the number of bytes written, EXCLUDING the null terminator.
+
+function stringToUTF16(str, outPtr, maxBytesToWrite) {
+  assert(outPtr % 2 == 0, 'Pointer passed to stringToUTF16 must be aligned to two bytes!');
+  assert(typeof maxBytesToWrite == 'number', 'stringToUTF16(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!');
+  // Backwards compatibility: if max bytes is not specified, assume unsafe unbounded write is allowed.
+  if (maxBytesToWrite === undefined) {
+    maxBytesToWrite = 0x7FFFFFFF;
+  }
+  if (maxBytesToWrite < 2) return 0;
+  maxBytesToWrite -= 2; // Null terminator.
+  var startPtr = outPtr;
+  var numCharsToWrite = (maxBytesToWrite < str.length*2) ? (maxBytesToWrite / 2) : str.length;
+  for (var i = 0; i < numCharsToWrite; ++i) {
+    // charCodeAt returns a UTF-16 encoded code unit, so it can be directly written to the HEAP.
+    var codeUnit = str.charCodeAt(i); // possibly a lead surrogate
+    HEAP16[((outPtr)>>1)]=codeUnit;
+    outPtr += 2;
+  }
+  // Null-terminate the pointer to the HEAP.
+  HEAP16[((outPtr)>>1)]=0;
+  return outPtr - startPtr;
+}
+
+// Returns the number of bytes the given Javascript string takes if encoded as a UTF16 byte array, EXCLUDING the null terminator byte.
+
+function lengthBytesUTF16(str) {
+  return str.length*2;
+}
+
+function UTF32ToString(ptr, maxBytesToRead) {
+  assert(ptr % 4 == 0, 'Pointer passed to UTF32ToString must be aligned to four bytes!');
+  var i = 0;
+
+  var str = '';
+  // If maxBytesToRead is not passed explicitly, it will be undefined, and this
+  // will always evaluate to true. This saves on code size.
+  while (!(i >= maxBytesToRead / 4)) {
+    var utf32 = HEAP32[(((ptr)+(i*4))>>2)];
+    if (utf32 == 0) break;
+    ++i;
+    // Gotcha: fromCharCode constructs a character from a UTF-16 encoded code (pair), not from a Unicode code point! So encode the code point to UTF-16 for constructing.
+    // See http://unicode.org/faq/utf_bom.html#utf16-3
+    if (utf32 >= 0x10000) {
+      var ch = utf32 - 0x10000;
+      str += String.fromCharCode(0xD800 | (ch >> 10), 0xDC00 | (ch & 0x3FF));
+    } else {
+      str += String.fromCharCode(utf32);
+    }
+  }
+  return str;
+}
+
+// Copies the given Javascript String object 'str' to the emscripten HEAP at address 'outPtr',
+// null-terminated and encoded in UTF32 form. The copy will require at most str.length*4+4 bytes of space in the HEAP.
+// Use the function lengthBytesUTF32() to compute the exact number of bytes (excluding null terminator) that this function will write.
+// Parameters:
+//   str: the Javascript string to copy.
+//   outPtr: Byte address in Emscripten HEAP where to write the string to.
+//   maxBytesToWrite: The maximum number of bytes this function can write to the array. This count should include the null
+//                    terminator, i.e. if maxBytesToWrite=4, only the null terminator will be written and nothing else.
+//                    maxBytesToWrite<4 does not write any bytes to the output, not even the null terminator.
+// Returns the number of bytes written, EXCLUDING the null terminator.
+
+function stringToUTF32(str, outPtr, maxBytesToWrite) {
+  assert(outPtr % 4 == 0, 'Pointer passed to stringToUTF32 must be aligned to four bytes!');
+  assert(typeof maxBytesToWrite == 'number', 'stringToUTF32(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!');
+  // Backwards compatibility: if max bytes is not specified, assume unsafe unbounded write is allowed.
+  if (maxBytesToWrite === undefined) {
+    maxBytesToWrite = 0x7FFFFFFF;
+  }
+  if (maxBytesToWrite < 4) return 0;
+  var startPtr = outPtr;
+  var endPtr = startPtr + maxBytesToWrite - 4;
+  for (var i = 0; i < str.length; ++i) {
+    // Gotcha: charCodeAt returns a 16-bit word that is a UTF-16 encoded code unit, not a Unicode code point of the character! We must decode the string to UTF-32 to the heap.
+    // See http://unicode.org/faq/utf_bom.html#utf16-3
+    var codeUnit = str.charCodeAt(i); // possibly a lead surrogate
+    if (codeUnit >= 0xD800 && codeUnit <= 0xDFFF) {
+      var trailSurrogate = str.charCodeAt(++i);
+      codeUnit = 0x10000 + ((codeUnit & 0x3FF) << 10) | (trailSurrogate & 0x3FF);
+    }
+    HEAP32[((outPtr)>>2)]=codeUnit;
+    outPtr += 4;
+    if (outPtr + 4 > endPtr) break;
+  }
+  // Null-terminate the pointer to the HEAP.
+  HEAP32[((outPtr)>>2)]=0;
+  return outPtr - startPtr;
+}
+
+// Returns the number of bytes the given Javascript string takes if encoded as a UTF16 byte array, EXCLUDING the null terminator byte.
+
+function lengthBytesUTF32(str) {
+  var len = 0;
+  for (var i = 0; i < str.length; ++i) {
+    // Gotcha: charCodeAt returns a 16-bit word that is a UTF-16 encoded code unit, not a Unicode code point of the character! We must decode the string to UTF-32 to the heap.
+    // See http://unicode.org/faq/utf_bom.html#utf16-3
+    var codeUnit = str.charCodeAt(i);
+    if (codeUnit >= 0xD800 && codeUnit <= 0xDFFF) ++i; // possibly a lead surrogate, so skip over the tail surrogate.
+    len += 4;
+  }
+
+  return len;
+}
+
+// Allocate heap space for a JS string, and write it there.
+// It is the responsibility of the caller to free() that memory.
+function allocateUTF8(str) {
+  var size = lengthBytesUTF8(str) + 1;
+  var ret = _malloc(size);
+  if (ret) stringToUTF8Array(str, HEAP8, ret, size);
+  return ret;
+}
+
+// Allocate stack space for a JS string, and write it there.
+function allocateUTF8OnStack(str) {
+  var size = lengthBytesUTF8(str) + 1;
+  var ret = stackAlloc(size);
+  stringToUTF8Array(str, HEAP8, ret, size);
+  return ret;
+}
+
+// Deprecated: This function should not be called because it is unsafe and does not provide
+// a maximum length limit of how many bytes it is allowed to write. Prefer calling the
+// function stringToUTF8Array() instead, which takes in a maximum length that can be used
+// to be secure from out of bounds writes.
+/** @deprecated
+    @param {boolean=} dontAddNull */
+function writeStringToMemory(string, buffer, dontAddNull) {
+  warnOnce('writeStringToMemory is deprecated and should not be called! Use stringToUTF8() instead!');
+
+  var /** @type {number} */ lastChar, /** @type {number} */ end;
+  if (dontAddNull) {
+    // stringToUTF8Array always appends null. If we don't want to do that, remember the
+    // character that existed at the location where the null will be placed, and restore
+    // that after the write (below).
+    end = buffer + lengthBytesUTF8(string);
+    lastChar = HEAP8[end];
+  }
+  stringToUTF8(string, buffer, Infinity);
+  if (dontAddNull) HEAP8[end] = lastChar; // Restore the value under the null character.
+}
+
+function writeArrayToMemory(array, buffer) {
+  assert(array.length >= 0, 'writeArrayToMemory array must have a length (should be an array or typed array)')
+  HEAP8.set(array, buffer);
+}
+
+/** @param {boolean=} dontAddNull */
+function writeAsciiToMemory(str, buffer, dontAddNull) {
+  for (var i = 0; i < str.length; ++i) {
+    assert(str.charCodeAt(i) === str.charCodeAt(i)&0xff);
+    HEAP8[((buffer++)>>0)]=str.charCodeAt(i);
+  }
+  // Null-terminate the pointer to the HEAP.
+  if (!dontAddNull) HEAP8[((buffer)>>0)]=0;
+}
+
+
+
+// Memory management
+
+var PAGE_SIZE = 16384;
+var WASM_PAGE_SIZE = 65536;
+var ASMJS_PAGE_SIZE = 16777216;
+
+function alignUp(x, multiple) {
+  if (x % multiple > 0) {
+    x += multiple - (x % multiple);
+  }
+  return x;
+}
+
+var HEAP,
+/** @type {ArrayBuffer} */
+  buffer,
+/** @type {Int8Array} */
+  HEAP8,
+/** @type {Uint8Array} */
+  HEAPU8,
+/** @type {Int16Array} */
+  HEAP16,
+/** @type {Uint16Array} */
+  HEAPU16,
+/** @type {Int32Array} */
+  HEAP32,
+/** @type {Uint32Array} */
+  HEAPU32,
+/** @type {Float32Array} */
+  HEAPF32,
+/** @type {Float64Array} */
+  HEAPF64;
+
+function updateGlobalBufferAndViews(buf) {
+  buffer = buf;
+  Module['HEAP8'] = HEAP8 = new Int8Array(buf);
+  Module['HEAP16'] = HEAP16 = new Int16Array(buf);
+  Module['HEAP32'] = HEAP32 = new Int32Array(buf);
+  Module['HEAPU8'] = HEAPU8 = new Uint8Array(buf);
+  Module['HEAPU16'] = HEAPU16 = new Uint16Array(buf);
+  Module['HEAPU32'] = HEAPU32 = new Uint32Array(buf);
+  Module['HEAPF32'] = HEAPF32 = new Float32Array(buf);
+  Module['HEAPF64'] = HEAPF64 = new Float64Array(buf);
+}
+
+var STATIC_BASE = 1024,
+    STACK_BASE = 5268608,
+    STACKTOP = STACK_BASE,
+    STACK_MAX = 25728,
+    DYNAMIC_BASE = 5268608,
+    DYNAMICTOP_PTR = 25568;
+
+assert(STACK_BASE % 16 === 0, 'stack must start aligned');
+assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
+
+
+
+var TOTAL_STACK = 5242880;
+if (Module['TOTAL_STACK']) assert(TOTAL_STACK === Module['TOTAL_STACK'], 'the stack size can no longer be determined at runtime')
+
+var INITIAL_INITIAL_MEMORY = Module['INITIAL_MEMORY'] || 67108864;if (!Object.getOwnPropertyDescriptor(Module, 'INITIAL_MEMORY')) Object.defineProperty(Module, 'INITIAL_MEMORY', { configurable: true, get: function() { abort('Module.INITIAL_MEMORY has been replaced with plain INITIAL_INITIAL_MEMORY') } });
+
+assert(INITIAL_INITIAL_MEMORY >= TOTAL_STACK, 'INITIAL_MEMORY should be larger than TOTAL_STACK, was ' + INITIAL_INITIAL_MEMORY + '! (TOTAL_STACK=' + TOTAL_STACK + ')');
+
+// check for full engine support (use string 'subarray' to avoid closure compiler confusion)
+assert(typeof Int32Array !== 'undefined' && typeof Float64Array !== 'undefined' && Int32Array.prototype.subarray !== undefined && Int32Array.prototype.set !== undefined,
+       'JS engine does not provide full typed array support');
+
+
+
+/**
+ * @license
+ * Copyright 2019 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+
+
+
+// In standalone mode, the wasm creates the memory, and the user can't provide it.
+// In non-standalone/normal mode, we create the memory here.
+
+/**
+ * @license
+ * Copyright 2019 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+// Create the main memory. (Note: this isn't used in STANDALONE_WASM mode since the wasm
+// memory is created in the wasm, not in JS.)
+
+  if (Module['wasmMemory']) {
+    wasmMemory = Module['wasmMemory'];
+  } else
+  {
+    wasmMemory = new WebAssembly.Memory({
+      'initial': INITIAL_INITIAL_MEMORY / WASM_PAGE_SIZE
+      ,
+      'maximum': INITIAL_INITIAL_MEMORY / WASM_PAGE_SIZE
+    });
+  }
+
+
+if (wasmMemory) {
+  buffer = wasmMemory.buffer;
+}
+
+// If the user provides an incorrect length, just use that length instead rather than providing the user to
+// specifically provide the memory length with Module['INITIAL_MEMORY'].
+INITIAL_INITIAL_MEMORY = buffer.byteLength;
+assert(INITIAL_INITIAL_MEMORY % WASM_PAGE_SIZE === 0);
+updateGlobalBufferAndViews(buffer);
+
+HEAP32[DYNAMICTOP_PTR>>2] = DYNAMIC_BASE;
+
+
+
+
+/**
+ * @license
+ * Copyright 2019 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+// Initializes the stack cookie. Called at the startup of main and at the startup of each thread in pthreads mode.
+function writeStackCookie() {
+  assert((STACK_MAX & 3) == 0);
+  // The stack grows downwards
+  HEAPU32[(STACK_MAX >> 2)+1] = 0x2135467;
+  HEAPU32[(STACK_MAX >> 2)+2] = 0x89BACDFE;
+  // Also test the global address 0 for integrity.
+  // We don't do this with ASan because ASan does its own checks for this.
+  HEAP32[0] = 0x63736d65; /* 'emsc' */
+}
+
+function checkStackCookie() {
+  var cookie1 = HEAPU32[(STACK_MAX >> 2)+1];
+  var cookie2 = HEAPU32[(STACK_MAX >> 2)+2];
+  if (cookie1 != 0x2135467 || cookie2 != 0x89BACDFE) {
+    abort('Stack overflow! Stack cookie has been overwritten, expected hex dwords 0x89BACDFE and 0x2135467, but received 0x' + cookie2.toString(16) + ' ' + cookie1.toString(16));
+  }
+  // Also test the global address 0 for integrity.
+  // We don't do this with ASan because ASan does its own checks for this.
+  if (HEAP32[0] !== 0x63736d65 /* 'emsc' */) abort('Runtime error: The application has corrupted its heap memory area (address zero)!');
+}
+
+function abortStackOverflow(allocSize) {
+  abort('Stack overflow! Attempted to allocate ' + allocSize + ' bytes on the stack, but stack has only ' + (STACK_MAX - stackSave() + allocSize) + ' bytes available!');
+}
+
+
+
+
+/**
+ * @license
+ * Copyright 2019 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+// Endianness check (note: assumes compiler arch was little-endian)
+(function() {
+  var h16 = new Int16Array(1);
+  var h8 = new Int8Array(h16.buffer);
+  h16[0] = 0x6373;
+  if (h8[0] !== 0x73 || h8[1] !== 0x63) throw 'Runtime error: expected the system to be little-endian!';
+})();
+
+function abortFnPtrError(ptr, sig) {
+	abort("Invalid function pointer " + ptr + " called with signature '" + sig + "'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this). Build with ASSERTIONS=2 for more info.");
+}
+
+
+
+function callRuntimeCallbacks(callbacks) {
+  while(callbacks.length > 0) {
+    var callback = callbacks.shift();
+    if (typeof callback == 'function') {
+      callback(Module); // Pass the module as the first argument.
+      continue;
+    }
+    var func = callback.func;
+    if (typeof func === 'number') {
+      if (callback.arg === undefined) {
+        Module['dynCall_v'](func);
+      } else {
+        Module['dynCall_vi'](func, callback.arg);
+      }
+    } else {
+      func(callback.arg === undefined ? null : callback.arg);
+    }
+  }
+}
+
+var __ATPRERUN__  = []; // functions called before the runtime is initialized
+var __ATINIT__    = []; // functions called during startup
+var __ATMAIN__    = []; // functions called when main() is to be run
+var __ATEXIT__    = []; // functions called during shutdown
+var __ATPOSTRUN__ = []; // functions called after the main() is called
+
+var runtimeInitialized = false;
+var runtimeExited = false;
+
+
+function preRun() {
+
+  if (Module['preRun']) {
+    if (typeof Module['preRun'] == 'function') Module['preRun'] = [Module['preRun']];
+    while (Module['preRun'].length) {
+      addOnPreRun(Module['preRun'].shift());
+    }
+  }
+
+  callRuntimeCallbacks(__ATPRERUN__);
+}
+
+function initRuntime() {
+  checkStackCookie();
+  assert(!runtimeInitialized);
+  runtimeInitialized = true;
+  
+  callRuntimeCallbacks(__ATINIT__);
+}
+
+function preMain() {
+  checkStackCookie();
+  
+  callRuntimeCallbacks(__ATMAIN__);
+}
+
+function exitRuntime() {
+  checkStackCookie();
+  runtimeExited = true;
+}
+
+function postRun() {
+  checkStackCookie();
+
+  if (Module['postRun']) {
+    if (typeof Module['postRun'] == 'function') Module['postRun'] = [Module['postRun']];
+    while (Module['postRun'].length) {
+      addOnPostRun(Module['postRun'].shift());
+    }
+  }
+
+  callRuntimeCallbacks(__ATPOSTRUN__);
+}
+
+function addOnPreRun(cb) {
+  __ATPRERUN__.unshift(cb);
+}
+
+function addOnInit(cb) {
+  __ATINIT__.unshift(cb);
+}
+
+function addOnPreMain(cb) {
+  __ATMAIN__.unshift(cb);
+}
+
+function addOnExit(cb) {
+}
+
+function addOnPostRun(cb) {
+  __ATPOSTRUN__.unshift(cb);
+}
+
+/** @param {number|boolean=} ignore */
+function unSign(value, bits, ignore) {
+  if (value >= 0) {
+    return value;
+  }
+  return bits <= 32 ? 2*Math.abs(1 << (bits-1)) + value // Need some trickery, since if bits == 32, we are right at the limit of the bits JS uses in bitshifts
+                    : Math.pow(2, bits)         + value;
+}
+/** @param {number|boolean=} ignore */
+function reSign(value, bits, ignore) {
+  if (value <= 0) {
+    return value;
+  }
+  var half = bits <= 32 ? Math.abs(1 << (bits-1)) // abs is needed if bits == 32
+                        : Math.pow(2, bits-1);
+  if (value >= half && (bits <= 32 || value > half)) { // for huge values, we can hit the precision limit and always get true here. so don't do that
+                                                       // but, in general there is no perfect solution here. With 64-bit ints, we get rounding and errors
+                                                       // TODO: In i64 mode 1, resign the two parts separately and safely
+    value = -2*half + value; // Cannot bitshift half, as it may be at the limit of the bits JS uses in bitshifts
+  }
+  return value;
+}
+
+
+/**
+ * @license
+ * Copyright 2019 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/imul
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/fround
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/clz32
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc
+
+assert(Math.imul, 'This browser does not support Math.imul(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill');
+assert(Math.fround, 'This browser does not support Math.fround(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill');
+assert(Math.clz32, 'This browser does not support Math.clz32(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill');
+assert(Math.trunc, 'This browser does not support Math.trunc(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill');
+
+var Math_abs = Math.abs;
+var Math_cos = Math.cos;
+var Math_sin = Math.sin;
+var Math_tan = Math.tan;
+var Math_acos = Math.acos;
+var Math_asin = Math.asin;
+var Math_atan = Math.atan;
+var Math_atan2 = Math.atan2;
+var Math_exp = Math.exp;
+var Math_log = Math.log;
+var Math_sqrt = Math.sqrt;
+var Math_ceil = Math.ceil;
+var Math_floor = Math.floor;
+var Math_pow = Math.pow;
+var Math_imul = Math.imul;
+var Math_fround = Math.fround;
+var Math_round = Math.round;
+var Math_min = Math.min;
+var Math_max = Math.max;
+var Math_clz32 = Math.clz32;
+var Math_trunc = Math.trunc;
+
+
+
+// A counter of dependencies for calling run(). If we need to
+// do asynchronous work before running, increment this and
+// decrement it. Incrementing must happen in a place like
+// Module.preRun (used by emcc to add file preloading).
+// Note that you can add dependencies in preRun, even though
+// it happens right before run - run will be postponed until
+// the dependencies are met.
+var runDependencies = 0;
+var runDependencyWatcher = null;
+var dependenciesFulfilled = null; // overridden to take different actions when all run dependencies are fulfilled
+var runDependencyTracking = {};
+
+function getUniqueRunDependency(id) {
+  var orig = id;
+  while (1) {
+    if (!runDependencyTracking[id]) return id;
+    id = orig + Math.random();
+  }
+}
+
+function addRunDependency(id) {
+  runDependencies++;
+
+  if (Module['monitorRunDependencies']) {
+    Module['monitorRunDependencies'](runDependencies);
+  }
+
+  if (id) {
+    assert(!runDependencyTracking[id]);
+    runDependencyTracking[id] = 1;
+    if (runDependencyWatcher === null && typeof setInterval !== 'undefined') {
+      // Check for missing dependencies every few seconds
+      runDependencyWatcher = setInterval(function() {
+        if (ABORT) {
+          clearInterval(runDependencyWatcher);
+          runDependencyWatcher = null;
+          return;
+        }
+        var shown = false;
+        for (var dep in runDependencyTracking) {
+          if (!shown) {
+            shown = true;
+            err('still waiting on run dependencies:');
+          }
+          err('dependency: ' + dep);
+        }
+        if (shown) {
+          err('(end of list)');
+        }
+      }, 10000);
+    }
+  } else {
+    err('warning: run dependency added without ID');
+  }
+}
+
+function removeRunDependency(id) {
+  runDependencies--;
+
+  if (Module['monitorRunDependencies']) {
+    Module['monitorRunDependencies'](runDependencies);
+  }
+
+  if (id) {
+    assert(runDependencyTracking[id]);
+    delete runDependencyTracking[id];
+  } else {
+    err('warning: run dependency removed without ID');
+  }
+  if (runDependencies == 0) {
+    if (runDependencyWatcher !== null) {
+      clearInterval(runDependencyWatcher);
+      runDependencyWatcher = null;
+    }
+    if (dependenciesFulfilled) {
+      var callback = dependenciesFulfilled;
+      dependenciesFulfilled = null;
+      callback(); // can add another dependenciesFulfilled
+    }
+  }
+}
+
+Module["preloadedImages"] = {}; // maps url to image data
+Module["preloadedAudios"] = {}; // maps url to audio data
+
+
+/** @param {string|number=} what */
+function abort(what) {
+  if (Module['onAbort']) {
+    Module['onAbort'](what);
+  }
+
+  what += '';
+  out(what);
+  err(what);
+
+  ABORT = true;
+  EXITSTATUS = 1;
+
+  var output = 'abort(' + what + ') at ' + stackTrace();
+  what = output;
+
+  // Throw a wasm runtime error, because a JS error might be seen as a foreign
+  // exception, which means we'd run destructors on it. We need the error to
+  // simply make the program stop.
+  throw new WebAssembly.RuntimeError(what);
+}
+
+
+var memoryInitializer = null;
+
+
+/**
+ * @license
+ * Copyright 2015 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+
+
+
+// show errors on likely calls to FS when it was not included
+var FS = {
+  error: function() {
+    abort('Filesystem support (FS) was not included. The problem is that you are using files from JS, but files were not used from C/C++, so filesystem support was not auto-included. You can force-include filesystem support with  -s FORCE_FILESYSTEM=1');
+  },
+  init: function() { FS.error() },
+  createDataFile: function() { FS.error() },
+  createPreloadedFile: function() { FS.error() },
+  createLazyFile: function() { FS.error() },
+  open: function() { FS.error() },
+  mkdev: function() { FS.error() },
+  registerDevice: function() { FS.error() },
+  analyzePath: function() { FS.error() },
+  loadFilesFromDB: function() { FS.error() },
+
+  ErrnoError: function ErrnoError() { FS.error() },
+};
+Module['FS_createDataFile'] = FS.createDataFile;
+Module['FS_createPreloadedFile'] = FS.createPreloadedFile;
+
+
+
+/**
+ * @license
+ * Copyright 2017 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+function hasPrefix(str, prefix) {
+  return String.prototype.startsWith ?
+      str.startsWith(prefix) :
+      str.indexOf(prefix) === 0;
+}
+
+// Prefix of data URIs emitted by SINGLE_FILE and related options.
+var dataURIPrefix = 'data:application/octet-stream;base64,';
+
+// Indicates whether filename is a base64 data URI.
+function isDataURI(filename) {
+  return hasPrefix(filename, dataURIPrefix);
+}
+
+var fileURIPrefix = "file://";
+
+// Indicates whether filename is delivered via file protocol (as opposed to http/https)
+function isFileURI(filename) {
+  return hasPrefix(filename, fileURIPrefix);
+}
+
+
+
+var wasmBinaryFile = 'ammo.wasm.wasm';
+if (!isDataURI(wasmBinaryFile)) {
+  wasmBinaryFile = locateFile(wasmBinaryFile);
+}
+
+function getBinary() {
+  try {
+    if (wasmBinary) {
+      return new Uint8Array(wasmBinary);
+    }
+
+    if (readBinary) {
+      return readBinary(wasmBinaryFile);
+    } else {
+      throw "both async and sync fetching of the wasm failed";
+    }
+  }
+  catch (err) {
+    abort(err);
+  }
+}
+
+function getBinaryPromise() {
+  // If we don't have the binary yet, and have the Fetch api, use that;
+  // in some environments, like Electron's render process, Fetch api may be present, but have a different context than expected, let's only use it on the Web
+  if (!wasmBinary && (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER) && typeof fetch === 'function'
+      ) {
+    return fetch(wasmBinaryFile, { credentials: 'same-origin' }).then(function(response) {
+      if (!response['ok']) {
+        throw "failed to load wasm binary file at '" + wasmBinaryFile + "'";
+      }
+      return response['arrayBuffer']();
+    }).catch(function () {
+      return getBinary();
+    });
+  }
+  // Otherwise, getBinary should be able to get it synchronously
+  return new Promise(function(resolve, reject) {
+    resolve(getBinary());
+  });
+}
+
+
+
+// Create the wasm instance.
+// Receives the wasm imports, returns the exports.
+function createWasm() {
+  // prepare imports
+  var info = {
+    'env': asmLibraryArg,
+    'wasi_snapshot_preview1': asmLibraryArg
+  };
+  // Load the wasm module and create an instance of using native support in the JS engine.
+  // handle a generated wasm instance, receiving its exports and
+  // performing other necessary setup
+  /** @param {WebAssembly.Module=} module*/
+  function receiveInstance(instance, module) {
+    var exports = instance.exports;
+    Module['asm'] = exports;
+    removeRunDependency('wasm-instantiate');
+  }
+  // we can't run yet (except in a pthread, where we have a custom sync instantiator)
+  addRunDependency('wasm-instantiate');
+
+
+  // Async compilation can be confusing when an error on the page overwrites Module
+  // (for example, if the order of elements is wrong, and the one defining Module is
+  // later), so we save Module and check it later.
+  var trueModule = Module;
+  function receiveInstantiatedSource(output) {
+    // 'output' is a WebAssemblyInstantiatedSource object which has both the module and instance.
+    // receiveInstance() will swap in the exports (to Module.asm) so they can be called
+    assert(Module === trueModule, 'the Module object should not be replaced during async compilation - perhaps the order of HTML elements is wrong?');
+    trueModule = null;
+    // TODO: Due to Closure regression https://github.com/google/closure-compiler/issues/3193, the above line no longer optimizes out down to the following line.
+    // When the regression is fixed, can restore the above USE_PTHREADS-enabled path.
+    receiveInstance(output['instance']);
+  }
+
+
+  function instantiateArrayBuffer(receiver) {
+    return getBinaryPromise().then(function(binary) {
+      return WebAssembly.instantiate(binary, info);
+    }).then(receiver, function(reason) {
+      err('failed to asynchronously prepare wasm: ' + reason);
+      abort(reason);
+    });
+  }
+
+  // Prefer streaming instantiation if available.
+  function instantiateAsync() {
+    if (!wasmBinary &&
+        typeof WebAssembly.instantiateStreaming === 'function' &&
+        !isDataURI(wasmBinaryFile) &&
+        typeof fetch === 'function') {
+      fetch(wasmBinaryFile, { credentials: 'same-origin' }).then(function (response) {
+        var result = WebAssembly.instantiateStreaming(response, info);
+        return result.then(receiveInstantiatedSource, function(reason) {
+            // We expect the most common failure cause to be a bad MIME type for the binary,
+            // in which case falling back to ArrayBuffer instantiation should work.
+            err('wasm streaming compile failed: ' + reason);
+            err('falling back to ArrayBuffer instantiation');
+            instantiateArrayBuffer(receiveInstantiatedSource);
+          });
+      });
+    } else {
+      return instantiateArrayBuffer(receiveInstantiatedSource);
+    }
+  }
+  // User shell pages can write their own Module.instantiateWasm = function(imports, successCallback) callback
+  // to manually instantiate the Wasm module themselves. This allows pages to run the instantiation parallel
+  // to any other async startup actions they are performing.
+  if (Module['instantiateWasm']) {
+    try {
+      var exports = Module['instantiateWasm'](info, receiveInstance);
+      return exports;
+    } catch(e) {
+      err('Module.instantiateWasm callback failed with error: ' + e);
+      return false;
+    }
+  }
+
+  instantiateAsync();
+  return {}; // no exports yet; we'll fill them in later
+}
+
+
+// Globals used by JS i64 conversions
+var tempDouble;
+var tempI64;
+
+// === Body ===
+
+var ASM_CONSTS = {
+  
+};
+function array_bounds_check_error(idx,size){ throw 'Array index ' + idx + ' out of bounds: [0,' + size + ')'; }
+
+
+
+// STATICTOP = STATIC_BASE + 24704;
+/* global initializers */  __ATINIT__.push({ func: function() { ___wasm_call_ctors() } });
+
+
+
+
+/* no memory initializer */
+// {{PRE_LIBRARY}}
+
+
+  function demangle(func) {
+      warnOnce('warning: build with  -s DEMANGLE_SUPPORT=1  to link in libcxxabi demangling');
+      return func;
+    }
+
+  function demangleAll(text) {
+      var regex =
+        /\b_Z[\w\d_]+/g;
+      return text.replace(regex,
+        function(x) {
+          var y = demangle(x);
+          return x === y ? x : (y + ' [' + x + ']');
+        });
+    }
+
+  function jsStackTrace() {
+      var err = new Error();
+      if (!err.stack) {
+        // IE10+ special cases: It does have callstack info, but it is only populated if an Error object is thrown,
+        // so try that as a special-case.
+        try {
+          throw new Error();
+        } catch(e) {
+          err = e;
+        }
+        if (!err.stack) {
+          return '(no stack trace available)';
+        }
+      }
+      return err.stack.toString();
+    }
+
+  function stackTrace() {
+      var js = jsStackTrace();
+      if (Module['extraStackTrace']) js += '\n' + Module['extraStackTrace']();
+      return demangleAll(js);
+    }
+
+  
+  function _atexit(func, arg) {
+      warnOnce('atexit() called, but EXIT_RUNTIME is not set, so atexits() will not be called. set EXIT_RUNTIME to 1 (see the FAQ)');
+      __ATEXIT__.unshift({ func: func, arg: arg });
+    }function ___cxa_atexit(a0,a1
+  ) {
+  return _atexit(a0,a1);
+  }
+
+  function ___handle_stack_overflow() {
+      abort('stack overflow')
+    }
+
+  function _abort() {
+      abort();
+    }
+
+  function _emscripten_get_sbrk_ptr() {
+      return 25568;
+    }
+
+  function _emscripten_memcpy_big(dest, src, num) {
+      HEAPU8.copyWithin(dest, src, src + num);
+    }
+
+  
+  function _emscripten_get_heap_size() {
+      return HEAPU8.length;
+    }
+  
+  function abortOnCannotGrowMemory(requestedSize) {
+      abort('Cannot enlarge memory arrays to size ' + requestedSize + ' bytes (OOM). Either (1) compile with  -s INITIAL_MEMORY=X  with X higher than the current value ' + HEAP8.length + ', (2) compile with  -s ALLOW_MEMORY_GROWTH=1  which allows increasing the size at runtime, or (3) if you want malloc to return NULL (0) instead of this abort, compile with  -s ABORTING_MALLOC=0 ');
+    }function _emscripten_resize_heap(requestedSize) {
+      requestedSize = requestedSize >>> 0;
+      abortOnCannotGrowMemory(requestedSize);
+    }
+
+  function _gettimeofday(ptr) {
+      var now = Date.now();
+      HEAP32[((ptr)>>2)]=(now/1000)|0; // seconds
+      HEAP32[(((ptr)+(4))>>2)]=((now % 1000)*1000)|0; // microseconds
+      return 0;
+    }
+var ASSERTIONS = true;
+
+/**
+ * @license
+ * Copyright 2017 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+/** @type {function(string, boolean=, number=)} */
+function intArrayFromString(stringy, dontAddNull, length) {
+  var len = length > 0 ? length : lengthBytesUTF8(stringy)+1;
+  var u8array = new Array(len);
+  var numBytesWritten = stringToUTF8Array(stringy, u8array, 0, u8array.length);
+  if (dontAddNull) u8array.length = numBytesWritten;
+  return u8array;
+}
+
+function intArrayToString(array) {
+  var ret = [];
+  for (var i = 0; i < array.length; i++) {
+    var chr = array[i];
+    if (chr > 0xFF) {
+      if (ASSERTIONS) {
+        assert(false, 'Character code ' + chr + ' (' + String.fromCharCode(chr) + ')  at offset ' + i + ' not in 0x00-0xFF.');
+      }
+      chr &= 0xFF;
+    }
+    ret.push(String.fromCharCode(chr));
+  }
+  return ret.join('');
+}
+
+
+var asmGlobalArg = {};
+var asmLibraryArg = { "__cxa_atexit": ___cxa_atexit, "__handle_stack_overflow": ___handle_stack_overflow, "abort": _abort, "array_bounds_check_error": array_bounds_check_error, "emscripten_get_sbrk_ptr": _emscripten_get_sbrk_ptr, "emscripten_memcpy_big": _emscripten_memcpy_big, "emscripten_resize_heap": _emscripten_resize_heap, "gettimeofday": _gettimeofday, "memory": wasmMemory, "table": wasmTable };
+var asm = createWasm();
+Module["asm"] = asm;
+/** @type {function(...*):?} */
+var ___wasm_call_ctors = Module["___wasm_call_ctors"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["__wasm_call_ctors"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionShape_setLocalScaling_1 = Module["_btCollisionShape_setLocalScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionShape_setLocalScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionShape_getLocalScaling_0 = Module["_btCollisionShape_getLocalScaling_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionShape_getLocalScaling_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionShape_calculateLocalInertia_2 = Module["_btCollisionShape_calculateLocalInertia_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionShape_calculateLocalInertia_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionShape_setMargin_1 = Module["_btCollisionShape_setMargin_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionShape_setMargin_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionShape_getMargin_0 = Module["_btCollisionShape_getMargin_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionShape_getMargin_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionShape_isCompound_0 = Module["_btCollisionShape_isCompound_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionShape_isCompound_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionShape_getUserIndex_0 = Module["_btCollisionShape_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionShape_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionShape_setUserIndex_1 = Module["_btCollisionShape_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionShape_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionShape_getUserIndex2_0 = Module["_btCollisionShape_getUserIndex2_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionShape_getUserIndex2_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionShape_setUserIndex2_1 = Module["_btCollisionShape_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionShape_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionShape_getAabb_3 = Module["_btCollisionShape_getAabb_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionShape_getAabb_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionShape_getLocalBoundingSphere_0 = Module["_btCollisionShape_getLocalBoundingSphere_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionShape_getLocalBoundingSphere_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionShape___destroy___0 = Module["_btCollisionShape___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionShape___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionWorld_rayTest_3 = Module["_btCollisionWorld_rayTest_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionWorld_rayTest_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionWorld_rayTestSingle_6 = Module["_btCollisionWorld_rayTestSingle_6"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionWorld_rayTestSingle_6"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionWorld_getPairCache_0 = Module["_btCollisionWorld_getPairCache_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionWorld_getPairCache_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionWorld_addCollisionObject_1 = Module["_btCollisionWorld_addCollisionObject_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionWorld_addCollisionObject_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionWorld_addCollisionObject_2 = Module["_btCollisionWorld_addCollisionObject_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionWorld_addCollisionObject_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionWorld_addCollisionObject_3 = Module["_btCollisionWorld_addCollisionObject_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionWorld_addCollisionObject_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionWorld_removeCollisionObject_1 = Module["_btCollisionWorld_removeCollisionObject_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionWorld_removeCollisionObject_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionWorld_setContactBreakingThreshold_1 = Module["_btCollisionWorld_setContactBreakingThreshold_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionWorld_setContactBreakingThreshold_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionWorld___destroy___0 = Module["_btCollisionWorld___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionWorld___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexShape_setLocalScaling_1 = Module["_btConvexShape_setLocalScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexShape_setLocalScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexShape_getLocalScaling_0 = Module["_btConvexShape_getLocalScaling_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexShape_getLocalScaling_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexShape_calculateLocalInertia_2 = Module["_btConvexShape_calculateLocalInertia_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexShape_calculateLocalInertia_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexShape_setMargin_1 = Module["_btConvexShape_setMargin_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexShape_setMargin_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexShape_getMargin_0 = Module["_btConvexShape_getMargin_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexShape_getMargin_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexShape_isCompound_0 = Module["_btConvexShape_isCompound_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexShape_isCompound_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexShape_getUserIndex_0 = Module["_btConvexShape_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexShape_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexShape_setUserIndex_1 = Module["_btConvexShape_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexShape_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexShape_getUserIndex2_0 = Module["_btConvexShape_getUserIndex2_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexShape_getUserIndex2_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexShape_setUserIndex2_1 = Module["_btConvexShape_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexShape_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexShape_getAabb_3 = Module["_btConvexShape_getAabb_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexShape_getAabb_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexShape_getLocalBoundingSphere_0 = Module["_btConvexShape_getLocalBoundingSphere_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexShape_getLocalBoundingSphere_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexShape___destroy___0 = Module["_btConvexShape___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexShape___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDynamicsWorld_addAction_1 = Module["_btDynamicsWorld_addAction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDynamicsWorld_addAction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDynamicsWorld_removeAction_1 = Module["_btDynamicsWorld_removeAction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDynamicsWorld_removeAction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDynamicsWorld_getSolverInfo_0 = Module["_btDynamicsWorld_getSolverInfo_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDynamicsWorld_getSolverInfo_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDynamicsWorld_getFixedBody_0 = Module["_btDynamicsWorld_getFixedBody_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDynamicsWorld_getFixedBody_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDynamicsWorld_rayTest_3 = Module["_btDynamicsWorld_rayTest_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDynamicsWorld_rayTest_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDynamicsWorld_rayTestSingle_6 = Module["_btDynamicsWorld_rayTestSingle_6"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDynamicsWorld_rayTestSingle_6"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDynamicsWorld_getPairCache_0 = Module["_btDynamicsWorld_getPairCache_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDynamicsWorld_getPairCache_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDynamicsWorld_addCollisionObject_1 = Module["_btDynamicsWorld_addCollisionObject_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDynamicsWorld_addCollisionObject_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDynamicsWorld_addCollisionObject_2 = Module["_btDynamicsWorld_addCollisionObject_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDynamicsWorld_addCollisionObject_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDynamicsWorld_addCollisionObject_3 = Module["_btDynamicsWorld_addCollisionObject_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDynamicsWorld_addCollisionObject_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDynamicsWorld_removeCollisionObject_1 = Module["_btDynamicsWorld_removeCollisionObject_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDynamicsWorld_removeCollisionObject_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDynamicsWorld_setContactBreakingThreshold_1 = Module["_btDynamicsWorld_setContactBreakingThreshold_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDynamicsWorld_setContactBreakingThreshold_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDynamicsWorld___destroy___0 = Module["_btDynamicsWorld___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDynamicsWorld___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _RayResultCallback_hasHit_0 = Module["_RayResultCallback_hasHit_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["RayResultCallback_hasHit_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _RayResultCallback_get_m_collisionFilterGroup_0 = Module["_RayResultCallback_get_m_collisionFilterGroup_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["RayResultCallback_get_m_collisionFilterGroup_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _RayResultCallback_set_m_collisionFilterGroup_1 = Module["_RayResultCallback_set_m_collisionFilterGroup_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["RayResultCallback_set_m_collisionFilterGroup_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _RayResultCallback_get_m_collisionFilterMask_0 = Module["_RayResultCallback_get_m_collisionFilterMask_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["RayResultCallback_get_m_collisionFilterMask_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _RayResultCallback_set_m_collisionFilterMask_1 = Module["_RayResultCallback_set_m_collisionFilterMask_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["RayResultCallback_set_m_collisionFilterMask_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _RayResultCallback_get_m_closestHitFraction_0 = Module["_RayResultCallback_get_m_closestHitFraction_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["RayResultCallback_get_m_closestHitFraction_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _RayResultCallback_set_m_closestHitFraction_1 = Module["_RayResultCallback_set_m_closestHitFraction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["RayResultCallback_set_m_closestHitFraction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _RayResultCallback_get_m_collisionObject_0 = Module["_RayResultCallback_get_m_collisionObject_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["RayResultCallback_get_m_collisionObject_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _RayResultCallback_set_m_collisionObject_1 = Module["_RayResultCallback_set_m_collisionObject_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["RayResultCallback_set_m_collisionObject_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _RayResultCallback___destroy___0 = Module["_RayResultCallback___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["RayResultCallback___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConcaveShape_setLocalScaling_1 = Module["_btConcaveShape_setLocalScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConcaveShape_setLocalScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConcaveShape_getLocalScaling_0 = Module["_btConcaveShape_getLocalScaling_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConcaveShape_getLocalScaling_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConcaveShape_calculateLocalInertia_2 = Module["_btConcaveShape_calculateLocalInertia_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConcaveShape_calculateLocalInertia_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConcaveShape_isCompound_0 = Module["_btConcaveShape_isCompound_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConcaveShape_isCompound_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConcaveShape_getUserIndex_0 = Module["_btConcaveShape_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConcaveShape_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConcaveShape_setUserIndex_1 = Module["_btConcaveShape_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConcaveShape_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConcaveShape_getUserIndex2_0 = Module["_btConcaveShape_getUserIndex2_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConcaveShape_getUserIndex2_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConcaveShape_setUserIndex2_1 = Module["_btConcaveShape_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConcaveShape_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConcaveShape_getAabb_3 = Module["_btConcaveShape_getAabb_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConcaveShape_getAabb_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConcaveShape_getLocalBoundingSphere_0 = Module["_btConcaveShape_getLocalBoundingSphere_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConcaveShape_getLocalBoundingSphere_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConcaveShape___destroy___0 = Module["_btConcaveShape___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConcaveShape___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btStridingMeshInterface_setScaling_1 = Module["_btStridingMeshInterface_setScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btStridingMeshInterface_setScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btStridingMeshInterface___destroy___0 = Module["_btStridingMeshInterface___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btStridingMeshInterface___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBroadphaseInterface_getOverlappingPairCache_0 = Module["_btBroadphaseInterface_getOverlappingPairCache_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBroadphaseInterface_getOverlappingPairCache_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBroadphaseInterface___destroy___0 = Module["_btBroadphaseInterface___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBroadphaseInterface___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_btCollisionObject_0 = Module["_btCollisionObject_btCollisionObject_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_btCollisionObject_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_getCollisionShape_0 = Module["_btCollisionObject_getCollisionShape_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_getCollisionShape_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_getActivationState_0 = Module["_btCollisionObject_getActivationState_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_getActivationState_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_setActivationState_1 = Module["_btCollisionObject_setActivationState_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_setActivationState_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_forceActivationState_1 = Module["_btCollisionObject_forceActivationState_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_forceActivationState_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_activate_0 = Module["_btCollisionObject_activate_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_activate_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_activate_1 = Module["_btCollisionObject_activate_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_activate_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_isActive_0 = Module["_btCollisionObject_isActive_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_isActive_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_isKinematicObject_0 = Module["_btCollisionObject_isKinematicObject_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_isKinematicObject_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_isStaticObject_0 = Module["_btCollisionObject_isStaticObject_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_isStaticObject_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_isStaticOrKinematicObject_0 = Module["_btCollisionObject_isStaticOrKinematicObject_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_isStaticOrKinematicObject_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_setRestitution_1 = Module["_btCollisionObject_setRestitution_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_setRestitution_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_setFriction_1 = Module["_btCollisionObject_setFriction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_setFriction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_setRollingFriction_1 = Module["_btCollisionObject_setRollingFriction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_setRollingFriction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_setSpinningFriction_1 = Module["_btCollisionObject_setSpinningFriction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_setSpinningFriction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_getWorldTransform_0 = Module["_btCollisionObject_getWorldTransform_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_getWorldTransform_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_getCollisionFlags_0 = Module["_btCollisionObject_getCollisionFlags_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_getCollisionFlags_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_setCollisionFlags_1 = Module["_btCollisionObject_setCollisionFlags_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_setCollisionFlags_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_setWorldTransform_1 = Module["_btCollisionObject_setWorldTransform_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_setWorldTransform_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_setCollisionShape_1 = Module["_btCollisionObject_setCollisionShape_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_setCollisionShape_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_setCcdMotionThreshold_1 = Module["_btCollisionObject_setCcdMotionThreshold_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_setCcdMotionThreshold_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_setCcdSweptSphereRadius_1 = Module["_btCollisionObject_setCcdSweptSphereRadius_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_setCcdSweptSphereRadius_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_getUserIndex_0 = Module["_btCollisionObject_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_setUserIndex_1 = Module["_btCollisionObject_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_setUserIndex2_1 = Module["_btCollisionObject_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject_setIgnoreCollisionCheck_2 = Module["_btCollisionObject_setIgnoreCollisionCheck_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject_setIgnoreCollisionCheck_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionObject___destroy___0 = Module["_btCollisionObject___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionObject___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_btDiscreteDynamicsWorld_4 = Module["_btDiscreteDynamicsWorld_btDiscreteDynamicsWorld_4"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_btDiscreteDynamicsWorld_4"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_setGravity_1 = Module["_btDiscreteDynamicsWorld_setGravity_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_setGravity_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_getGravity_0 = Module["_btDiscreteDynamicsWorld_getGravity_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_getGravity_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_addRigidBody_1 = Module["_btDiscreteDynamicsWorld_addRigidBody_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_addRigidBody_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_addRigidBody_3 = Module["_btDiscreteDynamicsWorld_addRigidBody_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_addRigidBody_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_removeRigidBody_1 = Module["_btDiscreteDynamicsWorld_removeRigidBody_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_removeRigidBody_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_addConstraint_1 = Module["_btDiscreteDynamicsWorld_addConstraint_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_addConstraint_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_addConstraint_2 = Module["_btDiscreteDynamicsWorld_addConstraint_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_addConstraint_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_removeConstraint_1 = Module["_btDiscreteDynamicsWorld_removeConstraint_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_removeConstraint_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_stepSimulation_1 = Module["_btDiscreteDynamicsWorld_stepSimulation_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_stepSimulation_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_stepSimulation_2 = Module["_btDiscreteDynamicsWorld_stepSimulation_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_stepSimulation_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_stepSimulation_3 = Module["_btDiscreteDynamicsWorld_stepSimulation_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_stepSimulation_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_rayTest_3 = Module["_btDiscreteDynamicsWorld_rayTest_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_rayTest_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_rayTestSingle_6 = Module["_btDiscreteDynamicsWorld_rayTestSingle_6"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_rayTestSingle_6"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_getPairCache_0 = Module["_btDiscreteDynamicsWorld_getPairCache_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_getPairCache_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_addCollisionObject_1 = Module["_btDiscreteDynamicsWorld_addCollisionObject_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_addCollisionObject_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_addCollisionObject_2 = Module["_btDiscreteDynamicsWorld_addCollisionObject_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_addCollisionObject_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_addCollisionObject_3 = Module["_btDiscreteDynamicsWorld_addCollisionObject_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_addCollisionObject_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_removeCollisionObject_1 = Module["_btDiscreteDynamicsWorld_removeCollisionObject_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_removeCollisionObject_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_setContactBreakingThreshold_1 = Module["_btDiscreteDynamicsWorld_setContactBreakingThreshold_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_setContactBreakingThreshold_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_addAction_1 = Module["_btDiscreteDynamicsWorld_addAction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_addAction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_removeAction_1 = Module["_btDiscreteDynamicsWorld_removeAction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_removeAction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_getSolverInfo_0 = Module["_btDiscreteDynamicsWorld_getSolverInfo_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_getSolverInfo_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld_getFixedBody_0 = Module["_btDiscreteDynamicsWorld_getFixedBody_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld_getFixedBody_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDiscreteDynamicsWorld___destroy___0 = Module["_btDiscreteDynamicsWorld___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDiscreteDynamicsWorld___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btMotionState_getWorldTransform_1 = Module["_btMotionState_getWorldTransform_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btMotionState_getWorldTransform_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btMotionState_setWorldTransform_1 = Module["_btMotionState_setWorldTransform_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btMotionState_setWorldTransform_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btMotionState___destroy___0 = Module["_btMotionState___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btMotionState___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexInternalShape_getImplicitShapeDimensions_0 = Module["_btConvexInternalShape_getImplicitShapeDimensions_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexInternalShape_getImplicitShapeDimensions_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexInternalShape_setLocalScaling_1 = Module["_btConvexInternalShape_setLocalScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexInternalShape_setLocalScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexInternalShape_getLocalScaling_0 = Module["_btConvexInternalShape_getLocalScaling_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexInternalShape_getLocalScaling_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexInternalShape_calculateLocalInertia_2 = Module["_btConvexInternalShape_calculateLocalInertia_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexInternalShape_calculateLocalInertia_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexInternalShape_setMargin_1 = Module["_btConvexInternalShape_setMargin_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexInternalShape_setMargin_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexInternalShape_getMargin_0 = Module["_btConvexInternalShape_getMargin_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexInternalShape_getMargin_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexInternalShape_isCompound_0 = Module["_btConvexInternalShape_isCompound_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexInternalShape_isCompound_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexInternalShape_getUserIndex_0 = Module["_btConvexInternalShape_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexInternalShape_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexInternalShape_setUserIndex_1 = Module["_btConvexInternalShape_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexInternalShape_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexInternalShape_getUserIndex2_0 = Module["_btConvexInternalShape_getUserIndex2_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexInternalShape_getUserIndex2_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexInternalShape_setUserIndex2_1 = Module["_btConvexInternalShape_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexInternalShape_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexInternalShape_getAabb_3 = Module["_btConvexInternalShape_getAabb_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexInternalShape_getAabb_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexInternalShape_getLocalBoundingSphere_0 = Module["_btConvexInternalShape_getLocalBoundingSphere_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexInternalShape_getLocalBoundingSphere_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexInternalShape___destroy___0 = Module["_btConvexInternalShape___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexInternalShape___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_AllHitsRayResultCallback_2 = Module["_AllHitsRayResultCallback_AllHitsRayResultCallback_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_AllHitsRayResultCallback_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_hasHit_0 = Module["_AllHitsRayResultCallback_hasHit_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_hasHit_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_get_m_collisionObjects_0 = Module["_AllHitsRayResultCallback_get_m_collisionObjects_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_get_m_collisionObjects_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_set_m_collisionObjects_1 = Module["_AllHitsRayResultCallback_set_m_collisionObjects_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_set_m_collisionObjects_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_get_m_rayFromWorld_0 = Module["_AllHitsRayResultCallback_get_m_rayFromWorld_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_get_m_rayFromWorld_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_set_m_rayFromWorld_1 = Module["_AllHitsRayResultCallback_set_m_rayFromWorld_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_set_m_rayFromWorld_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_get_m_rayToWorld_0 = Module["_AllHitsRayResultCallback_get_m_rayToWorld_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_get_m_rayToWorld_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_set_m_rayToWorld_1 = Module["_AllHitsRayResultCallback_set_m_rayToWorld_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_set_m_rayToWorld_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_get_m_hitNormalWorld_0 = Module["_AllHitsRayResultCallback_get_m_hitNormalWorld_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_get_m_hitNormalWorld_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_set_m_hitNormalWorld_1 = Module["_AllHitsRayResultCallback_set_m_hitNormalWorld_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_set_m_hitNormalWorld_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_get_m_hitPointWorld_0 = Module["_AllHitsRayResultCallback_get_m_hitPointWorld_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_get_m_hitPointWorld_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_set_m_hitPointWorld_1 = Module["_AllHitsRayResultCallback_set_m_hitPointWorld_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_set_m_hitPointWorld_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_get_m_hitFractions_0 = Module["_AllHitsRayResultCallback_get_m_hitFractions_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_get_m_hitFractions_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_set_m_hitFractions_1 = Module["_AllHitsRayResultCallback_set_m_hitFractions_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_set_m_hitFractions_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_get_m_collisionFilterGroup_0 = Module["_AllHitsRayResultCallback_get_m_collisionFilterGroup_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_get_m_collisionFilterGroup_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_set_m_collisionFilterGroup_1 = Module["_AllHitsRayResultCallback_set_m_collisionFilterGroup_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_set_m_collisionFilterGroup_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_get_m_collisionFilterMask_0 = Module["_AllHitsRayResultCallback_get_m_collisionFilterMask_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_get_m_collisionFilterMask_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_set_m_collisionFilterMask_1 = Module["_AllHitsRayResultCallback_set_m_collisionFilterMask_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_set_m_collisionFilterMask_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_get_m_closestHitFraction_0 = Module["_AllHitsRayResultCallback_get_m_closestHitFraction_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_get_m_closestHitFraction_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_set_m_closestHitFraction_1 = Module["_AllHitsRayResultCallback_set_m_closestHitFraction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_set_m_closestHitFraction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_get_m_collisionObject_0 = Module["_AllHitsRayResultCallback_get_m_collisionObject_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_get_m_collisionObject_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback_set_m_collisionObject_1 = Module["_AllHitsRayResultCallback_set_m_collisionObject_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback_set_m_collisionObject_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _AllHitsRayResultCallback___destroy___0 = Module["_AllHitsRayResultCallback___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["AllHitsRayResultCallback___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDispatcher_getNumManifolds_0 = Module["_btDispatcher_getNumManifolds_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDispatcher_getNumManifolds_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDispatcher_getManifoldByIndexInternal_1 = Module["_btDispatcher_getManifoldByIndexInternal_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDispatcher_getManifoldByIndexInternal_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDispatcher___destroy___0 = Module["_btDispatcher___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDispatcher___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_ClosestRayResultCallback_2 = Module["_ClosestRayResultCallback_ClosestRayResultCallback_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_ClosestRayResultCallback_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_hasHit_0 = Module["_ClosestRayResultCallback_hasHit_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_hasHit_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_get_m_rayFromWorld_0 = Module["_ClosestRayResultCallback_get_m_rayFromWorld_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_get_m_rayFromWorld_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_set_m_rayFromWorld_1 = Module["_ClosestRayResultCallback_set_m_rayFromWorld_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_set_m_rayFromWorld_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_get_m_rayToWorld_0 = Module["_ClosestRayResultCallback_get_m_rayToWorld_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_get_m_rayToWorld_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_set_m_rayToWorld_1 = Module["_ClosestRayResultCallback_set_m_rayToWorld_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_set_m_rayToWorld_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_get_m_hitNormalWorld_0 = Module["_ClosestRayResultCallback_get_m_hitNormalWorld_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_get_m_hitNormalWorld_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_set_m_hitNormalWorld_1 = Module["_ClosestRayResultCallback_set_m_hitNormalWorld_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_set_m_hitNormalWorld_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_get_m_hitPointWorld_0 = Module["_ClosestRayResultCallback_get_m_hitPointWorld_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_get_m_hitPointWorld_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_set_m_hitPointWorld_1 = Module["_ClosestRayResultCallback_set_m_hitPointWorld_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_set_m_hitPointWorld_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_get_m_collisionFilterGroup_0 = Module["_ClosestRayResultCallback_get_m_collisionFilterGroup_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_get_m_collisionFilterGroup_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_set_m_collisionFilterGroup_1 = Module["_ClosestRayResultCallback_set_m_collisionFilterGroup_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_set_m_collisionFilterGroup_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_get_m_collisionFilterMask_0 = Module["_ClosestRayResultCallback_get_m_collisionFilterMask_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_get_m_collisionFilterMask_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_set_m_collisionFilterMask_1 = Module["_ClosestRayResultCallback_set_m_collisionFilterMask_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_set_m_collisionFilterMask_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_get_m_closestHitFraction_0 = Module["_ClosestRayResultCallback_get_m_closestHitFraction_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_get_m_closestHitFraction_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_set_m_closestHitFraction_1 = Module["_ClosestRayResultCallback_set_m_closestHitFraction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_set_m_closestHitFraction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_get_m_collisionObject_0 = Module["_ClosestRayResultCallback_get_m_collisionObject_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_get_m_collisionObject_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback_set_m_collisionObject_1 = Module["_ClosestRayResultCallback_set_m_collisionObject_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback_set_m_collisionObject_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ClosestRayResultCallback___destroy___0 = Module["_ClosestRayResultCallback___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ClosestRayResultCallback___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMeshShape_setLocalScaling_1 = Module["_btTriangleMeshShape_setLocalScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMeshShape_setLocalScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMeshShape_getLocalScaling_0 = Module["_btTriangleMeshShape_getLocalScaling_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMeshShape_getLocalScaling_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMeshShape_calculateLocalInertia_2 = Module["_btTriangleMeshShape_calculateLocalInertia_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMeshShape_calculateLocalInertia_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMeshShape_isCompound_0 = Module["_btTriangleMeshShape_isCompound_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMeshShape_isCompound_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMeshShape_getUserIndex_0 = Module["_btTriangleMeshShape_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMeshShape_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMeshShape_setUserIndex_1 = Module["_btTriangleMeshShape_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMeshShape_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMeshShape_getUserIndex2_0 = Module["_btTriangleMeshShape_getUserIndex2_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMeshShape_getUserIndex2_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMeshShape_setUserIndex2_1 = Module["_btTriangleMeshShape_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMeshShape_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMeshShape_getAabb_3 = Module["_btTriangleMeshShape_getAabb_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMeshShape_getAabb_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMeshShape_getLocalBoundingSphere_0 = Module["_btTriangleMeshShape_getLocalBoundingSphere_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMeshShape_getLocalBoundingSphere_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMeshShape___destroy___0 = Module["_btTriangleMeshShape___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMeshShape___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btOverlapFilterCallback___destroy___0 = Module["_btOverlapFilterCallback___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btOverlapFilterCallback___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuadWord_x_0 = Module["_btQuadWord_x_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuadWord_x_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuadWord_y_0 = Module["_btQuadWord_y_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuadWord_y_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuadWord_z_0 = Module["_btQuadWord_z_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuadWord_z_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuadWord_w_0 = Module["_btQuadWord_w_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuadWord_w_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuadWord_setX_1 = Module["_btQuadWord_setX_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuadWord_setX_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuadWord_setY_1 = Module["_btQuadWord_setY_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuadWord_setY_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuadWord_setZ_1 = Module["_btQuadWord_setZ_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuadWord_setZ_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuadWord_setW_1 = Module["_btQuadWord_setW_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuadWord_setW_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuadWord___destroy___0 = Module["_btQuadWord___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuadWord___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTypedConstraint_enableFeedback_1 = Module["_btTypedConstraint_enableFeedback_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTypedConstraint_enableFeedback_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTypedConstraint_getBreakingImpulseThreshold_0 = Module["_btTypedConstraint_getBreakingImpulseThreshold_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTypedConstraint_getBreakingImpulseThreshold_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTypedConstraint_setBreakingImpulseThreshold_1 = Module["_btTypedConstraint_setBreakingImpulseThreshold_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTypedConstraint_setBreakingImpulseThreshold_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTypedConstraint_getParam_2 = Module["_btTypedConstraint_getParam_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTypedConstraint_getParam_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTypedConstraint_setParam_3 = Module["_btTypedConstraint_setParam_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTypedConstraint_setParam_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTypedConstraint___destroy___0 = Module["_btTypedConstraint___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTypedConstraint___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btMatrix3x3_getRotation_1 = Module["_btMatrix3x3_getRotation_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btMatrix3x3_getRotation_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btMatrix3x3___destroy___0 = Module["_btMatrix3x3___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btMatrix3x3___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btScalarArray_size_0 = Module["_btScalarArray_size_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btScalarArray_size_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btScalarArray_at_1 = Module["_btScalarArray_at_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btScalarArray_at_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btScalarArray_clear_0 = Module["_btScalarArray_clear_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btScalarArray_clear_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btScalarArray___destroy___0 = Module["_btScalarArray___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btScalarArray___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBvhTriangleMeshShape_btBvhTriangleMeshShape_2 = Module["_btBvhTriangleMeshShape_btBvhTriangleMeshShape_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBvhTriangleMeshShape_btBvhTriangleMeshShape_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBvhTriangleMeshShape_btBvhTriangleMeshShape_3 = Module["_btBvhTriangleMeshShape_btBvhTriangleMeshShape_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBvhTriangleMeshShape_btBvhTriangleMeshShape_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBvhTriangleMeshShape_setLocalScaling_1 = Module["_btBvhTriangleMeshShape_setLocalScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBvhTriangleMeshShape_setLocalScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBvhTriangleMeshShape_getLocalScaling_0 = Module["_btBvhTriangleMeshShape_getLocalScaling_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBvhTriangleMeshShape_getLocalScaling_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBvhTriangleMeshShape_calculateLocalInertia_2 = Module["_btBvhTriangleMeshShape_calculateLocalInertia_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBvhTriangleMeshShape_calculateLocalInertia_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBvhTriangleMeshShape_isCompound_0 = Module["_btBvhTriangleMeshShape_isCompound_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBvhTriangleMeshShape_isCompound_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBvhTriangleMeshShape_getUserIndex_0 = Module["_btBvhTriangleMeshShape_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBvhTriangleMeshShape_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBvhTriangleMeshShape_setUserIndex_1 = Module["_btBvhTriangleMeshShape_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBvhTriangleMeshShape_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBvhTriangleMeshShape_getUserIndex2_0 = Module["_btBvhTriangleMeshShape_getUserIndex2_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBvhTriangleMeshShape_getUserIndex2_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBvhTriangleMeshShape_setUserIndex2_1 = Module["_btBvhTriangleMeshShape_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBvhTriangleMeshShape_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBvhTriangleMeshShape_getAabb_3 = Module["_btBvhTriangleMeshShape_getAabb_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBvhTriangleMeshShape_getAabb_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBvhTriangleMeshShape_getLocalBoundingSphere_0 = Module["_btBvhTriangleMeshShape_getLocalBoundingSphere_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBvhTriangleMeshShape_getLocalBoundingSphere_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBvhTriangleMeshShape___destroy___0 = Module["_btBvhTriangleMeshShape___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBvhTriangleMeshShape___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDbvtBroadphase_btDbvtBroadphase_0 = Module["_btDbvtBroadphase_btDbvtBroadphase_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDbvtBroadphase_btDbvtBroadphase_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDbvtBroadphase_getOverlappingPairCache_0 = Module["_btDbvtBroadphase_getOverlappingPairCache_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDbvtBroadphase_getOverlappingPairCache_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDbvtBroadphase___destroy___0 = Module["_btDbvtBroadphase___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDbvtBroadphase___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btIntArray_size_0 = Module["_btIntArray_size_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btIntArray_size_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btIntArray_at_1 = Module["_btIntArray_at_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btIntArray_at_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btIntArray_clear_0 = Module["_btIntArray_clear_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btIntArray_clear_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btIntArray___destroy___0 = Module["_btIntArray___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btIntArray___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_ccAllHitsRayResultCallback_2 = Module["_ccAllHitsRayResultCallback_ccAllHitsRayResultCallback_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_ccAllHitsRayResultCallback_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_setQueryTrigger_1 = Module["_ccAllHitsRayResultCallback_setQueryTrigger_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_setQueryTrigger_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_hasHit_0 = Module["_ccAllHitsRayResultCallback_hasHit_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_hasHit_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_get_m_shapeParts_0 = Module["_ccAllHitsRayResultCallback_get_m_shapeParts_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_get_m_shapeParts_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_set_m_shapeParts_1 = Module["_ccAllHitsRayResultCallback_set_m_shapeParts_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_set_m_shapeParts_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_get_m_collisionObjects_0 = Module["_ccAllHitsRayResultCallback_get_m_collisionObjects_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_get_m_collisionObjects_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_set_m_collisionObjects_1 = Module["_ccAllHitsRayResultCallback_set_m_collisionObjects_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_set_m_collisionObjects_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_get_m_rayFromWorld_0 = Module["_ccAllHitsRayResultCallback_get_m_rayFromWorld_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_get_m_rayFromWorld_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_set_m_rayFromWorld_1 = Module["_ccAllHitsRayResultCallback_set_m_rayFromWorld_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_set_m_rayFromWorld_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_get_m_rayToWorld_0 = Module["_ccAllHitsRayResultCallback_get_m_rayToWorld_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_get_m_rayToWorld_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_set_m_rayToWorld_1 = Module["_ccAllHitsRayResultCallback_set_m_rayToWorld_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_set_m_rayToWorld_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_get_m_hitNormalWorld_0 = Module["_ccAllHitsRayResultCallback_get_m_hitNormalWorld_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_get_m_hitNormalWorld_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_set_m_hitNormalWorld_1 = Module["_ccAllHitsRayResultCallback_set_m_hitNormalWorld_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_set_m_hitNormalWorld_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_get_m_hitPointWorld_0 = Module["_ccAllHitsRayResultCallback_get_m_hitPointWorld_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_get_m_hitPointWorld_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_set_m_hitPointWorld_1 = Module["_ccAllHitsRayResultCallback_set_m_hitPointWorld_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_set_m_hitPointWorld_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_get_m_hitFractions_0 = Module["_ccAllHitsRayResultCallback_get_m_hitFractions_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_get_m_hitFractions_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_set_m_hitFractions_1 = Module["_ccAllHitsRayResultCallback_set_m_hitFractions_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_set_m_hitFractions_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_get_m_collisionFilterGroup_0 = Module["_ccAllHitsRayResultCallback_get_m_collisionFilterGroup_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_get_m_collisionFilterGroup_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_set_m_collisionFilterGroup_1 = Module["_ccAllHitsRayResultCallback_set_m_collisionFilterGroup_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_set_m_collisionFilterGroup_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_get_m_collisionFilterMask_0 = Module["_ccAllHitsRayResultCallback_get_m_collisionFilterMask_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_get_m_collisionFilterMask_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_set_m_collisionFilterMask_1 = Module["_ccAllHitsRayResultCallback_set_m_collisionFilterMask_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_set_m_collisionFilterMask_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_get_m_closestHitFraction_0 = Module["_ccAllHitsRayResultCallback_get_m_closestHitFraction_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_get_m_closestHitFraction_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_set_m_closestHitFraction_1 = Module["_ccAllHitsRayResultCallback_set_m_closestHitFraction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_set_m_closestHitFraction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_get_m_collisionObject_0 = Module["_ccAllHitsRayResultCallback_get_m_collisionObject_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_get_m_collisionObject_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback_set_m_collisionObject_1 = Module["_ccAllHitsRayResultCallback_set_m_collisionObject_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback_set_m_collisionObject_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccAllHitsRayResultCallback___destroy___0 = Module["_ccAllHitsRayResultCallback___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccAllHitsRayResultCallback___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConstCollisionObjectArray_size_0 = Module["_btConstCollisionObjectArray_size_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConstCollisionObjectArray_size_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConstCollisionObjectArray_at_1 = Module["_btConstCollisionObjectArray_at_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConstCollisionObjectArray_at_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConstCollisionObjectArray_clear_0 = Module["_btConstCollisionObjectArray_clear_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConstCollisionObjectArray_clear_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConstCollisionObjectArray___destroy___0 = Module["_btConstCollisionObjectArray___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConstCollisionObjectArray___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBroadphaseProxy_get_m_collisionFilterGroup_0 = Module["_btBroadphaseProxy_get_m_collisionFilterGroup_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBroadphaseProxy_get_m_collisionFilterGroup_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBroadphaseProxy_set_m_collisionFilterGroup_1 = Module["_btBroadphaseProxy_set_m_collisionFilterGroup_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBroadphaseProxy_set_m_collisionFilterGroup_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBroadphaseProxy_get_m_collisionFilterMask_0 = Module["_btBroadphaseProxy_get_m_collisionFilterMask_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBroadphaseProxy_get_m_collisionFilterMask_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBroadphaseProxy_set_m_collisionFilterMask_1 = Module["_btBroadphaseProxy_set_m_collisionFilterMask_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBroadphaseProxy_set_m_collisionFilterMask_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBroadphaseProxy___destroy___0 = Module["_btBroadphaseProxy___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBroadphaseProxy___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btIndexedMesh_get_m_numTriangles_0 = Module["_btIndexedMesh_get_m_numTriangles_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btIndexedMesh_get_m_numTriangles_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btIndexedMesh_set_m_numTriangles_1 = Module["_btIndexedMesh_set_m_numTriangles_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btIndexedMesh_set_m_numTriangles_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btIndexedMesh___destroy___0 = Module["_btIndexedMesh___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btIndexedMesh___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBodyConstructionInfo_btRigidBodyConstructionInfo_3 = Module["_btRigidBodyConstructionInfo_btRigidBodyConstructionInfo_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBodyConstructionInfo_btRigidBodyConstructionInfo_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBodyConstructionInfo_btRigidBodyConstructionInfo_4 = Module["_btRigidBodyConstructionInfo_btRigidBodyConstructionInfo_4"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBodyConstructionInfo_btRigidBodyConstructionInfo_4"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBodyConstructionInfo_get_m_linearDamping_0 = Module["_btRigidBodyConstructionInfo_get_m_linearDamping_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBodyConstructionInfo_get_m_linearDamping_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBodyConstructionInfo_set_m_linearDamping_1 = Module["_btRigidBodyConstructionInfo_set_m_linearDamping_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBodyConstructionInfo_set_m_linearDamping_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBodyConstructionInfo_get_m_angularDamping_0 = Module["_btRigidBodyConstructionInfo_get_m_angularDamping_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBodyConstructionInfo_get_m_angularDamping_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBodyConstructionInfo_set_m_angularDamping_1 = Module["_btRigidBodyConstructionInfo_set_m_angularDamping_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBodyConstructionInfo_set_m_angularDamping_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBodyConstructionInfo_get_m_friction_0 = Module["_btRigidBodyConstructionInfo_get_m_friction_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBodyConstructionInfo_get_m_friction_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBodyConstructionInfo_set_m_friction_1 = Module["_btRigidBodyConstructionInfo_set_m_friction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBodyConstructionInfo_set_m_friction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBodyConstructionInfo_get_m_rollingFriction_0 = Module["_btRigidBodyConstructionInfo_get_m_rollingFriction_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBodyConstructionInfo_get_m_rollingFriction_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBodyConstructionInfo_set_m_rollingFriction_1 = Module["_btRigidBodyConstructionInfo_set_m_rollingFriction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBodyConstructionInfo_set_m_rollingFriction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBodyConstructionInfo_get_m_restitution_0 = Module["_btRigidBodyConstructionInfo_get_m_restitution_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBodyConstructionInfo_get_m_restitution_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBodyConstructionInfo_set_m_restitution_1 = Module["_btRigidBodyConstructionInfo_set_m_restitution_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBodyConstructionInfo_set_m_restitution_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBodyConstructionInfo_get_m_linearSleepingThreshold_0 = Module["_btRigidBodyConstructionInfo_get_m_linearSleepingThreshold_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBodyConstructionInfo_get_m_linearSleepingThreshold_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBodyConstructionInfo_set_m_linearSleepingThreshold_1 = Module["_btRigidBodyConstructionInfo_set_m_linearSleepingThreshold_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBodyConstructionInfo_set_m_linearSleepingThreshold_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBodyConstructionInfo_get_m_angularSleepingThreshold_0 = Module["_btRigidBodyConstructionInfo_get_m_angularSleepingThreshold_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBodyConstructionInfo_get_m_angularSleepingThreshold_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBodyConstructionInfo_set_m_angularSleepingThreshold_1 = Module["_btRigidBodyConstructionInfo_set_m_angularSleepingThreshold_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBodyConstructionInfo_set_m_angularSleepingThreshold_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBodyConstructionInfo___destroy___0 = Module["_btRigidBodyConstructionInfo___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBodyConstructionInfo___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_getAppliedImpulse_0 = Module["_btManifoldPoint_getAppliedImpulse_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_getAppliedImpulse_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_getDistance_0 = Module["_btManifoldPoint_getDistance_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_getDistance_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_getShape0_0 = Module["_btManifoldPoint_getShape0_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_getShape0_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_getShape1_0 = Module["_btManifoldPoint_getShape1_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_getShape1_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_get_m_localPointA_0 = Module["_btManifoldPoint_get_m_localPointA_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_get_m_localPointA_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_set_m_localPointA_1 = Module["_btManifoldPoint_set_m_localPointA_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_set_m_localPointA_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_get_m_localPointB_0 = Module["_btManifoldPoint_get_m_localPointB_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_get_m_localPointB_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_set_m_localPointB_1 = Module["_btManifoldPoint_set_m_localPointB_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_set_m_localPointB_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_get_m_positionWorldOnA_0 = Module["_btManifoldPoint_get_m_positionWorldOnA_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_get_m_positionWorldOnA_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_set_m_positionWorldOnA_1 = Module["_btManifoldPoint_set_m_positionWorldOnA_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_set_m_positionWorldOnA_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_get_m_positionWorldOnB_0 = Module["_btManifoldPoint_get_m_positionWorldOnB_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_get_m_positionWorldOnB_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_set_m_positionWorldOnB_1 = Module["_btManifoldPoint_set_m_positionWorldOnB_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_set_m_positionWorldOnB_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_get_m_normalWorldOnB_0 = Module["_btManifoldPoint_get_m_normalWorldOnB_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_get_m_normalWorldOnB_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_set_m_normalWorldOnB_1 = Module["_btManifoldPoint_set_m_normalWorldOnB_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_set_m_normalWorldOnB_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_get_m_distance1_0 = Module["_btManifoldPoint_get_m_distance1_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_get_m_distance1_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_set_m_distance1_1 = Module["_btManifoldPoint_set_m_distance1_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_set_m_distance1_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_get_m_index0_0 = Module["_btManifoldPoint_get_m_index0_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_get_m_index0_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_set_m_index0_1 = Module["_btManifoldPoint_set_m_index0_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_set_m_index0_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_get_m_index1_0 = Module["_btManifoldPoint_get_m_index1_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_get_m_index1_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_set_m_index1_1 = Module["_btManifoldPoint_set_m_index1_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_set_m_index1_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_get_m_userPersistentData_0 = Module["_btManifoldPoint_get_m_userPersistentData_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_get_m_userPersistentData_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_set_m_userPersistentData_1 = Module["_btManifoldPoint_set_m_userPersistentData_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_set_m_userPersistentData_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_get_m_userPersistentData0_0 = Module["_btManifoldPoint_get_m_userPersistentData0_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_get_m_userPersistentData0_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_set_m_userPersistentData0_1 = Module["_btManifoldPoint_set_m_userPersistentData0_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_set_m_userPersistentData0_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_get_m_userPersistentData1_0 = Module["_btManifoldPoint_get_m_userPersistentData1_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_get_m_userPersistentData1_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint_set_m_userPersistentData1_1 = Module["_btManifoldPoint_set_m_userPersistentData1_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint_set_m_userPersistentData1_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btManifoldPoint___destroy___0 = Module["_btManifoldPoint___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btManifoldPoint___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSequentialImpulseConstraintSolver_btSequentialImpulseConstraintSolver_0 = Module["_btSequentialImpulseConstraintSolver_btSequentialImpulseConstraintSolver_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSequentialImpulseConstraintSolver_btSequentialImpulseConstraintSolver_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSequentialImpulseConstraintSolver___destroy___0 = Module["_btSequentialImpulseConstraintSolver___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSequentialImpulseConstraintSolver___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPoint2PointConstraint_btPoint2PointConstraint_2 = Module["_btPoint2PointConstraint_btPoint2PointConstraint_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPoint2PointConstraint_btPoint2PointConstraint_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPoint2PointConstraint_btPoint2PointConstraint_4 = Module["_btPoint2PointConstraint_btPoint2PointConstraint_4"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPoint2PointConstraint_btPoint2PointConstraint_4"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPoint2PointConstraint_setPivotA_1 = Module["_btPoint2PointConstraint_setPivotA_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPoint2PointConstraint_setPivotA_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPoint2PointConstraint_setPivotB_1 = Module["_btPoint2PointConstraint_setPivotB_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPoint2PointConstraint_setPivotB_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPoint2PointConstraint_getPivotInA_0 = Module["_btPoint2PointConstraint_getPivotInA_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPoint2PointConstraint_getPivotInA_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPoint2PointConstraint_getPivotInB_0 = Module["_btPoint2PointConstraint_getPivotInB_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPoint2PointConstraint_getPivotInB_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPoint2PointConstraint_enableFeedback_1 = Module["_btPoint2PointConstraint_enableFeedback_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPoint2PointConstraint_enableFeedback_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPoint2PointConstraint_getBreakingImpulseThreshold_0 = Module["_btPoint2PointConstraint_getBreakingImpulseThreshold_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPoint2PointConstraint_getBreakingImpulseThreshold_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPoint2PointConstraint_setBreakingImpulseThreshold_1 = Module["_btPoint2PointConstraint_setBreakingImpulseThreshold_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPoint2PointConstraint_setBreakingImpulseThreshold_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPoint2PointConstraint_getParam_2 = Module["_btPoint2PointConstraint_getParam_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPoint2PointConstraint_getParam_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPoint2PointConstraint_setParam_3 = Module["_btPoint2PointConstraint_setParam_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPoint2PointConstraint_setParam_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPoint2PointConstraint_get_m_setting_0 = Module["_btPoint2PointConstraint_get_m_setting_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPoint2PointConstraint_get_m_setting_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPoint2PointConstraint_set_m_setting_1 = Module["_btPoint2PointConstraint_set_m_setting_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPoint2PointConstraint_set_m_setting_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPoint2PointConstraint___destroy___0 = Module["_btPoint2PointConstraint___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPoint2PointConstraint___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccOverlapFilterCallback_ccOverlapFilterCallback_0 = Module["_ccOverlapFilterCallback_ccOverlapFilterCallback_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccOverlapFilterCallback_ccOverlapFilterCallback_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccOverlapFilterCallback___destroy___0 = Module["_ccOverlapFilterCallback___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccOverlapFilterCallback___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexTriangleMeshShape_btConvexTriangleMeshShape_1 = Module["_btConvexTriangleMeshShape_btConvexTriangleMeshShape_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexTriangleMeshShape_btConvexTriangleMeshShape_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexTriangleMeshShape_btConvexTriangleMeshShape_2 = Module["_btConvexTriangleMeshShape_btConvexTriangleMeshShape_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexTriangleMeshShape_btConvexTriangleMeshShape_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexTriangleMeshShape_setLocalScaling_1 = Module["_btConvexTriangleMeshShape_setLocalScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexTriangleMeshShape_setLocalScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexTriangleMeshShape_getLocalScaling_0 = Module["_btConvexTriangleMeshShape_getLocalScaling_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexTriangleMeshShape_getLocalScaling_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexTriangleMeshShape_calculateLocalInertia_2 = Module["_btConvexTriangleMeshShape_calculateLocalInertia_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexTriangleMeshShape_calculateLocalInertia_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexTriangleMeshShape_setMargin_1 = Module["_btConvexTriangleMeshShape_setMargin_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexTriangleMeshShape_setMargin_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexTriangleMeshShape_getMargin_0 = Module["_btConvexTriangleMeshShape_getMargin_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexTriangleMeshShape_getMargin_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexTriangleMeshShape_isCompound_0 = Module["_btConvexTriangleMeshShape_isCompound_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexTriangleMeshShape_isCompound_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexTriangleMeshShape_getUserIndex_0 = Module["_btConvexTriangleMeshShape_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexTriangleMeshShape_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexTriangleMeshShape_setUserIndex_1 = Module["_btConvexTriangleMeshShape_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexTriangleMeshShape_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexTriangleMeshShape_getUserIndex2_0 = Module["_btConvexTriangleMeshShape_getUserIndex2_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexTriangleMeshShape_getUserIndex2_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexTriangleMeshShape_setUserIndex2_1 = Module["_btConvexTriangleMeshShape_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexTriangleMeshShape_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexTriangleMeshShape_getAabb_3 = Module["_btConvexTriangleMeshShape_getAabb_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexTriangleMeshShape_getAabb_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexTriangleMeshShape_getLocalBoundingSphere_0 = Module["_btConvexTriangleMeshShape_getLocalBoundingSphere_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexTriangleMeshShape_getLocalBoundingSphere_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConvexTriangleMeshShape___destroy___0 = Module["_btConvexTriangleMeshShape___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConvexTriangleMeshShape___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_ccClosestRayResultCallback_2 = Module["_ccClosestRayResultCallback_ccClosestRayResultCallback_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_ccClosestRayResultCallback_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_setQueryTrigger_1 = Module["_ccClosestRayResultCallback_setQueryTrigger_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_setQueryTrigger_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_hasHit_0 = Module["_ccClosestRayResultCallback_hasHit_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_hasHit_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_get_m_shapePart_0 = Module["_ccClosestRayResultCallback_get_m_shapePart_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_get_m_shapePart_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_set_m_shapePart_1 = Module["_ccClosestRayResultCallback_set_m_shapePart_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_set_m_shapePart_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_get_m_rayFromWorld_0 = Module["_ccClosestRayResultCallback_get_m_rayFromWorld_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_get_m_rayFromWorld_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_set_m_rayFromWorld_1 = Module["_ccClosestRayResultCallback_set_m_rayFromWorld_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_set_m_rayFromWorld_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_get_m_rayToWorld_0 = Module["_ccClosestRayResultCallback_get_m_rayToWorld_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_get_m_rayToWorld_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_set_m_rayToWorld_1 = Module["_ccClosestRayResultCallback_set_m_rayToWorld_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_set_m_rayToWorld_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_get_m_hitNormalWorld_0 = Module["_ccClosestRayResultCallback_get_m_hitNormalWorld_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_get_m_hitNormalWorld_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_set_m_hitNormalWorld_1 = Module["_ccClosestRayResultCallback_set_m_hitNormalWorld_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_set_m_hitNormalWorld_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_get_m_hitPointWorld_0 = Module["_ccClosestRayResultCallback_get_m_hitPointWorld_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_get_m_hitPointWorld_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_set_m_hitPointWorld_1 = Module["_ccClosestRayResultCallback_set_m_hitPointWorld_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_set_m_hitPointWorld_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_get_m_collisionFilterGroup_0 = Module["_ccClosestRayResultCallback_get_m_collisionFilterGroup_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_get_m_collisionFilterGroup_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_set_m_collisionFilterGroup_1 = Module["_ccClosestRayResultCallback_set_m_collisionFilterGroup_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_set_m_collisionFilterGroup_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_get_m_collisionFilterMask_0 = Module["_ccClosestRayResultCallback_get_m_collisionFilterMask_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_get_m_collisionFilterMask_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_set_m_collisionFilterMask_1 = Module["_ccClosestRayResultCallback_set_m_collisionFilterMask_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_set_m_collisionFilterMask_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_get_m_closestHitFraction_0 = Module["_ccClosestRayResultCallback_get_m_closestHitFraction_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_get_m_closestHitFraction_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_set_m_closestHitFraction_1 = Module["_ccClosestRayResultCallback_set_m_closestHitFraction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_set_m_closestHitFraction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_get_m_collisionObject_0 = Module["_ccClosestRayResultCallback_get_m_collisionObject_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_get_m_collisionObject_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback_set_m_collisionObject_1 = Module["_ccClosestRayResultCallback_set_m_collisionObject_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback_set_m_collisionObject_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccClosestRayResultCallback___destroy___0 = Module["_ccClosestRayResultCallback___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccClosestRayResultCallback___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHeightfieldTerrainShape_btHeightfieldTerrainShape_9 = Module["_btHeightfieldTerrainShape_btHeightfieldTerrainShape_9"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHeightfieldTerrainShape_btHeightfieldTerrainShape_9"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHeightfieldTerrainShape_setMargin_1 = Module["_btHeightfieldTerrainShape_setMargin_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHeightfieldTerrainShape_setMargin_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHeightfieldTerrainShape_getMargin_0 = Module["_btHeightfieldTerrainShape_getMargin_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHeightfieldTerrainShape_getMargin_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHeightfieldTerrainShape_setLocalScaling_1 = Module["_btHeightfieldTerrainShape_setLocalScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHeightfieldTerrainShape_setLocalScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHeightfieldTerrainShape_getLocalScaling_0 = Module["_btHeightfieldTerrainShape_getLocalScaling_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHeightfieldTerrainShape_getLocalScaling_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHeightfieldTerrainShape_calculateLocalInertia_2 = Module["_btHeightfieldTerrainShape_calculateLocalInertia_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHeightfieldTerrainShape_calculateLocalInertia_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHeightfieldTerrainShape_isCompound_0 = Module["_btHeightfieldTerrainShape_isCompound_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHeightfieldTerrainShape_isCompound_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHeightfieldTerrainShape_getUserIndex_0 = Module["_btHeightfieldTerrainShape_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHeightfieldTerrainShape_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHeightfieldTerrainShape_setUserIndex_1 = Module["_btHeightfieldTerrainShape_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHeightfieldTerrainShape_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHeightfieldTerrainShape_getUserIndex2_0 = Module["_btHeightfieldTerrainShape_getUserIndex2_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHeightfieldTerrainShape_getUserIndex2_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHeightfieldTerrainShape_setUserIndex2_1 = Module["_btHeightfieldTerrainShape_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHeightfieldTerrainShape_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHeightfieldTerrainShape_getAabb_3 = Module["_btHeightfieldTerrainShape_getAabb_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHeightfieldTerrainShape_getAabb_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHeightfieldTerrainShape_getLocalBoundingSphere_0 = Module["_btHeightfieldTerrainShape_getLocalBoundingSphere_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHeightfieldTerrainShape_getLocalBoundingSphere_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHeightfieldTerrainShape___destroy___0 = Module["_btHeightfieldTerrainShape___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHeightfieldTerrainShape___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _VoidPtr___destroy___0 = Module["_VoidPtr___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["VoidPtr___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDefaultCollisionConfiguration_btDefaultCollisionConfiguration_0 = Module["_btDefaultCollisionConfiguration_btDefaultCollisionConfiguration_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDefaultCollisionConfiguration_btDefaultCollisionConfiguration_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDefaultCollisionConfiguration_btDefaultCollisionConfiguration_1 = Module["_btDefaultCollisionConfiguration_btDefaultCollisionConfiguration_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDefaultCollisionConfiguration_btDefaultCollisionConfiguration_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDefaultCollisionConfiguration___destroy___0 = Module["_btDefaultCollisionConfiguration___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDefaultCollisionConfiguration___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btOverlappingPairCallback___destroy___0 = Module["_btOverlappingPairCallback___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btOverlappingPairCallback___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMesh_btTriangleMesh_0 = Module["_btTriangleMesh_btTriangleMesh_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMesh_btTriangleMesh_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMesh_btTriangleMesh_1 = Module["_btTriangleMesh_btTriangleMesh_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMesh_btTriangleMesh_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMesh_btTriangleMesh_2 = Module["_btTriangleMesh_btTriangleMesh_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMesh_btTriangleMesh_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMesh_addTriangle_3 = Module["_btTriangleMesh_addTriangle_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMesh_addTriangle_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMesh_addTriangle_4 = Module["_btTriangleMesh_addTriangle_4"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMesh_addTriangle_4"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMesh_addTriangleIndices_3 = Module["_btTriangleMesh_addTriangleIndices_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMesh_addTriangleIndices_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMesh_getIndexedMeshArray_0 = Module["_btTriangleMesh_getIndexedMeshArray_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMesh_getIndexedMeshArray_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMesh_setScaling_1 = Module["_btTriangleMesh_setScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMesh_setScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTriangleMesh___destroy___0 = Module["_btTriangleMesh___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTriangleMesh___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionConfiguration___destroy___0 = Module["_btCollisionConfiguration___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionConfiguration___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPersistentManifold_btPersistentManifold_0 = Module["_btPersistentManifold_btPersistentManifold_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPersistentManifold_btPersistentManifold_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPersistentManifold_getBody0_0 = Module["_btPersistentManifold_getBody0_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPersistentManifold_getBody0_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPersistentManifold_getBody1_0 = Module["_btPersistentManifold_getBody1_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPersistentManifold_getBody1_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPersistentManifold_getNumContacts_0 = Module["_btPersistentManifold_getNumContacts_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPersistentManifold_getNumContacts_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPersistentManifold_getContactPoint_1 = Module["_btPersistentManifold_getContactPoint_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPersistentManifold_getContactPoint_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btPersistentManifold___destroy___0 = Module["_btPersistentManifold___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btPersistentManifold___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBoxShape_btBoxShape_1 = Module["_btBoxShape_btBoxShape_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBoxShape_btBoxShape_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBoxShape_setMargin_1 = Module["_btBoxShape_setMargin_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBoxShape_setMargin_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBoxShape_getMargin_0 = Module["_btBoxShape_getMargin_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBoxShape_getMargin_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBoxShape_setUnscaledHalfExtents_1 = Module["_btBoxShape_setUnscaledHalfExtents_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBoxShape_setUnscaledHalfExtents_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBoxShape_setLocalScaling_1 = Module["_btBoxShape_setLocalScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBoxShape_setLocalScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBoxShape_getLocalScaling_0 = Module["_btBoxShape_getLocalScaling_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBoxShape_getLocalScaling_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBoxShape_calculateLocalInertia_2 = Module["_btBoxShape_calculateLocalInertia_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBoxShape_calculateLocalInertia_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBoxShape_isCompound_0 = Module["_btBoxShape_isCompound_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBoxShape_isCompound_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBoxShape_getUserIndex_0 = Module["_btBoxShape_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBoxShape_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBoxShape_setUserIndex_1 = Module["_btBoxShape_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBoxShape_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBoxShape_getUserIndex2_0 = Module["_btBoxShape_getUserIndex2_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBoxShape_getUserIndex2_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBoxShape_setUserIndex2_1 = Module["_btBoxShape_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBoxShape_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBoxShape_getAabb_3 = Module["_btBoxShape_getAabb_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBoxShape_getAabb_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBoxShape_getLocalBoundingSphere_0 = Module["_btBoxShape_getLocalBoundingSphere_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBoxShape_getLocalBoundingSphere_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBoxShape_getImplicitShapeDimensions_0 = Module["_btBoxShape_getImplicitShapeDimensions_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBoxShape_getImplicitShapeDimensions_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBoxShape___destroy___0 = Module["_btBoxShape___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBoxShape___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCapsuleShape_btCapsuleShape_2 = Module["_btCapsuleShape_btCapsuleShape_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCapsuleShape_btCapsuleShape_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCapsuleShape_setMargin_1 = Module["_btCapsuleShape_setMargin_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCapsuleShape_setMargin_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCapsuleShape_getMargin_0 = Module["_btCapsuleShape_getMargin_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCapsuleShape_getMargin_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCapsuleShape_updateProp_3 = Module["_btCapsuleShape_updateProp_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCapsuleShape_updateProp_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCapsuleShape_setLocalScaling_1 = Module["_btCapsuleShape_setLocalScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCapsuleShape_setLocalScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCapsuleShape_getLocalScaling_0 = Module["_btCapsuleShape_getLocalScaling_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCapsuleShape_getLocalScaling_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCapsuleShape_calculateLocalInertia_2 = Module["_btCapsuleShape_calculateLocalInertia_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCapsuleShape_calculateLocalInertia_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCapsuleShape_isCompound_0 = Module["_btCapsuleShape_isCompound_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCapsuleShape_isCompound_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCapsuleShape_getUserIndex_0 = Module["_btCapsuleShape_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCapsuleShape_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCapsuleShape_setUserIndex_1 = Module["_btCapsuleShape_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCapsuleShape_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCapsuleShape_getUserIndex2_0 = Module["_btCapsuleShape_getUserIndex2_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCapsuleShape_getUserIndex2_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCapsuleShape_setUserIndex2_1 = Module["_btCapsuleShape_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCapsuleShape_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCapsuleShape_getAabb_3 = Module["_btCapsuleShape_getAabb_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCapsuleShape_getAabb_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCapsuleShape_getLocalBoundingSphere_0 = Module["_btCapsuleShape_getLocalBoundingSphere_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCapsuleShape_getLocalBoundingSphere_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCapsuleShape_getImplicitShapeDimensions_0 = Module["_btCapsuleShape_getImplicitShapeDimensions_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCapsuleShape_getImplicitShapeDimensions_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCapsuleShape___destroy___0 = Module["_btCapsuleShape___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCapsuleShape___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_btCompoundShape_0 = Module["_btCompoundShape_btCompoundShape_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_btCompoundShape_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_btCompoundShape_1 = Module["_btCompoundShape_btCompoundShape_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_btCompoundShape_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_addChildShape_2 = Module["_btCompoundShape_addChildShape_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_addChildShape_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_removeChildShape_1 = Module["_btCompoundShape_removeChildShape_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_removeChildShape_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_removeChildShapeByIndex_1 = Module["_btCompoundShape_removeChildShapeByIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_removeChildShapeByIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_getNumChildShapes_0 = Module["_btCompoundShape_getNumChildShapes_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_getNumChildShapes_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_getChildShape_1 = Module["_btCompoundShape_getChildShape_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_getChildShape_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_updateChildTransform_2 = Module["_btCompoundShape_updateChildTransform_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_updateChildTransform_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_updateChildTransform_3 = Module["_btCompoundShape_updateChildTransform_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_updateChildTransform_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_setMargin_1 = Module["_btCompoundShape_setMargin_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_setMargin_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_getMargin_0 = Module["_btCompoundShape_getMargin_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_getMargin_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_setMaterial_3 = Module["_btCompoundShape_setMaterial_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_setMaterial_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_setMaterial_4 = Module["_btCompoundShape_setMaterial_4"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_setMaterial_4"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_setMaterial_5 = Module["_btCompoundShape_setMaterial_5"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_setMaterial_5"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_setMaterial_6 = Module["_btCompoundShape_setMaterial_6"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_setMaterial_6"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_setLocalScaling_1 = Module["_btCompoundShape_setLocalScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_setLocalScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_getLocalScaling_0 = Module["_btCompoundShape_getLocalScaling_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_getLocalScaling_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_calculateLocalInertia_2 = Module["_btCompoundShape_calculateLocalInertia_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_calculateLocalInertia_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_isCompound_0 = Module["_btCompoundShape_isCompound_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_isCompound_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_getUserIndex_0 = Module["_btCompoundShape_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_setUserIndex_1 = Module["_btCompoundShape_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_getUserIndex2_0 = Module["_btCompoundShape_getUserIndex2_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_getUserIndex2_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_setUserIndex2_1 = Module["_btCompoundShape_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_getAabb_3 = Module["_btCompoundShape_getAabb_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_getAabb_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape_getLocalBoundingSphere_0 = Module["_btCompoundShape_getLocalBoundingSphere_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape_getLocalBoundingSphere_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCompoundShape___destroy___0 = Module["_btCompoundShape___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCompoundShape___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDefaultMotionState_btDefaultMotionState_0 = Module["_btDefaultMotionState_btDefaultMotionState_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDefaultMotionState_btDefaultMotionState_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDefaultMotionState_btDefaultMotionState_1 = Module["_btDefaultMotionState_btDefaultMotionState_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDefaultMotionState_btDefaultMotionState_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDefaultMotionState_btDefaultMotionState_2 = Module["_btDefaultMotionState_btDefaultMotionState_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDefaultMotionState_btDefaultMotionState_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDefaultMotionState_getWorldTransform_1 = Module["_btDefaultMotionState_getWorldTransform_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDefaultMotionState_getWorldTransform_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDefaultMotionState_setWorldTransform_1 = Module["_btDefaultMotionState_setWorldTransform_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDefaultMotionState_setWorldTransform_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDefaultMotionState___destroy___0 = Module["_btDefaultMotionState___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDefaultMotionState___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint_btHingeConstraint_4 = Module["_btHingeConstraint_btHingeConstraint_4"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint_btHingeConstraint_4"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint_btHingeConstraint_5 = Module["_btHingeConstraint_btHingeConstraint_5"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint_btHingeConstraint_5"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint_setLimit_4 = Module["_btHingeConstraint_setLimit_4"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint_setLimit_4"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint_setLimit_5 = Module["_btHingeConstraint_setLimit_5"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint_setLimit_5"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint_enableAngularMotor_3 = Module["_btHingeConstraint_enableAngularMotor_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint_enableAngularMotor_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint_setAngularOnly_1 = Module["_btHingeConstraint_setAngularOnly_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint_setAngularOnly_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint_enableMotor_1 = Module["_btHingeConstraint_enableMotor_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint_enableMotor_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint_setMaxMotorImpulse_1 = Module["_btHingeConstraint_setMaxMotorImpulse_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint_setMaxMotorImpulse_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint_setMotorTarget_2 = Module["_btHingeConstraint_setMotorTarget_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint_setMotorTarget_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint_setFrames_2 = Module["_btHingeConstraint_setFrames_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint_setFrames_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint_setAxis_1 = Module["_btHingeConstraint_setAxis_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint_setAxis_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint_setUseReferenceFrameA_1 = Module["_btHingeConstraint_setUseReferenceFrameA_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint_setUseReferenceFrameA_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint_enableFeedback_1 = Module["_btHingeConstraint_enableFeedback_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint_enableFeedback_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint_getBreakingImpulseThreshold_0 = Module["_btHingeConstraint_getBreakingImpulseThreshold_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint_getBreakingImpulseThreshold_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint_setBreakingImpulseThreshold_1 = Module["_btHingeConstraint_setBreakingImpulseThreshold_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint_setBreakingImpulseThreshold_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint_getParam_2 = Module["_btHingeConstraint_getParam_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint_getParam_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint_setParam_3 = Module["_btHingeConstraint_setParam_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint_setParam_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btHingeConstraint___destroy___0 = Module["_btHingeConstraint___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btHingeConstraint___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuaternion_btQuaternion_4 = Module["_btQuaternion_btQuaternion_4"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuaternion_btQuaternion_4"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuaternion_setValue_4 = Module["_btQuaternion_setValue_4"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuaternion_setValue_4"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuaternion_x_0 = Module["_btQuaternion_x_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuaternion_x_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuaternion_y_0 = Module["_btQuaternion_y_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuaternion_y_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuaternion_z_0 = Module["_btQuaternion_z_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuaternion_z_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuaternion_w_0 = Module["_btQuaternion_w_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuaternion_w_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuaternion_setX_1 = Module["_btQuaternion_setX_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuaternion_setX_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuaternion_setY_1 = Module["_btQuaternion_setY_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuaternion_setY_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuaternion_setZ_1 = Module["_btQuaternion_setZ_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuaternion_setZ_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuaternion_setW_1 = Module["_btQuaternion_setW_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuaternion_setW_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btQuaternion___destroy___0 = Module["_btQuaternion___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btQuaternion___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConeShape_btConeShape_2 = Module["_btConeShape_btConeShape_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConeShape_btConeShape_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConeShape_setRadius_1 = Module["_btConeShape_setRadius_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConeShape_setRadius_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConeShape_setHeight_1 = Module["_btConeShape_setHeight_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConeShape_setHeight_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConeShape_setConeUpIndex_1 = Module["_btConeShape_setConeUpIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConeShape_setConeUpIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConeShape_setLocalScaling_1 = Module["_btConeShape_setLocalScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConeShape_setLocalScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConeShape_getLocalScaling_0 = Module["_btConeShape_getLocalScaling_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConeShape_getLocalScaling_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConeShape_calculateLocalInertia_2 = Module["_btConeShape_calculateLocalInertia_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConeShape_calculateLocalInertia_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConeShape_isCompound_0 = Module["_btConeShape_isCompound_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConeShape_isCompound_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConeShape_getUserIndex_0 = Module["_btConeShape_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConeShape_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConeShape_setUserIndex_1 = Module["_btConeShape_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConeShape_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConeShape_getUserIndex2_0 = Module["_btConeShape_getUserIndex2_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConeShape_getUserIndex2_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConeShape_setUserIndex2_1 = Module["_btConeShape_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConeShape_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConeShape_getAabb_3 = Module["_btConeShape_getAabb_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConeShape_getAabb_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConeShape_getLocalBoundingSphere_0 = Module["_btConeShape_getLocalBoundingSphere_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConeShape_getLocalBoundingSphere_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConeShape_getImplicitShapeDimensions_0 = Module["_btConeShape_getImplicitShapeDimensions_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConeShape_getImplicitShapeDimensions_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConeShape___destroy___0 = Module["_btConeShape___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConeShape___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBU_Simplex1to4_btBU_Simplex1to4_0 = Module["_btBU_Simplex1to4_btBU_Simplex1to4_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBU_Simplex1to4_btBU_Simplex1to4_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBU_Simplex1to4_addVertex_1 = Module["_btBU_Simplex1to4_addVertex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBU_Simplex1to4_addVertex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBU_Simplex1to4_setLocalScaling_1 = Module["_btBU_Simplex1to4_setLocalScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBU_Simplex1to4_setLocalScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBU_Simplex1to4_getLocalScaling_0 = Module["_btBU_Simplex1to4_getLocalScaling_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBU_Simplex1to4_getLocalScaling_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBU_Simplex1to4_calculateLocalInertia_2 = Module["_btBU_Simplex1to4_calculateLocalInertia_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBU_Simplex1to4_calculateLocalInertia_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBU_Simplex1to4_isCompound_0 = Module["_btBU_Simplex1to4_isCompound_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBU_Simplex1to4_isCompound_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBU_Simplex1to4_getUserIndex_0 = Module["_btBU_Simplex1to4_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBU_Simplex1to4_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBU_Simplex1to4_setUserIndex_1 = Module["_btBU_Simplex1to4_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBU_Simplex1to4_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBU_Simplex1to4_getUserIndex2_0 = Module["_btBU_Simplex1to4_getUserIndex2_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBU_Simplex1to4_getUserIndex2_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBU_Simplex1to4_setUserIndex2_1 = Module["_btBU_Simplex1to4_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBU_Simplex1to4_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBU_Simplex1to4_getAabb_3 = Module["_btBU_Simplex1to4_getAabb_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBU_Simplex1to4_getAabb_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBU_Simplex1to4_getLocalBoundingSphere_0 = Module["_btBU_Simplex1to4_getLocalBoundingSphere_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBU_Simplex1to4_getLocalBoundingSphere_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btBU_Simplex1to4___destroy___0 = Module["_btBU_Simplex1to4___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btBU_Simplex1to4___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btContactSolverInfo_get_m_splitImpulse_0 = Module["_btContactSolverInfo_get_m_splitImpulse_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btContactSolverInfo_get_m_splitImpulse_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btContactSolverInfo_set_m_splitImpulse_1 = Module["_btContactSolverInfo_set_m_splitImpulse_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btContactSolverInfo_set_m_splitImpulse_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btContactSolverInfo_get_m_splitImpulsePenetrationThreshold_0 = Module["_btContactSolverInfo_get_m_splitImpulsePenetrationThreshold_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btContactSolverInfo_get_m_splitImpulsePenetrationThreshold_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btContactSolverInfo_set_m_splitImpulsePenetrationThreshold_1 = Module["_btContactSolverInfo_set_m_splitImpulsePenetrationThreshold_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btContactSolverInfo_set_m_splitImpulsePenetrationThreshold_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btContactSolverInfo_get_m_numIterations_0 = Module["_btContactSolverInfo_get_m_numIterations_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btContactSolverInfo_get_m_numIterations_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btContactSolverInfo_set_m_numIterations_1 = Module["_btContactSolverInfo_set_m_numIterations_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btContactSolverInfo_set_m_numIterations_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btContactSolverInfo___destroy___0 = Module["_btContactSolverInfo___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btContactSolverInfo___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btStaticPlaneShape_btStaticPlaneShape_2 = Module["_btStaticPlaneShape_btStaticPlaneShape_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btStaticPlaneShape_btStaticPlaneShape_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btStaticPlaneShape_getPlaneNormal_0 = Module["_btStaticPlaneShape_getPlaneNormal_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btStaticPlaneShape_getPlaneNormal_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btStaticPlaneShape_setPlaneConstant_1 = Module["_btStaticPlaneShape_setPlaneConstant_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btStaticPlaneShape_setPlaneConstant_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btStaticPlaneShape_setLocalScaling_1 = Module["_btStaticPlaneShape_setLocalScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btStaticPlaneShape_setLocalScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btStaticPlaneShape_getLocalScaling_0 = Module["_btStaticPlaneShape_getLocalScaling_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btStaticPlaneShape_getLocalScaling_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btStaticPlaneShape_calculateLocalInertia_2 = Module["_btStaticPlaneShape_calculateLocalInertia_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btStaticPlaneShape_calculateLocalInertia_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btStaticPlaneShape_isCompound_0 = Module["_btStaticPlaneShape_isCompound_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btStaticPlaneShape_isCompound_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btStaticPlaneShape_getUserIndex_0 = Module["_btStaticPlaneShape_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btStaticPlaneShape_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btStaticPlaneShape_setUserIndex_1 = Module["_btStaticPlaneShape_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btStaticPlaneShape_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btStaticPlaneShape_getUserIndex2_0 = Module["_btStaticPlaneShape_getUserIndex2_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btStaticPlaneShape_getUserIndex2_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btStaticPlaneShape_setUserIndex2_1 = Module["_btStaticPlaneShape_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btStaticPlaneShape_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btStaticPlaneShape_getAabb_3 = Module["_btStaticPlaneShape_getAabb_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btStaticPlaneShape_getAabb_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btStaticPlaneShape_getLocalBoundingSphere_0 = Module["_btStaticPlaneShape_getLocalBoundingSphere_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btStaticPlaneShape_getLocalBoundingSphere_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btStaticPlaneShape___destroy___0 = Module["_btStaticPlaneShape___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btStaticPlaneShape___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btActionInterface_updateAction_2 = Module["_btActionInterface_updateAction_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btActionInterface_updateAction_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btActionInterface___destroy___0 = Module["_btActionInterface___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btActionInterface___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btOverlappingPairCache_setInternalGhostPairCallback_1 = Module["_btOverlappingPairCache_setInternalGhostPairCallback_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btOverlappingPairCache_setInternalGhostPairCallback_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btOverlappingPairCache_setOverlapFilterCallback_1 = Module["_btOverlappingPairCache_setOverlapFilterCallback_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btOverlappingPairCache_setOverlapFilterCallback_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btOverlappingPairCache_getNumOverlappingPairs_0 = Module["_btOverlappingPairCache_getNumOverlappingPairs_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btOverlappingPairCache_getNumOverlappingPairs_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btOverlappingPairCache___destroy___0 = Module["_btOverlappingPairCache___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btOverlappingPairCache___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btVector3_btVector3_0 = Module["_btVector3_btVector3_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btVector3_btVector3_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btVector3_btVector3_3 = Module["_btVector3_btVector3_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btVector3_btVector3_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btVector3_x_0 = Module["_btVector3_x_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btVector3_x_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btVector3_y_0 = Module["_btVector3_y_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btVector3_y_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btVector3_z_0 = Module["_btVector3_z_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btVector3_z_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btVector3_setX_1 = Module["_btVector3_setX_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btVector3_setX_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btVector3_setY_1 = Module["_btVector3_setY_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btVector3_setY_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btVector3_setZ_1 = Module["_btVector3_setZ_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btVector3_setZ_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btVector3_setValue_3 = Module["_btVector3_setValue_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btVector3_setValue_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btVector3___destroy___0 = Module["_btVector3___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btVector3___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSphereShape_btSphereShape_1 = Module["_btSphereShape_btSphereShape_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSphereShape_btSphereShape_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSphereShape_setMargin_1 = Module["_btSphereShape_setMargin_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSphereShape_setMargin_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSphereShape_getMargin_0 = Module["_btSphereShape_getMargin_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSphereShape_getMargin_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSphereShape_setUnscaledRadius_1 = Module["_btSphereShape_setUnscaledRadius_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSphereShape_setUnscaledRadius_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSphereShape_setLocalScaling_1 = Module["_btSphereShape_setLocalScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSphereShape_setLocalScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSphereShape_getLocalScaling_0 = Module["_btSphereShape_getLocalScaling_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSphereShape_getLocalScaling_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSphereShape_calculateLocalInertia_2 = Module["_btSphereShape_calculateLocalInertia_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSphereShape_calculateLocalInertia_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSphereShape_isCompound_0 = Module["_btSphereShape_isCompound_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSphereShape_isCompound_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSphereShape_getUserIndex_0 = Module["_btSphereShape_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSphereShape_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSphereShape_setUserIndex_1 = Module["_btSphereShape_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSphereShape_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSphereShape_getUserIndex2_0 = Module["_btSphereShape_getUserIndex2_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSphereShape_getUserIndex2_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSphereShape_setUserIndex2_1 = Module["_btSphereShape_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSphereShape_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSphereShape_getAabb_3 = Module["_btSphereShape_getAabb_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSphereShape_getAabb_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSphereShape_getLocalBoundingSphere_0 = Module["_btSphereShape_getLocalBoundingSphere_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSphereShape_getLocalBoundingSphere_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSphereShape_getImplicitShapeDimensions_0 = Module["_btSphereShape_getImplicitShapeDimensions_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSphereShape_getImplicitShapeDimensions_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btSphereShape___destroy___0 = Module["_btSphereShape___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btSphereShape___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDefaultCollisionConstructionInfo_btDefaultCollisionConstructionInfo_0 = Module["_btDefaultCollisionConstructionInfo_btDefaultCollisionConstructionInfo_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDefaultCollisionConstructionInfo_btDefaultCollisionConstructionInfo_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btDefaultCollisionConstructionInfo___destroy___0 = Module["_btDefaultCollisionConstructionInfo___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btDefaultCollisionConstructionInfo___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btEmptyShape_btEmptyShape_0 = Module["_btEmptyShape_btEmptyShape_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btEmptyShape_btEmptyShape_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btEmptyShape_setLocalScaling_1 = Module["_btEmptyShape_setLocalScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btEmptyShape_setLocalScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btEmptyShape_getLocalScaling_0 = Module["_btEmptyShape_getLocalScaling_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btEmptyShape_getLocalScaling_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btEmptyShape_calculateLocalInertia_2 = Module["_btEmptyShape_calculateLocalInertia_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btEmptyShape_calculateLocalInertia_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btEmptyShape_isCompound_0 = Module["_btEmptyShape_isCompound_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btEmptyShape_isCompound_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btEmptyShape_getUserIndex_0 = Module["_btEmptyShape_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btEmptyShape_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btEmptyShape_setUserIndex_1 = Module["_btEmptyShape_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btEmptyShape_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btEmptyShape_getUserIndex2_0 = Module["_btEmptyShape_getUserIndex2_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btEmptyShape_getUserIndex2_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btEmptyShape_setUserIndex2_1 = Module["_btEmptyShape_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btEmptyShape_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btEmptyShape_getAabb_3 = Module["_btEmptyShape_getAabb_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btEmptyShape_getAabb_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btEmptyShape_getLocalBoundingSphere_0 = Module["_btEmptyShape_getLocalBoundingSphere_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btEmptyShape_getLocalBoundingSphere_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btEmptyShape___destroy___0 = Module["_btEmptyShape___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btEmptyShape___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConstraintSetting_btConstraintSetting_0 = Module["_btConstraintSetting_btConstraintSetting_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConstraintSetting_btConstraintSetting_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConstraintSetting_get_m_tau_0 = Module["_btConstraintSetting_get_m_tau_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConstraintSetting_get_m_tau_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConstraintSetting_set_m_tau_1 = Module["_btConstraintSetting_set_m_tau_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConstraintSetting_set_m_tau_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConstraintSetting_get_m_damping_0 = Module["_btConstraintSetting_get_m_damping_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConstraintSetting_get_m_damping_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConstraintSetting_set_m_damping_1 = Module["_btConstraintSetting_set_m_damping_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConstraintSetting_set_m_damping_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConstraintSetting_get_m_impulseClamp_0 = Module["_btConstraintSetting_get_m_impulseClamp_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConstraintSetting_get_m_impulseClamp_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConstraintSetting_set_m_impulseClamp_1 = Module["_btConstraintSetting_set_m_impulseClamp_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConstraintSetting_set_m_impulseClamp_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConstraintSetting___destroy___0 = Module["_btConstraintSetting___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConstraintSetting___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _LocalShapeInfo_get_m_shapePart_0 = Module["_LocalShapeInfo_get_m_shapePart_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["LocalShapeInfo_get_m_shapePart_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _LocalShapeInfo_set_m_shapePart_1 = Module["_LocalShapeInfo_set_m_shapePart_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["LocalShapeInfo_set_m_shapePart_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _LocalShapeInfo_get_m_triangleIndex_0 = Module["_LocalShapeInfo_get_m_triangleIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["LocalShapeInfo_get_m_triangleIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _LocalShapeInfo_set_m_triangleIndex_1 = Module["_LocalShapeInfo_set_m_triangleIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["LocalShapeInfo_set_m_triangleIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _LocalShapeInfo___destroy___0 = Module["_LocalShapeInfo___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["LocalShapeInfo___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btVector3Array_size_0 = Module["_btVector3Array_size_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btVector3Array_size_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btVector3Array_at_1 = Module["_btVector3Array_at_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btVector3Array_at_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btVector3Array_clear_0 = Module["_btVector3Array_clear_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btVector3Array_clear_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btVector3Array___destroy___0 = Module["_btVector3Array___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btVector3Array___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConstraintSolver___destroy___0 = Module["_btConstraintSolver___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConstraintSolver___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btFixedConstraint_btFixedConstraint_4 = Module["_btFixedConstraint_btFixedConstraint_4"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btFixedConstraint_btFixedConstraint_4"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btFixedConstraint_enableFeedback_1 = Module["_btFixedConstraint_enableFeedback_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btFixedConstraint_enableFeedback_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btFixedConstraint_getBreakingImpulseThreshold_0 = Module["_btFixedConstraint_getBreakingImpulseThreshold_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btFixedConstraint_getBreakingImpulseThreshold_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btFixedConstraint_setBreakingImpulseThreshold_1 = Module["_btFixedConstraint_setBreakingImpulseThreshold_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btFixedConstraint_setBreakingImpulseThreshold_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btFixedConstraint_getParam_2 = Module["_btFixedConstraint_getParam_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btFixedConstraint_getParam_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btFixedConstraint_setParam_3 = Module["_btFixedConstraint_setParam_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btFixedConstraint_setParam_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btFixedConstraint___destroy___0 = Module["_btFixedConstraint___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btFixedConstraint___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionDispatcher_btCollisionDispatcher_1 = Module["_btCollisionDispatcher_btCollisionDispatcher_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionDispatcher_btCollisionDispatcher_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionDispatcher_setDispatcherFlags_1 = Module["_btCollisionDispatcher_setDispatcherFlags_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionDispatcher_setDispatcherFlags_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionDispatcher_getNumManifolds_0 = Module["_btCollisionDispatcher_getNumManifolds_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionDispatcher_getNumManifolds_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionDispatcher_getManifoldByIndexInternal_1 = Module["_btCollisionDispatcher_getManifoldByIndexInternal_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionDispatcher_getManifoldByIndexInternal_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCollisionDispatcher___destroy___0 = Module["_btCollisionDispatcher___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCollisionDispatcher___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_btRigidBody_1 = Module["_btRigidBody_btRigidBody_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_btRigidBody_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_getCenterOfMassTransform_0 = Module["_btRigidBody_getCenterOfMassTransform_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_getCenterOfMassTransform_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setCenterOfMassTransform_1 = Module["_btRigidBody_setCenterOfMassTransform_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setCenterOfMassTransform_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setSleepingThresholds_2 = Module["_btRigidBody_setSleepingThresholds_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setSleepingThresholds_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_getLinearSleepingThreshold_0 = Module["_btRigidBody_getLinearSleepingThreshold_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_getLinearSleepingThreshold_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setDamping_2 = Module["_btRigidBody_setDamping_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setDamping_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setMassProps_2 = Module["_btRigidBody_setMassProps_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setMassProps_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_getLinearFactor_0 = Module["_btRigidBody_getLinearFactor_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_getLinearFactor_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setLinearFactor_1 = Module["_btRigidBody_setLinearFactor_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setLinearFactor_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_applyTorque_1 = Module["_btRigidBody_applyTorque_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_applyTorque_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_applyForce_2 = Module["_btRigidBody_applyForce_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_applyForce_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_applyCentralForce_1 = Module["_btRigidBody_applyCentralForce_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_applyCentralForce_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_applyTorqueImpulse_1 = Module["_btRigidBody_applyTorqueImpulse_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_applyTorqueImpulse_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_applyImpulse_2 = Module["_btRigidBody_applyImpulse_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_applyImpulse_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_updateInertiaTensor_0 = Module["_btRigidBody_updateInertiaTensor_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_updateInertiaTensor_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_getLinearVelocity_0 = Module["_btRigidBody_getLinearVelocity_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_getLinearVelocity_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_getAngularVelocity_0 = Module["_btRigidBody_getAngularVelocity_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_getAngularVelocity_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setLinearVelocity_1 = Module["_btRigidBody_setLinearVelocity_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setLinearVelocity_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setAngularVelocity_1 = Module["_btRigidBody_setAngularVelocity_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setAngularVelocity_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_getMotionState_0 = Module["_btRigidBody_getMotionState_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_getMotionState_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_getAngularFactor_0 = Module["_btRigidBody_getAngularFactor_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_getAngularFactor_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setAngularFactor_1 = Module["_btRigidBody_setAngularFactor_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setAngularFactor_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_getAabb_2 = Module["_btRigidBody_getAabb_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_getAabb_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setGravity_1 = Module["_btRigidBody_setGravity_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setGravity_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_getFlags_0 = Module["_btRigidBody_getFlags_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_getFlags_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setFlags_1 = Module["_btRigidBody_setFlags_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setFlags_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_wantsSleeping_0 = Module["_btRigidBody_wantsSleeping_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_wantsSleeping_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_clearForces_0 = Module["_btRigidBody_clearForces_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_clearForces_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_getTotalForce_0 = Module["_btRigidBody_getTotalForce_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_getTotalForce_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_getTotalTorque_0 = Module["_btRigidBody_getTotalTorque_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_getTotalTorque_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_clearState_0 = Module["_btRigidBody_clearState_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_clearState_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_getCollisionShape_0 = Module["_btRigidBody_getCollisionShape_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_getCollisionShape_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_getActivationState_0 = Module["_btRigidBody_getActivationState_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_getActivationState_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setActivationState_1 = Module["_btRigidBody_setActivationState_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setActivationState_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_forceActivationState_1 = Module["_btRigidBody_forceActivationState_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_forceActivationState_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_activate_0 = Module["_btRigidBody_activate_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_activate_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_activate_1 = Module["_btRigidBody_activate_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_activate_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_isActive_0 = Module["_btRigidBody_isActive_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_isActive_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_isKinematicObject_0 = Module["_btRigidBody_isKinematicObject_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_isKinematicObject_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_isStaticObject_0 = Module["_btRigidBody_isStaticObject_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_isStaticObject_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_isStaticOrKinematicObject_0 = Module["_btRigidBody_isStaticOrKinematicObject_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_isStaticOrKinematicObject_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setRestitution_1 = Module["_btRigidBody_setRestitution_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setRestitution_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setFriction_1 = Module["_btRigidBody_setFriction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setFriction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setRollingFriction_1 = Module["_btRigidBody_setRollingFriction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setRollingFriction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setSpinningFriction_1 = Module["_btRigidBody_setSpinningFriction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setSpinningFriction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_getWorldTransform_0 = Module["_btRigidBody_getWorldTransform_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_getWorldTransform_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_getCollisionFlags_0 = Module["_btRigidBody_getCollisionFlags_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_getCollisionFlags_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setCollisionFlags_1 = Module["_btRigidBody_setCollisionFlags_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setCollisionFlags_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setWorldTransform_1 = Module["_btRigidBody_setWorldTransform_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setWorldTransform_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setCollisionShape_1 = Module["_btRigidBody_setCollisionShape_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setCollisionShape_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setCcdMotionThreshold_1 = Module["_btRigidBody_setCcdMotionThreshold_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setCcdMotionThreshold_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setCcdSweptSphereRadius_1 = Module["_btRigidBody_setCcdSweptSphereRadius_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setCcdSweptSphereRadius_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_getUserIndex_0 = Module["_btRigidBody_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setUserIndex_1 = Module["_btRigidBody_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setUserIndex2_1 = Module["_btRigidBody_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody_setIgnoreCollisionCheck_2 = Module["_btRigidBody_setIgnoreCollisionCheck_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody_setIgnoreCollisionCheck_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btRigidBody___destroy___0 = Module["_btRigidBody___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btRigidBody___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btIndexedMeshArray_size_0 = Module["_btIndexedMeshArray_size_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btIndexedMeshArray_size_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btIndexedMeshArray_at_1 = Module["_btIndexedMeshArray_at_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btIndexedMeshArray_at_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btIndexedMeshArray___destroy___0 = Module["_btIndexedMeshArray___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btIndexedMeshArray___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_ccDiscreteDynamicsWorld_4 = Module["_ccDiscreteDynamicsWorld_ccDiscreteDynamicsWorld_4"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_ccDiscreteDynamicsWorld_4"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_setAllowSleep_1 = Module["_ccDiscreteDynamicsWorld_setAllowSleep_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_setAllowSleep_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_setDeactivationTime_1 = Module["_ccDiscreteDynamicsWorld_setDeactivationTime_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_setDeactivationTime_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_setNarrowPhaseMethod_1 = Module["_ccDiscreteDynamicsWorld_setNarrowPhaseMethod_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_setNarrowPhaseMethod_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_setAllowCcdPenetration_1 = Module["_ccDiscreteDynamicsWorld_setAllowCcdPenetration_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_setAllowCcdPenetration_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_getCcdTriggerRecorder_0 = Module["_ccDiscreteDynamicsWorld_getCcdTriggerRecorder_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_getCcdTriggerRecorder_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_rayTest_3 = Module["_ccDiscreteDynamicsWorld_rayTest_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_rayTest_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_rayTestSingle_6 = Module["_ccDiscreteDynamicsWorld_rayTestSingle_6"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_rayTestSingle_6"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_getPairCache_0 = Module["_ccDiscreteDynamicsWorld_getPairCache_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_getPairCache_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_addCollisionObject_1 = Module["_ccDiscreteDynamicsWorld_addCollisionObject_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_addCollisionObject_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_addCollisionObject_2 = Module["_ccDiscreteDynamicsWorld_addCollisionObject_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_addCollisionObject_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_addCollisionObject_3 = Module["_ccDiscreteDynamicsWorld_addCollisionObject_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_addCollisionObject_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_removeCollisionObject_1 = Module["_ccDiscreteDynamicsWorld_removeCollisionObject_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_removeCollisionObject_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_setContactBreakingThreshold_1 = Module["_ccDiscreteDynamicsWorld_setContactBreakingThreshold_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_setContactBreakingThreshold_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_setGravity_1 = Module["_ccDiscreteDynamicsWorld_setGravity_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_setGravity_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_getGravity_0 = Module["_ccDiscreteDynamicsWorld_getGravity_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_getGravity_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_addRigidBody_1 = Module["_ccDiscreteDynamicsWorld_addRigidBody_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_addRigidBody_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_addRigidBody_3 = Module["_ccDiscreteDynamicsWorld_addRigidBody_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_addRigidBody_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_removeRigidBody_1 = Module["_ccDiscreteDynamicsWorld_removeRigidBody_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_removeRigidBody_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_addConstraint_1 = Module["_ccDiscreteDynamicsWorld_addConstraint_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_addConstraint_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_addConstraint_2 = Module["_ccDiscreteDynamicsWorld_addConstraint_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_addConstraint_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_removeConstraint_1 = Module["_ccDiscreteDynamicsWorld_removeConstraint_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_removeConstraint_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_stepSimulation_1 = Module["_ccDiscreteDynamicsWorld_stepSimulation_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_stepSimulation_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_stepSimulation_2 = Module["_ccDiscreteDynamicsWorld_stepSimulation_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_stepSimulation_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_stepSimulation_3 = Module["_ccDiscreteDynamicsWorld_stepSimulation_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_stepSimulation_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_addAction_1 = Module["_ccDiscreteDynamicsWorld_addAction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_addAction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_removeAction_1 = Module["_ccDiscreteDynamicsWorld_removeAction_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_removeAction_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_getSolverInfo_0 = Module["_ccDiscreteDynamicsWorld_getSolverInfo_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_getSolverInfo_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld_getFixedBody_0 = Module["_ccDiscreteDynamicsWorld_getFixedBody_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld_getFixedBody_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _ccDiscreteDynamicsWorld___destroy___0 = Module["_ccDiscreteDynamicsWorld___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["ccDiscreteDynamicsWorld___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTransform_btTransform_0 = Module["_btTransform_btTransform_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTransform_btTransform_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTransform_btTransform_2 = Module["_btTransform_btTransform_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTransform_btTransform_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTransform_setIdentity_0 = Module["_btTransform_setIdentity_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTransform_setIdentity_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTransform_setOrigin_1 = Module["_btTransform_setOrigin_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTransform_setOrigin_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTransform_setRotation_1 = Module["_btTransform_setRotation_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTransform_setRotation_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTransform_getOrigin_0 = Module["_btTransform_getOrigin_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTransform_getOrigin_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTransform_getRotation_0 = Module["_btTransform_getRotation_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTransform_getRotation_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTransform_getBasis_0 = Module["_btTransform_getBasis_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTransform_getBasis_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTransform_inverse_0 = Module["_btTransform_inverse_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTransform_inverse_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTransform_op_mul_1 = Module["_btTransform_op_mul_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTransform_op_mul_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btTransform___destroy___0 = Module["_btTransform___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btTransform___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCylinderShape_btCylinderShape_1 = Module["_btCylinderShape_btCylinderShape_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCylinderShape_btCylinderShape_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCylinderShape_setMargin_1 = Module["_btCylinderShape_setMargin_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCylinderShape_setMargin_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCylinderShape_getMargin_0 = Module["_btCylinderShape_getMargin_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCylinderShape_getMargin_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCylinderShape_updateProp_3 = Module["_btCylinderShape_updateProp_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCylinderShape_updateProp_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCylinderShape_setLocalScaling_1 = Module["_btCylinderShape_setLocalScaling_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCylinderShape_setLocalScaling_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCylinderShape_getLocalScaling_0 = Module["_btCylinderShape_getLocalScaling_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCylinderShape_getLocalScaling_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCylinderShape_calculateLocalInertia_2 = Module["_btCylinderShape_calculateLocalInertia_2"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCylinderShape_calculateLocalInertia_2"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCylinderShape_isCompound_0 = Module["_btCylinderShape_isCompound_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCylinderShape_isCompound_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCylinderShape_getUserIndex_0 = Module["_btCylinderShape_getUserIndex_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCylinderShape_getUserIndex_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCylinderShape_setUserIndex_1 = Module["_btCylinderShape_setUserIndex_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCylinderShape_setUserIndex_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCylinderShape_getUserIndex2_0 = Module["_btCylinderShape_getUserIndex2_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCylinderShape_getUserIndex2_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCylinderShape_setUserIndex2_1 = Module["_btCylinderShape_setUserIndex2_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCylinderShape_setUserIndex2_1"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCylinderShape_getAabb_3 = Module["_btCylinderShape_getAabb_3"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCylinderShape_getAabb_3"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCylinderShape_getLocalBoundingSphere_0 = Module["_btCylinderShape_getLocalBoundingSphere_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCylinderShape_getLocalBoundingSphere_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCylinderShape_getImplicitShapeDimensions_0 = Module["_btCylinderShape_getImplicitShapeDimensions_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCylinderShape_getImplicitShapeDimensions_0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btCylinderShape___destroy___0 = Module["_btCylinderShape___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btCylinderShape___destroy___0"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConstraintParamsBT_CONSTRAINT_ERP = Module["_btConstraintParamsBT_CONSTRAINT_ERP"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConstraintParamsBT_CONSTRAINT_ERP"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConstraintParamsBT_CONSTRAINT_STOP_ERP = Module["_btConstraintParamsBT_CONSTRAINT_STOP_ERP"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConstraintParamsBT_CONSTRAINT_STOP_ERP"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConstraintParamsBT_CONSTRAINT_CFM = Module["_btConstraintParamsBT_CONSTRAINT_CFM"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConstraintParamsBT_CONSTRAINT_CFM"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _btConstraintParamsBT_CONSTRAINT_STOP_CFM = Module["_btConstraintParamsBT_CONSTRAINT_STOP_CFM"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["btConstraintParamsBT_CONSTRAINT_STOP_CFM"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _PHY_ScalarTypePHY_FLOAT = Module["_PHY_ScalarTypePHY_FLOAT"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["PHY_ScalarTypePHY_FLOAT"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _PHY_ScalarTypePHY_DOUBLE = Module["_PHY_ScalarTypePHY_DOUBLE"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["PHY_ScalarTypePHY_DOUBLE"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _PHY_ScalarTypePHY_INTEGER = Module["_PHY_ScalarTypePHY_INTEGER"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["PHY_ScalarTypePHY_INTEGER"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _PHY_ScalarTypePHY_SHORT = Module["_PHY_ScalarTypePHY_SHORT"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["PHY_ScalarTypePHY_SHORT"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _PHY_ScalarTypePHY_FIXEDPOINT88 = Module["_PHY_ScalarTypePHY_FIXEDPOINT88"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["PHY_ScalarTypePHY_FIXEDPOINT88"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _PHY_ScalarTypePHY_UCHAR = Module["_PHY_ScalarTypePHY_UCHAR"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["PHY_ScalarTypePHY_UCHAR"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _malloc = Module["_malloc"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["malloc"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _free = Module["_free"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["free"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var ___errno_location = Module["___errno_location"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["__errno_location"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var _setThrew = Module["_setThrew"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["setThrew"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var __ZSt18uncaught_exceptionv = Module["__ZSt18uncaught_exceptionv"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["_ZSt18uncaught_exceptionv"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var ___set_stack_limit = Module["___set_stack_limit"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["__set_stack_limit"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var stackSave = Module["stackSave"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["stackSave"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var stackAlloc = Module["stackAlloc"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["stackAlloc"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var stackRestore = Module["stackRestore"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["stackRestore"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var __growWasmMemory = Module["__growWasmMemory"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["__growWasmMemory"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_vi = Module["dynCall_vi"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_vi"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_iiiiii = Module["dynCall_iiiiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_iiiiii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_ii = Module["dynCall_ii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_ii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_vii = Module["dynCall_vii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_vii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_viiii = Module["dynCall_viiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_viiii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_iifif = Module["dynCall_iifif"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_iifif"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_viii = Module["dynCall_viii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_viii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_iii = Module["dynCall_iii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_iii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_vif = Module["dynCall_vif"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_vif"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_fiii = Module["dynCall_fiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_fiii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_v = Module["dynCall_v"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_v"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_iiii = Module["dynCall_iiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_iiii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_viiiiii = Module["dynCall_viiiiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_viiiiii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_viiiif = Module["dynCall_viiiif"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_viiiif"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_viiif = Module["dynCall_viiif"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_viiif"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_viifi = Module["dynCall_viifi"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_viifi"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_fiiiiiiiiii = Module["dynCall_fiiiiiiiiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_fiiiiiiiiii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_viiiiiiiii = Module["dynCall_viiiiiiiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_viiiiiiiii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_fiiii = Module["dynCall_fiiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_fiiii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_fiiiiiiiii = Module["dynCall_fiiiiiiiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_fiiiiiiiii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_iiiiiiiiiii = Module["dynCall_iiiiiiiiiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_iiiiiiiiiii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_viiiii = Module["dynCall_viiiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_viiiii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_fiiiii = Module["dynCall_fiiiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_fiiiii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_iiiii = Module["dynCall_iiiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_iiiii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_iiiiiii = Module["dynCall_iiiiiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_iiiiiii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_fi = Module["dynCall_fi"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_fi"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_fif = Module["dynCall_fif"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_fif"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_vifi = Module["dynCall_vifi"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_vifi"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_viiiiiii = Module["dynCall_viiiiiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_viiiiiii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_iiif = Module["dynCall_iiif"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_iiif"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_fiifii = Module["dynCall_fiifii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_fiifii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_viif = Module["dynCall_viif"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_viif"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_fiiifii = Module["dynCall_fiiifii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_fiiifii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_viiiiiiiiii = Module["dynCall_viiiiiiiiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_viiiiiiiiii"].apply(null, arguments)
+};
+
+/** @type {function(...*):?} */
+var dynCall_iiiiiiiii = Module["dynCall_iiiiiiiii"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_iiiiiiiii"].apply(null, arguments)
+};
+
+
+
+/**
+ * @license
+ * Copyright 2010 The Emscripten Authors
+ * SPDX-License-Identifier: MIT
+ */
+
+// === Auto-generated postamble setup entry stuff ===
+
+Module['asm'] = asm;
+
+if (!Object.getOwnPropertyDescriptor(Module, "intArrayFromString")) Module["intArrayFromString"] = function() { abort("'intArrayFromString' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "intArrayToString")) Module["intArrayToString"] = function() { abort("'intArrayToString' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "ccall")) Module["ccall"] = function() { abort("'ccall' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "cwrap")) Module["cwrap"] = function() { abort("'cwrap' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "setValue")) Module["setValue"] = function() { abort("'setValue' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "getValue")) Module["getValue"] = function() { abort("'getValue' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "allocate")) Module["allocate"] = function() { abort("'allocate' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "getMemory")) Module["getMemory"] = function() { abort("'getMemory' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ). Alternatively, forcing filesystem support (-s FORCE_FILESYSTEM=1) can export this for you") };
+if (!Object.getOwnPropertyDescriptor(Module, "UTF8ArrayToString")) Module["UTF8ArrayToString"] = function() { abort("'UTF8ArrayToString' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "UTF8ToString")) Module["UTF8ToString"] = function() { abort("'UTF8ToString' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "stringToUTF8Array")) Module["stringToUTF8Array"] = function() { abort("'stringToUTF8Array' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "stringToUTF8")) Module["stringToUTF8"] = function() { abort("'stringToUTF8' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "lengthBytesUTF8")) Module["lengthBytesUTF8"] = function() { abort("'lengthBytesUTF8' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "stackTrace")) Module["stackTrace"] = function() { abort("'stackTrace' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "addOnPreRun")) Module["addOnPreRun"] = function() { abort("'addOnPreRun' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "addOnInit")) Module["addOnInit"] = function() { abort("'addOnInit' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "addOnPreMain")) Module["addOnPreMain"] = function() { abort("'addOnPreMain' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "addOnExit")) Module["addOnExit"] = function() { abort("'addOnExit' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "addOnPostRun")) Module["addOnPostRun"] = function() { abort("'addOnPostRun' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "writeStringToMemory")) Module["writeStringToMemory"] = function() { abort("'writeStringToMemory' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "writeArrayToMemory")) Module["writeArrayToMemory"] = function() { abort("'writeArrayToMemory' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "writeAsciiToMemory")) Module["writeAsciiToMemory"] = function() { abort("'writeAsciiToMemory' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "addRunDependency")) Module["addRunDependency"] = function() { abort("'addRunDependency' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ). Alternatively, forcing filesystem support (-s FORCE_FILESYSTEM=1) can export this for you") };
+if (!Object.getOwnPropertyDescriptor(Module, "removeRunDependency")) Module["removeRunDependency"] = function() { abort("'removeRunDependency' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ). Alternatively, forcing filesystem support (-s FORCE_FILESYSTEM=1) can export this for you") };
+if (!Object.getOwnPropertyDescriptor(Module, "FS_createFolder")) Module["FS_createFolder"] = function() { abort("'FS_createFolder' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ). Alternatively, forcing filesystem support (-s FORCE_FILESYSTEM=1) can export this for you") };
+if (!Object.getOwnPropertyDescriptor(Module, "FS_createPath")) Module["FS_createPath"] = function() { abort("'FS_createPath' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ). Alternatively, forcing filesystem support (-s FORCE_FILESYSTEM=1) can export this for you") };
+if (!Object.getOwnPropertyDescriptor(Module, "FS_createDataFile")) Module["FS_createDataFile"] = function() { abort("'FS_createDataFile' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ). Alternatively, forcing filesystem support (-s FORCE_FILESYSTEM=1) can export this for you") };
+if (!Object.getOwnPropertyDescriptor(Module, "FS_createPreloadedFile")) Module["FS_createPreloadedFile"] = function() { abort("'FS_createPreloadedFile' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ). Alternatively, forcing filesystem support (-s FORCE_FILESYSTEM=1) can export this for you") };
+if (!Object.getOwnPropertyDescriptor(Module, "FS_createLazyFile")) Module["FS_createLazyFile"] = function() { abort("'FS_createLazyFile' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ). Alternatively, forcing filesystem support (-s FORCE_FILESYSTEM=1) can export this for you") };
+if (!Object.getOwnPropertyDescriptor(Module, "FS_createLink")) Module["FS_createLink"] = function() { abort("'FS_createLink' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ). Alternatively, forcing filesystem support (-s FORCE_FILESYSTEM=1) can export this for you") };
+if (!Object.getOwnPropertyDescriptor(Module, "FS_createDevice")) Module["FS_createDevice"] = function() { abort("'FS_createDevice' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ). Alternatively, forcing filesystem support (-s FORCE_FILESYSTEM=1) can export this for you") };
+if (!Object.getOwnPropertyDescriptor(Module, "FS_unlink")) Module["FS_unlink"] = function() { abort("'FS_unlink' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ). Alternatively, forcing filesystem support (-s FORCE_FILESYSTEM=1) can export this for you") };
+if (!Object.getOwnPropertyDescriptor(Module, "dynamicAlloc")) Module["dynamicAlloc"] = function() { abort("'dynamicAlloc' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "loadDynamicLibrary")) Module["loadDynamicLibrary"] = function() { abort("'loadDynamicLibrary' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "loadWebAssemblyModule")) Module["loadWebAssemblyModule"] = function() { abort("'loadWebAssemblyModule' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "getLEB")) Module["getLEB"] = function() { abort("'getLEB' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "getFunctionTables")) Module["getFunctionTables"] = function() { abort("'getFunctionTables' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "alignFunctionTables")) Module["alignFunctionTables"] = function() { abort("'alignFunctionTables' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "registerFunctions")) Module["registerFunctions"] = function() { abort("'registerFunctions' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+Module["addFunction"] = addFunction;
+if (!Object.getOwnPropertyDescriptor(Module, "removeFunction")) Module["removeFunction"] = function() { abort("'removeFunction' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "getFuncWrapper")) Module["getFuncWrapper"] = function() { abort("'getFuncWrapper' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "prettyPrint")) Module["prettyPrint"] = function() { abort("'prettyPrint' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "makeBigInt")) Module["makeBigInt"] = function() { abort("'makeBigInt' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "dynCall")) Module["dynCall"] = function() { abort("'dynCall' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "getCompilerSetting")) Module["getCompilerSetting"] = function() { abort("'getCompilerSetting' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "print")) Module["print"] = function() { abort("'print' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "printErr")) Module["printErr"] = function() { abort("'printErr' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "getTempRet0")) Module["getTempRet0"] = function() { abort("'getTempRet0' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "setTempRet0")) Module["setTempRet0"] = function() { abort("'setTempRet0' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "callMain")) Module["callMain"] = function() { abort("'callMain' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "abort")) Module["abort"] = function() { abort("'abort' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "stringToNewUTF8")) Module["stringToNewUTF8"] = function() { abort("'stringToNewUTF8' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "abortOnCannotGrowMemory")) Module["abortOnCannotGrowMemory"] = function() { abort("'abortOnCannotGrowMemory' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "emscripten_realloc_buffer")) Module["emscripten_realloc_buffer"] = function() { abort("'emscripten_realloc_buffer' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "ENV")) Module["ENV"] = function() { abort("'ENV' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "setjmpId")) Module["setjmpId"] = function() { abort("'setjmpId' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "ERRNO_CODES")) Module["ERRNO_CODES"] = function() { abort("'ERRNO_CODES' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "ERRNO_MESSAGES")) Module["ERRNO_MESSAGES"] = function() { abort("'ERRNO_MESSAGES' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "setErrNo")) Module["setErrNo"] = function() { abort("'setErrNo' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "DNS")) Module["DNS"] = function() { abort("'DNS' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "GAI_ERRNO_MESSAGES")) Module["GAI_ERRNO_MESSAGES"] = function() { abort("'GAI_ERRNO_MESSAGES' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "Protocols")) Module["Protocols"] = function() { abort("'Protocols' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "Sockets")) Module["Sockets"] = function() { abort("'Sockets' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "UNWIND_CACHE")) Module["UNWIND_CACHE"] = function() { abort("'UNWIND_CACHE' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "readAsmConstArgs")) Module["readAsmConstArgs"] = function() { abort("'readAsmConstArgs' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "jstoi_q")) Module["jstoi_q"] = function() { abort("'jstoi_q' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "jstoi_s")) Module["jstoi_s"] = function() { abort("'jstoi_s' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "reallyNegative")) Module["reallyNegative"] = function() { abort("'reallyNegative' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "formatString")) Module["formatString"] = function() { abort("'formatString' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "PATH")) Module["PATH"] = function() { abort("'PATH' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "PATH_FS")) Module["PATH_FS"] = function() { abort("'PATH_FS' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "SYSCALLS")) Module["SYSCALLS"] = function() { abort("'SYSCALLS' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "syscallMmap2")) Module["syscallMmap2"] = function() { abort("'syscallMmap2' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "syscallMunmap")) Module["syscallMunmap"] = function() { abort("'syscallMunmap' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "flush_NO_FILESYSTEM")) Module["flush_NO_FILESYSTEM"] = function() { abort("'flush_NO_FILESYSTEM' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "JSEvents")) Module["JSEvents"] = function() { abort("'JSEvents' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "specialHTMLTargets")) Module["specialHTMLTargets"] = function() { abort("'specialHTMLTargets' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "demangle")) Module["demangle"] = function() { abort("'demangle' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "demangleAll")) Module["demangleAll"] = function() { abort("'demangleAll' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "jsStackTrace")) Module["jsStackTrace"] = function() { abort("'jsStackTrace' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "stackTrace")) Module["stackTrace"] = function() { abort("'stackTrace' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "getEnvStrings")) Module["getEnvStrings"] = function() { abort("'getEnvStrings' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "writeI53ToI64")) Module["writeI53ToI64"] = function() { abort("'writeI53ToI64' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "writeI53ToI64Clamped")) Module["writeI53ToI64Clamped"] = function() { abort("'writeI53ToI64Clamped' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "writeI53ToI64Signaling")) Module["writeI53ToI64Signaling"] = function() { abort("'writeI53ToI64Signaling' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "writeI53ToU64Clamped")) Module["writeI53ToU64Clamped"] = function() { abort("'writeI53ToU64Clamped' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "writeI53ToU64Signaling")) Module["writeI53ToU64Signaling"] = function() { abort("'writeI53ToU64Signaling' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "readI53FromI64")) Module["readI53FromI64"] = function() { abort("'readI53FromI64' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "readI53FromU64")) Module["readI53FromU64"] = function() { abort("'readI53FromU64' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "convertI32PairToI53")) Module["convertI32PairToI53"] = function() { abort("'convertI32PairToI53' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "convertU32PairToI53")) Module["convertU32PairToI53"] = function() { abort("'convertU32PairToI53' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "Browser")) Module["Browser"] = function() { abort("'Browser' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "GL")) Module["GL"] = function() { abort("'GL' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "emscriptenWebGLGet")) Module["emscriptenWebGLGet"] = function() { abort("'emscriptenWebGLGet' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "emscriptenWebGLGetTexPixelData")) Module["emscriptenWebGLGetTexPixelData"] = function() { abort("'emscriptenWebGLGetTexPixelData' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "emscriptenWebGLGetUniform")) Module["emscriptenWebGLGetUniform"] = function() { abort("'emscriptenWebGLGetUniform' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "emscriptenWebGLGetVertexAttrib")) Module["emscriptenWebGLGetVertexAttrib"] = function() { abort("'emscriptenWebGLGetVertexAttrib' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "AL")) Module["AL"] = function() { abort("'AL' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "SDL_unicode")) Module["SDL_unicode"] = function() { abort("'SDL_unicode' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "SDL_ttfContext")) Module["SDL_ttfContext"] = function() { abort("'SDL_ttfContext' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "SDL_audio")) Module["SDL_audio"] = function() { abort("'SDL_audio' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "SDL")) Module["SDL"] = function() { abort("'SDL' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "SDL_gfx")) Module["SDL_gfx"] = function() { abort("'SDL_gfx' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "GLUT")) Module["GLUT"] = function() { abort("'GLUT' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "EGL")) Module["EGL"] = function() { abort("'EGL' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "GLFW_Window")) Module["GLFW_Window"] = function() { abort("'GLFW_Window' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "GLFW")) Module["GLFW"] = function() { abort("'GLFW' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "GLEW")) Module["GLEW"] = function() { abort("'GLEW' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "IDBStore")) Module["IDBStore"] = function() { abort("'IDBStore' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "runAndAbortIfError")) Module["runAndAbortIfError"] = function() { abort("'runAndAbortIfError' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "warnOnce")) Module["warnOnce"] = function() { abort("'warnOnce' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "stackSave")) Module["stackSave"] = function() { abort("'stackSave' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "stackRestore")) Module["stackRestore"] = function() { abort("'stackRestore' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "stackAlloc")) Module["stackAlloc"] = function() { abort("'stackAlloc' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "AsciiToString")) Module["AsciiToString"] = function() { abort("'AsciiToString' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "stringToAscii")) Module["stringToAscii"] = function() { abort("'stringToAscii' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "UTF16ToString")) Module["UTF16ToString"] = function() { abort("'UTF16ToString' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "stringToUTF16")) Module["stringToUTF16"] = function() { abort("'stringToUTF16' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "lengthBytesUTF16")) Module["lengthBytesUTF16"] = function() { abort("'lengthBytesUTF16' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "UTF32ToString")) Module["UTF32ToString"] = function() { abort("'UTF32ToString' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "stringToUTF32")) Module["stringToUTF32"] = function() { abort("'stringToUTF32' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "lengthBytesUTF32")) Module["lengthBytesUTF32"] = function() { abort("'lengthBytesUTF32' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "allocateUTF8")) Module["allocateUTF8"] = function() { abort("'allocateUTF8' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "allocateUTF8OnStack")) Module["allocateUTF8OnStack"] = function() { abort("'allocateUTF8OnStack' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+Module["writeStackCookie"] = writeStackCookie;
+Module["checkStackCookie"] = checkStackCookie;
+Module["abortStackOverflow"] = abortStackOverflow;if (!Object.getOwnPropertyDescriptor(Module, "ALLOC_NORMAL")) Object.defineProperty(Module, "ALLOC_NORMAL", { configurable: true, get: function() { abort("'ALLOC_NORMAL' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") } });
+if (!Object.getOwnPropertyDescriptor(Module, "ALLOC_STACK")) Object.defineProperty(Module, "ALLOC_STACK", { configurable: true, get: function() { abort("'ALLOC_STACK' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") } });
+if (!Object.getOwnPropertyDescriptor(Module, "ALLOC_DYNAMIC")) Object.defineProperty(Module, "ALLOC_DYNAMIC", { configurable: true, get: function() { abort("'ALLOC_DYNAMIC' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") } });
+if (!Object.getOwnPropertyDescriptor(Module, "ALLOC_NONE")) Object.defineProperty(Module, "ALLOC_NONE", { configurable: true, get: function() { abort("'ALLOC_NONE' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") } });
+
+
+
+var calledRun;
+
+/**
+ * @constructor
+ * @this {ExitStatus}
+ */
+function ExitStatus(status) {
+  this.name = "ExitStatus";
+  this.message = "Program terminated with exit(" + status + ")";
+  this.status = status;
+}
+
+var calledMain = false;
+
+
+dependenciesFulfilled = function runCaller() {
+  // If run has never been called, and we should call run (INVOKE_RUN is true, and Module.noInitialRun is not false)
+  if (!calledRun) run();
+  if (!calledRun) dependenciesFulfilled = runCaller; // try this again later, after new deps are fulfilled
+};
+
+
+
+
+
+/** @type {function(Array=)} */
+function run(args) {
+  args = args || arguments_;
+
+  if (runDependencies > 0) {
+    return;
+  }
+
+  writeStackCookie();
+
+  preRun();
+
+  if (runDependencies > 0) return; // a preRun added a dependency, run will be called later
+
+  function doRun() {
+    // run may have just been called through dependencies being fulfilled just in this very frame,
+    // or while the async setStatus time below was happening
+    if (calledRun) return;
+    calledRun = true;
+    Module['calledRun'] = true;
+
+    if (ABORT) return;
+
+    initRuntime();
+
+    preMain();
+
+    readyPromiseResolve(Module);
+    if (Module['onRuntimeInitialized']) Module['onRuntimeInitialized']();
+
+    assert(!Module['_main'], 'compiled without a main, but one is present. if you added it from JS, use Module["onRuntimeInitialized"]');
+
+    postRun();
+  }
+
+  if (Module['setStatus']) {
+    Module['setStatus']('Running...');
+    setTimeout(function() {
+      setTimeout(function() {
+        Module['setStatus']('');
+      }, 1);
+      doRun();
+    }, 1);
+  } else
+  {
+    doRun();
+  }
+  checkStackCookie();
+}
+Module['run'] = run;
+
+function checkUnflushedContent() {
+  // Compiler settings do not allow exiting the runtime, so flushing
+  // the streams is not possible. but in ASSERTIONS mode we check
+  // if there was something to flush, and if so tell the user they
+  // should request that the runtime be exitable.
+  // Normally we would not even include flush() at all, but in ASSERTIONS
+  // builds we do so just for this check, and here we see if there is any
+  // content to flush, that is, we check if there would have been
+  // something a non-ASSERTIONS build would have not seen.
+  // How we flush the streams depends on whether we are in SYSCALLS_REQUIRE_FILESYSTEM=0
+  // mode (which has its own special function for this; otherwise, all
+  // the code is inside libc)
+  var print = out;
+  var printErr = err;
+  var has = false;
+  out = err = function(x) {
+    has = true;
+  }
+  try { // it doesn't matter if it fails
+    var flush = null;
+    if (flush) flush();
+  } catch(e) {}
+  out = print;
+  err = printErr;
+  if (has) {
+    warnOnce('stdio streams had content in them that was not flushed. you should set EXIT_RUNTIME to 1 (see the FAQ), or make sure to emit a newline when you printf etc.');
+    warnOnce('(this may also be due to not including full filesystem support - try building with -s FORCE_FILESYSTEM=1)');
+  }
+}
+
+/** @param {boolean|number=} implicit */
+function exit(status, implicit) {
+  checkUnflushedContent();
+
+  // if this is just main exit-ing implicitly, and the status is 0, then we
+  // don't need to do anything here and can just leave. if the status is
+  // non-zero, though, then we need to report it.
+  // (we may have warned about this earlier, if a situation justifies doing so)
+  if (implicit && noExitRuntime && status === 0) {
+    return;
+  }
+
+  if (noExitRuntime) {
+    // if exit() was called, we may warn the user if the runtime isn't actually being shut down
+    if (!implicit) {
+      var msg = 'program exited (with status: ' + status + '), but EXIT_RUNTIME is not set, so halting execution but not exiting the runtime or preventing further async execution (build with EXIT_RUNTIME=1, if you want a true shutdown)';
+      readyPromiseReject(msg);
+    }
+  } else {
+
+    ABORT = true;
+    EXITSTATUS = status;
+
+    exitRuntime();
+
+    if (Module['onExit']) Module['onExit'](status);
+  }
+
+  quit_(status, new ExitStatus(status));
+}
+
+if (Module['preInit']) {
+  if (typeof Module['preInit'] == 'function') Module['preInit'] = [Module['preInit']];
+  while (Module['preInit'].length > 0) {
+    Module['preInit'].pop()();
+  }
+}
+
+
+  noExitRuntime = true;
+
+run();
+
+
+
+
+
+// {{MODULE_ADDITIONS}}
+
+
+
+
+// Bindings utilities
+
+/** @suppress {duplicate} (TODO: avoid emitting this multiple times, it is redundant) */
+function WrapperObject() {
+}
+WrapperObject.prototype = Object.create(WrapperObject.prototype);
+WrapperObject.prototype.constructor = WrapperObject;
+WrapperObject.prototype.__class__ = WrapperObject;
+WrapperObject.__cache__ = {};
+Module['WrapperObject'] = WrapperObject;
+
+/** @suppress {duplicate} (TODO: avoid emitting this multiple times, it is redundant)
+    @param {*=} __class__ */
+function getCache(__class__) {
+  return (__class__ || WrapperObject).__cache__;
+}
+Module['getCache'] = getCache;
+
+/** @suppress {duplicate} (TODO: avoid emitting this multiple times, it is redundant)
+    @param {*=} __class__ */
+function wrapPointer(ptr, __class__) {
+  var cache = getCache(__class__);
+  var ret = cache[ptr];
+  if (ret) return ret;
+  ret = Object.create((__class__ || WrapperObject).prototype);
+  ret.ptr = ptr;
+  return cache[ptr] = ret;
+}
+Module['wrapPointer'] = wrapPointer;
+
+/** @suppress {duplicate} (TODO: avoid emitting this multiple times, it is redundant) */
+function castObject(obj, __class__) {
+  return wrapPointer(obj.ptr, __class__);
+}
+Module['castObject'] = castObject;
+
+Module['NULL'] = wrapPointer(0);
+
+/** @suppress {duplicate} (TODO: avoid emitting this multiple times, it is redundant) */
+function destroy(obj) {
+  if (!obj['__destroy__']) throw 'Error: Cannot destroy object. (Did you create it yourself?)';
+  obj['__destroy__']();
+  // Remove from cache, so the object can be GC'd and refs added onto it released
+  delete getCache(obj.__class__)[obj.ptr];
+}
+Module['destroy'] = destroy;
+
+/** @suppress {duplicate} (TODO: avoid emitting this multiple times, it is redundant) */
+function compare(obj1, obj2) {
+  return obj1.ptr === obj2.ptr;
+}
+Module['compare'] = compare;
+
+/** @suppress {duplicate} (TODO: avoid emitting this multiple times, it is redundant) */
+function getPointer(obj) {
+  return obj.ptr;
+}
+Module['getPointer'] = getPointer;
+
+/** @suppress {duplicate} (TODO: avoid emitting this multiple times, it is redundant) */
+function getClass(obj) {
+  return obj.__class__;
+}
+Module['getClass'] = getClass;
+
+// Converts big (string or array) values into a C-style storage, in temporary space
+
+/** @suppress {duplicate} (TODO: avoid emitting this multiple times, it is redundant) */
+var ensureCache = {
+  buffer: 0,  // the main buffer of temporary storage
+  size: 0,   // the size of buffer
+  pos: 0,    // the next free offset in buffer
+  temps: [], // extra allocations
+  needed: 0, // the total size we need next time
+
+  prepare: function() {
+    if (ensureCache.needed) {
+      // clear the temps
+      for (var i = 0; i < ensureCache.temps.length; i++) {
+        Module['_free'](ensureCache.temps[i]);
+      }
+      ensureCache.temps.length = 0;
+      // prepare to allocate a bigger buffer
+      Module['_free'](ensureCache.buffer);
+      ensureCache.buffer = 0;
+      ensureCache.size += ensureCache.needed;
+      // clean up
+      ensureCache.needed = 0;
+    }
+    if (!ensureCache.buffer) { // happens first time, or when we need to grow
+      ensureCache.size += 128; // heuristic, avoid many small grow events
+      ensureCache.buffer = Module['_malloc'](ensureCache.size);
+      assert(ensureCache.buffer);
+    }
+    ensureCache.pos = 0;
+  },
+  alloc: function(array, view) {
+    assert(ensureCache.buffer);
+    var bytes = view.BYTES_PER_ELEMENT;
+    var len = array.length * bytes;
+    len = (len + 7) & -8; // keep things aligned to 8 byte boundaries
+    var ret;
+    if (ensureCache.pos + len >= ensureCache.size) {
+      // we failed to allocate in the buffer, ensureCache time around :(
+      assert(len > 0); // null terminator, at least
+      ensureCache.needed += len;
+      ret = Module['_malloc'](len);
+      ensureCache.temps.push(ret);
+    } else {
+      // we can allocate in the buffer
+      ret = ensureCache.buffer + ensureCache.pos;
+      ensureCache.pos += len;
+    }
+    return ret;
+  },
+  copy: function(array, view, offset) {
+    offset >>>= 0;
+    var bytes = view.BYTES_PER_ELEMENT;
+    switch (bytes) {
+      case 2: offset >>>= 1; break;
+      case 4: offset >>>= 2; break;
+      case 8: offset >>>= 3; break;
+    }
+    for (var i = 0; i < array.length; i++) {
+      view[offset + i] = array[i];
+    }
+  },
+};
+
+/** @suppress {duplicate} (TODO: avoid emitting this multiple times, it is redundant) */
+function ensureString(value) {
+  if (typeof value === 'string') {
+    var intArray = intArrayFromString(value);
+    var offset = ensureCache.alloc(intArray, HEAP8);
+    ensureCache.copy(intArray, HEAP8, offset);
+    return offset;
+  }
+  return value;
+}
+/** @suppress {duplicate} (TODO: avoid emitting this multiple times, it is redundant) */
+function ensureInt8(value) {
+  if (typeof value === 'object') {
+    var offset = ensureCache.alloc(value, HEAP8);
+    ensureCache.copy(value, HEAP8, offset);
+    return offset;
+  }
+  return value;
+}
+/** @suppress {duplicate} (TODO: avoid emitting this multiple times, it is redundant) */
+function ensureInt16(value) {
+  if (typeof value === 'object') {
+    var offset = ensureCache.alloc(value, HEAP16);
+    ensureCache.copy(value, HEAP16, offset);
+    return offset;
+  }
+  return value;
+}
+/** @suppress {duplicate} (TODO: avoid emitting this multiple times, it is redundant) */
+function ensureInt32(value) {
+  if (typeof value === 'object') {
+    var offset = ensureCache.alloc(value, HEAP32);
+    ensureCache.copy(value, HEAP32, offset);
+    return offset;
+  }
+  return value;
+}
+/** @suppress {duplicate} (TODO: avoid emitting this multiple times, it is redundant) */
+function ensureFloat32(value) {
+  if (typeof value === 'object') {
+    var offset = ensureCache.alloc(value, HEAPF32);
+    ensureCache.copy(value, HEAPF32, offset);
+    return offset;
+  }
+  return value;
+}
+/** @suppress {duplicate} (TODO: avoid emitting this multiple times, it is redundant) */
+function ensureFloat64(value) {
+  if (typeof value === 'object') {
+    var offset = ensureCache.alloc(value, HEAPF64);
+    ensureCache.copy(value, HEAPF64, offset);
+    return offset;
+  }
+  return value;
+}
+
+
+// btCollisionShape
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btCollisionShape() { throw "cannot construct a btCollisionShape, no constructor in IDL" }
+btCollisionShape.prototype = Object.create(WrapperObject.prototype);
+btCollisionShape.prototype.constructor = btCollisionShape;
+btCollisionShape.prototype.__class__ = btCollisionShape;
+btCollisionShape.__cache__ = {};
+Module['btCollisionShape'] = btCollisionShape;
+
+btCollisionShape.prototype['setLocalScaling'] = btCollisionShape.prototype.setLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btCollisionShape_setLocalScaling_1(self, scaling);
+};;
+
+btCollisionShape.prototype['getLocalScaling'] = btCollisionShape.prototype.getLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btCollisionShape_getLocalScaling_0(self), btVector3);
+};;
+
+btCollisionShape.prototype['calculateLocalInertia'] = btCollisionShape.prototype.calculateLocalInertia = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btCollisionShape_calculateLocalInertia_2(self, mass, inertia);
+};;
+
+btCollisionShape.prototype['setMargin'] = btCollisionShape.prototype.setMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function(margin) {
+  var self = this.ptr;
+  if (margin && typeof margin === 'object') margin = margin.ptr;
+  _btCollisionShape_setMargin_1(self, margin);
+};;
+
+btCollisionShape.prototype['getMargin'] = btCollisionShape.prototype.getMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCollisionShape_getMargin_0(self);
+};;
+
+btCollisionShape.prototype['isCompound'] = btCollisionShape.prototype.isCompound = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btCollisionShape_isCompound_0(self));
+};;
+
+btCollisionShape.prototype['getUserIndex'] = btCollisionShape.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCollisionShape_getUserIndex_0(self);
+};;
+
+btCollisionShape.prototype['setUserIndex'] = btCollisionShape.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btCollisionShape_setUserIndex_1(self, index);
+};;
+
+btCollisionShape.prototype['getUserIndex2'] = btCollisionShape.prototype.getUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCollisionShape_getUserIndex2_0(self);
+};;
+
+btCollisionShape.prototype['setUserIndex2'] = btCollisionShape.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btCollisionShape_setUserIndex2_1(self, index);
+};;
+
+btCollisionShape.prototype['getAabb'] = btCollisionShape.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t, min, max) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  if (min && typeof min === 'object') min = min.ptr;
+  if (max && typeof max === 'object') max = max.ptr;
+  _btCollisionShape_getAabb_3(self, t, min, max);
+};;
+
+btCollisionShape.prototype['getLocalBoundingSphere'] = btCollisionShape.prototype.getLocalBoundingSphere = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCollisionShape_getLocalBoundingSphere_0(self);
+};;
+
+  btCollisionShape.prototype['__destroy__'] = btCollisionShape.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btCollisionShape___destroy___0(self);
+};
+// btCollisionWorld
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btCollisionWorld() { throw "cannot construct a btCollisionWorld, no constructor in IDL" }
+btCollisionWorld.prototype = Object.create(WrapperObject.prototype);
+btCollisionWorld.prototype.constructor = btCollisionWorld;
+btCollisionWorld.prototype.__class__ = btCollisionWorld;
+btCollisionWorld.__cache__ = {};
+Module['btCollisionWorld'] = btCollisionWorld;
+
+btCollisionWorld.prototype['rayTest'] = btCollisionWorld.prototype.rayTest = /** @suppress {undefinedVars, duplicate} @this{Object} */function(rayFromWorld, rayToWorld, resultCallback) {
+  var self = this.ptr;
+  if (rayFromWorld && typeof rayFromWorld === 'object') rayFromWorld = rayFromWorld.ptr;
+  if (rayToWorld && typeof rayToWorld === 'object') rayToWorld = rayToWorld.ptr;
+  if (resultCallback && typeof resultCallback === 'object') resultCallback = resultCallback.ptr;
+  _btCollisionWorld_rayTest_3(self, rayFromWorld, rayToWorld, resultCallback);
+};;
+
+btCollisionWorld.prototype['rayTestSingle'] = btCollisionWorld.prototype.rayTestSingle = /** @suppress {undefinedVars, duplicate} @this{Object} */function(rayFromTrans, rayToTrans, collisionObject, collisionShape, colObjWorldTransform, resultCallback) {
+  var self = this.ptr;
+  if (rayFromTrans && typeof rayFromTrans === 'object') rayFromTrans = rayFromTrans.ptr;
+  if (rayToTrans && typeof rayToTrans === 'object') rayToTrans = rayToTrans.ptr;
+  if (collisionObject && typeof collisionObject === 'object') collisionObject = collisionObject.ptr;
+  if (collisionShape && typeof collisionShape === 'object') collisionShape = collisionShape.ptr;
+  if (colObjWorldTransform && typeof colObjWorldTransform === 'object') colObjWorldTransform = colObjWorldTransform.ptr;
+  if (resultCallback && typeof resultCallback === 'object') resultCallback = resultCallback.ptr;
+  _btCollisionWorld_rayTestSingle_6(self, rayFromTrans, rayToTrans, collisionObject, collisionShape, colObjWorldTransform, resultCallback);
+};;
+
+btCollisionWorld.prototype['getPairCache'] = btCollisionWorld.prototype.getPairCache = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btCollisionWorld_getPairCache_0(self), btOverlappingPairCache);
+};;
+
+btCollisionWorld.prototype['addCollisionObject'] = btCollisionWorld.prototype.addCollisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function(collisionObject, collisionFilterGroup, collisionFilterMask) {
+  var self = this.ptr;
+  if (collisionObject && typeof collisionObject === 'object') collisionObject = collisionObject.ptr;
+  if (collisionFilterGroup && typeof collisionFilterGroup === 'object') collisionFilterGroup = collisionFilterGroup.ptr;
+  if (collisionFilterMask && typeof collisionFilterMask === 'object') collisionFilterMask = collisionFilterMask.ptr;
+  if (collisionFilterGroup === undefined) { _btCollisionWorld_addCollisionObject_1(self, collisionObject);  return }
+  if (collisionFilterMask === undefined) { _btCollisionWorld_addCollisionObject_2(self, collisionObject, collisionFilterGroup);  return }
+  _btCollisionWorld_addCollisionObject_3(self, collisionObject, collisionFilterGroup, collisionFilterMask);
+};;
+
+btCollisionWorld.prototype['removeCollisionObject'] = btCollisionWorld.prototype.removeCollisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function(collisionObject) {
+  var self = this.ptr;
+  if (collisionObject && typeof collisionObject === 'object') collisionObject = collisionObject.ptr;
+  _btCollisionWorld_removeCollisionObject_1(self, collisionObject);
+};;
+
+btCollisionWorld.prototype['setContactBreakingThreshold'] = btCollisionWorld.prototype.setContactBreakingThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function(b) {
+  var self = this.ptr;
+  if (b && typeof b === 'object') b = b.ptr;
+  _btCollisionWorld_setContactBreakingThreshold_1(self, b);
+};;
+
+  btCollisionWorld.prototype['__destroy__'] = btCollisionWorld.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btCollisionWorld___destroy___0(self);
+};
+// btConvexShape
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btConvexShape() { throw "cannot construct a btConvexShape, no constructor in IDL" }
+btConvexShape.prototype = Object.create(btCollisionShape.prototype);
+btConvexShape.prototype.constructor = btConvexShape;
+btConvexShape.prototype.__class__ = btConvexShape;
+btConvexShape.__cache__ = {};
+Module['btConvexShape'] = btConvexShape;
+
+btConvexShape.prototype['setLocalScaling'] = btConvexShape.prototype.setLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btConvexShape_setLocalScaling_1(self, scaling);
+};;
+
+btConvexShape.prototype['getLocalScaling'] = btConvexShape.prototype.getLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btConvexShape_getLocalScaling_0(self), btVector3);
+};;
+
+btConvexShape.prototype['calculateLocalInertia'] = btConvexShape.prototype.calculateLocalInertia = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btConvexShape_calculateLocalInertia_2(self, mass, inertia);
+};;
+
+btConvexShape.prototype['setMargin'] = btConvexShape.prototype.setMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function(margin) {
+  var self = this.ptr;
+  if (margin && typeof margin === 'object') margin = margin.ptr;
+  _btConvexShape_setMargin_1(self, margin);
+};;
+
+btConvexShape.prototype['getMargin'] = btConvexShape.prototype.getMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConvexShape_getMargin_0(self);
+};;
+
+btConvexShape.prototype['isCompound'] = btConvexShape.prototype.isCompound = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btConvexShape_isCompound_0(self));
+};;
+
+btConvexShape.prototype['getUserIndex'] = btConvexShape.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConvexShape_getUserIndex_0(self);
+};;
+
+btConvexShape.prototype['setUserIndex'] = btConvexShape.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btConvexShape_setUserIndex_1(self, index);
+};;
+
+btConvexShape.prototype['getUserIndex2'] = btConvexShape.prototype.getUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConvexShape_getUserIndex2_0(self);
+};;
+
+btConvexShape.prototype['setUserIndex2'] = btConvexShape.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btConvexShape_setUserIndex2_1(self, index);
+};;
+
+btConvexShape.prototype['getAabb'] = btConvexShape.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t, min, max) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  if (min && typeof min === 'object') min = min.ptr;
+  if (max && typeof max === 'object') max = max.ptr;
+  _btConvexShape_getAabb_3(self, t, min, max);
+};;
+
+btConvexShape.prototype['getLocalBoundingSphere'] = btConvexShape.prototype.getLocalBoundingSphere = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConvexShape_getLocalBoundingSphere_0(self);
+};;
+
+  btConvexShape.prototype['__destroy__'] = btConvexShape.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btConvexShape___destroy___0(self);
+};
+// btDynamicsWorld
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btDynamicsWorld() { throw "cannot construct a btDynamicsWorld, no constructor in IDL" }
+btDynamicsWorld.prototype = Object.create(btCollisionWorld.prototype);
+btDynamicsWorld.prototype.constructor = btDynamicsWorld;
+btDynamicsWorld.prototype.__class__ = btDynamicsWorld;
+btDynamicsWorld.__cache__ = {};
+Module['btDynamicsWorld'] = btDynamicsWorld;
+
+btDynamicsWorld.prototype['addAction'] = btDynamicsWorld.prototype.addAction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(action) {
+  var self = this.ptr;
+  if (action && typeof action === 'object') action = action.ptr;
+  _btDynamicsWorld_addAction_1(self, action);
+};;
+
+btDynamicsWorld.prototype['removeAction'] = btDynamicsWorld.prototype.removeAction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(action) {
+  var self = this.ptr;
+  if (action && typeof action === 'object') action = action.ptr;
+  _btDynamicsWorld_removeAction_1(self, action);
+};;
+
+btDynamicsWorld.prototype['getSolverInfo'] = btDynamicsWorld.prototype.getSolverInfo = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btDynamicsWorld_getSolverInfo_0(self), btContactSolverInfo);
+};;
+
+btDynamicsWorld.prototype['getFixedBody'] = btDynamicsWorld.prototype.getFixedBody = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btDynamicsWorld_getFixedBody_0(self), btRigidBody);
+};;
+
+btDynamicsWorld.prototype['rayTest'] = btDynamicsWorld.prototype.rayTest = /** @suppress {undefinedVars, duplicate} @this{Object} */function(rayFromWorld, rayToWorld, resultCallback) {
+  var self = this.ptr;
+  if (rayFromWorld && typeof rayFromWorld === 'object') rayFromWorld = rayFromWorld.ptr;
+  if (rayToWorld && typeof rayToWorld === 'object') rayToWorld = rayToWorld.ptr;
+  if (resultCallback && typeof resultCallback === 'object') resultCallback = resultCallback.ptr;
+  _btDynamicsWorld_rayTest_3(self, rayFromWorld, rayToWorld, resultCallback);
+};;
+
+btDynamicsWorld.prototype['rayTestSingle'] = btDynamicsWorld.prototype.rayTestSingle = /** @suppress {undefinedVars, duplicate} @this{Object} */function(rayFromTrans, rayToTrans, collisionObject, collisionShape, colObjWorldTransform, resultCallback) {
+  var self = this.ptr;
+  if (rayFromTrans && typeof rayFromTrans === 'object') rayFromTrans = rayFromTrans.ptr;
+  if (rayToTrans && typeof rayToTrans === 'object') rayToTrans = rayToTrans.ptr;
+  if (collisionObject && typeof collisionObject === 'object') collisionObject = collisionObject.ptr;
+  if (collisionShape && typeof collisionShape === 'object') collisionShape = collisionShape.ptr;
+  if (colObjWorldTransform && typeof colObjWorldTransform === 'object') colObjWorldTransform = colObjWorldTransform.ptr;
+  if (resultCallback && typeof resultCallback === 'object') resultCallback = resultCallback.ptr;
+  _btDynamicsWorld_rayTestSingle_6(self, rayFromTrans, rayToTrans, collisionObject, collisionShape, colObjWorldTransform, resultCallback);
+};;
+
+btDynamicsWorld.prototype['getPairCache'] = btDynamicsWorld.prototype.getPairCache = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btDynamicsWorld_getPairCache_0(self), btOverlappingPairCache);
+};;
+
+btDynamicsWorld.prototype['addCollisionObject'] = btDynamicsWorld.prototype.addCollisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function(collisionObject, collisionFilterGroup, collisionFilterMask) {
+  var self = this.ptr;
+  if (collisionObject && typeof collisionObject === 'object') collisionObject = collisionObject.ptr;
+  if (collisionFilterGroup && typeof collisionFilterGroup === 'object') collisionFilterGroup = collisionFilterGroup.ptr;
+  if (collisionFilterMask && typeof collisionFilterMask === 'object') collisionFilterMask = collisionFilterMask.ptr;
+  if (collisionFilterGroup === undefined) { _btDynamicsWorld_addCollisionObject_1(self, collisionObject);  return }
+  if (collisionFilterMask === undefined) { _btDynamicsWorld_addCollisionObject_2(self, collisionObject, collisionFilterGroup);  return }
+  _btDynamicsWorld_addCollisionObject_3(self, collisionObject, collisionFilterGroup, collisionFilterMask);
+};;
+
+btDynamicsWorld.prototype['removeCollisionObject'] = btDynamicsWorld.prototype.removeCollisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function(collisionObject) {
+  var self = this.ptr;
+  if (collisionObject && typeof collisionObject === 'object') collisionObject = collisionObject.ptr;
+  _btDynamicsWorld_removeCollisionObject_1(self, collisionObject);
+};;
+
+btDynamicsWorld.prototype['setContactBreakingThreshold'] = btDynamicsWorld.prototype.setContactBreakingThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function(b) {
+  var self = this.ptr;
+  if (b && typeof b === 'object') b = b.ptr;
+  _btDynamicsWorld_setContactBreakingThreshold_1(self, b);
+};;
+
+  btDynamicsWorld.prototype['__destroy__'] = btDynamicsWorld.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btDynamicsWorld___destroy___0(self);
+};
+// RayResultCallback
+/** @suppress {undefinedVars, duplicate} @this{Object} */function RayResultCallback() { throw "cannot construct a RayResultCallback, no constructor in IDL" }
+RayResultCallback.prototype = Object.create(WrapperObject.prototype);
+RayResultCallback.prototype.constructor = RayResultCallback;
+RayResultCallback.prototype.__class__ = RayResultCallback;
+RayResultCallback.__cache__ = {};
+Module['RayResultCallback'] = RayResultCallback;
+
+RayResultCallback.prototype['hasHit'] = RayResultCallback.prototype.hasHit = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_RayResultCallback_hasHit_0(self));
+};;
+
+  RayResultCallback.prototype['get_m_collisionFilterGroup'] = RayResultCallback.prototype.get_m_collisionFilterGroup = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _RayResultCallback_get_m_collisionFilterGroup_0(self);
+};
+    RayResultCallback.prototype['set_m_collisionFilterGroup'] = RayResultCallback.prototype.set_m_collisionFilterGroup = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _RayResultCallback_set_m_collisionFilterGroup_1(self, arg0);
+};
+    Object.defineProperty(RayResultCallback.prototype, 'm_collisionFilterGroup', { get: RayResultCallback.prototype.get_m_collisionFilterGroup, set: RayResultCallback.prototype.set_m_collisionFilterGroup });
+  RayResultCallback.prototype['get_m_collisionFilterMask'] = RayResultCallback.prototype.get_m_collisionFilterMask = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _RayResultCallback_get_m_collisionFilterMask_0(self);
+};
+    RayResultCallback.prototype['set_m_collisionFilterMask'] = RayResultCallback.prototype.set_m_collisionFilterMask = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _RayResultCallback_set_m_collisionFilterMask_1(self, arg0);
+};
+    Object.defineProperty(RayResultCallback.prototype, 'm_collisionFilterMask', { get: RayResultCallback.prototype.get_m_collisionFilterMask, set: RayResultCallback.prototype.set_m_collisionFilterMask });
+  RayResultCallback.prototype['get_m_closestHitFraction'] = RayResultCallback.prototype.get_m_closestHitFraction = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _RayResultCallback_get_m_closestHitFraction_0(self);
+};
+    RayResultCallback.prototype['set_m_closestHitFraction'] = RayResultCallback.prototype.set_m_closestHitFraction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _RayResultCallback_set_m_closestHitFraction_1(self, arg0);
+};
+    Object.defineProperty(RayResultCallback.prototype, 'm_closestHitFraction', { get: RayResultCallback.prototype.get_m_closestHitFraction, set: RayResultCallback.prototype.set_m_closestHitFraction });
+  RayResultCallback.prototype['get_m_collisionObject'] = RayResultCallback.prototype.get_m_collisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_RayResultCallback_get_m_collisionObject_0(self), btCollisionObject);
+};
+    RayResultCallback.prototype['set_m_collisionObject'] = RayResultCallback.prototype.set_m_collisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _RayResultCallback_set_m_collisionObject_1(self, arg0);
+};
+    Object.defineProperty(RayResultCallback.prototype, 'm_collisionObject', { get: RayResultCallback.prototype.get_m_collisionObject, set: RayResultCallback.prototype.set_m_collisionObject });
+  RayResultCallback.prototype['__destroy__'] = RayResultCallback.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _RayResultCallback___destroy___0(self);
+};
+// btConcaveShape
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btConcaveShape() { throw "cannot construct a btConcaveShape, no constructor in IDL" }
+btConcaveShape.prototype = Object.create(btCollisionShape.prototype);
+btConcaveShape.prototype.constructor = btConcaveShape;
+btConcaveShape.prototype.__class__ = btConcaveShape;
+btConcaveShape.__cache__ = {};
+Module['btConcaveShape'] = btConcaveShape;
+
+btConcaveShape.prototype['setLocalScaling'] = btConcaveShape.prototype.setLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btConcaveShape_setLocalScaling_1(self, scaling);
+};;
+
+btConcaveShape.prototype['getLocalScaling'] = btConcaveShape.prototype.getLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btConcaveShape_getLocalScaling_0(self), btVector3);
+};;
+
+btConcaveShape.prototype['calculateLocalInertia'] = btConcaveShape.prototype.calculateLocalInertia = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btConcaveShape_calculateLocalInertia_2(self, mass, inertia);
+};;
+
+btConcaveShape.prototype['isCompound'] = btConcaveShape.prototype.isCompound = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btConcaveShape_isCompound_0(self));
+};;
+
+btConcaveShape.prototype['getUserIndex'] = btConcaveShape.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConcaveShape_getUserIndex_0(self);
+};;
+
+btConcaveShape.prototype['setUserIndex'] = btConcaveShape.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btConcaveShape_setUserIndex_1(self, index);
+};;
+
+btConcaveShape.prototype['getUserIndex2'] = btConcaveShape.prototype.getUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConcaveShape_getUserIndex2_0(self);
+};;
+
+btConcaveShape.prototype['setUserIndex2'] = btConcaveShape.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btConcaveShape_setUserIndex2_1(self, index);
+};;
+
+btConcaveShape.prototype['getAabb'] = btConcaveShape.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t, min, max) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  if (min && typeof min === 'object') min = min.ptr;
+  if (max && typeof max === 'object') max = max.ptr;
+  _btConcaveShape_getAabb_3(self, t, min, max);
+};;
+
+btConcaveShape.prototype['getLocalBoundingSphere'] = btConcaveShape.prototype.getLocalBoundingSphere = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConcaveShape_getLocalBoundingSphere_0(self);
+};;
+
+  btConcaveShape.prototype['__destroy__'] = btConcaveShape.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btConcaveShape___destroy___0(self);
+};
+// btStridingMeshInterface
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btStridingMeshInterface() { throw "cannot construct a btStridingMeshInterface, no constructor in IDL" }
+btStridingMeshInterface.prototype = Object.create(WrapperObject.prototype);
+btStridingMeshInterface.prototype.constructor = btStridingMeshInterface;
+btStridingMeshInterface.prototype.__class__ = btStridingMeshInterface;
+btStridingMeshInterface.__cache__ = {};
+Module['btStridingMeshInterface'] = btStridingMeshInterface;
+
+btStridingMeshInterface.prototype['setScaling'] = btStridingMeshInterface.prototype.setScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btStridingMeshInterface_setScaling_1(self, scaling);
+};;
+
+  btStridingMeshInterface.prototype['__destroy__'] = btStridingMeshInterface.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btStridingMeshInterface___destroy___0(self);
+};
+// btBroadphaseInterface
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btBroadphaseInterface() { throw "cannot construct a btBroadphaseInterface, no constructor in IDL" }
+btBroadphaseInterface.prototype = Object.create(WrapperObject.prototype);
+btBroadphaseInterface.prototype.constructor = btBroadphaseInterface;
+btBroadphaseInterface.prototype.__class__ = btBroadphaseInterface;
+btBroadphaseInterface.__cache__ = {};
+Module['btBroadphaseInterface'] = btBroadphaseInterface;
+
+btBroadphaseInterface.prototype['getOverlappingPairCache'] = btBroadphaseInterface.prototype.getOverlappingPairCache = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btBroadphaseInterface_getOverlappingPairCache_0(self), btOverlappingPairCache);
+};;
+
+  btBroadphaseInterface.prototype['__destroy__'] = btBroadphaseInterface.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btBroadphaseInterface___destroy___0(self);
+};
+// btCollisionObject
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btCollisionObject() {
+  this.ptr = _btCollisionObject_btCollisionObject_0();
+  getCache(btCollisionObject)[this.ptr] = this;
+};;
+btCollisionObject.prototype = Object.create(WrapperObject.prototype);
+btCollisionObject.prototype.constructor = btCollisionObject;
+btCollisionObject.prototype.__class__ = btCollisionObject;
+btCollisionObject.__cache__ = {};
+Module['btCollisionObject'] = btCollisionObject;
+
+btCollisionObject.prototype['getCollisionShape'] = btCollisionObject.prototype.getCollisionShape = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btCollisionObject_getCollisionShape_0(self), btCollisionShape);
+};;
+
+btCollisionObject.prototype['getActivationState'] = btCollisionObject.prototype.getActivationState = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCollisionObject_getActivationState_0(self);
+};;
+
+btCollisionObject.prototype['setActivationState'] = btCollisionObject.prototype.setActivationState = /** @suppress {undefinedVars, duplicate} @this{Object} */function(newState) {
+  var self = this.ptr;
+  if (newState && typeof newState === 'object') newState = newState.ptr;
+  _btCollisionObject_setActivationState_1(self, newState);
+};;
+
+btCollisionObject.prototype['forceActivationState'] = btCollisionObject.prototype.forceActivationState = /** @suppress {undefinedVars, duplicate} @this{Object} */function(newState) {
+  var self = this.ptr;
+  if (newState && typeof newState === 'object') newState = newState.ptr;
+  _btCollisionObject_forceActivationState_1(self, newState);
+};;
+
+btCollisionObject.prototype['activate'] = btCollisionObject.prototype.activate = /** @suppress {undefinedVars, duplicate} @this{Object} */function(forceActivation) {
+  var self = this.ptr;
+  if (forceActivation && typeof forceActivation === 'object') forceActivation = forceActivation.ptr;
+  if (forceActivation === undefined) { _btCollisionObject_activate_0(self);  return }
+  _btCollisionObject_activate_1(self, forceActivation);
+};;
+
+btCollisionObject.prototype['isActive'] = btCollisionObject.prototype.isActive = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btCollisionObject_isActive_0(self));
+};;
+
+btCollisionObject.prototype['isKinematicObject'] = btCollisionObject.prototype.isKinematicObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btCollisionObject_isKinematicObject_0(self));
+};;
+
+btCollisionObject.prototype['isStaticObject'] = btCollisionObject.prototype.isStaticObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btCollisionObject_isStaticObject_0(self));
+};;
+
+btCollisionObject.prototype['isStaticOrKinematicObject'] = btCollisionObject.prototype.isStaticOrKinematicObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btCollisionObject_isStaticOrKinematicObject_0(self));
+};;
+
+btCollisionObject.prototype['setRestitution'] = btCollisionObject.prototype.setRestitution = /** @suppress {undefinedVars, duplicate} @this{Object} */function(r) {
+  var self = this.ptr;
+  if (r && typeof r === 'object') r = r.ptr;
+  _btCollisionObject_setRestitution_1(self, r);
+};;
+
+btCollisionObject.prototype['setFriction'] = btCollisionObject.prototype.setFriction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(f) {
+  var self = this.ptr;
+  if (f && typeof f === 'object') f = f.ptr;
+  _btCollisionObject_setFriction_1(self, f);
+};;
+
+btCollisionObject.prototype['setRollingFriction'] = btCollisionObject.prototype.setRollingFriction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(rf) {
+  var self = this.ptr;
+  if (rf && typeof rf === 'object') rf = rf.ptr;
+  _btCollisionObject_setRollingFriction_1(self, rf);
+};;
+
+btCollisionObject.prototype['setSpinningFriction'] = btCollisionObject.prototype.setSpinningFriction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(sf) {
+  var self = this.ptr;
+  if (sf && typeof sf === 'object') sf = sf.ptr;
+  _btCollisionObject_setSpinningFriction_1(self, sf);
+};;
+
+btCollisionObject.prototype['getWorldTransform'] = btCollisionObject.prototype.getWorldTransform = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btCollisionObject_getWorldTransform_0(self), btTransform);
+};;
+
+btCollisionObject.prototype['getCollisionFlags'] = btCollisionObject.prototype.getCollisionFlags = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCollisionObject_getCollisionFlags_0(self);
+};;
+
+btCollisionObject.prototype['setCollisionFlags'] = btCollisionObject.prototype.setCollisionFlags = /** @suppress {undefinedVars, duplicate} @this{Object} */function(flags) {
+  var self = this.ptr;
+  if (flags && typeof flags === 'object') flags = flags.ptr;
+  _btCollisionObject_setCollisionFlags_1(self, flags);
+};;
+
+btCollisionObject.prototype['setWorldTransform'] = btCollisionObject.prototype.setWorldTransform = /** @suppress {undefinedVars, duplicate} @this{Object} */function(worldTrans) {
+  var self = this.ptr;
+  if (worldTrans && typeof worldTrans === 'object') worldTrans = worldTrans.ptr;
+  _btCollisionObject_setWorldTransform_1(self, worldTrans);
+};;
+
+btCollisionObject.prototype['setCollisionShape'] = btCollisionObject.prototype.setCollisionShape = /** @suppress {undefinedVars, duplicate} @this{Object} */function(collisionShape) {
+  var self = this.ptr;
+  if (collisionShape && typeof collisionShape === 'object') collisionShape = collisionShape.ptr;
+  _btCollisionObject_setCollisionShape_1(self, collisionShape);
+};;
+
+btCollisionObject.prototype['setCcdMotionThreshold'] = btCollisionObject.prototype.setCcdMotionThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function(ccdMotionThreshold) {
+  var self = this.ptr;
+  if (ccdMotionThreshold && typeof ccdMotionThreshold === 'object') ccdMotionThreshold = ccdMotionThreshold.ptr;
+  _btCollisionObject_setCcdMotionThreshold_1(self, ccdMotionThreshold);
+};;
+
+btCollisionObject.prototype['setCcdSweptSphereRadius'] = btCollisionObject.prototype.setCcdSweptSphereRadius = /** @suppress {undefinedVars, duplicate} @this{Object} */function(radius) {
+  var self = this.ptr;
+  if (radius && typeof radius === 'object') radius = radius.ptr;
+  _btCollisionObject_setCcdSweptSphereRadius_1(self, radius);
+};;
+
+btCollisionObject.prototype['getUserIndex'] = btCollisionObject.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCollisionObject_getUserIndex_0(self);
+};;
+
+btCollisionObject.prototype['setUserIndex'] = btCollisionObject.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btCollisionObject_setUserIndex_1(self, index);
+};;
+
+btCollisionObject.prototype['setUserIndex2'] = btCollisionObject.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btCollisionObject_setUserIndex2_1(self, index);
+};;
+
+btCollisionObject.prototype['setIgnoreCollisionCheck'] = btCollisionObject.prototype.setIgnoreCollisionCheck = /** @suppress {undefinedVars, duplicate} @this{Object} */function(co, ig) {
+  var self = this.ptr;
+  if (co && typeof co === 'object') co = co.ptr;
+  if (ig && typeof ig === 'object') ig = ig.ptr;
+  _btCollisionObject_setIgnoreCollisionCheck_2(self, co, ig);
+};;
+
+  btCollisionObject.prototype['__destroy__'] = btCollisionObject.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btCollisionObject___destroy___0(self);
+};
+// btDiscreteDynamicsWorld
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btDiscreteDynamicsWorld(dispatcher, pairCache, constraintSolver, collisionConfiguration) {
+  if (dispatcher && typeof dispatcher === 'object') dispatcher = dispatcher.ptr;
+  if (pairCache && typeof pairCache === 'object') pairCache = pairCache.ptr;
+  if (constraintSolver && typeof constraintSolver === 'object') constraintSolver = constraintSolver.ptr;
+  if (collisionConfiguration && typeof collisionConfiguration === 'object') collisionConfiguration = collisionConfiguration.ptr;
+  this.ptr = _btDiscreteDynamicsWorld_btDiscreteDynamicsWorld_4(dispatcher, pairCache, constraintSolver, collisionConfiguration);
+  getCache(btDiscreteDynamicsWorld)[this.ptr] = this;
+};;
+btDiscreteDynamicsWorld.prototype = Object.create(btDynamicsWorld.prototype);
+btDiscreteDynamicsWorld.prototype.constructor = btDiscreteDynamicsWorld;
+btDiscreteDynamicsWorld.prototype.__class__ = btDiscreteDynamicsWorld;
+btDiscreteDynamicsWorld.__cache__ = {};
+Module['btDiscreteDynamicsWorld'] = btDiscreteDynamicsWorld;
+
+btDiscreteDynamicsWorld.prototype['setGravity'] = btDiscreteDynamicsWorld.prototype.setGravity = /** @suppress {undefinedVars, duplicate} @this{Object} */function(gravity) {
+  var self = this.ptr;
+  if (gravity && typeof gravity === 'object') gravity = gravity.ptr;
+  _btDiscreteDynamicsWorld_setGravity_1(self, gravity);
+};;
+
+btDiscreteDynamicsWorld.prototype['getGravity'] = btDiscreteDynamicsWorld.prototype.getGravity = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btDiscreteDynamicsWorld_getGravity_0(self), btVector3);
+};;
+
+btDiscreteDynamicsWorld.prototype['addRigidBody'] = btDiscreteDynamicsWorld.prototype.addRigidBody = /** @suppress {undefinedVars, duplicate} @this{Object} */function(body, group, mask) {
+  var self = this.ptr;
+  if (body && typeof body === 'object') body = body.ptr;
+  if (group && typeof group === 'object') group = group.ptr;
+  if (mask && typeof mask === 'object') mask = mask.ptr;
+  if (group === undefined) { _btDiscreteDynamicsWorld_addRigidBody_1(self, body);  return }
+  if (mask === undefined) { _btDiscreteDynamicsWorld_addRigidBody_2(self, body, group);  return }
+  _btDiscreteDynamicsWorld_addRigidBody_3(self, body, group, mask);
+};;
+
+btDiscreteDynamicsWorld.prototype['removeRigidBody'] = btDiscreteDynamicsWorld.prototype.removeRigidBody = /** @suppress {undefinedVars, duplicate} @this{Object} */function(body) {
+  var self = this.ptr;
+  if (body && typeof body === 'object') body = body.ptr;
+  _btDiscreteDynamicsWorld_removeRigidBody_1(self, body);
+};;
+
+btDiscreteDynamicsWorld.prototype['addConstraint'] = btDiscreteDynamicsWorld.prototype.addConstraint = /** @suppress {undefinedVars, duplicate} @this{Object} */function(constraint, disableCollisionsBetweenLinkedBodies) {
+  var self = this.ptr;
+  if (constraint && typeof constraint === 'object') constraint = constraint.ptr;
+  if (disableCollisionsBetweenLinkedBodies && typeof disableCollisionsBetweenLinkedBodies === 'object') disableCollisionsBetweenLinkedBodies = disableCollisionsBetweenLinkedBodies.ptr;
+  if (disableCollisionsBetweenLinkedBodies === undefined) { _btDiscreteDynamicsWorld_addConstraint_1(self, constraint);  return }
+  _btDiscreteDynamicsWorld_addConstraint_2(self, constraint, disableCollisionsBetweenLinkedBodies);
+};;
+
+btDiscreteDynamicsWorld.prototype['removeConstraint'] = btDiscreteDynamicsWorld.prototype.removeConstraint = /** @suppress {undefinedVars, duplicate} @this{Object} */function(constraint) {
+  var self = this.ptr;
+  if (constraint && typeof constraint === 'object') constraint = constraint.ptr;
+  _btDiscreteDynamicsWorld_removeConstraint_1(self, constraint);
+};;
+
+btDiscreteDynamicsWorld.prototype['stepSimulation'] = btDiscreteDynamicsWorld.prototype.stepSimulation = /** @suppress {undefinedVars, duplicate} @this{Object} */function(timeStep, maxSubSteps, fixedTimeStep) {
+  var self = this.ptr;
+  if (timeStep && typeof timeStep === 'object') timeStep = timeStep.ptr;
+  if (maxSubSteps && typeof maxSubSteps === 'object') maxSubSteps = maxSubSteps.ptr;
+  if (fixedTimeStep && typeof fixedTimeStep === 'object') fixedTimeStep = fixedTimeStep.ptr;
+  if (maxSubSteps === undefined) { return _btDiscreteDynamicsWorld_stepSimulation_1(self, timeStep) }
+  if (fixedTimeStep === undefined) { return _btDiscreteDynamicsWorld_stepSimulation_2(self, timeStep, maxSubSteps) }
+  return _btDiscreteDynamicsWorld_stepSimulation_3(self, timeStep, maxSubSteps, fixedTimeStep);
+};;
+
+btDiscreteDynamicsWorld.prototype['rayTest'] = btDiscreteDynamicsWorld.prototype.rayTest = /** @suppress {undefinedVars, duplicate} @this{Object} */function(rayFromWorld, rayToWorld, resultCallback) {
+  var self = this.ptr;
+  if (rayFromWorld && typeof rayFromWorld === 'object') rayFromWorld = rayFromWorld.ptr;
+  if (rayToWorld && typeof rayToWorld === 'object') rayToWorld = rayToWorld.ptr;
+  if (resultCallback && typeof resultCallback === 'object') resultCallback = resultCallback.ptr;
+  _btDiscreteDynamicsWorld_rayTest_3(self, rayFromWorld, rayToWorld, resultCallback);
+};;
+
+btDiscreteDynamicsWorld.prototype['rayTestSingle'] = btDiscreteDynamicsWorld.prototype.rayTestSingle = /** @suppress {undefinedVars, duplicate} @this{Object} */function(rayFromTrans, rayToTrans, collisionObject, collisionShape, colObjWorldTransform, resultCallback) {
+  var self = this.ptr;
+  if (rayFromTrans && typeof rayFromTrans === 'object') rayFromTrans = rayFromTrans.ptr;
+  if (rayToTrans && typeof rayToTrans === 'object') rayToTrans = rayToTrans.ptr;
+  if (collisionObject && typeof collisionObject === 'object') collisionObject = collisionObject.ptr;
+  if (collisionShape && typeof collisionShape === 'object') collisionShape = collisionShape.ptr;
+  if (colObjWorldTransform && typeof colObjWorldTransform === 'object') colObjWorldTransform = colObjWorldTransform.ptr;
+  if (resultCallback && typeof resultCallback === 'object') resultCallback = resultCallback.ptr;
+  _btDiscreteDynamicsWorld_rayTestSingle_6(self, rayFromTrans, rayToTrans, collisionObject, collisionShape, colObjWorldTransform, resultCallback);
+};;
+
+btDiscreteDynamicsWorld.prototype['getPairCache'] = btDiscreteDynamicsWorld.prototype.getPairCache = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btDiscreteDynamicsWorld_getPairCache_0(self), btOverlappingPairCache);
+};;
+
+btDiscreteDynamicsWorld.prototype['addCollisionObject'] = btDiscreteDynamicsWorld.prototype.addCollisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function(collisionObject, collisionFilterGroup, collisionFilterMask) {
+  var self = this.ptr;
+  if (collisionObject && typeof collisionObject === 'object') collisionObject = collisionObject.ptr;
+  if (collisionFilterGroup && typeof collisionFilterGroup === 'object') collisionFilterGroup = collisionFilterGroup.ptr;
+  if (collisionFilterMask && typeof collisionFilterMask === 'object') collisionFilterMask = collisionFilterMask.ptr;
+  if (collisionFilterGroup === undefined) { _btDiscreteDynamicsWorld_addCollisionObject_1(self, collisionObject);  return }
+  if (collisionFilterMask === undefined) { _btDiscreteDynamicsWorld_addCollisionObject_2(self, collisionObject, collisionFilterGroup);  return }
+  _btDiscreteDynamicsWorld_addCollisionObject_3(self, collisionObject, collisionFilterGroup, collisionFilterMask);
+};;
+
+btDiscreteDynamicsWorld.prototype['removeCollisionObject'] = btDiscreteDynamicsWorld.prototype.removeCollisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function(collisionObject) {
+  var self = this.ptr;
+  if (collisionObject && typeof collisionObject === 'object') collisionObject = collisionObject.ptr;
+  _btDiscreteDynamicsWorld_removeCollisionObject_1(self, collisionObject);
+};;
+
+btDiscreteDynamicsWorld.prototype['setContactBreakingThreshold'] = btDiscreteDynamicsWorld.prototype.setContactBreakingThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function(b) {
+  var self = this.ptr;
+  if (b && typeof b === 'object') b = b.ptr;
+  _btDiscreteDynamicsWorld_setContactBreakingThreshold_1(self, b);
+};;
+
+btDiscreteDynamicsWorld.prototype['addAction'] = btDiscreteDynamicsWorld.prototype.addAction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(action) {
+  var self = this.ptr;
+  if (action && typeof action === 'object') action = action.ptr;
+  _btDiscreteDynamicsWorld_addAction_1(self, action);
+};;
+
+btDiscreteDynamicsWorld.prototype['removeAction'] = btDiscreteDynamicsWorld.prototype.removeAction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(action) {
+  var self = this.ptr;
+  if (action && typeof action === 'object') action = action.ptr;
+  _btDiscreteDynamicsWorld_removeAction_1(self, action);
+};;
+
+btDiscreteDynamicsWorld.prototype['getSolverInfo'] = btDiscreteDynamicsWorld.prototype.getSolverInfo = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btDiscreteDynamicsWorld_getSolverInfo_0(self), btContactSolverInfo);
+};;
+
+btDiscreteDynamicsWorld.prototype['getFixedBody'] = btDiscreteDynamicsWorld.prototype.getFixedBody = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btDiscreteDynamicsWorld_getFixedBody_0(self), btRigidBody);
+};;
+
+  btDiscreteDynamicsWorld.prototype['__destroy__'] = btDiscreteDynamicsWorld.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btDiscreteDynamicsWorld___destroy___0(self);
+};
+// btMotionState
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btMotionState() { throw "cannot construct a btMotionState, no constructor in IDL" }
+btMotionState.prototype = Object.create(WrapperObject.prototype);
+btMotionState.prototype.constructor = btMotionState;
+btMotionState.prototype.__class__ = btMotionState;
+btMotionState.__cache__ = {};
+Module['btMotionState'] = btMotionState;
+
+btMotionState.prototype['getWorldTransform'] = btMotionState.prototype.getWorldTransform = /** @suppress {undefinedVars, duplicate} @this{Object} */function(worldTrans) {
+  var self = this.ptr;
+  if (worldTrans && typeof worldTrans === 'object') worldTrans = worldTrans.ptr;
+  _btMotionState_getWorldTransform_1(self, worldTrans);
+};;
+
+btMotionState.prototype['setWorldTransform'] = btMotionState.prototype.setWorldTransform = /** @suppress {undefinedVars, duplicate} @this{Object} */function(worldTrans) {
+  var self = this.ptr;
+  if (worldTrans && typeof worldTrans === 'object') worldTrans = worldTrans.ptr;
+  _btMotionState_setWorldTransform_1(self, worldTrans);
+};;
+
+  btMotionState.prototype['__destroy__'] = btMotionState.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btMotionState___destroy___0(self);
+};
+// btConvexInternalShape
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btConvexInternalShape() { throw "cannot construct a btConvexInternalShape, no constructor in IDL" }
+btConvexInternalShape.prototype = Object.create(btConvexShape.prototype);
+btConvexInternalShape.prototype.constructor = btConvexInternalShape;
+btConvexInternalShape.prototype.__class__ = btConvexInternalShape;
+btConvexInternalShape.__cache__ = {};
+Module['btConvexInternalShape'] = btConvexInternalShape;
+
+btConvexInternalShape.prototype['getImplicitShapeDimensions'] = btConvexInternalShape.prototype.getImplicitShapeDimensions = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btConvexInternalShape_getImplicitShapeDimensions_0(self), btVector3);
+};;
+
+btConvexInternalShape.prototype['setLocalScaling'] = btConvexInternalShape.prototype.setLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btConvexInternalShape_setLocalScaling_1(self, scaling);
+};;
+
+btConvexInternalShape.prototype['getLocalScaling'] = btConvexInternalShape.prototype.getLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btConvexInternalShape_getLocalScaling_0(self), btVector3);
+};;
+
+btConvexInternalShape.prototype['calculateLocalInertia'] = btConvexInternalShape.prototype.calculateLocalInertia = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btConvexInternalShape_calculateLocalInertia_2(self, mass, inertia);
+};;
+
+btConvexInternalShape.prototype['setMargin'] = btConvexInternalShape.prototype.setMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function(margin) {
+  var self = this.ptr;
+  if (margin && typeof margin === 'object') margin = margin.ptr;
+  _btConvexInternalShape_setMargin_1(self, margin);
+};;
+
+btConvexInternalShape.prototype['getMargin'] = btConvexInternalShape.prototype.getMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConvexInternalShape_getMargin_0(self);
+};;
+
+btConvexInternalShape.prototype['isCompound'] = btConvexInternalShape.prototype.isCompound = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btConvexInternalShape_isCompound_0(self));
+};;
+
+btConvexInternalShape.prototype['getUserIndex'] = btConvexInternalShape.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConvexInternalShape_getUserIndex_0(self);
+};;
+
+btConvexInternalShape.prototype['setUserIndex'] = btConvexInternalShape.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btConvexInternalShape_setUserIndex_1(self, index);
+};;
+
+btConvexInternalShape.prototype['getUserIndex2'] = btConvexInternalShape.prototype.getUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConvexInternalShape_getUserIndex2_0(self);
+};;
+
+btConvexInternalShape.prototype['setUserIndex2'] = btConvexInternalShape.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btConvexInternalShape_setUserIndex2_1(self, index);
+};;
+
+btConvexInternalShape.prototype['getAabb'] = btConvexInternalShape.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t, min, max) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  if (min && typeof min === 'object') min = min.ptr;
+  if (max && typeof max === 'object') max = max.ptr;
+  _btConvexInternalShape_getAabb_3(self, t, min, max);
+};;
+
+btConvexInternalShape.prototype['getLocalBoundingSphere'] = btConvexInternalShape.prototype.getLocalBoundingSphere = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConvexInternalShape_getLocalBoundingSphere_0(self);
+};;
+
+  btConvexInternalShape.prototype['__destroy__'] = btConvexInternalShape.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btConvexInternalShape___destroy___0(self);
+};
+// AllHitsRayResultCallback
+/** @suppress {undefinedVars, duplicate} @this{Object} */function AllHitsRayResultCallback(from, to) {
+  if (from && typeof from === 'object') from = from.ptr;
+  if (to && typeof to === 'object') to = to.ptr;
+  this.ptr = _AllHitsRayResultCallback_AllHitsRayResultCallback_2(from, to);
+  getCache(AllHitsRayResultCallback)[this.ptr] = this;
+};;
+AllHitsRayResultCallback.prototype = Object.create(RayResultCallback.prototype);
+AllHitsRayResultCallback.prototype.constructor = AllHitsRayResultCallback;
+AllHitsRayResultCallback.prototype.__class__ = AllHitsRayResultCallback;
+AllHitsRayResultCallback.__cache__ = {};
+Module['AllHitsRayResultCallback'] = AllHitsRayResultCallback;
+
+AllHitsRayResultCallback.prototype['hasHit'] = AllHitsRayResultCallback.prototype.hasHit = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_AllHitsRayResultCallback_hasHit_0(self));
+};;
+
+  AllHitsRayResultCallback.prototype['get_m_collisionObjects'] = AllHitsRayResultCallback.prototype.get_m_collisionObjects = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_AllHitsRayResultCallback_get_m_collisionObjects_0(self), btConstCollisionObjectArray);
+};
+    AllHitsRayResultCallback.prototype['set_m_collisionObjects'] = AllHitsRayResultCallback.prototype.set_m_collisionObjects = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _AllHitsRayResultCallback_set_m_collisionObjects_1(self, arg0);
+};
+    Object.defineProperty(AllHitsRayResultCallback.prototype, 'm_collisionObjects', { get: AllHitsRayResultCallback.prototype.get_m_collisionObjects, set: AllHitsRayResultCallback.prototype.set_m_collisionObjects });
+  AllHitsRayResultCallback.prototype['get_m_rayFromWorld'] = AllHitsRayResultCallback.prototype.get_m_rayFromWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_AllHitsRayResultCallback_get_m_rayFromWorld_0(self), btVector3);
+};
+    AllHitsRayResultCallback.prototype['set_m_rayFromWorld'] = AllHitsRayResultCallback.prototype.set_m_rayFromWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _AllHitsRayResultCallback_set_m_rayFromWorld_1(self, arg0);
+};
+    Object.defineProperty(AllHitsRayResultCallback.prototype, 'm_rayFromWorld', { get: AllHitsRayResultCallback.prototype.get_m_rayFromWorld, set: AllHitsRayResultCallback.prototype.set_m_rayFromWorld });
+  AllHitsRayResultCallback.prototype['get_m_rayToWorld'] = AllHitsRayResultCallback.prototype.get_m_rayToWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_AllHitsRayResultCallback_get_m_rayToWorld_0(self), btVector3);
+};
+    AllHitsRayResultCallback.prototype['set_m_rayToWorld'] = AllHitsRayResultCallback.prototype.set_m_rayToWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _AllHitsRayResultCallback_set_m_rayToWorld_1(self, arg0);
+};
+    Object.defineProperty(AllHitsRayResultCallback.prototype, 'm_rayToWorld', { get: AllHitsRayResultCallback.prototype.get_m_rayToWorld, set: AllHitsRayResultCallback.prototype.set_m_rayToWorld });
+  AllHitsRayResultCallback.prototype['get_m_hitNormalWorld'] = AllHitsRayResultCallback.prototype.get_m_hitNormalWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_AllHitsRayResultCallback_get_m_hitNormalWorld_0(self), btVector3Array);
+};
+    AllHitsRayResultCallback.prototype['set_m_hitNormalWorld'] = AllHitsRayResultCallback.prototype.set_m_hitNormalWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _AllHitsRayResultCallback_set_m_hitNormalWorld_1(self, arg0);
+};
+    Object.defineProperty(AllHitsRayResultCallback.prototype, 'm_hitNormalWorld', { get: AllHitsRayResultCallback.prototype.get_m_hitNormalWorld, set: AllHitsRayResultCallback.prototype.set_m_hitNormalWorld });
+  AllHitsRayResultCallback.prototype['get_m_hitPointWorld'] = AllHitsRayResultCallback.prototype.get_m_hitPointWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_AllHitsRayResultCallback_get_m_hitPointWorld_0(self), btVector3Array);
+};
+    AllHitsRayResultCallback.prototype['set_m_hitPointWorld'] = AllHitsRayResultCallback.prototype.set_m_hitPointWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _AllHitsRayResultCallback_set_m_hitPointWorld_1(self, arg0);
+};
+    Object.defineProperty(AllHitsRayResultCallback.prototype, 'm_hitPointWorld', { get: AllHitsRayResultCallback.prototype.get_m_hitPointWorld, set: AllHitsRayResultCallback.prototype.set_m_hitPointWorld });
+  AllHitsRayResultCallback.prototype['get_m_hitFractions'] = AllHitsRayResultCallback.prototype.get_m_hitFractions = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_AllHitsRayResultCallback_get_m_hitFractions_0(self), btScalarArray);
+};
+    AllHitsRayResultCallback.prototype['set_m_hitFractions'] = AllHitsRayResultCallback.prototype.set_m_hitFractions = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _AllHitsRayResultCallback_set_m_hitFractions_1(self, arg0);
+};
+    Object.defineProperty(AllHitsRayResultCallback.prototype, 'm_hitFractions', { get: AllHitsRayResultCallback.prototype.get_m_hitFractions, set: AllHitsRayResultCallback.prototype.set_m_hitFractions });
+  AllHitsRayResultCallback.prototype['get_m_collisionFilterGroup'] = AllHitsRayResultCallback.prototype.get_m_collisionFilterGroup = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _AllHitsRayResultCallback_get_m_collisionFilterGroup_0(self);
+};
+    AllHitsRayResultCallback.prototype['set_m_collisionFilterGroup'] = AllHitsRayResultCallback.prototype.set_m_collisionFilterGroup = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _AllHitsRayResultCallback_set_m_collisionFilterGroup_1(self, arg0);
+};
+    Object.defineProperty(AllHitsRayResultCallback.prototype, 'm_collisionFilterGroup', { get: AllHitsRayResultCallback.prototype.get_m_collisionFilterGroup, set: AllHitsRayResultCallback.prototype.set_m_collisionFilterGroup });
+  AllHitsRayResultCallback.prototype['get_m_collisionFilterMask'] = AllHitsRayResultCallback.prototype.get_m_collisionFilterMask = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _AllHitsRayResultCallback_get_m_collisionFilterMask_0(self);
+};
+    AllHitsRayResultCallback.prototype['set_m_collisionFilterMask'] = AllHitsRayResultCallback.prototype.set_m_collisionFilterMask = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _AllHitsRayResultCallback_set_m_collisionFilterMask_1(self, arg0);
+};
+    Object.defineProperty(AllHitsRayResultCallback.prototype, 'm_collisionFilterMask', { get: AllHitsRayResultCallback.prototype.get_m_collisionFilterMask, set: AllHitsRayResultCallback.prototype.set_m_collisionFilterMask });
+  AllHitsRayResultCallback.prototype['get_m_closestHitFraction'] = AllHitsRayResultCallback.prototype.get_m_closestHitFraction = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _AllHitsRayResultCallback_get_m_closestHitFraction_0(self);
+};
+    AllHitsRayResultCallback.prototype['set_m_closestHitFraction'] = AllHitsRayResultCallback.prototype.set_m_closestHitFraction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _AllHitsRayResultCallback_set_m_closestHitFraction_1(self, arg0);
+};
+    Object.defineProperty(AllHitsRayResultCallback.prototype, 'm_closestHitFraction', { get: AllHitsRayResultCallback.prototype.get_m_closestHitFraction, set: AllHitsRayResultCallback.prototype.set_m_closestHitFraction });
+  AllHitsRayResultCallback.prototype['get_m_collisionObject'] = AllHitsRayResultCallback.prototype.get_m_collisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_AllHitsRayResultCallback_get_m_collisionObject_0(self), btCollisionObject);
+};
+    AllHitsRayResultCallback.prototype['set_m_collisionObject'] = AllHitsRayResultCallback.prototype.set_m_collisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _AllHitsRayResultCallback_set_m_collisionObject_1(self, arg0);
+};
+    Object.defineProperty(AllHitsRayResultCallback.prototype, 'm_collisionObject', { get: AllHitsRayResultCallback.prototype.get_m_collisionObject, set: AllHitsRayResultCallback.prototype.set_m_collisionObject });
+  AllHitsRayResultCallback.prototype['__destroy__'] = AllHitsRayResultCallback.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _AllHitsRayResultCallback___destroy___0(self);
+};
+// btDispatcher
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btDispatcher() { throw "cannot construct a btDispatcher, no constructor in IDL" }
+btDispatcher.prototype = Object.create(WrapperObject.prototype);
+btDispatcher.prototype.constructor = btDispatcher;
+btDispatcher.prototype.__class__ = btDispatcher;
+btDispatcher.__cache__ = {};
+Module['btDispatcher'] = btDispatcher;
+
+btDispatcher.prototype['getNumManifolds'] = btDispatcher.prototype.getNumManifolds = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btDispatcher_getNumManifolds_0(self);
+};;
+
+btDispatcher.prototype['getManifoldByIndexInternal'] = btDispatcher.prototype.getManifoldByIndexInternal = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  return wrapPointer(_btDispatcher_getManifoldByIndexInternal_1(self, index), btPersistentManifold);
+};;
+
+  btDispatcher.prototype['__destroy__'] = btDispatcher.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btDispatcher___destroy___0(self);
+};
+// ClosestRayResultCallback
+/** @suppress {undefinedVars, duplicate} @this{Object} */function ClosestRayResultCallback(from, to) {
+  if (from && typeof from === 'object') from = from.ptr;
+  if (to && typeof to === 'object') to = to.ptr;
+  this.ptr = _ClosestRayResultCallback_ClosestRayResultCallback_2(from, to);
+  getCache(ClosestRayResultCallback)[this.ptr] = this;
+};;
+ClosestRayResultCallback.prototype = Object.create(RayResultCallback.prototype);
+ClosestRayResultCallback.prototype.constructor = ClosestRayResultCallback;
+ClosestRayResultCallback.prototype.__class__ = ClosestRayResultCallback;
+ClosestRayResultCallback.__cache__ = {};
+Module['ClosestRayResultCallback'] = ClosestRayResultCallback;
+
+ClosestRayResultCallback.prototype['hasHit'] = ClosestRayResultCallback.prototype.hasHit = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_ClosestRayResultCallback_hasHit_0(self));
+};;
+
+  ClosestRayResultCallback.prototype['get_m_rayFromWorld'] = ClosestRayResultCallback.prototype.get_m_rayFromWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ClosestRayResultCallback_get_m_rayFromWorld_0(self), btVector3);
+};
+    ClosestRayResultCallback.prototype['set_m_rayFromWorld'] = ClosestRayResultCallback.prototype.set_m_rayFromWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ClosestRayResultCallback_set_m_rayFromWorld_1(self, arg0);
+};
+    Object.defineProperty(ClosestRayResultCallback.prototype, 'm_rayFromWorld', { get: ClosestRayResultCallback.prototype.get_m_rayFromWorld, set: ClosestRayResultCallback.prototype.set_m_rayFromWorld });
+  ClosestRayResultCallback.prototype['get_m_rayToWorld'] = ClosestRayResultCallback.prototype.get_m_rayToWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ClosestRayResultCallback_get_m_rayToWorld_0(self), btVector3);
+};
+    ClosestRayResultCallback.prototype['set_m_rayToWorld'] = ClosestRayResultCallback.prototype.set_m_rayToWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ClosestRayResultCallback_set_m_rayToWorld_1(self, arg0);
+};
+    Object.defineProperty(ClosestRayResultCallback.prototype, 'm_rayToWorld', { get: ClosestRayResultCallback.prototype.get_m_rayToWorld, set: ClosestRayResultCallback.prototype.set_m_rayToWorld });
+  ClosestRayResultCallback.prototype['get_m_hitNormalWorld'] = ClosestRayResultCallback.prototype.get_m_hitNormalWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ClosestRayResultCallback_get_m_hitNormalWorld_0(self), btVector3);
+};
+    ClosestRayResultCallback.prototype['set_m_hitNormalWorld'] = ClosestRayResultCallback.prototype.set_m_hitNormalWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ClosestRayResultCallback_set_m_hitNormalWorld_1(self, arg0);
+};
+    Object.defineProperty(ClosestRayResultCallback.prototype, 'm_hitNormalWorld', { get: ClosestRayResultCallback.prototype.get_m_hitNormalWorld, set: ClosestRayResultCallback.prototype.set_m_hitNormalWorld });
+  ClosestRayResultCallback.prototype['get_m_hitPointWorld'] = ClosestRayResultCallback.prototype.get_m_hitPointWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ClosestRayResultCallback_get_m_hitPointWorld_0(self), btVector3);
+};
+    ClosestRayResultCallback.prototype['set_m_hitPointWorld'] = ClosestRayResultCallback.prototype.set_m_hitPointWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ClosestRayResultCallback_set_m_hitPointWorld_1(self, arg0);
+};
+    Object.defineProperty(ClosestRayResultCallback.prototype, 'm_hitPointWorld', { get: ClosestRayResultCallback.prototype.get_m_hitPointWorld, set: ClosestRayResultCallback.prototype.set_m_hitPointWorld });
+  ClosestRayResultCallback.prototype['get_m_collisionFilterGroup'] = ClosestRayResultCallback.prototype.get_m_collisionFilterGroup = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _ClosestRayResultCallback_get_m_collisionFilterGroup_0(self);
+};
+    ClosestRayResultCallback.prototype['set_m_collisionFilterGroup'] = ClosestRayResultCallback.prototype.set_m_collisionFilterGroup = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ClosestRayResultCallback_set_m_collisionFilterGroup_1(self, arg0);
+};
+    Object.defineProperty(ClosestRayResultCallback.prototype, 'm_collisionFilterGroup', { get: ClosestRayResultCallback.prototype.get_m_collisionFilterGroup, set: ClosestRayResultCallback.prototype.set_m_collisionFilterGroup });
+  ClosestRayResultCallback.prototype['get_m_collisionFilterMask'] = ClosestRayResultCallback.prototype.get_m_collisionFilterMask = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _ClosestRayResultCallback_get_m_collisionFilterMask_0(self);
+};
+    ClosestRayResultCallback.prototype['set_m_collisionFilterMask'] = ClosestRayResultCallback.prototype.set_m_collisionFilterMask = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ClosestRayResultCallback_set_m_collisionFilterMask_1(self, arg0);
+};
+    Object.defineProperty(ClosestRayResultCallback.prototype, 'm_collisionFilterMask', { get: ClosestRayResultCallback.prototype.get_m_collisionFilterMask, set: ClosestRayResultCallback.prototype.set_m_collisionFilterMask });
+  ClosestRayResultCallback.prototype['get_m_closestHitFraction'] = ClosestRayResultCallback.prototype.get_m_closestHitFraction = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _ClosestRayResultCallback_get_m_closestHitFraction_0(self);
+};
+    ClosestRayResultCallback.prototype['set_m_closestHitFraction'] = ClosestRayResultCallback.prototype.set_m_closestHitFraction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ClosestRayResultCallback_set_m_closestHitFraction_1(self, arg0);
+};
+    Object.defineProperty(ClosestRayResultCallback.prototype, 'm_closestHitFraction', { get: ClosestRayResultCallback.prototype.get_m_closestHitFraction, set: ClosestRayResultCallback.prototype.set_m_closestHitFraction });
+  ClosestRayResultCallback.prototype['get_m_collisionObject'] = ClosestRayResultCallback.prototype.get_m_collisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ClosestRayResultCallback_get_m_collisionObject_0(self), btCollisionObject);
+};
+    ClosestRayResultCallback.prototype['set_m_collisionObject'] = ClosestRayResultCallback.prototype.set_m_collisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ClosestRayResultCallback_set_m_collisionObject_1(self, arg0);
+};
+    Object.defineProperty(ClosestRayResultCallback.prototype, 'm_collisionObject', { get: ClosestRayResultCallback.prototype.get_m_collisionObject, set: ClosestRayResultCallback.prototype.set_m_collisionObject });
+  ClosestRayResultCallback.prototype['__destroy__'] = ClosestRayResultCallback.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _ClosestRayResultCallback___destroy___0(self);
+};
+// btTriangleMeshShape
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btTriangleMeshShape() { throw "cannot construct a btTriangleMeshShape, no constructor in IDL" }
+btTriangleMeshShape.prototype = Object.create(btConcaveShape.prototype);
+btTriangleMeshShape.prototype.constructor = btTriangleMeshShape;
+btTriangleMeshShape.prototype.__class__ = btTriangleMeshShape;
+btTriangleMeshShape.__cache__ = {};
+Module['btTriangleMeshShape'] = btTriangleMeshShape;
+
+btTriangleMeshShape.prototype['setLocalScaling'] = btTriangleMeshShape.prototype.setLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btTriangleMeshShape_setLocalScaling_1(self, scaling);
+};;
+
+btTriangleMeshShape.prototype['getLocalScaling'] = btTriangleMeshShape.prototype.getLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btTriangleMeshShape_getLocalScaling_0(self), btVector3);
+};;
+
+btTriangleMeshShape.prototype['calculateLocalInertia'] = btTriangleMeshShape.prototype.calculateLocalInertia = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btTriangleMeshShape_calculateLocalInertia_2(self, mass, inertia);
+};;
+
+btTriangleMeshShape.prototype['isCompound'] = btTriangleMeshShape.prototype.isCompound = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btTriangleMeshShape_isCompound_0(self));
+};;
+
+btTriangleMeshShape.prototype['getUserIndex'] = btTriangleMeshShape.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btTriangleMeshShape_getUserIndex_0(self);
+};;
+
+btTriangleMeshShape.prototype['setUserIndex'] = btTriangleMeshShape.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btTriangleMeshShape_setUserIndex_1(self, index);
+};;
+
+btTriangleMeshShape.prototype['getUserIndex2'] = btTriangleMeshShape.prototype.getUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btTriangleMeshShape_getUserIndex2_0(self);
+};;
+
+btTriangleMeshShape.prototype['setUserIndex2'] = btTriangleMeshShape.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btTriangleMeshShape_setUserIndex2_1(self, index);
+};;
+
+btTriangleMeshShape.prototype['getAabb'] = btTriangleMeshShape.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t, min, max) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  if (min && typeof min === 'object') min = min.ptr;
+  if (max && typeof max === 'object') max = max.ptr;
+  _btTriangleMeshShape_getAabb_3(self, t, min, max);
+};;
+
+btTriangleMeshShape.prototype['getLocalBoundingSphere'] = btTriangleMeshShape.prototype.getLocalBoundingSphere = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btTriangleMeshShape_getLocalBoundingSphere_0(self);
+};;
+
+  btTriangleMeshShape.prototype['__destroy__'] = btTriangleMeshShape.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btTriangleMeshShape___destroy___0(self);
+};
+// btOverlapFilterCallback
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btOverlapFilterCallback() { throw "cannot construct a btOverlapFilterCallback, no constructor in IDL" }
+btOverlapFilterCallback.prototype = Object.create(WrapperObject.prototype);
+btOverlapFilterCallback.prototype.constructor = btOverlapFilterCallback;
+btOverlapFilterCallback.prototype.__class__ = btOverlapFilterCallback;
+btOverlapFilterCallback.__cache__ = {};
+Module['btOverlapFilterCallback'] = btOverlapFilterCallback;
+
+  btOverlapFilterCallback.prototype['__destroy__'] = btOverlapFilterCallback.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btOverlapFilterCallback___destroy___0(self);
+};
+// btQuadWord
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btQuadWord() { throw "cannot construct a btQuadWord, no constructor in IDL" }
+btQuadWord.prototype = Object.create(WrapperObject.prototype);
+btQuadWord.prototype.constructor = btQuadWord;
+btQuadWord.prototype.__class__ = btQuadWord;
+btQuadWord.__cache__ = {};
+Module['btQuadWord'] = btQuadWord;
+
+btQuadWord.prototype['x'] = btQuadWord.prototype.x = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btQuadWord_x_0(self);
+};;
+
+btQuadWord.prototype['y'] = btQuadWord.prototype.y = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btQuadWord_y_0(self);
+};;
+
+btQuadWord.prototype['z'] = btQuadWord.prototype.z = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btQuadWord_z_0(self);
+};;
+
+btQuadWord.prototype['w'] = btQuadWord.prototype.w = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btQuadWord_w_0(self);
+};;
+
+btQuadWord.prototype['setX'] = btQuadWord.prototype.setX = /** @suppress {undefinedVars, duplicate} @this{Object} */function(x) {
+  var self = this.ptr;
+  if (x && typeof x === 'object') x = x.ptr;
+  _btQuadWord_setX_1(self, x);
+};;
+
+btQuadWord.prototype['setY'] = btQuadWord.prototype.setY = /** @suppress {undefinedVars, duplicate} @this{Object} */function(y) {
+  var self = this.ptr;
+  if (y && typeof y === 'object') y = y.ptr;
+  _btQuadWord_setY_1(self, y);
+};;
+
+btQuadWord.prototype['setZ'] = btQuadWord.prototype.setZ = /** @suppress {undefinedVars, duplicate} @this{Object} */function(z) {
+  var self = this.ptr;
+  if (z && typeof z === 'object') z = z.ptr;
+  _btQuadWord_setZ_1(self, z);
+};;
+
+btQuadWord.prototype['setW'] = btQuadWord.prototype.setW = /** @suppress {undefinedVars, duplicate} @this{Object} */function(w) {
+  var self = this.ptr;
+  if (w && typeof w === 'object') w = w.ptr;
+  _btQuadWord_setW_1(self, w);
+};;
+
+  btQuadWord.prototype['__destroy__'] = btQuadWord.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btQuadWord___destroy___0(self);
+};
+// btTypedConstraint
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btTypedConstraint() { throw "cannot construct a btTypedConstraint, no constructor in IDL" }
+btTypedConstraint.prototype = Object.create(WrapperObject.prototype);
+btTypedConstraint.prototype.constructor = btTypedConstraint;
+btTypedConstraint.prototype.__class__ = btTypedConstraint;
+btTypedConstraint.__cache__ = {};
+Module['btTypedConstraint'] = btTypedConstraint;
+
+btTypedConstraint.prototype['enableFeedback'] = btTypedConstraint.prototype.enableFeedback = /** @suppress {undefinedVars, duplicate} @this{Object} */function(needsFeedback) {
+  var self = this.ptr;
+  if (needsFeedback && typeof needsFeedback === 'object') needsFeedback = needsFeedback.ptr;
+  _btTypedConstraint_enableFeedback_1(self, needsFeedback);
+};;
+
+btTypedConstraint.prototype['getBreakingImpulseThreshold'] = btTypedConstraint.prototype.getBreakingImpulseThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btTypedConstraint_getBreakingImpulseThreshold_0(self);
+};;
+
+btTypedConstraint.prototype['setBreakingImpulseThreshold'] = btTypedConstraint.prototype.setBreakingImpulseThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function(threshold) {
+  var self = this.ptr;
+  if (threshold && typeof threshold === 'object') threshold = threshold.ptr;
+  _btTypedConstraint_setBreakingImpulseThreshold_1(self, threshold);
+};;
+
+btTypedConstraint.prototype['getParam'] = btTypedConstraint.prototype.getParam = /** @suppress {undefinedVars, duplicate} @this{Object} */function(num, axis) {
+  var self = this.ptr;
+  if (num && typeof num === 'object') num = num.ptr;
+  if (axis && typeof axis === 'object') axis = axis.ptr;
+  return _btTypedConstraint_getParam_2(self, num, axis);
+};;
+
+btTypedConstraint.prototype['setParam'] = btTypedConstraint.prototype.setParam = /** @suppress {undefinedVars, duplicate} @this{Object} */function(num, value, axis) {
+  var self = this.ptr;
+  if (num && typeof num === 'object') num = num.ptr;
+  if (value && typeof value === 'object') value = value.ptr;
+  if (axis && typeof axis === 'object') axis = axis.ptr;
+  _btTypedConstraint_setParam_3(self, num, value, axis);
+};;
+
+  btTypedConstraint.prototype['__destroy__'] = btTypedConstraint.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btTypedConstraint___destroy___0(self);
+};
+// btMatrix3x3
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btMatrix3x3() { throw "cannot construct a btMatrix3x3, no constructor in IDL" }
+btMatrix3x3.prototype = Object.create(WrapperObject.prototype);
+btMatrix3x3.prototype.constructor = btMatrix3x3;
+btMatrix3x3.prototype.__class__ = btMatrix3x3;
+btMatrix3x3.__cache__ = {};
+Module['btMatrix3x3'] = btMatrix3x3;
+
+btMatrix3x3.prototype['getRotation'] = btMatrix3x3.prototype.getRotation = /** @suppress {undefinedVars, duplicate} @this{Object} */function(q) {
+  var self = this.ptr;
+  if (q && typeof q === 'object') q = q.ptr;
+  _btMatrix3x3_getRotation_1(self, q);
+};;
+
+  btMatrix3x3.prototype['__destroy__'] = btMatrix3x3.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btMatrix3x3___destroy___0(self);
+};
+// btScalarArray
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btScalarArray() { throw "cannot construct a btScalarArray, no constructor in IDL" }
+btScalarArray.prototype = Object.create(WrapperObject.prototype);
+btScalarArray.prototype.constructor = btScalarArray;
+btScalarArray.prototype.__class__ = btScalarArray;
+btScalarArray.__cache__ = {};
+Module['btScalarArray'] = btScalarArray;
+
+btScalarArray.prototype['size'] = btScalarArray.prototype.size = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btScalarArray_size_0(self);
+};;
+
+btScalarArray.prototype['at'] = btScalarArray.prototype.at = /** @suppress {undefinedVars, duplicate} @this{Object} */function(n) {
+  var self = this.ptr;
+  if (n && typeof n === 'object') n = n.ptr;
+  return _btScalarArray_at_1(self, n);
+};;
+
+btScalarArray.prototype['clear'] = btScalarArray.prototype.clear = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btScalarArray_clear_0(self);
+};;
+
+  btScalarArray.prototype['__destroy__'] = btScalarArray.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btScalarArray___destroy___0(self);
+};
+// btBvhTriangleMeshShape
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btBvhTriangleMeshShape(meshInterface, useQuantizedAabbCompression, buildBvh) {
+  if (meshInterface && typeof meshInterface === 'object') meshInterface = meshInterface.ptr;
+  if (useQuantizedAabbCompression && typeof useQuantizedAabbCompression === 'object') useQuantizedAabbCompression = useQuantizedAabbCompression.ptr;
+  if (buildBvh && typeof buildBvh === 'object') buildBvh = buildBvh.ptr;
+  if (buildBvh === undefined) { this.ptr = _btBvhTriangleMeshShape_btBvhTriangleMeshShape_2(meshInterface, useQuantizedAabbCompression); getCache(btBvhTriangleMeshShape)[this.ptr] = this;return }
+  this.ptr = _btBvhTriangleMeshShape_btBvhTriangleMeshShape_3(meshInterface, useQuantizedAabbCompression, buildBvh);
+  getCache(btBvhTriangleMeshShape)[this.ptr] = this;
+};;
+btBvhTriangleMeshShape.prototype = Object.create(btTriangleMeshShape.prototype);
+btBvhTriangleMeshShape.prototype.constructor = btBvhTriangleMeshShape;
+btBvhTriangleMeshShape.prototype.__class__ = btBvhTriangleMeshShape;
+btBvhTriangleMeshShape.__cache__ = {};
+Module['btBvhTriangleMeshShape'] = btBvhTriangleMeshShape;
+
+btBvhTriangleMeshShape.prototype['setLocalScaling'] = btBvhTriangleMeshShape.prototype.setLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btBvhTriangleMeshShape_setLocalScaling_1(self, scaling);
+};;
+
+btBvhTriangleMeshShape.prototype['getLocalScaling'] = btBvhTriangleMeshShape.prototype.getLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btBvhTriangleMeshShape_getLocalScaling_0(self), btVector3);
+};;
+
+btBvhTriangleMeshShape.prototype['calculateLocalInertia'] = btBvhTriangleMeshShape.prototype.calculateLocalInertia = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btBvhTriangleMeshShape_calculateLocalInertia_2(self, mass, inertia);
+};;
+
+btBvhTriangleMeshShape.prototype['isCompound'] = btBvhTriangleMeshShape.prototype.isCompound = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btBvhTriangleMeshShape_isCompound_0(self));
+};;
+
+btBvhTriangleMeshShape.prototype['getUserIndex'] = btBvhTriangleMeshShape.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btBvhTriangleMeshShape_getUserIndex_0(self);
+};;
+
+btBvhTriangleMeshShape.prototype['setUserIndex'] = btBvhTriangleMeshShape.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btBvhTriangleMeshShape_setUserIndex_1(self, index);
+};;
+
+btBvhTriangleMeshShape.prototype['getUserIndex2'] = btBvhTriangleMeshShape.prototype.getUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btBvhTriangleMeshShape_getUserIndex2_0(self);
+};;
+
+btBvhTriangleMeshShape.prototype['setUserIndex2'] = btBvhTriangleMeshShape.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btBvhTriangleMeshShape_setUserIndex2_1(self, index);
+};;
+
+btBvhTriangleMeshShape.prototype['getAabb'] = btBvhTriangleMeshShape.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t, min, max) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  if (min && typeof min === 'object') min = min.ptr;
+  if (max && typeof max === 'object') max = max.ptr;
+  _btBvhTriangleMeshShape_getAabb_3(self, t, min, max);
+};;
+
+btBvhTriangleMeshShape.prototype['getLocalBoundingSphere'] = btBvhTriangleMeshShape.prototype.getLocalBoundingSphere = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btBvhTriangleMeshShape_getLocalBoundingSphere_0(self);
+};;
+
+  btBvhTriangleMeshShape.prototype['__destroy__'] = btBvhTriangleMeshShape.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btBvhTriangleMeshShape___destroy___0(self);
+};
+// btDbvtBroadphase
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btDbvtBroadphase() {
+  this.ptr = _btDbvtBroadphase_btDbvtBroadphase_0();
+  getCache(btDbvtBroadphase)[this.ptr] = this;
+};;
+btDbvtBroadphase.prototype = Object.create(btBroadphaseInterface.prototype);
+btDbvtBroadphase.prototype.constructor = btDbvtBroadphase;
+btDbvtBroadphase.prototype.__class__ = btDbvtBroadphase;
+btDbvtBroadphase.__cache__ = {};
+Module['btDbvtBroadphase'] = btDbvtBroadphase;
+
+btDbvtBroadphase.prototype['getOverlappingPairCache'] = btDbvtBroadphase.prototype.getOverlappingPairCache = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btDbvtBroadphase_getOverlappingPairCache_0(self), btOverlappingPairCache);
+};;
+
+  btDbvtBroadphase.prototype['__destroy__'] = btDbvtBroadphase.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btDbvtBroadphase___destroy___0(self);
+};
+// btIntArray
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btIntArray() { throw "cannot construct a btIntArray, no constructor in IDL" }
+btIntArray.prototype = Object.create(WrapperObject.prototype);
+btIntArray.prototype.constructor = btIntArray;
+btIntArray.prototype.__class__ = btIntArray;
+btIntArray.__cache__ = {};
+Module['btIntArray'] = btIntArray;
+
+btIntArray.prototype['size'] = btIntArray.prototype.size = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btIntArray_size_0(self);
+};;
+
+btIntArray.prototype['at'] = btIntArray.prototype.at = /** @suppress {undefinedVars, duplicate} @this{Object} */function(n) {
+  var self = this.ptr;
+  if (n && typeof n === 'object') n = n.ptr;
+  return _btIntArray_at_1(self, n);
+};;
+
+btIntArray.prototype['clear'] = btIntArray.prototype.clear = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btIntArray_clear_0(self);
+};;
+
+  btIntArray.prototype['__destroy__'] = btIntArray.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btIntArray___destroy___0(self);
+};
+// ccAllHitsRayResultCallback
+/** @suppress {undefinedVars, duplicate} @this{Object} */function ccAllHitsRayResultCallback(from, to) {
+  if (from && typeof from === 'object') from = from.ptr;
+  if (to && typeof to === 'object') to = to.ptr;
+  this.ptr = _ccAllHitsRayResultCallback_ccAllHitsRayResultCallback_2(from, to);
+  getCache(ccAllHitsRayResultCallback)[this.ptr] = this;
+};;
+ccAllHitsRayResultCallback.prototype = Object.create(AllHitsRayResultCallback.prototype);
+ccAllHitsRayResultCallback.prototype.constructor = ccAllHitsRayResultCallback;
+ccAllHitsRayResultCallback.prototype.__class__ = ccAllHitsRayResultCallback;
+ccAllHitsRayResultCallback.__cache__ = {};
+Module['ccAllHitsRayResultCallback'] = ccAllHitsRayResultCallback;
+
+ccAllHitsRayResultCallback.prototype['setQueryTrigger'] = ccAllHitsRayResultCallback.prototype.setQueryTrigger = /** @suppress {undefinedVars, duplicate} @this{Object} */function(v) {
+  var self = this.ptr;
+  if (v && typeof v === 'object') v = v.ptr;
+  _ccAllHitsRayResultCallback_setQueryTrigger_1(self, v);
+};;
+
+ccAllHitsRayResultCallback.prototype['hasHit'] = ccAllHitsRayResultCallback.prototype.hasHit = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_ccAllHitsRayResultCallback_hasHit_0(self));
+};;
+
+  ccAllHitsRayResultCallback.prototype['get_m_shapeParts'] = ccAllHitsRayResultCallback.prototype.get_m_shapeParts = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccAllHitsRayResultCallback_get_m_shapeParts_0(self), btIntArray);
+};
+    ccAllHitsRayResultCallback.prototype['set_m_shapeParts'] = ccAllHitsRayResultCallback.prototype.set_m_shapeParts = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccAllHitsRayResultCallback_set_m_shapeParts_1(self, arg0);
+};
+    Object.defineProperty(ccAllHitsRayResultCallback.prototype, 'm_shapeParts', { get: ccAllHitsRayResultCallback.prototype.get_m_shapeParts, set: ccAllHitsRayResultCallback.prototype.set_m_shapeParts });
+  ccAllHitsRayResultCallback.prototype['get_m_collisionObjects'] = ccAllHitsRayResultCallback.prototype.get_m_collisionObjects = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccAllHitsRayResultCallback_get_m_collisionObjects_0(self), btConstCollisionObjectArray);
+};
+    ccAllHitsRayResultCallback.prototype['set_m_collisionObjects'] = ccAllHitsRayResultCallback.prototype.set_m_collisionObjects = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccAllHitsRayResultCallback_set_m_collisionObjects_1(self, arg0);
+};
+    Object.defineProperty(ccAllHitsRayResultCallback.prototype, 'm_collisionObjects', { get: ccAllHitsRayResultCallback.prototype.get_m_collisionObjects, set: ccAllHitsRayResultCallback.prototype.set_m_collisionObjects });
+  ccAllHitsRayResultCallback.prototype['get_m_rayFromWorld'] = ccAllHitsRayResultCallback.prototype.get_m_rayFromWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccAllHitsRayResultCallback_get_m_rayFromWorld_0(self), btVector3);
+};
+    ccAllHitsRayResultCallback.prototype['set_m_rayFromWorld'] = ccAllHitsRayResultCallback.prototype.set_m_rayFromWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccAllHitsRayResultCallback_set_m_rayFromWorld_1(self, arg0);
+};
+    Object.defineProperty(ccAllHitsRayResultCallback.prototype, 'm_rayFromWorld', { get: ccAllHitsRayResultCallback.prototype.get_m_rayFromWorld, set: ccAllHitsRayResultCallback.prototype.set_m_rayFromWorld });
+  ccAllHitsRayResultCallback.prototype['get_m_rayToWorld'] = ccAllHitsRayResultCallback.prototype.get_m_rayToWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccAllHitsRayResultCallback_get_m_rayToWorld_0(self), btVector3);
+};
+    ccAllHitsRayResultCallback.prototype['set_m_rayToWorld'] = ccAllHitsRayResultCallback.prototype.set_m_rayToWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccAllHitsRayResultCallback_set_m_rayToWorld_1(self, arg0);
+};
+    Object.defineProperty(ccAllHitsRayResultCallback.prototype, 'm_rayToWorld', { get: ccAllHitsRayResultCallback.prototype.get_m_rayToWorld, set: ccAllHitsRayResultCallback.prototype.set_m_rayToWorld });
+  ccAllHitsRayResultCallback.prototype['get_m_hitNormalWorld'] = ccAllHitsRayResultCallback.prototype.get_m_hitNormalWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccAllHitsRayResultCallback_get_m_hitNormalWorld_0(self), btVector3Array);
+};
+    ccAllHitsRayResultCallback.prototype['set_m_hitNormalWorld'] = ccAllHitsRayResultCallback.prototype.set_m_hitNormalWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccAllHitsRayResultCallback_set_m_hitNormalWorld_1(self, arg0);
+};
+    Object.defineProperty(ccAllHitsRayResultCallback.prototype, 'm_hitNormalWorld', { get: ccAllHitsRayResultCallback.prototype.get_m_hitNormalWorld, set: ccAllHitsRayResultCallback.prototype.set_m_hitNormalWorld });
+  ccAllHitsRayResultCallback.prototype['get_m_hitPointWorld'] = ccAllHitsRayResultCallback.prototype.get_m_hitPointWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccAllHitsRayResultCallback_get_m_hitPointWorld_0(self), btVector3Array);
+};
+    ccAllHitsRayResultCallback.prototype['set_m_hitPointWorld'] = ccAllHitsRayResultCallback.prototype.set_m_hitPointWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccAllHitsRayResultCallback_set_m_hitPointWorld_1(self, arg0);
+};
+    Object.defineProperty(ccAllHitsRayResultCallback.prototype, 'm_hitPointWorld', { get: ccAllHitsRayResultCallback.prototype.get_m_hitPointWorld, set: ccAllHitsRayResultCallback.prototype.set_m_hitPointWorld });
+  ccAllHitsRayResultCallback.prototype['get_m_hitFractions'] = ccAllHitsRayResultCallback.prototype.get_m_hitFractions = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccAllHitsRayResultCallback_get_m_hitFractions_0(self), btScalarArray);
+};
+    ccAllHitsRayResultCallback.prototype['set_m_hitFractions'] = ccAllHitsRayResultCallback.prototype.set_m_hitFractions = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccAllHitsRayResultCallback_set_m_hitFractions_1(self, arg0);
+};
+    Object.defineProperty(ccAllHitsRayResultCallback.prototype, 'm_hitFractions', { get: ccAllHitsRayResultCallback.prototype.get_m_hitFractions, set: ccAllHitsRayResultCallback.prototype.set_m_hitFractions });
+  ccAllHitsRayResultCallback.prototype['get_m_collisionFilterGroup'] = ccAllHitsRayResultCallback.prototype.get_m_collisionFilterGroup = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _ccAllHitsRayResultCallback_get_m_collisionFilterGroup_0(self);
+};
+    ccAllHitsRayResultCallback.prototype['set_m_collisionFilterGroup'] = ccAllHitsRayResultCallback.prototype.set_m_collisionFilterGroup = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccAllHitsRayResultCallback_set_m_collisionFilterGroup_1(self, arg0);
+};
+    Object.defineProperty(ccAllHitsRayResultCallback.prototype, 'm_collisionFilterGroup', { get: ccAllHitsRayResultCallback.prototype.get_m_collisionFilterGroup, set: ccAllHitsRayResultCallback.prototype.set_m_collisionFilterGroup });
+  ccAllHitsRayResultCallback.prototype['get_m_collisionFilterMask'] = ccAllHitsRayResultCallback.prototype.get_m_collisionFilterMask = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _ccAllHitsRayResultCallback_get_m_collisionFilterMask_0(self);
+};
+    ccAllHitsRayResultCallback.prototype['set_m_collisionFilterMask'] = ccAllHitsRayResultCallback.prototype.set_m_collisionFilterMask = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccAllHitsRayResultCallback_set_m_collisionFilterMask_1(self, arg0);
+};
+    Object.defineProperty(ccAllHitsRayResultCallback.prototype, 'm_collisionFilterMask', { get: ccAllHitsRayResultCallback.prototype.get_m_collisionFilterMask, set: ccAllHitsRayResultCallback.prototype.set_m_collisionFilterMask });
+  ccAllHitsRayResultCallback.prototype['get_m_closestHitFraction'] = ccAllHitsRayResultCallback.prototype.get_m_closestHitFraction = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _ccAllHitsRayResultCallback_get_m_closestHitFraction_0(self);
+};
+    ccAllHitsRayResultCallback.prototype['set_m_closestHitFraction'] = ccAllHitsRayResultCallback.prototype.set_m_closestHitFraction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccAllHitsRayResultCallback_set_m_closestHitFraction_1(self, arg0);
+};
+    Object.defineProperty(ccAllHitsRayResultCallback.prototype, 'm_closestHitFraction', { get: ccAllHitsRayResultCallback.prototype.get_m_closestHitFraction, set: ccAllHitsRayResultCallback.prototype.set_m_closestHitFraction });
+  ccAllHitsRayResultCallback.prototype['get_m_collisionObject'] = ccAllHitsRayResultCallback.prototype.get_m_collisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccAllHitsRayResultCallback_get_m_collisionObject_0(self), btCollisionObject);
+};
+    ccAllHitsRayResultCallback.prototype['set_m_collisionObject'] = ccAllHitsRayResultCallback.prototype.set_m_collisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccAllHitsRayResultCallback_set_m_collisionObject_1(self, arg0);
+};
+    Object.defineProperty(ccAllHitsRayResultCallback.prototype, 'm_collisionObject', { get: ccAllHitsRayResultCallback.prototype.get_m_collisionObject, set: ccAllHitsRayResultCallback.prototype.set_m_collisionObject });
+  ccAllHitsRayResultCallback.prototype['__destroy__'] = ccAllHitsRayResultCallback.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _ccAllHitsRayResultCallback___destroy___0(self);
+};
+// btConstCollisionObjectArray
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btConstCollisionObjectArray() { throw "cannot construct a btConstCollisionObjectArray, no constructor in IDL" }
+btConstCollisionObjectArray.prototype = Object.create(WrapperObject.prototype);
+btConstCollisionObjectArray.prototype.constructor = btConstCollisionObjectArray;
+btConstCollisionObjectArray.prototype.__class__ = btConstCollisionObjectArray;
+btConstCollisionObjectArray.__cache__ = {};
+Module['btConstCollisionObjectArray'] = btConstCollisionObjectArray;
+
+btConstCollisionObjectArray.prototype['size'] = btConstCollisionObjectArray.prototype.size = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConstCollisionObjectArray_size_0(self);
+};;
+
+btConstCollisionObjectArray.prototype['at'] = btConstCollisionObjectArray.prototype.at = /** @suppress {undefinedVars, duplicate} @this{Object} */function(n) {
+  var self = this.ptr;
+  if (n && typeof n === 'object') n = n.ptr;
+  return wrapPointer(_btConstCollisionObjectArray_at_1(self, n), btCollisionObject);
+};;
+
+btConstCollisionObjectArray.prototype['clear'] = btConstCollisionObjectArray.prototype.clear = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btConstCollisionObjectArray_clear_0(self);
+};;
+
+  btConstCollisionObjectArray.prototype['__destroy__'] = btConstCollisionObjectArray.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btConstCollisionObjectArray___destroy___0(self);
+};
+// btBroadphaseProxy
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btBroadphaseProxy() { throw "cannot construct a btBroadphaseProxy, no constructor in IDL" }
+btBroadphaseProxy.prototype = Object.create(WrapperObject.prototype);
+btBroadphaseProxy.prototype.constructor = btBroadphaseProxy;
+btBroadphaseProxy.prototype.__class__ = btBroadphaseProxy;
+btBroadphaseProxy.__cache__ = {};
+Module['btBroadphaseProxy'] = btBroadphaseProxy;
+
+  btBroadphaseProxy.prototype['get_m_collisionFilterGroup'] = btBroadphaseProxy.prototype.get_m_collisionFilterGroup = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btBroadphaseProxy_get_m_collisionFilterGroup_0(self);
+};
+    btBroadphaseProxy.prototype['set_m_collisionFilterGroup'] = btBroadphaseProxy.prototype.set_m_collisionFilterGroup = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btBroadphaseProxy_set_m_collisionFilterGroup_1(self, arg0);
+};
+    Object.defineProperty(btBroadphaseProxy.prototype, 'm_collisionFilterGroup', { get: btBroadphaseProxy.prototype.get_m_collisionFilterGroup, set: btBroadphaseProxy.prototype.set_m_collisionFilterGroup });
+  btBroadphaseProxy.prototype['get_m_collisionFilterMask'] = btBroadphaseProxy.prototype.get_m_collisionFilterMask = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btBroadphaseProxy_get_m_collisionFilterMask_0(self);
+};
+    btBroadphaseProxy.prototype['set_m_collisionFilterMask'] = btBroadphaseProxy.prototype.set_m_collisionFilterMask = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btBroadphaseProxy_set_m_collisionFilterMask_1(self, arg0);
+};
+    Object.defineProperty(btBroadphaseProxy.prototype, 'm_collisionFilterMask', { get: btBroadphaseProxy.prototype.get_m_collisionFilterMask, set: btBroadphaseProxy.prototype.set_m_collisionFilterMask });
+  btBroadphaseProxy.prototype['__destroy__'] = btBroadphaseProxy.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btBroadphaseProxy___destroy___0(self);
+};
+// btIndexedMesh
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btIndexedMesh() { throw "cannot construct a btIndexedMesh, no constructor in IDL" }
+btIndexedMesh.prototype = Object.create(WrapperObject.prototype);
+btIndexedMesh.prototype.constructor = btIndexedMesh;
+btIndexedMesh.prototype.__class__ = btIndexedMesh;
+btIndexedMesh.__cache__ = {};
+Module['btIndexedMesh'] = btIndexedMesh;
+
+  btIndexedMesh.prototype['get_m_numTriangles'] = btIndexedMesh.prototype.get_m_numTriangles = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btIndexedMesh_get_m_numTriangles_0(self);
+};
+    btIndexedMesh.prototype['set_m_numTriangles'] = btIndexedMesh.prototype.set_m_numTriangles = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btIndexedMesh_set_m_numTriangles_1(self, arg0);
+};
+    Object.defineProperty(btIndexedMesh.prototype, 'm_numTriangles', { get: btIndexedMesh.prototype.get_m_numTriangles, set: btIndexedMesh.prototype.set_m_numTriangles });
+  btIndexedMesh.prototype['__destroy__'] = btIndexedMesh.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btIndexedMesh___destroy___0(self);
+};
+// btRigidBodyConstructionInfo
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btRigidBodyConstructionInfo(mass, motionState, collisionShape, localInertia) {
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (motionState && typeof motionState === 'object') motionState = motionState.ptr;
+  if (collisionShape && typeof collisionShape === 'object') collisionShape = collisionShape.ptr;
+  if (localInertia && typeof localInertia === 'object') localInertia = localInertia.ptr;
+  if (localInertia === undefined) { this.ptr = _btRigidBodyConstructionInfo_btRigidBodyConstructionInfo_3(mass, motionState, collisionShape); getCache(btRigidBodyConstructionInfo)[this.ptr] = this;return }
+  this.ptr = _btRigidBodyConstructionInfo_btRigidBodyConstructionInfo_4(mass, motionState, collisionShape, localInertia);
+  getCache(btRigidBodyConstructionInfo)[this.ptr] = this;
+};;
+btRigidBodyConstructionInfo.prototype = Object.create(WrapperObject.prototype);
+btRigidBodyConstructionInfo.prototype.constructor = btRigidBodyConstructionInfo;
+btRigidBodyConstructionInfo.prototype.__class__ = btRigidBodyConstructionInfo;
+btRigidBodyConstructionInfo.__cache__ = {};
+Module['btRigidBodyConstructionInfo'] = btRigidBodyConstructionInfo;
+
+  btRigidBodyConstructionInfo.prototype['get_m_linearDamping'] = btRigidBodyConstructionInfo.prototype.get_m_linearDamping = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btRigidBodyConstructionInfo_get_m_linearDamping_0(self);
+};
+    btRigidBodyConstructionInfo.prototype['set_m_linearDamping'] = btRigidBodyConstructionInfo.prototype.set_m_linearDamping = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btRigidBodyConstructionInfo_set_m_linearDamping_1(self, arg0);
+};
+    Object.defineProperty(btRigidBodyConstructionInfo.prototype, 'm_linearDamping', { get: btRigidBodyConstructionInfo.prototype.get_m_linearDamping, set: btRigidBodyConstructionInfo.prototype.set_m_linearDamping });
+  btRigidBodyConstructionInfo.prototype['get_m_angularDamping'] = btRigidBodyConstructionInfo.prototype.get_m_angularDamping = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btRigidBodyConstructionInfo_get_m_angularDamping_0(self);
+};
+    btRigidBodyConstructionInfo.prototype['set_m_angularDamping'] = btRigidBodyConstructionInfo.prototype.set_m_angularDamping = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btRigidBodyConstructionInfo_set_m_angularDamping_1(self, arg0);
+};
+    Object.defineProperty(btRigidBodyConstructionInfo.prototype, 'm_angularDamping', { get: btRigidBodyConstructionInfo.prototype.get_m_angularDamping, set: btRigidBodyConstructionInfo.prototype.set_m_angularDamping });
+  btRigidBodyConstructionInfo.prototype['get_m_friction'] = btRigidBodyConstructionInfo.prototype.get_m_friction = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btRigidBodyConstructionInfo_get_m_friction_0(self);
+};
+    btRigidBodyConstructionInfo.prototype['set_m_friction'] = btRigidBodyConstructionInfo.prototype.set_m_friction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btRigidBodyConstructionInfo_set_m_friction_1(self, arg0);
+};
+    Object.defineProperty(btRigidBodyConstructionInfo.prototype, 'm_friction', { get: btRigidBodyConstructionInfo.prototype.get_m_friction, set: btRigidBodyConstructionInfo.prototype.set_m_friction });
+  btRigidBodyConstructionInfo.prototype['get_m_rollingFriction'] = btRigidBodyConstructionInfo.prototype.get_m_rollingFriction = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btRigidBodyConstructionInfo_get_m_rollingFriction_0(self);
+};
+    btRigidBodyConstructionInfo.prototype['set_m_rollingFriction'] = btRigidBodyConstructionInfo.prototype.set_m_rollingFriction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btRigidBodyConstructionInfo_set_m_rollingFriction_1(self, arg0);
+};
+    Object.defineProperty(btRigidBodyConstructionInfo.prototype, 'm_rollingFriction', { get: btRigidBodyConstructionInfo.prototype.get_m_rollingFriction, set: btRigidBodyConstructionInfo.prototype.set_m_rollingFriction });
+  btRigidBodyConstructionInfo.prototype['get_m_restitution'] = btRigidBodyConstructionInfo.prototype.get_m_restitution = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btRigidBodyConstructionInfo_get_m_restitution_0(self);
+};
+    btRigidBodyConstructionInfo.prototype['set_m_restitution'] = btRigidBodyConstructionInfo.prototype.set_m_restitution = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btRigidBodyConstructionInfo_set_m_restitution_1(self, arg0);
+};
+    Object.defineProperty(btRigidBodyConstructionInfo.prototype, 'm_restitution', { get: btRigidBodyConstructionInfo.prototype.get_m_restitution, set: btRigidBodyConstructionInfo.prototype.set_m_restitution });
+  btRigidBodyConstructionInfo.prototype['get_m_linearSleepingThreshold'] = btRigidBodyConstructionInfo.prototype.get_m_linearSleepingThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btRigidBodyConstructionInfo_get_m_linearSleepingThreshold_0(self);
+};
+    btRigidBodyConstructionInfo.prototype['set_m_linearSleepingThreshold'] = btRigidBodyConstructionInfo.prototype.set_m_linearSleepingThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btRigidBodyConstructionInfo_set_m_linearSleepingThreshold_1(self, arg0);
+};
+    Object.defineProperty(btRigidBodyConstructionInfo.prototype, 'm_linearSleepingThreshold', { get: btRigidBodyConstructionInfo.prototype.get_m_linearSleepingThreshold, set: btRigidBodyConstructionInfo.prototype.set_m_linearSleepingThreshold });
+  btRigidBodyConstructionInfo.prototype['get_m_angularSleepingThreshold'] = btRigidBodyConstructionInfo.prototype.get_m_angularSleepingThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btRigidBodyConstructionInfo_get_m_angularSleepingThreshold_0(self);
+};
+    btRigidBodyConstructionInfo.prototype['set_m_angularSleepingThreshold'] = btRigidBodyConstructionInfo.prototype.set_m_angularSleepingThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btRigidBodyConstructionInfo_set_m_angularSleepingThreshold_1(self, arg0);
+};
+    Object.defineProperty(btRigidBodyConstructionInfo.prototype, 'm_angularSleepingThreshold', { get: btRigidBodyConstructionInfo.prototype.get_m_angularSleepingThreshold, set: btRigidBodyConstructionInfo.prototype.set_m_angularSleepingThreshold });
+  btRigidBodyConstructionInfo.prototype['__destroy__'] = btRigidBodyConstructionInfo.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btRigidBodyConstructionInfo___destroy___0(self);
+};
+// btManifoldPoint
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btManifoldPoint() { throw "cannot construct a btManifoldPoint, no constructor in IDL" }
+btManifoldPoint.prototype = Object.create(WrapperObject.prototype);
+btManifoldPoint.prototype.constructor = btManifoldPoint;
+btManifoldPoint.prototype.__class__ = btManifoldPoint;
+btManifoldPoint.__cache__ = {};
+Module['btManifoldPoint'] = btManifoldPoint;
+
+btManifoldPoint.prototype['getAppliedImpulse'] = btManifoldPoint.prototype.getAppliedImpulse = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btManifoldPoint_getAppliedImpulse_0(self);
+};;
+
+btManifoldPoint.prototype['getDistance'] = btManifoldPoint.prototype.getDistance = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btManifoldPoint_getDistance_0(self);
+};;
+
+btManifoldPoint.prototype['getShape0'] = btManifoldPoint.prototype.getShape0 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btManifoldPoint_getShape0_0(self), btCollisionShape);
+};;
+
+btManifoldPoint.prototype['getShape1'] = btManifoldPoint.prototype.getShape1 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btManifoldPoint_getShape1_0(self), btCollisionShape);
+};;
+
+  btManifoldPoint.prototype['get_m_localPointA'] = btManifoldPoint.prototype.get_m_localPointA = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btManifoldPoint_get_m_localPointA_0(self), btVector3);
+};
+    btManifoldPoint.prototype['set_m_localPointA'] = btManifoldPoint.prototype.set_m_localPointA = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btManifoldPoint_set_m_localPointA_1(self, arg0);
+};
+    Object.defineProperty(btManifoldPoint.prototype, 'm_localPointA', { get: btManifoldPoint.prototype.get_m_localPointA, set: btManifoldPoint.prototype.set_m_localPointA });
+  btManifoldPoint.prototype['get_m_localPointB'] = btManifoldPoint.prototype.get_m_localPointB = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btManifoldPoint_get_m_localPointB_0(self), btVector3);
+};
+    btManifoldPoint.prototype['set_m_localPointB'] = btManifoldPoint.prototype.set_m_localPointB = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btManifoldPoint_set_m_localPointB_1(self, arg0);
+};
+    Object.defineProperty(btManifoldPoint.prototype, 'm_localPointB', { get: btManifoldPoint.prototype.get_m_localPointB, set: btManifoldPoint.prototype.set_m_localPointB });
+  btManifoldPoint.prototype['get_m_positionWorldOnA'] = btManifoldPoint.prototype.get_m_positionWorldOnA = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btManifoldPoint_get_m_positionWorldOnA_0(self), btVector3);
+};
+    btManifoldPoint.prototype['set_m_positionWorldOnA'] = btManifoldPoint.prototype.set_m_positionWorldOnA = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btManifoldPoint_set_m_positionWorldOnA_1(self, arg0);
+};
+    Object.defineProperty(btManifoldPoint.prototype, 'm_positionWorldOnA', { get: btManifoldPoint.prototype.get_m_positionWorldOnA, set: btManifoldPoint.prototype.set_m_positionWorldOnA });
+  btManifoldPoint.prototype['get_m_positionWorldOnB'] = btManifoldPoint.prototype.get_m_positionWorldOnB = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btManifoldPoint_get_m_positionWorldOnB_0(self), btVector3);
+};
+    btManifoldPoint.prototype['set_m_positionWorldOnB'] = btManifoldPoint.prototype.set_m_positionWorldOnB = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btManifoldPoint_set_m_positionWorldOnB_1(self, arg0);
+};
+    Object.defineProperty(btManifoldPoint.prototype, 'm_positionWorldOnB', { get: btManifoldPoint.prototype.get_m_positionWorldOnB, set: btManifoldPoint.prototype.set_m_positionWorldOnB });
+  btManifoldPoint.prototype['get_m_normalWorldOnB'] = btManifoldPoint.prototype.get_m_normalWorldOnB = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btManifoldPoint_get_m_normalWorldOnB_0(self), btVector3);
+};
+    btManifoldPoint.prototype['set_m_normalWorldOnB'] = btManifoldPoint.prototype.set_m_normalWorldOnB = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btManifoldPoint_set_m_normalWorldOnB_1(self, arg0);
+};
+    Object.defineProperty(btManifoldPoint.prototype, 'm_normalWorldOnB', { get: btManifoldPoint.prototype.get_m_normalWorldOnB, set: btManifoldPoint.prototype.set_m_normalWorldOnB });
+  btManifoldPoint.prototype['get_m_distance1'] = btManifoldPoint.prototype.get_m_distance1 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btManifoldPoint_get_m_distance1_0(self);
+};
+    btManifoldPoint.prototype['set_m_distance1'] = btManifoldPoint.prototype.set_m_distance1 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btManifoldPoint_set_m_distance1_1(self, arg0);
+};
+    Object.defineProperty(btManifoldPoint.prototype, 'm_distance1', { get: btManifoldPoint.prototype.get_m_distance1, set: btManifoldPoint.prototype.set_m_distance1 });
+  btManifoldPoint.prototype['get_m_index0'] = btManifoldPoint.prototype.get_m_index0 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btManifoldPoint_get_m_index0_0(self);
+};
+    btManifoldPoint.prototype['set_m_index0'] = btManifoldPoint.prototype.set_m_index0 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btManifoldPoint_set_m_index0_1(self, arg0);
+};
+    Object.defineProperty(btManifoldPoint.prototype, 'm_index0', { get: btManifoldPoint.prototype.get_m_index0, set: btManifoldPoint.prototype.set_m_index0 });
+  btManifoldPoint.prototype['get_m_index1'] = btManifoldPoint.prototype.get_m_index1 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btManifoldPoint_get_m_index1_0(self);
+};
+    btManifoldPoint.prototype['set_m_index1'] = btManifoldPoint.prototype.set_m_index1 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btManifoldPoint_set_m_index1_1(self, arg0);
+};
+    Object.defineProperty(btManifoldPoint.prototype, 'm_index1', { get: btManifoldPoint.prototype.get_m_index1, set: btManifoldPoint.prototype.set_m_index1 });
+  btManifoldPoint.prototype['get_m_userPersistentData'] = btManifoldPoint.prototype.get_m_userPersistentData = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btManifoldPoint_get_m_userPersistentData_0(self);
+};
+    btManifoldPoint.prototype['set_m_userPersistentData'] = btManifoldPoint.prototype.set_m_userPersistentData = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btManifoldPoint_set_m_userPersistentData_1(self, arg0);
+};
+    Object.defineProperty(btManifoldPoint.prototype, 'm_userPersistentData', { get: btManifoldPoint.prototype.get_m_userPersistentData, set: btManifoldPoint.prototype.set_m_userPersistentData });
+  btManifoldPoint.prototype['get_m_userPersistentData0'] = btManifoldPoint.prototype.get_m_userPersistentData0 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btManifoldPoint_get_m_userPersistentData0_0(self);
+};
+    btManifoldPoint.prototype['set_m_userPersistentData0'] = btManifoldPoint.prototype.set_m_userPersistentData0 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btManifoldPoint_set_m_userPersistentData0_1(self, arg0);
+};
+    Object.defineProperty(btManifoldPoint.prototype, 'm_userPersistentData0', { get: btManifoldPoint.prototype.get_m_userPersistentData0, set: btManifoldPoint.prototype.set_m_userPersistentData0 });
+  btManifoldPoint.prototype['get_m_userPersistentData1'] = btManifoldPoint.prototype.get_m_userPersistentData1 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btManifoldPoint_get_m_userPersistentData1_0(self);
+};
+    btManifoldPoint.prototype['set_m_userPersistentData1'] = btManifoldPoint.prototype.set_m_userPersistentData1 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btManifoldPoint_set_m_userPersistentData1_1(self, arg0);
+};
+    Object.defineProperty(btManifoldPoint.prototype, 'm_userPersistentData1', { get: btManifoldPoint.prototype.get_m_userPersistentData1, set: btManifoldPoint.prototype.set_m_userPersistentData1 });
+  btManifoldPoint.prototype['__destroy__'] = btManifoldPoint.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btManifoldPoint___destroy___0(self);
+};
+// btSequentialImpulseConstraintSolver
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btSequentialImpulseConstraintSolver() {
+  this.ptr = _btSequentialImpulseConstraintSolver_btSequentialImpulseConstraintSolver_0();
+  getCache(btSequentialImpulseConstraintSolver)[this.ptr] = this;
+};;
+btSequentialImpulseConstraintSolver.prototype = Object.create(WrapperObject.prototype);
+btSequentialImpulseConstraintSolver.prototype.constructor = btSequentialImpulseConstraintSolver;
+btSequentialImpulseConstraintSolver.prototype.__class__ = btSequentialImpulseConstraintSolver;
+btSequentialImpulseConstraintSolver.__cache__ = {};
+Module['btSequentialImpulseConstraintSolver'] = btSequentialImpulseConstraintSolver;
+
+  btSequentialImpulseConstraintSolver.prototype['__destroy__'] = btSequentialImpulseConstraintSolver.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btSequentialImpulseConstraintSolver___destroy___0(self);
+};
+// btPoint2PointConstraint
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btPoint2PointConstraint(rbA, rbB, pivotInA, pivotInB) {
+  if (rbA && typeof rbA === 'object') rbA = rbA.ptr;
+  if (rbB && typeof rbB === 'object') rbB = rbB.ptr;
+  if (pivotInA && typeof pivotInA === 'object') pivotInA = pivotInA.ptr;
+  if (pivotInB && typeof pivotInB === 'object') pivotInB = pivotInB.ptr;
+  if (pivotInA === undefined) { this.ptr = _btPoint2PointConstraint_btPoint2PointConstraint_2(rbA, rbB); getCache(btPoint2PointConstraint)[this.ptr] = this;return }
+  if (pivotInB === undefined) { this.ptr = _btPoint2PointConstraint_btPoint2PointConstraint_3(rbA, rbB, pivotInA); getCache(btPoint2PointConstraint)[this.ptr] = this;return }
+  this.ptr = _btPoint2PointConstraint_btPoint2PointConstraint_4(rbA, rbB, pivotInA, pivotInB);
+  getCache(btPoint2PointConstraint)[this.ptr] = this;
+};;
+btPoint2PointConstraint.prototype = Object.create(btTypedConstraint.prototype);
+btPoint2PointConstraint.prototype.constructor = btPoint2PointConstraint;
+btPoint2PointConstraint.prototype.__class__ = btPoint2PointConstraint;
+btPoint2PointConstraint.__cache__ = {};
+Module['btPoint2PointConstraint'] = btPoint2PointConstraint;
+
+btPoint2PointConstraint.prototype['setPivotA'] = btPoint2PointConstraint.prototype.setPivotA = /** @suppress {undefinedVars, duplicate} @this{Object} */function(pivotA) {
+  var self = this.ptr;
+  if (pivotA && typeof pivotA === 'object') pivotA = pivotA.ptr;
+  _btPoint2PointConstraint_setPivotA_1(self, pivotA);
+};;
+
+btPoint2PointConstraint.prototype['setPivotB'] = btPoint2PointConstraint.prototype.setPivotB = /** @suppress {undefinedVars, duplicate} @this{Object} */function(pivotB) {
+  var self = this.ptr;
+  if (pivotB && typeof pivotB === 'object') pivotB = pivotB.ptr;
+  _btPoint2PointConstraint_setPivotB_1(self, pivotB);
+};;
+
+btPoint2PointConstraint.prototype['getPivotInA'] = btPoint2PointConstraint.prototype.getPivotInA = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btPoint2PointConstraint_getPivotInA_0(self), btVector3);
+};;
+
+btPoint2PointConstraint.prototype['getPivotInB'] = btPoint2PointConstraint.prototype.getPivotInB = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btPoint2PointConstraint_getPivotInB_0(self), btVector3);
+};;
+
+btPoint2PointConstraint.prototype['enableFeedback'] = btPoint2PointConstraint.prototype.enableFeedback = /** @suppress {undefinedVars, duplicate} @this{Object} */function(needsFeedback) {
+  var self = this.ptr;
+  if (needsFeedback && typeof needsFeedback === 'object') needsFeedback = needsFeedback.ptr;
+  _btPoint2PointConstraint_enableFeedback_1(self, needsFeedback);
+};;
+
+btPoint2PointConstraint.prototype['getBreakingImpulseThreshold'] = btPoint2PointConstraint.prototype.getBreakingImpulseThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btPoint2PointConstraint_getBreakingImpulseThreshold_0(self);
+};;
+
+btPoint2PointConstraint.prototype['setBreakingImpulseThreshold'] = btPoint2PointConstraint.prototype.setBreakingImpulseThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function(threshold) {
+  var self = this.ptr;
+  if (threshold && typeof threshold === 'object') threshold = threshold.ptr;
+  _btPoint2PointConstraint_setBreakingImpulseThreshold_1(self, threshold);
+};;
+
+btPoint2PointConstraint.prototype['getParam'] = btPoint2PointConstraint.prototype.getParam = /** @suppress {undefinedVars, duplicate} @this{Object} */function(num, axis) {
+  var self = this.ptr;
+  if (num && typeof num === 'object') num = num.ptr;
+  if (axis && typeof axis === 'object') axis = axis.ptr;
+  return _btPoint2PointConstraint_getParam_2(self, num, axis);
+};;
+
+btPoint2PointConstraint.prototype['setParam'] = btPoint2PointConstraint.prototype.setParam = /** @suppress {undefinedVars, duplicate} @this{Object} */function(num, value, axis) {
+  var self = this.ptr;
+  if (num && typeof num === 'object') num = num.ptr;
+  if (value && typeof value === 'object') value = value.ptr;
+  if (axis && typeof axis === 'object') axis = axis.ptr;
+  _btPoint2PointConstraint_setParam_3(self, num, value, axis);
+};;
+
+  btPoint2PointConstraint.prototype['get_m_setting'] = btPoint2PointConstraint.prototype.get_m_setting = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btPoint2PointConstraint_get_m_setting_0(self), btConstraintSetting);
+};
+    btPoint2PointConstraint.prototype['set_m_setting'] = btPoint2PointConstraint.prototype.set_m_setting = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btPoint2PointConstraint_set_m_setting_1(self, arg0);
+};
+    Object.defineProperty(btPoint2PointConstraint.prototype, 'm_setting', { get: btPoint2PointConstraint.prototype.get_m_setting, set: btPoint2PointConstraint.prototype.set_m_setting });
+  btPoint2PointConstraint.prototype['__destroy__'] = btPoint2PointConstraint.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btPoint2PointConstraint___destroy___0(self);
+};
+// ccOverlapFilterCallback
+/** @suppress {undefinedVars, duplicate} @this{Object} */function ccOverlapFilterCallback() {
+  this.ptr = _ccOverlapFilterCallback_ccOverlapFilterCallback_0();
+  getCache(ccOverlapFilterCallback)[this.ptr] = this;
+};;
+ccOverlapFilterCallback.prototype = Object.create(btOverlapFilterCallback.prototype);
+ccOverlapFilterCallback.prototype.constructor = ccOverlapFilterCallback;
+ccOverlapFilterCallback.prototype.__class__ = ccOverlapFilterCallback;
+ccOverlapFilterCallback.__cache__ = {};
+Module['ccOverlapFilterCallback'] = ccOverlapFilterCallback;
+
+  ccOverlapFilterCallback.prototype['__destroy__'] = ccOverlapFilterCallback.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _ccOverlapFilterCallback___destroy___0(self);
+};
+// btConvexTriangleMeshShape
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btConvexTriangleMeshShape(meshInterface, calcAabb) {
+  if (meshInterface && typeof meshInterface === 'object') meshInterface = meshInterface.ptr;
+  if (calcAabb && typeof calcAabb === 'object') calcAabb = calcAabb.ptr;
+  if (calcAabb === undefined) { this.ptr = _btConvexTriangleMeshShape_btConvexTriangleMeshShape_1(meshInterface); getCache(btConvexTriangleMeshShape)[this.ptr] = this;return }
+  this.ptr = _btConvexTriangleMeshShape_btConvexTriangleMeshShape_2(meshInterface, calcAabb);
+  getCache(btConvexTriangleMeshShape)[this.ptr] = this;
+};;
+btConvexTriangleMeshShape.prototype = Object.create(btConvexShape.prototype);
+btConvexTriangleMeshShape.prototype.constructor = btConvexTriangleMeshShape;
+btConvexTriangleMeshShape.prototype.__class__ = btConvexTriangleMeshShape;
+btConvexTriangleMeshShape.__cache__ = {};
+Module['btConvexTriangleMeshShape'] = btConvexTriangleMeshShape;
+
+btConvexTriangleMeshShape.prototype['setLocalScaling'] = btConvexTriangleMeshShape.prototype.setLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btConvexTriangleMeshShape_setLocalScaling_1(self, scaling);
+};;
+
+btConvexTriangleMeshShape.prototype['getLocalScaling'] = btConvexTriangleMeshShape.prototype.getLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btConvexTriangleMeshShape_getLocalScaling_0(self), btVector3);
+};;
+
+btConvexTriangleMeshShape.prototype['calculateLocalInertia'] = btConvexTriangleMeshShape.prototype.calculateLocalInertia = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btConvexTriangleMeshShape_calculateLocalInertia_2(self, mass, inertia);
+};;
+
+btConvexTriangleMeshShape.prototype['setMargin'] = btConvexTriangleMeshShape.prototype.setMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function(margin) {
+  var self = this.ptr;
+  if (margin && typeof margin === 'object') margin = margin.ptr;
+  _btConvexTriangleMeshShape_setMargin_1(self, margin);
+};;
+
+btConvexTriangleMeshShape.prototype['getMargin'] = btConvexTriangleMeshShape.prototype.getMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConvexTriangleMeshShape_getMargin_0(self);
+};;
+
+btConvexTriangleMeshShape.prototype['isCompound'] = btConvexTriangleMeshShape.prototype.isCompound = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btConvexTriangleMeshShape_isCompound_0(self));
+};;
+
+btConvexTriangleMeshShape.prototype['getUserIndex'] = btConvexTriangleMeshShape.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConvexTriangleMeshShape_getUserIndex_0(self);
+};;
+
+btConvexTriangleMeshShape.prototype['setUserIndex'] = btConvexTriangleMeshShape.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btConvexTriangleMeshShape_setUserIndex_1(self, index);
+};;
+
+btConvexTriangleMeshShape.prototype['getUserIndex2'] = btConvexTriangleMeshShape.prototype.getUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConvexTriangleMeshShape_getUserIndex2_0(self);
+};;
+
+btConvexTriangleMeshShape.prototype['setUserIndex2'] = btConvexTriangleMeshShape.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btConvexTriangleMeshShape_setUserIndex2_1(self, index);
+};;
+
+btConvexTriangleMeshShape.prototype['getAabb'] = btConvexTriangleMeshShape.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t, min, max) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  if (min && typeof min === 'object') min = min.ptr;
+  if (max && typeof max === 'object') max = max.ptr;
+  _btConvexTriangleMeshShape_getAabb_3(self, t, min, max);
+};;
+
+btConvexTriangleMeshShape.prototype['getLocalBoundingSphere'] = btConvexTriangleMeshShape.prototype.getLocalBoundingSphere = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConvexTriangleMeshShape_getLocalBoundingSphere_0(self);
+};;
+
+  btConvexTriangleMeshShape.prototype['__destroy__'] = btConvexTriangleMeshShape.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btConvexTriangleMeshShape___destroy___0(self);
+};
+// ccClosestRayResultCallback
+/** @suppress {undefinedVars, duplicate} @this{Object} */function ccClosestRayResultCallback(from, to) {
+  if (from && typeof from === 'object') from = from.ptr;
+  if (to && typeof to === 'object') to = to.ptr;
+  this.ptr = _ccClosestRayResultCallback_ccClosestRayResultCallback_2(from, to);
+  getCache(ccClosestRayResultCallback)[this.ptr] = this;
+};;
+ccClosestRayResultCallback.prototype = Object.create(ClosestRayResultCallback.prototype);
+ccClosestRayResultCallback.prototype.constructor = ccClosestRayResultCallback;
+ccClosestRayResultCallback.prototype.__class__ = ccClosestRayResultCallback;
+ccClosestRayResultCallback.__cache__ = {};
+Module['ccClosestRayResultCallback'] = ccClosestRayResultCallback;
+
+ccClosestRayResultCallback.prototype['setQueryTrigger'] = ccClosestRayResultCallback.prototype.setQueryTrigger = /** @suppress {undefinedVars, duplicate} @this{Object} */function(v) {
+  var self = this.ptr;
+  if (v && typeof v === 'object') v = v.ptr;
+  _ccClosestRayResultCallback_setQueryTrigger_1(self, v);
+};;
+
+ccClosestRayResultCallback.prototype['hasHit'] = ccClosestRayResultCallback.prototype.hasHit = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_ccClosestRayResultCallback_hasHit_0(self));
+};;
+
+  ccClosestRayResultCallback.prototype['get_m_shapePart'] = ccClosestRayResultCallback.prototype.get_m_shapePart = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _ccClosestRayResultCallback_get_m_shapePart_0(self);
+};
+    ccClosestRayResultCallback.prototype['set_m_shapePart'] = ccClosestRayResultCallback.prototype.set_m_shapePart = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccClosestRayResultCallback_set_m_shapePart_1(self, arg0);
+};
+    Object.defineProperty(ccClosestRayResultCallback.prototype, 'm_shapePart', { get: ccClosestRayResultCallback.prototype.get_m_shapePart, set: ccClosestRayResultCallback.prototype.set_m_shapePart });
+  ccClosestRayResultCallback.prototype['get_m_rayFromWorld'] = ccClosestRayResultCallback.prototype.get_m_rayFromWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccClosestRayResultCallback_get_m_rayFromWorld_0(self), btVector3);
+};
+    ccClosestRayResultCallback.prototype['set_m_rayFromWorld'] = ccClosestRayResultCallback.prototype.set_m_rayFromWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccClosestRayResultCallback_set_m_rayFromWorld_1(self, arg0);
+};
+    Object.defineProperty(ccClosestRayResultCallback.prototype, 'm_rayFromWorld', { get: ccClosestRayResultCallback.prototype.get_m_rayFromWorld, set: ccClosestRayResultCallback.prototype.set_m_rayFromWorld });
+  ccClosestRayResultCallback.prototype['get_m_rayToWorld'] = ccClosestRayResultCallback.prototype.get_m_rayToWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccClosestRayResultCallback_get_m_rayToWorld_0(self), btVector3);
+};
+    ccClosestRayResultCallback.prototype['set_m_rayToWorld'] = ccClosestRayResultCallback.prototype.set_m_rayToWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccClosestRayResultCallback_set_m_rayToWorld_1(self, arg0);
+};
+    Object.defineProperty(ccClosestRayResultCallback.prototype, 'm_rayToWorld', { get: ccClosestRayResultCallback.prototype.get_m_rayToWorld, set: ccClosestRayResultCallback.prototype.set_m_rayToWorld });
+  ccClosestRayResultCallback.prototype['get_m_hitNormalWorld'] = ccClosestRayResultCallback.prototype.get_m_hitNormalWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccClosestRayResultCallback_get_m_hitNormalWorld_0(self), btVector3);
+};
+    ccClosestRayResultCallback.prototype['set_m_hitNormalWorld'] = ccClosestRayResultCallback.prototype.set_m_hitNormalWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccClosestRayResultCallback_set_m_hitNormalWorld_1(self, arg0);
+};
+    Object.defineProperty(ccClosestRayResultCallback.prototype, 'm_hitNormalWorld', { get: ccClosestRayResultCallback.prototype.get_m_hitNormalWorld, set: ccClosestRayResultCallback.prototype.set_m_hitNormalWorld });
+  ccClosestRayResultCallback.prototype['get_m_hitPointWorld'] = ccClosestRayResultCallback.prototype.get_m_hitPointWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccClosestRayResultCallback_get_m_hitPointWorld_0(self), btVector3);
+};
+    ccClosestRayResultCallback.prototype['set_m_hitPointWorld'] = ccClosestRayResultCallback.prototype.set_m_hitPointWorld = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccClosestRayResultCallback_set_m_hitPointWorld_1(self, arg0);
+};
+    Object.defineProperty(ccClosestRayResultCallback.prototype, 'm_hitPointWorld', { get: ccClosestRayResultCallback.prototype.get_m_hitPointWorld, set: ccClosestRayResultCallback.prototype.set_m_hitPointWorld });
+  ccClosestRayResultCallback.prototype['get_m_collisionFilterGroup'] = ccClosestRayResultCallback.prototype.get_m_collisionFilterGroup = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _ccClosestRayResultCallback_get_m_collisionFilterGroup_0(self);
+};
+    ccClosestRayResultCallback.prototype['set_m_collisionFilterGroup'] = ccClosestRayResultCallback.prototype.set_m_collisionFilterGroup = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccClosestRayResultCallback_set_m_collisionFilterGroup_1(self, arg0);
+};
+    Object.defineProperty(ccClosestRayResultCallback.prototype, 'm_collisionFilterGroup', { get: ccClosestRayResultCallback.prototype.get_m_collisionFilterGroup, set: ccClosestRayResultCallback.prototype.set_m_collisionFilterGroup });
+  ccClosestRayResultCallback.prototype['get_m_collisionFilterMask'] = ccClosestRayResultCallback.prototype.get_m_collisionFilterMask = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _ccClosestRayResultCallback_get_m_collisionFilterMask_0(self);
+};
+    ccClosestRayResultCallback.prototype['set_m_collisionFilterMask'] = ccClosestRayResultCallback.prototype.set_m_collisionFilterMask = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccClosestRayResultCallback_set_m_collisionFilterMask_1(self, arg0);
+};
+    Object.defineProperty(ccClosestRayResultCallback.prototype, 'm_collisionFilterMask', { get: ccClosestRayResultCallback.prototype.get_m_collisionFilterMask, set: ccClosestRayResultCallback.prototype.set_m_collisionFilterMask });
+  ccClosestRayResultCallback.prototype['get_m_closestHitFraction'] = ccClosestRayResultCallback.prototype.get_m_closestHitFraction = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _ccClosestRayResultCallback_get_m_closestHitFraction_0(self);
+};
+    ccClosestRayResultCallback.prototype['set_m_closestHitFraction'] = ccClosestRayResultCallback.prototype.set_m_closestHitFraction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccClosestRayResultCallback_set_m_closestHitFraction_1(self, arg0);
+};
+    Object.defineProperty(ccClosestRayResultCallback.prototype, 'm_closestHitFraction', { get: ccClosestRayResultCallback.prototype.get_m_closestHitFraction, set: ccClosestRayResultCallback.prototype.set_m_closestHitFraction });
+  ccClosestRayResultCallback.prototype['get_m_collisionObject'] = ccClosestRayResultCallback.prototype.get_m_collisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccClosestRayResultCallback_get_m_collisionObject_0(self), btCollisionObject);
+};
+    ccClosestRayResultCallback.prototype['set_m_collisionObject'] = ccClosestRayResultCallback.prototype.set_m_collisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _ccClosestRayResultCallback_set_m_collisionObject_1(self, arg0);
+};
+    Object.defineProperty(ccClosestRayResultCallback.prototype, 'm_collisionObject', { get: ccClosestRayResultCallback.prototype.get_m_collisionObject, set: ccClosestRayResultCallback.prototype.set_m_collisionObject });
+  ccClosestRayResultCallback.prototype['__destroy__'] = ccClosestRayResultCallback.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _ccClosestRayResultCallback___destroy___0(self);
+};
+// btHeightfieldTerrainShape
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btHeightfieldTerrainShape(heightStickWidth, heightStickLength, heightfieldData, heightScale, minHeight, maxHeight, upAxis, hdt, flipQuadEdges) {
+  if (heightStickWidth && typeof heightStickWidth === 'object') heightStickWidth = heightStickWidth.ptr;
+  if (heightStickLength && typeof heightStickLength === 'object') heightStickLength = heightStickLength.ptr;
+  if (heightfieldData && typeof heightfieldData === 'object') heightfieldData = heightfieldData.ptr;
+  if (heightScale && typeof heightScale === 'object') heightScale = heightScale.ptr;
+  if (minHeight && typeof minHeight === 'object') minHeight = minHeight.ptr;
+  if (maxHeight && typeof maxHeight === 'object') maxHeight = maxHeight.ptr;
+  if (upAxis && typeof upAxis === 'object') upAxis = upAxis.ptr;
+  if (hdt && typeof hdt === 'object') hdt = hdt.ptr;
+  if (flipQuadEdges && typeof flipQuadEdges === 'object') flipQuadEdges = flipQuadEdges.ptr;
+  this.ptr = _btHeightfieldTerrainShape_btHeightfieldTerrainShape_9(heightStickWidth, heightStickLength, heightfieldData, heightScale, minHeight, maxHeight, upAxis, hdt, flipQuadEdges);
+  getCache(btHeightfieldTerrainShape)[this.ptr] = this;
+};;
+btHeightfieldTerrainShape.prototype = Object.create(btConcaveShape.prototype);
+btHeightfieldTerrainShape.prototype.constructor = btHeightfieldTerrainShape;
+btHeightfieldTerrainShape.prototype.__class__ = btHeightfieldTerrainShape;
+btHeightfieldTerrainShape.__cache__ = {};
+Module['btHeightfieldTerrainShape'] = btHeightfieldTerrainShape;
+
+btHeightfieldTerrainShape.prototype['setMargin'] = btHeightfieldTerrainShape.prototype.setMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function(margin) {
+  var self = this.ptr;
+  if (margin && typeof margin === 'object') margin = margin.ptr;
+  _btHeightfieldTerrainShape_setMargin_1(self, margin);
+};;
+
+btHeightfieldTerrainShape.prototype['getMargin'] = btHeightfieldTerrainShape.prototype.getMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btHeightfieldTerrainShape_getMargin_0(self);
+};;
+
+btHeightfieldTerrainShape.prototype['setLocalScaling'] = btHeightfieldTerrainShape.prototype.setLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btHeightfieldTerrainShape_setLocalScaling_1(self, scaling);
+};;
+
+btHeightfieldTerrainShape.prototype['getLocalScaling'] = btHeightfieldTerrainShape.prototype.getLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btHeightfieldTerrainShape_getLocalScaling_0(self), btVector3);
+};;
+
+btHeightfieldTerrainShape.prototype['calculateLocalInertia'] = btHeightfieldTerrainShape.prototype.calculateLocalInertia = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btHeightfieldTerrainShape_calculateLocalInertia_2(self, mass, inertia);
+};;
+
+btHeightfieldTerrainShape.prototype['isCompound'] = btHeightfieldTerrainShape.prototype.isCompound = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btHeightfieldTerrainShape_isCompound_0(self));
+};;
+
+btHeightfieldTerrainShape.prototype['getUserIndex'] = btHeightfieldTerrainShape.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btHeightfieldTerrainShape_getUserIndex_0(self);
+};;
+
+btHeightfieldTerrainShape.prototype['setUserIndex'] = btHeightfieldTerrainShape.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btHeightfieldTerrainShape_setUserIndex_1(self, index);
+};;
+
+btHeightfieldTerrainShape.prototype['getUserIndex2'] = btHeightfieldTerrainShape.prototype.getUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btHeightfieldTerrainShape_getUserIndex2_0(self);
+};;
+
+btHeightfieldTerrainShape.prototype['setUserIndex2'] = btHeightfieldTerrainShape.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btHeightfieldTerrainShape_setUserIndex2_1(self, index);
+};;
+
+btHeightfieldTerrainShape.prototype['getAabb'] = btHeightfieldTerrainShape.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t, min, max) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  if (min && typeof min === 'object') min = min.ptr;
+  if (max && typeof max === 'object') max = max.ptr;
+  _btHeightfieldTerrainShape_getAabb_3(self, t, min, max);
+};;
+
+btHeightfieldTerrainShape.prototype['getLocalBoundingSphere'] = btHeightfieldTerrainShape.prototype.getLocalBoundingSphere = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btHeightfieldTerrainShape_getLocalBoundingSphere_0(self);
+};;
+
+  btHeightfieldTerrainShape.prototype['__destroy__'] = btHeightfieldTerrainShape.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btHeightfieldTerrainShape___destroy___0(self);
+};
+// VoidPtr
+/** @suppress {undefinedVars, duplicate} @this{Object} */function VoidPtr() { throw "cannot construct a VoidPtr, no constructor in IDL" }
+VoidPtr.prototype = Object.create(WrapperObject.prototype);
+VoidPtr.prototype.constructor = VoidPtr;
+VoidPtr.prototype.__class__ = VoidPtr;
+VoidPtr.__cache__ = {};
+Module['VoidPtr'] = VoidPtr;
+
+  VoidPtr.prototype['__destroy__'] = VoidPtr.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _VoidPtr___destroy___0(self);
+};
+// btDefaultCollisionConfiguration
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btDefaultCollisionConfiguration(info) {
+  if (info && typeof info === 'object') info = info.ptr;
+  if (info === undefined) { this.ptr = _btDefaultCollisionConfiguration_btDefaultCollisionConfiguration_0(); getCache(btDefaultCollisionConfiguration)[this.ptr] = this;return }
+  this.ptr = _btDefaultCollisionConfiguration_btDefaultCollisionConfiguration_1(info);
+  getCache(btDefaultCollisionConfiguration)[this.ptr] = this;
+};;
+btDefaultCollisionConfiguration.prototype = Object.create(WrapperObject.prototype);
+btDefaultCollisionConfiguration.prototype.constructor = btDefaultCollisionConfiguration;
+btDefaultCollisionConfiguration.prototype.__class__ = btDefaultCollisionConfiguration;
+btDefaultCollisionConfiguration.__cache__ = {};
+Module['btDefaultCollisionConfiguration'] = btDefaultCollisionConfiguration;
+
+  btDefaultCollisionConfiguration.prototype['__destroy__'] = btDefaultCollisionConfiguration.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btDefaultCollisionConfiguration___destroy___0(self);
+};
+// btOverlappingPairCallback
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btOverlappingPairCallback() { throw "cannot construct a btOverlappingPairCallback, no constructor in IDL" }
+btOverlappingPairCallback.prototype = Object.create(WrapperObject.prototype);
+btOverlappingPairCallback.prototype.constructor = btOverlappingPairCallback;
+btOverlappingPairCallback.prototype.__class__ = btOverlappingPairCallback;
+btOverlappingPairCallback.__cache__ = {};
+Module['btOverlappingPairCallback'] = btOverlappingPairCallback;
+
+  btOverlappingPairCallback.prototype['__destroy__'] = btOverlappingPairCallback.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btOverlappingPairCallback___destroy___0(self);
+};
+// btTriangleMesh
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btTriangleMesh(use32bitIndices, use4componentVertices) {
+  if (use32bitIndices && typeof use32bitIndices === 'object') use32bitIndices = use32bitIndices.ptr;
+  if (use4componentVertices && typeof use4componentVertices === 'object') use4componentVertices = use4componentVertices.ptr;
+  if (use32bitIndices === undefined) { this.ptr = _btTriangleMesh_btTriangleMesh_0(); getCache(btTriangleMesh)[this.ptr] = this;return }
+  if (use4componentVertices === undefined) { this.ptr = _btTriangleMesh_btTriangleMesh_1(use32bitIndices); getCache(btTriangleMesh)[this.ptr] = this;return }
+  this.ptr = _btTriangleMesh_btTriangleMesh_2(use32bitIndices, use4componentVertices);
+  getCache(btTriangleMesh)[this.ptr] = this;
+};;
+btTriangleMesh.prototype = Object.create(btStridingMeshInterface.prototype);
+btTriangleMesh.prototype.constructor = btTriangleMesh;
+btTriangleMesh.prototype.__class__ = btTriangleMesh;
+btTriangleMesh.__cache__ = {};
+Module['btTriangleMesh'] = btTriangleMesh;
+
+btTriangleMesh.prototype['addTriangle'] = btTriangleMesh.prototype.addTriangle = /** @suppress {undefinedVars, duplicate} @this{Object} */function(vertex0, vertex1, vertex2, removeDuplicateVertices) {
+  var self = this.ptr;
+  if (vertex0 && typeof vertex0 === 'object') vertex0 = vertex0.ptr;
+  if (vertex1 && typeof vertex1 === 'object') vertex1 = vertex1.ptr;
+  if (vertex2 && typeof vertex2 === 'object') vertex2 = vertex2.ptr;
+  if (removeDuplicateVertices && typeof removeDuplicateVertices === 'object') removeDuplicateVertices = removeDuplicateVertices.ptr;
+  if (removeDuplicateVertices === undefined) { _btTriangleMesh_addTriangle_3(self, vertex0, vertex1, vertex2);  return }
+  _btTriangleMesh_addTriangle_4(self, vertex0, vertex1, vertex2, removeDuplicateVertices);
+};;
+
+btTriangleMesh.prototype['addTriangleIndices'] = btTriangleMesh.prototype.addTriangleIndices = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index1, index2, index3) {
+  var self = this.ptr;
+  if (index1 && typeof index1 === 'object') index1 = index1.ptr;
+  if (index2 && typeof index2 === 'object') index2 = index2.ptr;
+  if (index3 && typeof index3 === 'object') index3 = index3.ptr;
+  _btTriangleMesh_addTriangleIndices_3(self, index1, index2, index3);
+};;
+
+btTriangleMesh.prototype['getIndexedMeshArray'] = btTriangleMesh.prototype.getIndexedMeshArray = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btTriangleMesh_getIndexedMeshArray_0(self), btIndexedMeshArray);
+};;
+
+btTriangleMesh.prototype['setScaling'] = btTriangleMesh.prototype.setScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btTriangleMesh_setScaling_1(self, scaling);
+};;
+
+  btTriangleMesh.prototype['__destroy__'] = btTriangleMesh.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btTriangleMesh___destroy___0(self);
+};
+// btCollisionConfiguration
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btCollisionConfiguration() { throw "cannot construct a btCollisionConfiguration, no constructor in IDL" }
+btCollisionConfiguration.prototype = Object.create(WrapperObject.prototype);
+btCollisionConfiguration.prototype.constructor = btCollisionConfiguration;
+btCollisionConfiguration.prototype.__class__ = btCollisionConfiguration;
+btCollisionConfiguration.__cache__ = {};
+Module['btCollisionConfiguration'] = btCollisionConfiguration;
+
+  btCollisionConfiguration.prototype['__destroy__'] = btCollisionConfiguration.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btCollisionConfiguration___destroy___0(self);
+};
+// btPersistentManifold
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btPersistentManifold() {
+  this.ptr = _btPersistentManifold_btPersistentManifold_0();
+  getCache(btPersistentManifold)[this.ptr] = this;
+};;
+btPersistentManifold.prototype = Object.create(WrapperObject.prototype);
+btPersistentManifold.prototype.constructor = btPersistentManifold;
+btPersistentManifold.prototype.__class__ = btPersistentManifold;
+btPersistentManifold.__cache__ = {};
+Module['btPersistentManifold'] = btPersistentManifold;
+
+btPersistentManifold.prototype['getBody0'] = btPersistentManifold.prototype.getBody0 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btPersistentManifold_getBody0_0(self), btCollisionObject);
+};;
+
+btPersistentManifold.prototype['getBody1'] = btPersistentManifold.prototype.getBody1 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btPersistentManifold_getBody1_0(self), btCollisionObject);
+};;
+
+btPersistentManifold.prototype['getNumContacts'] = btPersistentManifold.prototype.getNumContacts = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btPersistentManifold_getNumContacts_0(self);
+};;
+
+btPersistentManifold.prototype['getContactPoint'] = btPersistentManifold.prototype.getContactPoint = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  return wrapPointer(_btPersistentManifold_getContactPoint_1(self, index), btManifoldPoint);
+};;
+
+  btPersistentManifold.prototype['__destroy__'] = btPersistentManifold.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btPersistentManifold___destroy___0(self);
+};
+// btBoxShape
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btBoxShape(boxHalfExtents) {
+  if (boxHalfExtents && typeof boxHalfExtents === 'object') boxHalfExtents = boxHalfExtents.ptr;
+  this.ptr = _btBoxShape_btBoxShape_1(boxHalfExtents);
+  getCache(btBoxShape)[this.ptr] = this;
+};;
+btBoxShape.prototype = Object.create(btConvexInternalShape.prototype);
+btBoxShape.prototype.constructor = btBoxShape;
+btBoxShape.prototype.__class__ = btBoxShape;
+btBoxShape.__cache__ = {};
+Module['btBoxShape'] = btBoxShape;
+
+btBoxShape.prototype['setMargin'] = btBoxShape.prototype.setMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function(margin) {
+  var self = this.ptr;
+  if (margin && typeof margin === 'object') margin = margin.ptr;
+  _btBoxShape_setMargin_1(self, margin);
+};;
+
+btBoxShape.prototype['getMargin'] = btBoxShape.prototype.getMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btBoxShape_getMargin_0(self);
+};;
+
+btBoxShape.prototype['setUnscaledHalfExtents'] = btBoxShape.prototype.setUnscaledHalfExtents = /** @suppress {undefinedVars, duplicate} @this{Object} */function(boxHalfExtents) {
+  var self = this.ptr;
+  if (boxHalfExtents && typeof boxHalfExtents === 'object') boxHalfExtents = boxHalfExtents.ptr;
+  _btBoxShape_setUnscaledHalfExtents_1(self, boxHalfExtents);
+};;
+
+btBoxShape.prototype['setLocalScaling'] = btBoxShape.prototype.setLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btBoxShape_setLocalScaling_1(self, scaling);
+};;
+
+btBoxShape.prototype['getLocalScaling'] = btBoxShape.prototype.getLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btBoxShape_getLocalScaling_0(self), btVector3);
+};;
+
+btBoxShape.prototype['calculateLocalInertia'] = btBoxShape.prototype.calculateLocalInertia = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btBoxShape_calculateLocalInertia_2(self, mass, inertia);
+};;
+
+btBoxShape.prototype['isCompound'] = btBoxShape.prototype.isCompound = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btBoxShape_isCompound_0(self));
+};;
+
+btBoxShape.prototype['getUserIndex'] = btBoxShape.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btBoxShape_getUserIndex_0(self);
+};;
+
+btBoxShape.prototype['setUserIndex'] = btBoxShape.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btBoxShape_setUserIndex_1(self, index);
+};;
+
+btBoxShape.prototype['getUserIndex2'] = btBoxShape.prototype.getUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btBoxShape_getUserIndex2_0(self);
+};;
+
+btBoxShape.prototype['setUserIndex2'] = btBoxShape.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btBoxShape_setUserIndex2_1(self, index);
+};;
+
+btBoxShape.prototype['getAabb'] = btBoxShape.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t, min, max) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  if (min && typeof min === 'object') min = min.ptr;
+  if (max && typeof max === 'object') max = max.ptr;
+  _btBoxShape_getAabb_3(self, t, min, max);
+};;
+
+btBoxShape.prototype['getLocalBoundingSphere'] = btBoxShape.prototype.getLocalBoundingSphere = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btBoxShape_getLocalBoundingSphere_0(self);
+};;
+
+btBoxShape.prototype['getImplicitShapeDimensions'] = btBoxShape.prototype.getImplicitShapeDimensions = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btBoxShape_getImplicitShapeDimensions_0(self), btVector3);
+};;
+
+  btBoxShape.prototype['__destroy__'] = btBoxShape.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btBoxShape___destroy___0(self);
+};
+// btCapsuleShape
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btCapsuleShape(radius, height) {
+  if (radius && typeof radius === 'object') radius = radius.ptr;
+  if (height && typeof height === 'object') height = height.ptr;
+  this.ptr = _btCapsuleShape_btCapsuleShape_2(radius, height);
+  getCache(btCapsuleShape)[this.ptr] = this;
+};;
+btCapsuleShape.prototype = Object.create(btConvexInternalShape.prototype);
+btCapsuleShape.prototype.constructor = btCapsuleShape;
+btCapsuleShape.prototype.__class__ = btCapsuleShape;
+btCapsuleShape.__cache__ = {};
+Module['btCapsuleShape'] = btCapsuleShape;
+
+btCapsuleShape.prototype['setMargin'] = btCapsuleShape.prototype.setMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function(margin) {
+  var self = this.ptr;
+  if (margin && typeof margin === 'object') margin = margin.ptr;
+  _btCapsuleShape_setMargin_1(self, margin);
+};;
+
+btCapsuleShape.prototype['getMargin'] = btCapsuleShape.prototype.getMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCapsuleShape_getMargin_0(self);
+};;
+
+btCapsuleShape.prototype['updateProp'] = btCapsuleShape.prototype.updateProp = /** @suppress {undefinedVars, duplicate} @this{Object} */function(r, h, upAxis) {
+  var self = this.ptr;
+  if (r && typeof r === 'object') r = r.ptr;
+  if (h && typeof h === 'object') h = h.ptr;
+  if (upAxis && typeof upAxis === 'object') upAxis = upAxis.ptr;
+  _btCapsuleShape_updateProp_3(self, r, h, upAxis);
+};;
+
+btCapsuleShape.prototype['setLocalScaling'] = btCapsuleShape.prototype.setLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btCapsuleShape_setLocalScaling_1(self, scaling);
+};;
+
+btCapsuleShape.prototype['getLocalScaling'] = btCapsuleShape.prototype.getLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btCapsuleShape_getLocalScaling_0(self), btVector3);
+};;
+
+btCapsuleShape.prototype['calculateLocalInertia'] = btCapsuleShape.prototype.calculateLocalInertia = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btCapsuleShape_calculateLocalInertia_2(self, mass, inertia);
+};;
+
+btCapsuleShape.prototype['isCompound'] = btCapsuleShape.prototype.isCompound = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btCapsuleShape_isCompound_0(self));
+};;
+
+btCapsuleShape.prototype['getUserIndex'] = btCapsuleShape.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCapsuleShape_getUserIndex_0(self);
+};;
+
+btCapsuleShape.prototype['setUserIndex'] = btCapsuleShape.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btCapsuleShape_setUserIndex_1(self, index);
+};;
+
+btCapsuleShape.prototype['getUserIndex2'] = btCapsuleShape.prototype.getUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCapsuleShape_getUserIndex2_0(self);
+};;
+
+btCapsuleShape.prototype['setUserIndex2'] = btCapsuleShape.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btCapsuleShape_setUserIndex2_1(self, index);
+};;
+
+btCapsuleShape.prototype['getAabb'] = btCapsuleShape.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t, min, max) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  if (min && typeof min === 'object') min = min.ptr;
+  if (max && typeof max === 'object') max = max.ptr;
+  _btCapsuleShape_getAabb_3(self, t, min, max);
+};;
+
+btCapsuleShape.prototype['getLocalBoundingSphere'] = btCapsuleShape.prototype.getLocalBoundingSphere = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCapsuleShape_getLocalBoundingSphere_0(self);
+};;
+
+btCapsuleShape.prototype['getImplicitShapeDimensions'] = btCapsuleShape.prototype.getImplicitShapeDimensions = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btCapsuleShape_getImplicitShapeDimensions_0(self), btVector3);
+};;
+
+  btCapsuleShape.prototype['__destroy__'] = btCapsuleShape.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btCapsuleShape___destroy___0(self);
+};
+// btCompoundShape
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btCompoundShape(enableDynamicAabbTree) {
+  if (enableDynamicAabbTree && typeof enableDynamicAabbTree === 'object') enableDynamicAabbTree = enableDynamicAabbTree.ptr;
+  if (enableDynamicAabbTree === undefined) { this.ptr = _btCompoundShape_btCompoundShape_0(); getCache(btCompoundShape)[this.ptr] = this;return }
+  this.ptr = _btCompoundShape_btCompoundShape_1(enableDynamicAabbTree);
+  getCache(btCompoundShape)[this.ptr] = this;
+};;
+btCompoundShape.prototype = Object.create(btCollisionShape.prototype);
+btCompoundShape.prototype.constructor = btCompoundShape;
+btCompoundShape.prototype.__class__ = btCompoundShape;
+btCompoundShape.__cache__ = {};
+Module['btCompoundShape'] = btCompoundShape;
+
+btCompoundShape.prototype['addChildShape'] = btCompoundShape.prototype.addChildShape = /** @suppress {undefinedVars, duplicate} @this{Object} */function(localTransform, shape) {
+  var self = this.ptr;
+  if (localTransform && typeof localTransform === 'object') localTransform = localTransform.ptr;
+  if (shape && typeof shape === 'object') shape = shape.ptr;
+  _btCompoundShape_addChildShape_2(self, localTransform, shape);
+};;
+
+btCompoundShape.prototype['removeChildShape'] = btCompoundShape.prototype.removeChildShape = /** @suppress {undefinedVars, duplicate} @this{Object} */function(shape) {
+  var self = this.ptr;
+  if (shape && typeof shape === 'object') shape = shape.ptr;
+  _btCompoundShape_removeChildShape_1(self, shape);
+};;
+
+btCompoundShape.prototype['removeChildShapeByIndex'] = btCompoundShape.prototype.removeChildShapeByIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(childShapeindex) {
+  var self = this.ptr;
+  if (childShapeindex && typeof childShapeindex === 'object') childShapeindex = childShapeindex.ptr;
+  _btCompoundShape_removeChildShapeByIndex_1(self, childShapeindex);
+};;
+
+btCompoundShape.prototype['getNumChildShapes'] = btCompoundShape.prototype.getNumChildShapes = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCompoundShape_getNumChildShapes_0(self);
+};;
+
+btCompoundShape.prototype['getChildShape'] = btCompoundShape.prototype.getChildShape = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  return wrapPointer(_btCompoundShape_getChildShape_1(self, index), btCollisionShape);
+};;
+
+btCompoundShape.prototype['updateChildTransform'] = btCompoundShape.prototype.updateChildTransform = /** @suppress {undefinedVars, duplicate} @this{Object} */function(childIndex, newChildTransform, shouldRecalculateLocalAabb) {
+  var self = this.ptr;
+  if (childIndex && typeof childIndex === 'object') childIndex = childIndex.ptr;
+  if (newChildTransform && typeof newChildTransform === 'object') newChildTransform = newChildTransform.ptr;
+  if (shouldRecalculateLocalAabb && typeof shouldRecalculateLocalAabb === 'object') shouldRecalculateLocalAabb = shouldRecalculateLocalAabb.ptr;
+  if (shouldRecalculateLocalAabb === undefined) { _btCompoundShape_updateChildTransform_2(self, childIndex, newChildTransform);  return }
+  _btCompoundShape_updateChildTransform_3(self, childIndex, newChildTransform, shouldRecalculateLocalAabb);
+};;
+
+btCompoundShape.prototype['setMargin'] = btCompoundShape.prototype.setMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function(margin) {
+  var self = this.ptr;
+  if (margin && typeof margin === 'object') margin = margin.ptr;
+  _btCompoundShape_setMargin_1(self, margin);
+};;
+
+btCompoundShape.prototype['getMargin'] = btCompoundShape.prototype.getMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCompoundShape_getMargin_0(self);
+};;
+
+btCompoundShape.prototype['setMaterial'] = btCompoundShape.prototype.setMaterial = /** @suppress {undefinedVars, duplicate} @this{Object} */function(childShapeindex, f, r, rf, sf, m) {
+  var self = this.ptr;
+  if (childShapeindex && typeof childShapeindex === 'object') childShapeindex = childShapeindex.ptr;
+  if (f && typeof f === 'object') f = f.ptr;
+  if (r && typeof r === 'object') r = r.ptr;
+  if (rf && typeof rf === 'object') rf = rf.ptr;
+  if (sf && typeof sf === 'object') sf = sf.ptr;
+  if (m && typeof m === 'object') m = m.ptr;
+  if (rf === undefined) { _btCompoundShape_setMaterial_3(self, childShapeindex, f, r);  return }
+  if (sf === undefined) { _btCompoundShape_setMaterial_4(self, childShapeindex, f, r, rf);  return }
+  if (m === undefined) { _btCompoundShape_setMaterial_5(self, childShapeindex, f, r, rf, sf);  return }
+  _btCompoundShape_setMaterial_6(self, childShapeindex, f, r, rf, sf, m);
+};;
+
+btCompoundShape.prototype['setLocalScaling'] = btCompoundShape.prototype.setLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btCompoundShape_setLocalScaling_1(self, scaling);
+};;
+
+btCompoundShape.prototype['getLocalScaling'] = btCompoundShape.prototype.getLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btCompoundShape_getLocalScaling_0(self), btVector3);
+};;
+
+btCompoundShape.prototype['calculateLocalInertia'] = btCompoundShape.prototype.calculateLocalInertia = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btCompoundShape_calculateLocalInertia_2(self, mass, inertia);
+};;
+
+btCompoundShape.prototype['isCompound'] = btCompoundShape.prototype.isCompound = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btCompoundShape_isCompound_0(self));
+};;
+
+btCompoundShape.prototype['getUserIndex'] = btCompoundShape.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCompoundShape_getUserIndex_0(self);
+};;
+
+btCompoundShape.prototype['setUserIndex'] = btCompoundShape.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btCompoundShape_setUserIndex_1(self, index);
+};;
+
+btCompoundShape.prototype['getUserIndex2'] = btCompoundShape.prototype.getUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCompoundShape_getUserIndex2_0(self);
+};;
+
+btCompoundShape.prototype['setUserIndex2'] = btCompoundShape.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btCompoundShape_setUserIndex2_1(self, index);
+};;
+
+btCompoundShape.prototype['getAabb'] = btCompoundShape.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t, min, max) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  if (min && typeof min === 'object') min = min.ptr;
+  if (max && typeof max === 'object') max = max.ptr;
+  _btCompoundShape_getAabb_3(self, t, min, max);
+};;
+
+btCompoundShape.prototype['getLocalBoundingSphere'] = btCompoundShape.prototype.getLocalBoundingSphere = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCompoundShape_getLocalBoundingSphere_0(self);
+};;
+
+  btCompoundShape.prototype['__destroy__'] = btCompoundShape.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btCompoundShape___destroy___0(self);
+};
+// btDefaultMotionState
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btDefaultMotionState(startTrans, centerOfMassOffset) {
+  if (startTrans && typeof startTrans === 'object') startTrans = startTrans.ptr;
+  if (centerOfMassOffset && typeof centerOfMassOffset === 'object') centerOfMassOffset = centerOfMassOffset.ptr;
+  if (startTrans === undefined) { this.ptr = _btDefaultMotionState_btDefaultMotionState_0(); getCache(btDefaultMotionState)[this.ptr] = this;return }
+  if (centerOfMassOffset === undefined) { this.ptr = _btDefaultMotionState_btDefaultMotionState_1(startTrans); getCache(btDefaultMotionState)[this.ptr] = this;return }
+  this.ptr = _btDefaultMotionState_btDefaultMotionState_2(startTrans, centerOfMassOffset);
+  getCache(btDefaultMotionState)[this.ptr] = this;
+};;
+btDefaultMotionState.prototype = Object.create(btMotionState.prototype);
+btDefaultMotionState.prototype.constructor = btDefaultMotionState;
+btDefaultMotionState.prototype.__class__ = btDefaultMotionState;
+btDefaultMotionState.__cache__ = {};
+Module['btDefaultMotionState'] = btDefaultMotionState;
+
+btDefaultMotionState.prototype['getWorldTransform'] = btDefaultMotionState.prototype.getWorldTransform = /** @suppress {undefinedVars, duplicate} @this{Object} */function(worldTrans) {
+  var self = this.ptr;
+  if (worldTrans && typeof worldTrans === 'object') worldTrans = worldTrans.ptr;
+  _btDefaultMotionState_getWorldTransform_1(self, worldTrans);
+};;
+
+btDefaultMotionState.prototype['setWorldTransform'] = btDefaultMotionState.prototype.setWorldTransform = /** @suppress {undefinedVars, duplicate} @this{Object} */function(worldTrans) {
+  var self = this.ptr;
+  if (worldTrans && typeof worldTrans === 'object') worldTrans = worldTrans.ptr;
+  _btDefaultMotionState_setWorldTransform_1(self, worldTrans);
+};;
+
+  btDefaultMotionState.prototype['__destroy__'] = btDefaultMotionState.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btDefaultMotionState___destroy___0(self);
+};
+// btHingeConstraint
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btHingeConstraint(rbA, rbB, rbAFrame, rbBFrame, useReferenceFrameA) {
+  if (rbA && typeof rbA === 'object') rbA = rbA.ptr;
+  if (rbB && typeof rbB === 'object') rbB = rbB.ptr;
+  if (rbAFrame && typeof rbAFrame === 'object') rbAFrame = rbAFrame.ptr;
+  if (rbBFrame && typeof rbBFrame === 'object') rbBFrame = rbBFrame.ptr;
+  if (useReferenceFrameA && typeof useReferenceFrameA === 'object') useReferenceFrameA = useReferenceFrameA.ptr;
+  if (useReferenceFrameA === undefined) { this.ptr = _btHingeConstraint_btHingeConstraint_4(rbA, rbB, rbAFrame, rbBFrame); getCache(btHingeConstraint)[this.ptr] = this;return }
+  this.ptr = _btHingeConstraint_btHingeConstraint_5(rbA, rbB, rbAFrame, rbBFrame, useReferenceFrameA);
+  getCache(btHingeConstraint)[this.ptr] = this;
+};;
+btHingeConstraint.prototype = Object.create(btTypedConstraint.prototype);
+btHingeConstraint.prototype.constructor = btHingeConstraint;
+btHingeConstraint.prototype.__class__ = btHingeConstraint;
+btHingeConstraint.__cache__ = {};
+Module['btHingeConstraint'] = btHingeConstraint;
+
+btHingeConstraint.prototype['setLimit'] = btHingeConstraint.prototype.setLimit = /** @suppress {undefinedVars, duplicate} @this{Object} */function(low, high, softness, biasFactor, relaxationFactor) {
+  var self = this.ptr;
+  if (low && typeof low === 'object') low = low.ptr;
+  if (high && typeof high === 'object') high = high.ptr;
+  if (softness && typeof softness === 'object') softness = softness.ptr;
+  if (biasFactor && typeof biasFactor === 'object') biasFactor = biasFactor.ptr;
+  if (relaxationFactor && typeof relaxationFactor === 'object') relaxationFactor = relaxationFactor.ptr;
+  if (relaxationFactor === undefined) { _btHingeConstraint_setLimit_4(self, low, high, softness, biasFactor);  return }
+  _btHingeConstraint_setLimit_5(self, low, high, softness, biasFactor, relaxationFactor);
+};;
+
+btHingeConstraint.prototype['enableAngularMotor'] = btHingeConstraint.prototype.enableAngularMotor = /** @suppress {undefinedVars, duplicate} @this{Object} */function(enableMotor, targetVelocity, maxMotorImpulse) {
+  var self = this.ptr;
+  if (enableMotor && typeof enableMotor === 'object') enableMotor = enableMotor.ptr;
+  if (targetVelocity && typeof targetVelocity === 'object') targetVelocity = targetVelocity.ptr;
+  if (maxMotorImpulse && typeof maxMotorImpulse === 'object') maxMotorImpulse = maxMotorImpulse.ptr;
+  _btHingeConstraint_enableAngularMotor_3(self, enableMotor, targetVelocity, maxMotorImpulse);
+};;
+
+btHingeConstraint.prototype['setAngularOnly'] = btHingeConstraint.prototype.setAngularOnly = /** @suppress {undefinedVars, duplicate} @this{Object} */function(angularOnly) {
+  var self = this.ptr;
+  if (angularOnly && typeof angularOnly === 'object') angularOnly = angularOnly.ptr;
+  _btHingeConstraint_setAngularOnly_1(self, angularOnly);
+};;
+
+btHingeConstraint.prototype['enableMotor'] = btHingeConstraint.prototype.enableMotor = /** @suppress {undefinedVars, duplicate} @this{Object} */function(enableMotor) {
+  var self = this.ptr;
+  if (enableMotor && typeof enableMotor === 'object') enableMotor = enableMotor.ptr;
+  _btHingeConstraint_enableMotor_1(self, enableMotor);
+};;
+
+btHingeConstraint.prototype['setMaxMotorImpulse'] = btHingeConstraint.prototype.setMaxMotorImpulse = /** @suppress {undefinedVars, duplicate} @this{Object} */function(maxMotorImpulse) {
+  var self = this.ptr;
+  if (maxMotorImpulse && typeof maxMotorImpulse === 'object') maxMotorImpulse = maxMotorImpulse.ptr;
+  _btHingeConstraint_setMaxMotorImpulse_1(self, maxMotorImpulse);
+};;
+
+btHingeConstraint.prototype['setMotorTarget'] = btHingeConstraint.prototype.setMotorTarget = /** @suppress {undefinedVars, duplicate} @this{Object} */function(targetAngle, dt) {
+  var self = this.ptr;
+  if (targetAngle && typeof targetAngle === 'object') targetAngle = targetAngle.ptr;
+  if (dt && typeof dt === 'object') dt = dt.ptr;
+  _btHingeConstraint_setMotorTarget_2(self, targetAngle, dt);
+};;
+
+btHingeConstraint.prototype['setFrames'] = btHingeConstraint.prototype.setFrames = /** @suppress {undefinedVars, duplicate} @this{Object} */function(frameA, frameB) {
+  var self = this.ptr;
+  if (frameA && typeof frameA === 'object') frameA = frameA.ptr;
+  if (frameB && typeof frameB === 'object') frameB = frameB.ptr;
+  _btHingeConstraint_setFrames_2(self, frameA, frameB);
+};;
+
+btHingeConstraint.prototype['setAxis'] = btHingeConstraint.prototype.setAxis = /** @suppress {undefinedVars, duplicate} @this{Object} */function(axisInA) {
+  var self = this.ptr;
+  if (axisInA && typeof axisInA === 'object') axisInA = axisInA.ptr;
+  _btHingeConstraint_setAxis_1(self, axisInA);
+};;
+
+btHingeConstraint.prototype['setUseReferenceFrameA'] = btHingeConstraint.prototype.setUseReferenceFrameA = /** @suppress {undefinedVars, duplicate} @this{Object} */function(urfa) {
+  var self = this.ptr;
+  if (urfa && typeof urfa === 'object') urfa = urfa.ptr;
+  _btHingeConstraint_setUseReferenceFrameA_1(self, urfa);
+};;
+
+btHingeConstraint.prototype['enableFeedback'] = btHingeConstraint.prototype.enableFeedback = /** @suppress {undefinedVars, duplicate} @this{Object} */function(needsFeedback) {
+  var self = this.ptr;
+  if (needsFeedback && typeof needsFeedback === 'object') needsFeedback = needsFeedback.ptr;
+  _btHingeConstraint_enableFeedback_1(self, needsFeedback);
+};;
+
+btHingeConstraint.prototype['getBreakingImpulseThreshold'] = btHingeConstraint.prototype.getBreakingImpulseThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btHingeConstraint_getBreakingImpulseThreshold_0(self);
+};;
+
+btHingeConstraint.prototype['setBreakingImpulseThreshold'] = btHingeConstraint.prototype.setBreakingImpulseThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function(threshold) {
+  var self = this.ptr;
+  if (threshold && typeof threshold === 'object') threshold = threshold.ptr;
+  _btHingeConstraint_setBreakingImpulseThreshold_1(self, threshold);
+};;
+
+btHingeConstraint.prototype['getParam'] = btHingeConstraint.prototype.getParam = /** @suppress {undefinedVars, duplicate} @this{Object} */function(num, axis) {
+  var self = this.ptr;
+  if (num && typeof num === 'object') num = num.ptr;
+  if (axis && typeof axis === 'object') axis = axis.ptr;
+  return _btHingeConstraint_getParam_2(self, num, axis);
+};;
+
+btHingeConstraint.prototype['setParam'] = btHingeConstraint.prototype.setParam = /** @suppress {undefinedVars, duplicate} @this{Object} */function(num, value, axis) {
+  var self = this.ptr;
+  if (num && typeof num === 'object') num = num.ptr;
+  if (value && typeof value === 'object') value = value.ptr;
+  if (axis && typeof axis === 'object') axis = axis.ptr;
+  _btHingeConstraint_setParam_3(self, num, value, axis);
+};;
+
+  btHingeConstraint.prototype['__destroy__'] = btHingeConstraint.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btHingeConstraint___destroy___0(self);
+};
+// btQuaternion
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btQuaternion(x, y, z, w) {
+  if (x && typeof x === 'object') x = x.ptr;
+  if (y && typeof y === 'object') y = y.ptr;
+  if (z && typeof z === 'object') z = z.ptr;
+  if (w && typeof w === 'object') w = w.ptr;
+  this.ptr = _btQuaternion_btQuaternion_4(x, y, z, w);
+  getCache(btQuaternion)[this.ptr] = this;
+};;
+btQuaternion.prototype = Object.create(btQuadWord.prototype);
+btQuaternion.prototype.constructor = btQuaternion;
+btQuaternion.prototype.__class__ = btQuaternion;
+btQuaternion.__cache__ = {};
+Module['btQuaternion'] = btQuaternion;
+
+btQuaternion.prototype['setValue'] = btQuaternion.prototype.setValue = /** @suppress {undefinedVars, duplicate} @this{Object} */function(x, y, z, w) {
+  var self = this.ptr;
+  if (x && typeof x === 'object') x = x.ptr;
+  if (y && typeof y === 'object') y = y.ptr;
+  if (z && typeof z === 'object') z = z.ptr;
+  if (w && typeof w === 'object') w = w.ptr;
+  _btQuaternion_setValue_4(self, x, y, z, w);
+};;
+
+btQuaternion.prototype['x'] = btQuaternion.prototype.x = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btQuaternion_x_0(self);
+};;
+
+btQuaternion.prototype['y'] = btQuaternion.prototype.y = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btQuaternion_y_0(self);
+};;
+
+btQuaternion.prototype['z'] = btQuaternion.prototype.z = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btQuaternion_z_0(self);
+};;
+
+btQuaternion.prototype['w'] = btQuaternion.prototype.w = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btQuaternion_w_0(self);
+};;
+
+btQuaternion.prototype['setX'] = btQuaternion.prototype.setX = /** @suppress {undefinedVars, duplicate} @this{Object} */function(x) {
+  var self = this.ptr;
+  if (x && typeof x === 'object') x = x.ptr;
+  _btQuaternion_setX_1(self, x);
+};;
+
+btQuaternion.prototype['setY'] = btQuaternion.prototype.setY = /** @suppress {undefinedVars, duplicate} @this{Object} */function(y) {
+  var self = this.ptr;
+  if (y && typeof y === 'object') y = y.ptr;
+  _btQuaternion_setY_1(self, y);
+};;
+
+btQuaternion.prototype['setZ'] = btQuaternion.prototype.setZ = /** @suppress {undefinedVars, duplicate} @this{Object} */function(z) {
+  var self = this.ptr;
+  if (z && typeof z === 'object') z = z.ptr;
+  _btQuaternion_setZ_1(self, z);
+};;
+
+btQuaternion.prototype['setW'] = btQuaternion.prototype.setW = /** @suppress {undefinedVars, duplicate} @this{Object} */function(w) {
+  var self = this.ptr;
+  if (w && typeof w === 'object') w = w.ptr;
+  _btQuaternion_setW_1(self, w);
+};;
+
+  btQuaternion.prototype['__destroy__'] = btQuaternion.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btQuaternion___destroy___0(self);
+};
+// btConeShape
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btConeShape(radius, height) {
+  if (radius && typeof radius === 'object') radius = radius.ptr;
+  if (height && typeof height === 'object') height = height.ptr;
+  this.ptr = _btConeShape_btConeShape_2(radius, height);
+  getCache(btConeShape)[this.ptr] = this;
+};;
+btConeShape.prototype = Object.create(btConvexInternalShape.prototype);
+btConeShape.prototype.constructor = btConeShape;
+btConeShape.prototype.__class__ = btConeShape;
+btConeShape.__cache__ = {};
+Module['btConeShape'] = btConeShape;
+
+btConeShape.prototype['setRadius'] = btConeShape.prototype.setRadius = /** @suppress {undefinedVars, duplicate} @this{Object} */function(radius) {
+  var self = this.ptr;
+  if (radius && typeof radius === 'object') radius = radius.ptr;
+  _btConeShape_setRadius_1(self, radius);
+};;
+
+btConeShape.prototype['setHeight'] = btConeShape.prototype.setHeight = /** @suppress {undefinedVars, duplicate} @this{Object} */function(height) {
+  var self = this.ptr;
+  if (height && typeof height === 'object') height = height.ptr;
+  _btConeShape_setHeight_1(self, height);
+};;
+
+btConeShape.prototype['setConeUpIndex'] = btConeShape.prototype.setConeUpIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(upIndex) {
+  var self = this.ptr;
+  if (upIndex && typeof upIndex === 'object') upIndex = upIndex.ptr;
+  _btConeShape_setConeUpIndex_1(self, upIndex);
+};;
+
+btConeShape.prototype['setLocalScaling'] = btConeShape.prototype.setLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btConeShape_setLocalScaling_1(self, scaling);
+};;
+
+btConeShape.prototype['getLocalScaling'] = btConeShape.prototype.getLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btConeShape_getLocalScaling_0(self), btVector3);
+};;
+
+btConeShape.prototype['calculateLocalInertia'] = btConeShape.prototype.calculateLocalInertia = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btConeShape_calculateLocalInertia_2(self, mass, inertia);
+};;
+
+btConeShape.prototype['isCompound'] = btConeShape.prototype.isCompound = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btConeShape_isCompound_0(self));
+};;
+
+btConeShape.prototype['getUserIndex'] = btConeShape.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConeShape_getUserIndex_0(self);
+};;
+
+btConeShape.prototype['setUserIndex'] = btConeShape.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btConeShape_setUserIndex_1(self, index);
+};;
+
+btConeShape.prototype['getUserIndex2'] = btConeShape.prototype.getUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConeShape_getUserIndex2_0(self);
+};;
+
+btConeShape.prototype['setUserIndex2'] = btConeShape.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btConeShape_setUserIndex2_1(self, index);
+};;
+
+btConeShape.prototype['getAabb'] = btConeShape.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t, min, max) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  if (min && typeof min === 'object') min = min.ptr;
+  if (max && typeof max === 'object') max = max.ptr;
+  _btConeShape_getAabb_3(self, t, min, max);
+};;
+
+btConeShape.prototype['getLocalBoundingSphere'] = btConeShape.prototype.getLocalBoundingSphere = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConeShape_getLocalBoundingSphere_0(self);
+};;
+
+btConeShape.prototype['getImplicitShapeDimensions'] = btConeShape.prototype.getImplicitShapeDimensions = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btConeShape_getImplicitShapeDimensions_0(self), btVector3);
+};;
+
+  btConeShape.prototype['__destroy__'] = btConeShape.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btConeShape___destroy___0(self);
+};
+// btBU_Simplex1to4
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btBU_Simplex1to4() {
+  this.ptr = _btBU_Simplex1to4_btBU_Simplex1to4_0();
+  getCache(btBU_Simplex1to4)[this.ptr] = this;
+};;
+btBU_Simplex1to4.prototype = Object.create(btConvexShape.prototype);
+btBU_Simplex1to4.prototype.constructor = btBU_Simplex1to4;
+btBU_Simplex1to4.prototype.__class__ = btBU_Simplex1to4;
+btBU_Simplex1to4.__cache__ = {};
+Module['btBU_Simplex1to4'] = btBU_Simplex1to4;
+
+btBU_Simplex1to4.prototype['addVertex'] = btBU_Simplex1to4.prototype.addVertex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(pt) {
+  var self = this.ptr;
+  if (pt && typeof pt === 'object') pt = pt.ptr;
+  _btBU_Simplex1to4_addVertex_1(self, pt);
+};;
+
+btBU_Simplex1to4.prototype['setLocalScaling'] = btBU_Simplex1to4.prototype.setLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btBU_Simplex1to4_setLocalScaling_1(self, scaling);
+};;
+
+btBU_Simplex1to4.prototype['getLocalScaling'] = btBU_Simplex1to4.prototype.getLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btBU_Simplex1to4_getLocalScaling_0(self), btVector3);
+};;
+
+btBU_Simplex1to4.prototype['calculateLocalInertia'] = btBU_Simplex1to4.prototype.calculateLocalInertia = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btBU_Simplex1to4_calculateLocalInertia_2(self, mass, inertia);
+};;
+
+btBU_Simplex1to4.prototype['isCompound'] = btBU_Simplex1to4.prototype.isCompound = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btBU_Simplex1to4_isCompound_0(self));
+};;
+
+btBU_Simplex1to4.prototype['getUserIndex'] = btBU_Simplex1to4.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btBU_Simplex1to4_getUserIndex_0(self);
+};;
+
+btBU_Simplex1to4.prototype['setUserIndex'] = btBU_Simplex1to4.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btBU_Simplex1to4_setUserIndex_1(self, index);
+};;
+
+btBU_Simplex1to4.prototype['getUserIndex2'] = btBU_Simplex1to4.prototype.getUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btBU_Simplex1to4_getUserIndex2_0(self);
+};;
+
+btBU_Simplex1to4.prototype['setUserIndex2'] = btBU_Simplex1to4.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btBU_Simplex1to4_setUserIndex2_1(self, index);
+};;
+
+btBU_Simplex1to4.prototype['getAabb'] = btBU_Simplex1to4.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t, min, max) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  if (min && typeof min === 'object') min = min.ptr;
+  if (max && typeof max === 'object') max = max.ptr;
+  _btBU_Simplex1to4_getAabb_3(self, t, min, max);
+};;
+
+btBU_Simplex1to4.prototype['getLocalBoundingSphere'] = btBU_Simplex1to4.prototype.getLocalBoundingSphere = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btBU_Simplex1to4_getLocalBoundingSphere_0(self);
+};;
+
+  btBU_Simplex1to4.prototype['__destroy__'] = btBU_Simplex1to4.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btBU_Simplex1to4___destroy___0(self);
+};
+// btContactSolverInfo
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btContactSolverInfo() { throw "cannot construct a btContactSolverInfo, no constructor in IDL" }
+btContactSolverInfo.prototype = Object.create(WrapperObject.prototype);
+btContactSolverInfo.prototype.constructor = btContactSolverInfo;
+btContactSolverInfo.prototype.__class__ = btContactSolverInfo;
+btContactSolverInfo.__cache__ = {};
+Module['btContactSolverInfo'] = btContactSolverInfo;
+
+  btContactSolverInfo.prototype['get_m_splitImpulse'] = btContactSolverInfo.prototype.get_m_splitImpulse = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btContactSolverInfo_get_m_splitImpulse_0(self));
+};
+    btContactSolverInfo.prototype['set_m_splitImpulse'] = btContactSolverInfo.prototype.set_m_splitImpulse = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btContactSolverInfo_set_m_splitImpulse_1(self, arg0);
+};
+    Object.defineProperty(btContactSolverInfo.prototype, 'm_splitImpulse', { get: btContactSolverInfo.prototype.get_m_splitImpulse, set: btContactSolverInfo.prototype.set_m_splitImpulse });
+  btContactSolverInfo.prototype['get_m_splitImpulsePenetrationThreshold'] = btContactSolverInfo.prototype.get_m_splitImpulsePenetrationThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btContactSolverInfo_get_m_splitImpulsePenetrationThreshold_0(self);
+};
+    btContactSolverInfo.prototype['set_m_splitImpulsePenetrationThreshold'] = btContactSolverInfo.prototype.set_m_splitImpulsePenetrationThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btContactSolverInfo_set_m_splitImpulsePenetrationThreshold_1(self, arg0);
+};
+    Object.defineProperty(btContactSolverInfo.prototype, 'm_splitImpulsePenetrationThreshold', { get: btContactSolverInfo.prototype.get_m_splitImpulsePenetrationThreshold, set: btContactSolverInfo.prototype.set_m_splitImpulsePenetrationThreshold });
+  btContactSolverInfo.prototype['get_m_numIterations'] = btContactSolverInfo.prototype.get_m_numIterations = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btContactSolverInfo_get_m_numIterations_0(self);
+};
+    btContactSolverInfo.prototype['set_m_numIterations'] = btContactSolverInfo.prototype.set_m_numIterations = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btContactSolverInfo_set_m_numIterations_1(self, arg0);
+};
+    Object.defineProperty(btContactSolverInfo.prototype, 'm_numIterations', { get: btContactSolverInfo.prototype.get_m_numIterations, set: btContactSolverInfo.prototype.set_m_numIterations });
+  btContactSolverInfo.prototype['__destroy__'] = btContactSolverInfo.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btContactSolverInfo___destroy___0(self);
+};
+// btStaticPlaneShape
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btStaticPlaneShape(planeNormal, planeConstant) {
+  if (planeNormal && typeof planeNormal === 'object') planeNormal = planeNormal.ptr;
+  if (planeConstant && typeof planeConstant === 'object') planeConstant = planeConstant.ptr;
+  this.ptr = _btStaticPlaneShape_btStaticPlaneShape_2(planeNormal, planeConstant);
+  getCache(btStaticPlaneShape)[this.ptr] = this;
+};;
+btStaticPlaneShape.prototype = Object.create(btConcaveShape.prototype);
+btStaticPlaneShape.prototype.constructor = btStaticPlaneShape;
+btStaticPlaneShape.prototype.__class__ = btStaticPlaneShape;
+btStaticPlaneShape.__cache__ = {};
+Module['btStaticPlaneShape'] = btStaticPlaneShape;
+
+btStaticPlaneShape.prototype['getPlaneNormal'] = btStaticPlaneShape.prototype.getPlaneNormal = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btStaticPlaneShape_getPlaneNormal_0(self), btVector3);
+};;
+
+btStaticPlaneShape.prototype['setPlaneConstant'] = btStaticPlaneShape.prototype.setPlaneConstant = /** @suppress {undefinedVars, duplicate} @this{Object} */function(v) {
+  var self = this.ptr;
+  if (v && typeof v === 'object') v = v.ptr;
+  _btStaticPlaneShape_setPlaneConstant_1(self, v);
+};;
+
+btStaticPlaneShape.prototype['setLocalScaling'] = btStaticPlaneShape.prototype.setLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btStaticPlaneShape_setLocalScaling_1(self, scaling);
+};;
+
+btStaticPlaneShape.prototype['getLocalScaling'] = btStaticPlaneShape.prototype.getLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btStaticPlaneShape_getLocalScaling_0(self), btVector3);
+};;
+
+btStaticPlaneShape.prototype['calculateLocalInertia'] = btStaticPlaneShape.prototype.calculateLocalInertia = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btStaticPlaneShape_calculateLocalInertia_2(self, mass, inertia);
+};;
+
+btStaticPlaneShape.prototype['isCompound'] = btStaticPlaneShape.prototype.isCompound = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btStaticPlaneShape_isCompound_0(self));
+};;
+
+btStaticPlaneShape.prototype['getUserIndex'] = btStaticPlaneShape.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btStaticPlaneShape_getUserIndex_0(self);
+};;
+
+btStaticPlaneShape.prototype['setUserIndex'] = btStaticPlaneShape.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btStaticPlaneShape_setUserIndex_1(self, index);
+};;
+
+btStaticPlaneShape.prototype['getUserIndex2'] = btStaticPlaneShape.prototype.getUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btStaticPlaneShape_getUserIndex2_0(self);
+};;
+
+btStaticPlaneShape.prototype['setUserIndex2'] = btStaticPlaneShape.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btStaticPlaneShape_setUserIndex2_1(self, index);
+};;
+
+btStaticPlaneShape.prototype['getAabb'] = btStaticPlaneShape.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t, min, max) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  if (min && typeof min === 'object') min = min.ptr;
+  if (max && typeof max === 'object') max = max.ptr;
+  _btStaticPlaneShape_getAabb_3(self, t, min, max);
+};;
+
+btStaticPlaneShape.prototype['getLocalBoundingSphere'] = btStaticPlaneShape.prototype.getLocalBoundingSphere = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btStaticPlaneShape_getLocalBoundingSphere_0(self);
+};;
+
+  btStaticPlaneShape.prototype['__destroy__'] = btStaticPlaneShape.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btStaticPlaneShape___destroy___0(self);
+};
+// btActionInterface
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btActionInterface() { throw "cannot construct a btActionInterface, no constructor in IDL" }
+btActionInterface.prototype = Object.create(WrapperObject.prototype);
+btActionInterface.prototype.constructor = btActionInterface;
+btActionInterface.prototype.__class__ = btActionInterface;
+btActionInterface.__cache__ = {};
+Module['btActionInterface'] = btActionInterface;
+
+btActionInterface.prototype['updateAction'] = btActionInterface.prototype.updateAction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(collisionWorld, deltaTimeStep) {
+  var self = this.ptr;
+  if (collisionWorld && typeof collisionWorld === 'object') collisionWorld = collisionWorld.ptr;
+  if (deltaTimeStep && typeof deltaTimeStep === 'object') deltaTimeStep = deltaTimeStep.ptr;
+  _btActionInterface_updateAction_2(self, collisionWorld, deltaTimeStep);
+};;
+
+  btActionInterface.prototype['__destroy__'] = btActionInterface.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btActionInterface___destroy___0(self);
+};
+// btOverlappingPairCache
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btOverlappingPairCache() { throw "cannot construct a btOverlappingPairCache, no constructor in IDL" }
+btOverlappingPairCache.prototype = Object.create(WrapperObject.prototype);
+btOverlappingPairCache.prototype.constructor = btOverlappingPairCache;
+btOverlappingPairCache.prototype.__class__ = btOverlappingPairCache;
+btOverlappingPairCache.__cache__ = {};
+Module['btOverlappingPairCache'] = btOverlappingPairCache;
+
+btOverlappingPairCache.prototype['setInternalGhostPairCallback'] = btOverlappingPairCache.prototype.setInternalGhostPairCallback = /** @suppress {undefinedVars, duplicate} @this{Object} */function(ghostPairCallback) {
+  var self = this.ptr;
+  if (ghostPairCallback && typeof ghostPairCallback === 'object') ghostPairCallback = ghostPairCallback.ptr;
+  _btOverlappingPairCache_setInternalGhostPairCallback_1(self, ghostPairCallback);
+};;
+
+btOverlappingPairCache.prototype['setOverlapFilterCallback'] = btOverlappingPairCache.prototype.setOverlapFilterCallback = /** @suppress {undefinedVars, duplicate} @this{Object} */function(cb) {
+  var self = this.ptr;
+  if (cb && typeof cb === 'object') cb = cb.ptr;
+  _btOverlappingPairCache_setOverlapFilterCallback_1(self, cb);
+};;
+
+btOverlappingPairCache.prototype['getNumOverlappingPairs'] = btOverlappingPairCache.prototype.getNumOverlappingPairs = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btOverlappingPairCache_getNumOverlappingPairs_0(self);
+};;
+
+  btOverlappingPairCache.prototype['__destroy__'] = btOverlappingPairCache.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btOverlappingPairCache___destroy___0(self);
+};
+// btVector3
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btVector3(x, y, z) {
+  if (x && typeof x === 'object') x = x.ptr;
+  if (y && typeof y === 'object') y = y.ptr;
+  if (z && typeof z === 'object') z = z.ptr;
+  if (x === undefined) { this.ptr = _btVector3_btVector3_0(); getCache(btVector3)[this.ptr] = this;return }
+  if (y === undefined) { this.ptr = _btVector3_btVector3_1(x); getCache(btVector3)[this.ptr] = this;return }
+  if (z === undefined) { this.ptr = _btVector3_btVector3_2(x, y); getCache(btVector3)[this.ptr] = this;return }
+  this.ptr = _btVector3_btVector3_3(x, y, z);
+  getCache(btVector3)[this.ptr] = this;
+};;
+btVector3.prototype = Object.create(WrapperObject.prototype);
+btVector3.prototype.constructor = btVector3;
+btVector3.prototype.__class__ = btVector3;
+btVector3.__cache__ = {};
+Module['btVector3'] = btVector3;
+
+btVector3.prototype['x'] = btVector3.prototype.x = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btVector3_x_0(self);
+};;
+
+btVector3.prototype['y'] = btVector3.prototype.y = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btVector3_y_0(self);
+};;
+
+btVector3.prototype['z'] = btVector3.prototype.z = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btVector3_z_0(self);
+};;
+
+btVector3.prototype['setX'] = btVector3.prototype.setX = /** @suppress {undefinedVars, duplicate} @this{Object} */function(x) {
+  var self = this.ptr;
+  if (x && typeof x === 'object') x = x.ptr;
+  _btVector3_setX_1(self, x);
+};;
+
+btVector3.prototype['setY'] = btVector3.prototype.setY = /** @suppress {undefinedVars, duplicate} @this{Object} */function(y) {
+  var self = this.ptr;
+  if (y && typeof y === 'object') y = y.ptr;
+  _btVector3_setY_1(self, y);
+};;
+
+btVector3.prototype['setZ'] = btVector3.prototype.setZ = /** @suppress {undefinedVars, duplicate} @this{Object} */function(z) {
+  var self = this.ptr;
+  if (z && typeof z === 'object') z = z.ptr;
+  _btVector3_setZ_1(self, z);
+};;
+
+btVector3.prototype['setValue'] = btVector3.prototype.setValue = /** @suppress {undefinedVars, duplicate} @this{Object} */function(x, y, z) {
+  var self = this.ptr;
+  if (x && typeof x === 'object') x = x.ptr;
+  if (y && typeof y === 'object') y = y.ptr;
+  if (z && typeof z === 'object') z = z.ptr;
+  _btVector3_setValue_3(self, x, y, z);
+};;
+
+  btVector3.prototype['__destroy__'] = btVector3.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btVector3___destroy___0(self);
+};
+// btSphereShape
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btSphereShape(radius) {
+  if (radius && typeof radius === 'object') radius = radius.ptr;
+  this.ptr = _btSphereShape_btSphereShape_1(radius);
+  getCache(btSphereShape)[this.ptr] = this;
+};;
+btSphereShape.prototype = Object.create(btConvexInternalShape.prototype);
+btSphereShape.prototype.constructor = btSphereShape;
+btSphereShape.prototype.__class__ = btSphereShape;
+btSphereShape.__cache__ = {};
+Module['btSphereShape'] = btSphereShape;
+
+btSphereShape.prototype['setMargin'] = btSphereShape.prototype.setMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function(margin) {
+  var self = this.ptr;
+  if (margin && typeof margin === 'object') margin = margin.ptr;
+  _btSphereShape_setMargin_1(self, margin);
+};;
+
+btSphereShape.prototype['getMargin'] = btSphereShape.prototype.getMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btSphereShape_getMargin_0(self);
+};;
+
+btSphereShape.prototype['setUnscaledRadius'] = btSphereShape.prototype.setUnscaledRadius = /** @suppress {undefinedVars, duplicate} @this{Object} */function(radius) {
+  var self = this.ptr;
+  if (radius && typeof radius === 'object') radius = radius.ptr;
+  _btSphereShape_setUnscaledRadius_1(self, radius);
+};;
+
+btSphereShape.prototype['setLocalScaling'] = btSphereShape.prototype.setLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btSphereShape_setLocalScaling_1(self, scaling);
+};;
+
+btSphereShape.prototype['getLocalScaling'] = btSphereShape.prototype.getLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btSphereShape_getLocalScaling_0(self), btVector3);
+};;
+
+btSphereShape.prototype['calculateLocalInertia'] = btSphereShape.prototype.calculateLocalInertia = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btSphereShape_calculateLocalInertia_2(self, mass, inertia);
+};;
+
+btSphereShape.prototype['isCompound'] = btSphereShape.prototype.isCompound = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btSphereShape_isCompound_0(self));
+};;
+
+btSphereShape.prototype['getUserIndex'] = btSphereShape.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btSphereShape_getUserIndex_0(self);
+};;
+
+btSphereShape.prototype['setUserIndex'] = btSphereShape.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btSphereShape_setUserIndex_1(self, index);
+};;
+
+btSphereShape.prototype['getUserIndex2'] = btSphereShape.prototype.getUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btSphereShape_getUserIndex2_0(self);
+};;
+
+btSphereShape.prototype['setUserIndex2'] = btSphereShape.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btSphereShape_setUserIndex2_1(self, index);
+};;
+
+btSphereShape.prototype['getAabb'] = btSphereShape.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t, min, max) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  if (min && typeof min === 'object') min = min.ptr;
+  if (max && typeof max === 'object') max = max.ptr;
+  _btSphereShape_getAabb_3(self, t, min, max);
+};;
+
+btSphereShape.prototype['getLocalBoundingSphere'] = btSphereShape.prototype.getLocalBoundingSphere = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btSphereShape_getLocalBoundingSphere_0(self);
+};;
+
+btSphereShape.prototype['getImplicitShapeDimensions'] = btSphereShape.prototype.getImplicitShapeDimensions = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btSphereShape_getImplicitShapeDimensions_0(self), btVector3);
+};;
+
+  btSphereShape.prototype['__destroy__'] = btSphereShape.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btSphereShape___destroy___0(self);
+};
+// btDefaultCollisionConstructionInfo
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btDefaultCollisionConstructionInfo() {
+  this.ptr = _btDefaultCollisionConstructionInfo_btDefaultCollisionConstructionInfo_0();
+  getCache(btDefaultCollisionConstructionInfo)[this.ptr] = this;
+};;
+btDefaultCollisionConstructionInfo.prototype = Object.create(WrapperObject.prototype);
+btDefaultCollisionConstructionInfo.prototype.constructor = btDefaultCollisionConstructionInfo;
+btDefaultCollisionConstructionInfo.prototype.__class__ = btDefaultCollisionConstructionInfo;
+btDefaultCollisionConstructionInfo.__cache__ = {};
+Module['btDefaultCollisionConstructionInfo'] = btDefaultCollisionConstructionInfo;
+
+  btDefaultCollisionConstructionInfo.prototype['__destroy__'] = btDefaultCollisionConstructionInfo.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btDefaultCollisionConstructionInfo___destroy___0(self);
+};
+// btEmptyShape
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btEmptyShape() {
+  this.ptr = _btEmptyShape_btEmptyShape_0();
+  getCache(btEmptyShape)[this.ptr] = this;
+};;
+btEmptyShape.prototype = Object.create(btConcaveShape.prototype);
+btEmptyShape.prototype.constructor = btEmptyShape;
+btEmptyShape.prototype.__class__ = btEmptyShape;
+btEmptyShape.__cache__ = {};
+Module['btEmptyShape'] = btEmptyShape;
+
+btEmptyShape.prototype['setLocalScaling'] = btEmptyShape.prototype.setLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btEmptyShape_setLocalScaling_1(self, scaling);
+};;
+
+btEmptyShape.prototype['getLocalScaling'] = btEmptyShape.prototype.getLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btEmptyShape_getLocalScaling_0(self), btVector3);
+};;
+
+btEmptyShape.prototype['calculateLocalInertia'] = btEmptyShape.prototype.calculateLocalInertia = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btEmptyShape_calculateLocalInertia_2(self, mass, inertia);
+};;
+
+btEmptyShape.prototype['isCompound'] = btEmptyShape.prototype.isCompound = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btEmptyShape_isCompound_0(self));
+};;
+
+btEmptyShape.prototype['getUserIndex'] = btEmptyShape.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btEmptyShape_getUserIndex_0(self);
+};;
+
+btEmptyShape.prototype['setUserIndex'] = btEmptyShape.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btEmptyShape_setUserIndex_1(self, index);
+};;
+
+btEmptyShape.prototype['getUserIndex2'] = btEmptyShape.prototype.getUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btEmptyShape_getUserIndex2_0(self);
+};;
+
+btEmptyShape.prototype['setUserIndex2'] = btEmptyShape.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btEmptyShape_setUserIndex2_1(self, index);
+};;
+
+btEmptyShape.prototype['getAabb'] = btEmptyShape.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t, min, max) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  if (min && typeof min === 'object') min = min.ptr;
+  if (max && typeof max === 'object') max = max.ptr;
+  _btEmptyShape_getAabb_3(self, t, min, max);
+};;
+
+btEmptyShape.prototype['getLocalBoundingSphere'] = btEmptyShape.prototype.getLocalBoundingSphere = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btEmptyShape_getLocalBoundingSphere_0(self);
+};;
+
+  btEmptyShape.prototype['__destroy__'] = btEmptyShape.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btEmptyShape___destroy___0(self);
+};
+// btConstraintSetting
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btConstraintSetting() {
+  this.ptr = _btConstraintSetting_btConstraintSetting_0();
+  getCache(btConstraintSetting)[this.ptr] = this;
+};;
+btConstraintSetting.prototype = Object.create(WrapperObject.prototype);
+btConstraintSetting.prototype.constructor = btConstraintSetting;
+btConstraintSetting.prototype.__class__ = btConstraintSetting;
+btConstraintSetting.__cache__ = {};
+Module['btConstraintSetting'] = btConstraintSetting;
+
+  btConstraintSetting.prototype['get_m_tau'] = btConstraintSetting.prototype.get_m_tau = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConstraintSetting_get_m_tau_0(self);
+};
+    btConstraintSetting.prototype['set_m_tau'] = btConstraintSetting.prototype.set_m_tau = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btConstraintSetting_set_m_tau_1(self, arg0);
+};
+    Object.defineProperty(btConstraintSetting.prototype, 'm_tau', { get: btConstraintSetting.prototype.get_m_tau, set: btConstraintSetting.prototype.set_m_tau });
+  btConstraintSetting.prototype['get_m_damping'] = btConstraintSetting.prototype.get_m_damping = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConstraintSetting_get_m_damping_0(self);
+};
+    btConstraintSetting.prototype['set_m_damping'] = btConstraintSetting.prototype.set_m_damping = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btConstraintSetting_set_m_damping_1(self, arg0);
+};
+    Object.defineProperty(btConstraintSetting.prototype, 'm_damping', { get: btConstraintSetting.prototype.get_m_damping, set: btConstraintSetting.prototype.set_m_damping });
+  btConstraintSetting.prototype['get_m_impulseClamp'] = btConstraintSetting.prototype.get_m_impulseClamp = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btConstraintSetting_get_m_impulseClamp_0(self);
+};
+    btConstraintSetting.prototype['set_m_impulseClamp'] = btConstraintSetting.prototype.set_m_impulseClamp = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _btConstraintSetting_set_m_impulseClamp_1(self, arg0);
+};
+    Object.defineProperty(btConstraintSetting.prototype, 'm_impulseClamp', { get: btConstraintSetting.prototype.get_m_impulseClamp, set: btConstraintSetting.prototype.set_m_impulseClamp });
+  btConstraintSetting.prototype['__destroy__'] = btConstraintSetting.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btConstraintSetting___destroy___0(self);
+};
+// LocalShapeInfo
+/** @suppress {undefinedVars, duplicate} @this{Object} */function LocalShapeInfo() { throw "cannot construct a LocalShapeInfo, no constructor in IDL" }
+LocalShapeInfo.prototype = Object.create(WrapperObject.prototype);
+LocalShapeInfo.prototype.constructor = LocalShapeInfo;
+LocalShapeInfo.prototype.__class__ = LocalShapeInfo;
+LocalShapeInfo.__cache__ = {};
+Module['LocalShapeInfo'] = LocalShapeInfo;
+
+  LocalShapeInfo.prototype['get_m_shapePart'] = LocalShapeInfo.prototype.get_m_shapePart = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _LocalShapeInfo_get_m_shapePart_0(self);
+};
+    LocalShapeInfo.prototype['set_m_shapePart'] = LocalShapeInfo.prototype.set_m_shapePart = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _LocalShapeInfo_set_m_shapePart_1(self, arg0);
+};
+    Object.defineProperty(LocalShapeInfo.prototype, 'm_shapePart', { get: LocalShapeInfo.prototype.get_m_shapePart, set: LocalShapeInfo.prototype.set_m_shapePart });
+  LocalShapeInfo.prototype['get_m_triangleIndex'] = LocalShapeInfo.prototype.get_m_triangleIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _LocalShapeInfo_get_m_triangleIndex_0(self);
+};
+    LocalShapeInfo.prototype['set_m_triangleIndex'] = LocalShapeInfo.prototype.set_m_triangleIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(arg0) {
+  var self = this.ptr;
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  _LocalShapeInfo_set_m_triangleIndex_1(self, arg0);
+};
+    Object.defineProperty(LocalShapeInfo.prototype, 'm_triangleIndex', { get: LocalShapeInfo.prototype.get_m_triangleIndex, set: LocalShapeInfo.prototype.set_m_triangleIndex });
+  LocalShapeInfo.prototype['__destroy__'] = LocalShapeInfo.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _LocalShapeInfo___destroy___0(self);
+};
+// btVector3Array
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btVector3Array() { throw "cannot construct a btVector3Array, no constructor in IDL" }
+btVector3Array.prototype = Object.create(WrapperObject.prototype);
+btVector3Array.prototype.constructor = btVector3Array;
+btVector3Array.prototype.__class__ = btVector3Array;
+btVector3Array.__cache__ = {};
+Module['btVector3Array'] = btVector3Array;
+
+btVector3Array.prototype['size'] = btVector3Array.prototype.size = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btVector3Array_size_0(self);
+};;
+
+btVector3Array.prototype['at'] = btVector3Array.prototype.at = /** @suppress {undefinedVars, duplicate} @this{Object} */function(n) {
+  var self = this.ptr;
+  if (n && typeof n === 'object') n = n.ptr;
+  return wrapPointer(_btVector3Array_at_1(self, n), btVector3);
+};;
+
+btVector3Array.prototype['clear'] = btVector3Array.prototype.clear = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btVector3Array_clear_0(self);
+};;
+
+  btVector3Array.prototype['__destroy__'] = btVector3Array.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btVector3Array___destroy___0(self);
+};
+// btConstraintSolver
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btConstraintSolver() { throw "cannot construct a btConstraintSolver, no constructor in IDL" }
+btConstraintSolver.prototype = Object.create(WrapperObject.prototype);
+btConstraintSolver.prototype.constructor = btConstraintSolver;
+btConstraintSolver.prototype.__class__ = btConstraintSolver;
+btConstraintSolver.__cache__ = {};
+Module['btConstraintSolver'] = btConstraintSolver;
+
+  btConstraintSolver.prototype['__destroy__'] = btConstraintSolver.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btConstraintSolver___destroy___0(self);
+};
+// btFixedConstraint
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btFixedConstraint(rbA, rbB, frameInA, frameInB) {
+  if (rbA && typeof rbA === 'object') rbA = rbA.ptr;
+  if (rbB && typeof rbB === 'object') rbB = rbB.ptr;
+  if (frameInA && typeof frameInA === 'object') frameInA = frameInA.ptr;
+  if (frameInB && typeof frameInB === 'object') frameInB = frameInB.ptr;
+  this.ptr = _btFixedConstraint_btFixedConstraint_4(rbA, rbB, frameInA, frameInB);
+  getCache(btFixedConstraint)[this.ptr] = this;
+};;
+btFixedConstraint.prototype = Object.create(btTypedConstraint.prototype);
+btFixedConstraint.prototype.constructor = btFixedConstraint;
+btFixedConstraint.prototype.__class__ = btFixedConstraint;
+btFixedConstraint.__cache__ = {};
+Module['btFixedConstraint'] = btFixedConstraint;
+
+btFixedConstraint.prototype['enableFeedback'] = btFixedConstraint.prototype.enableFeedback = /** @suppress {undefinedVars, duplicate} @this{Object} */function(needsFeedback) {
+  var self = this.ptr;
+  if (needsFeedback && typeof needsFeedback === 'object') needsFeedback = needsFeedback.ptr;
+  _btFixedConstraint_enableFeedback_1(self, needsFeedback);
+};;
+
+btFixedConstraint.prototype['getBreakingImpulseThreshold'] = btFixedConstraint.prototype.getBreakingImpulseThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btFixedConstraint_getBreakingImpulseThreshold_0(self);
+};;
+
+btFixedConstraint.prototype['setBreakingImpulseThreshold'] = btFixedConstraint.prototype.setBreakingImpulseThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function(threshold) {
+  var self = this.ptr;
+  if (threshold && typeof threshold === 'object') threshold = threshold.ptr;
+  _btFixedConstraint_setBreakingImpulseThreshold_1(self, threshold);
+};;
+
+btFixedConstraint.prototype['getParam'] = btFixedConstraint.prototype.getParam = /** @suppress {undefinedVars, duplicate} @this{Object} */function(num, axis) {
+  var self = this.ptr;
+  if (num && typeof num === 'object') num = num.ptr;
+  if (axis && typeof axis === 'object') axis = axis.ptr;
+  return _btFixedConstraint_getParam_2(self, num, axis);
+};;
+
+btFixedConstraint.prototype['setParam'] = btFixedConstraint.prototype.setParam = /** @suppress {undefinedVars, duplicate} @this{Object} */function(num, value, axis) {
+  var self = this.ptr;
+  if (num && typeof num === 'object') num = num.ptr;
+  if (value && typeof value === 'object') value = value.ptr;
+  if (axis && typeof axis === 'object') axis = axis.ptr;
+  _btFixedConstraint_setParam_3(self, num, value, axis);
+};;
+
+  btFixedConstraint.prototype['__destroy__'] = btFixedConstraint.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btFixedConstraint___destroy___0(self);
+};
+// btCollisionDispatcher
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btCollisionDispatcher(conf) {
+  if (conf && typeof conf === 'object') conf = conf.ptr;
+  this.ptr = _btCollisionDispatcher_btCollisionDispatcher_1(conf);
+  getCache(btCollisionDispatcher)[this.ptr] = this;
+};;
+btCollisionDispatcher.prototype = Object.create(btDispatcher.prototype);
+btCollisionDispatcher.prototype.constructor = btCollisionDispatcher;
+btCollisionDispatcher.prototype.__class__ = btCollisionDispatcher;
+btCollisionDispatcher.__cache__ = {};
+Module['btCollisionDispatcher'] = btCollisionDispatcher;
+
+btCollisionDispatcher.prototype['setDispatcherFlags'] = btCollisionDispatcher.prototype.setDispatcherFlags = /** @suppress {undefinedVars, duplicate} @this{Object} */function(flags) {
+  var self = this.ptr;
+  if (flags && typeof flags === 'object') flags = flags.ptr;
+  _btCollisionDispatcher_setDispatcherFlags_1(self, flags);
+};;
+
+btCollisionDispatcher.prototype['getNumManifolds'] = btCollisionDispatcher.prototype.getNumManifolds = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCollisionDispatcher_getNumManifolds_0(self);
+};;
+
+btCollisionDispatcher.prototype['getManifoldByIndexInternal'] = btCollisionDispatcher.prototype.getManifoldByIndexInternal = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  return wrapPointer(_btCollisionDispatcher_getManifoldByIndexInternal_1(self, index), btPersistentManifold);
+};;
+
+  btCollisionDispatcher.prototype['__destroy__'] = btCollisionDispatcher.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btCollisionDispatcher___destroy___0(self);
+};
+// btRigidBody
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btRigidBody(constructionInfo) {
+  if (constructionInfo && typeof constructionInfo === 'object') constructionInfo = constructionInfo.ptr;
+  this.ptr = _btRigidBody_btRigidBody_1(constructionInfo);
+  getCache(btRigidBody)[this.ptr] = this;
+};;
+btRigidBody.prototype = Object.create(btCollisionObject.prototype);
+btRigidBody.prototype.constructor = btRigidBody;
+btRigidBody.prototype.__class__ = btRigidBody;
+btRigidBody.__cache__ = {};
+Module['btRigidBody'] = btRigidBody;
+
+btRigidBody.prototype['getCenterOfMassTransform'] = btRigidBody.prototype.getCenterOfMassTransform = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btRigidBody_getCenterOfMassTransform_0(self), btTransform);
+};;
+
+btRigidBody.prototype['setCenterOfMassTransform'] = btRigidBody.prototype.setCenterOfMassTransform = /** @suppress {undefinedVars, duplicate} @this{Object} */function(xform) {
+  var self = this.ptr;
+  if (xform && typeof xform === 'object') xform = xform.ptr;
+  _btRigidBody_setCenterOfMassTransform_1(self, xform);
+};;
+
+btRigidBody.prototype['setSleepingThresholds'] = btRigidBody.prototype.setSleepingThresholds = /** @suppress {undefinedVars, duplicate} @this{Object} */function(linear, angular) {
+  var self = this.ptr;
+  if (linear && typeof linear === 'object') linear = linear.ptr;
+  if (angular && typeof angular === 'object') angular = angular.ptr;
+  _btRigidBody_setSleepingThresholds_2(self, linear, angular);
+};;
+
+btRigidBody.prototype['getLinearSleepingThreshold'] = btRigidBody.prototype.getLinearSleepingThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btRigidBody_getLinearSleepingThreshold_0(self);
+};;
+
+btRigidBody.prototype['setDamping'] = btRigidBody.prototype.setDamping = /** @suppress {undefinedVars, duplicate} @this{Object} */function(lin_damping, ang_damping) {
+  var self = this.ptr;
+  if (lin_damping && typeof lin_damping === 'object') lin_damping = lin_damping.ptr;
+  if (ang_damping && typeof ang_damping === 'object') ang_damping = ang_damping.ptr;
+  _btRigidBody_setDamping_2(self, lin_damping, ang_damping);
+};;
+
+btRigidBody.prototype['setMassProps'] = btRigidBody.prototype.setMassProps = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btRigidBody_setMassProps_2(self, mass, inertia);
+};;
+
+btRigidBody.prototype['getLinearFactor'] = btRigidBody.prototype.getLinearFactor = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btRigidBody_getLinearFactor_0(self), btVector3);
+};;
+
+btRigidBody.prototype['setLinearFactor'] = btRigidBody.prototype.setLinearFactor = /** @suppress {undefinedVars, duplicate} @this{Object} */function(linearFactor) {
+  var self = this.ptr;
+  if (linearFactor && typeof linearFactor === 'object') linearFactor = linearFactor.ptr;
+  _btRigidBody_setLinearFactor_1(self, linearFactor);
+};;
+
+btRigidBody.prototype['applyTorque'] = btRigidBody.prototype.applyTorque = /** @suppress {undefinedVars, duplicate} @this{Object} */function(torque) {
+  var self = this.ptr;
+  if (torque && typeof torque === 'object') torque = torque.ptr;
+  _btRigidBody_applyTorque_1(self, torque);
+};;
+
+btRigidBody.prototype['applyForce'] = btRigidBody.prototype.applyForce = /** @suppress {undefinedVars, duplicate} @this{Object} */function(force, rel_pos) {
+  var self = this.ptr;
+  if (force && typeof force === 'object') force = force.ptr;
+  if (rel_pos && typeof rel_pos === 'object') rel_pos = rel_pos.ptr;
+  _btRigidBody_applyForce_2(self, force, rel_pos);
+};;
+
+btRigidBody.prototype['applyCentralForce'] = btRigidBody.prototype.applyCentralForce = /** @suppress {undefinedVars, duplicate} @this{Object} */function(force) {
+  var self = this.ptr;
+  if (force && typeof force === 'object') force = force.ptr;
+  _btRigidBody_applyCentralForce_1(self, force);
+};;
+
+btRigidBody.prototype['applyTorqueImpulse'] = btRigidBody.prototype.applyTorqueImpulse = /** @suppress {undefinedVars, duplicate} @this{Object} */function(torque) {
+  var self = this.ptr;
+  if (torque && typeof torque === 'object') torque = torque.ptr;
+  _btRigidBody_applyTorqueImpulse_1(self, torque);
+};;
+
+btRigidBody.prototype['applyImpulse'] = btRigidBody.prototype.applyImpulse = /** @suppress {undefinedVars, duplicate} @this{Object} */function(impulse, rel_pos) {
+  var self = this.ptr;
+  if (impulse && typeof impulse === 'object') impulse = impulse.ptr;
+  if (rel_pos && typeof rel_pos === 'object') rel_pos = rel_pos.ptr;
+  _btRigidBody_applyImpulse_2(self, impulse, rel_pos);
+};;
+
+btRigidBody.prototype['updateInertiaTensor'] = btRigidBody.prototype.updateInertiaTensor = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btRigidBody_updateInertiaTensor_0(self);
+};;
+
+btRigidBody.prototype['getLinearVelocity'] = btRigidBody.prototype.getLinearVelocity = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btRigidBody_getLinearVelocity_0(self), btVector3);
+};;
+
+btRigidBody.prototype['getAngularVelocity'] = btRigidBody.prototype.getAngularVelocity = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btRigidBody_getAngularVelocity_0(self), btVector3);
+};;
+
+btRigidBody.prototype['setLinearVelocity'] = btRigidBody.prototype.setLinearVelocity = /** @suppress {undefinedVars, duplicate} @this{Object} */function(lin_vel) {
+  var self = this.ptr;
+  if (lin_vel && typeof lin_vel === 'object') lin_vel = lin_vel.ptr;
+  _btRigidBody_setLinearVelocity_1(self, lin_vel);
+};;
+
+btRigidBody.prototype['setAngularVelocity'] = btRigidBody.prototype.setAngularVelocity = /** @suppress {undefinedVars, duplicate} @this{Object} */function(ang_vel) {
+  var self = this.ptr;
+  if (ang_vel && typeof ang_vel === 'object') ang_vel = ang_vel.ptr;
+  _btRigidBody_setAngularVelocity_1(self, ang_vel);
+};;
+
+btRigidBody.prototype['getMotionState'] = btRigidBody.prototype.getMotionState = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btRigidBody_getMotionState_0(self), btMotionState);
+};;
+
+btRigidBody.prototype['getAngularFactor'] = btRigidBody.prototype.getAngularFactor = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btRigidBody_getAngularFactor_0(self), btVector3);
+};;
+
+btRigidBody.prototype['setAngularFactor'] = btRigidBody.prototype.setAngularFactor = /** @suppress {undefinedVars, duplicate} @this{Object} */function(angularFactor) {
+  var self = this.ptr;
+  if (angularFactor && typeof angularFactor === 'object') angularFactor = angularFactor.ptr;
+  _btRigidBody_setAngularFactor_1(self, angularFactor);
+};;
+
+btRigidBody.prototype['getAabb'] = btRigidBody.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(aabbMin, aabbMax) {
+  var self = this.ptr;
+  if (aabbMin && typeof aabbMin === 'object') aabbMin = aabbMin.ptr;
+  if (aabbMax && typeof aabbMax === 'object') aabbMax = aabbMax.ptr;
+  _btRigidBody_getAabb_2(self, aabbMin, aabbMax);
+};;
+
+btRigidBody.prototype['setGravity'] = btRigidBody.prototype.setGravity = /** @suppress {undefinedVars, duplicate} @this{Object} */function(acceleration) {
+  var self = this.ptr;
+  if (acceleration && typeof acceleration === 'object') acceleration = acceleration.ptr;
+  _btRigidBody_setGravity_1(self, acceleration);
+};;
+
+btRigidBody.prototype['getFlags'] = btRigidBody.prototype.getFlags = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btRigidBody_getFlags_0(self);
+};;
+
+btRigidBody.prototype['setFlags'] = btRigidBody.prototype.setFlags = /** @suppress {undefinedVars, duplicate} @this{Object} */function(flags) {
+  var self = this.ptr;
+  if (flags && typeof flags === 'object') flags = flags.ptr;
+  _btRigidBody_setFlags_1(self, flags);
+};;
+
+btRigidBody.prototype['wantsSleeping'] = btRigidBody.prototype.wantsSleeping = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btRigidBody_wantsSleeping_0(self));
+};;
+
+btRigidBody.prototype['clearForces'] = btRigidBody.prototype.clearForces = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btRigidBody_clearForces_0(self);
+};;
+
+btRigidBody.prototype['getTotalForce'] = btRigidBody.prototype.getTotalForce = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btRigidBody_getTotalForce_0(self), btVector3);
+};;
+
+btRigidBody.prototype['getTotalTorque'] = btRigidBody.prototype.getTotalTorque = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btRigidBody_getTotalTorque_0(self), btVector3);
+};;
+
+btRigidBody.prototype['clearState'] = btRigidBody.prototype.clearState = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btRigidBody_clearState_0(self);
+};;
+
+btRigidBody.prototype['getCollisionShape'] = btRigidBody.prototype.getCollisionShape = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btRigidBody_getCollisionShape_0(self), btCollisionShape);
+};;
+
+btRigidBody.prototype['getActivationState'] = btRigidBody.prototype.getActivationState = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btRigidBody_getActivationState_0(self);
+};;
+
+btRigidBody.prototype['setActivationState'] = btRigidBody.prototype.setActivationState = /** @suppress {undefinedVars, duplicate} @this{Object} */function(newState) {
+  var self = this.ptr;
+  if (newState && typeof newState === 'object') newState = newState.ptr;
+  _btRigidBody_setActivationState_1(self, newState);
+};;
+
+btRigidBody.prototype['forceActivationState'] = btRigidBody.prototype.forceActivationState = /** @suppress {undefinedVars, duplicate} @this{Object} */function(newState) {
+  var self = this.ptr;
+  if (newState && typeof newState === 'object') newState = newState.ptr;
+  _btRigidBody_forceActivationState_1(self, newState);
+};;
+
+btRigidBody.prototype['activate'] = btRigidBody.prototype.activate = /** @suppress {undefinedVars, duplicate} @this{Object} */function(forceActivation) {
+  var self = this.ptr;
+  if (forceActivation && typeof forceActivation === 'object') forceActivation = forceActivation.ptr;
+  if (forceActivation === undefined) { _btRigidBody_activate_0(self);  return }
+  _btRigidBody_activate_1(self, forceActivation);
+};;
+
+btRigidBody.prototype['isActive'] = btRigidBody.prototype.isActive = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btRigidBody_isActive_0(self));
+};;
+
+btRigidBody.prototype['isKinematicObject'] = btRigidBody.prototype.isKinematicObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btRigidBody_isKinematicObject_0(self));
+};;
+
+btRigidBody.prototype['isStaticObject'] = btRigidBody.prototype.isStaticObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btRigidBody_isStaticObject_0(self));
+};;
+
+btRigidBody.prototype['isStaticOrKinematicObject'] = btRigidBody.prototype.isStaticOrKinematicObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btRigidBody_isStaticOrKinematicObject_0(self));
+};;
+
+btRigidBody.prototype['setRestitution'] = btRigidBody.prototype.setRestitution = /** @suppress {undefinedVars, duplicate} @this{Object} */function(r) {
+  var self = this.ptr;
+  if (r && typeof r === 'object') r = r.ptr;
+  _btRigidBody_setRestitution_1(self, r);
+};;
+
+btRigidBody.prototype['setFriction'] = btRigidBody.prototype.setFriction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(f) {
+  var self = this.ptr;
+  if (f && typeof f === 'object') f = f.ptr;
+  _btRigidBody_setFriction_1(self, f);
+};;
+
+btRigidBody.prototype['setRollingFriction'] = btRigidBody.prototype.setRollingFriction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(rf) {
+  var self = this.ptr;
+  if (rf && typeof rf === 'object') rf = rf.ptr;
+  _btRigidBody_setRollingFriction_1(self, rf);
+};;
+
+btRigidBody.prototype['setSpinningFriction'] = btRigidBody.prototype.setSpinningFriction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(sf) {
+  var self = this.ptr;
+  if (sf && typeof sf === 'object') sf = sf.ptr;
+  _btRigidBody_setSpinningFriction_1(self, sf);
+};;
+
+btRigidBody.prototype['getWorldTransform'] = btRigidBody.prototype.getWorldTransform = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btRigidBody_getWorldTransform_0(self), btTransform);
+};;
+
+btRigidBody.prototype['getCollisionFlags'] = btRigidBody.prototype.getCollisionFlags = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btRigidBody_getCollisionFlags_0(self);
+};;
+
+btRigidBody.prototype['setCollisionFlags'] = btRigidBody.prototype.setCollisionFlags = /** @suppress {undefinedVars, duplicate} @this{Object} */function(flags) {
+  var self = this.ptr;
+  if (flags && typeof flags === 'object') flags = flags.ptr;
+  _btRigidBody_setCollisionFlags_1(self, flags);
+};;
+
+btRigidBody.prototype['setWorldTransform'] = btRigidBody.prototype.setWorldTransform = /** @suppress {undefinedVars, duplicate} @this{Object} */function(worldTrans) {
+  var self = this.ptr;
+  if (worldTrans && typeof worldTrans === 'object') worldTrans = worldTrans.ptr;
+  _btRigidBody_setWorldTransform_1(self, worldTrans);
+};;
+
+btRigidBody.prototype['setCollisionShape'] = btRigidBody.prototype.setCollisionShape = /** @suppress {undefinedVars, duplicate} @this{Object} */function(collisionShape) {
+  var self = this.ptr;
+  if (collisionShape && typeof collisionShape === 'object') collisionShape = collisionShape.ptr;
+  _btRigidBody_setCollisionShape_1(self, collisionShape);
+};;
+
+btRigidBody.prototype['setCcdMotionThreshold'] = btRigidBody.prototype.setCcdMotionThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function(ccdMotionThreshold) {
+  var self = this.ptr;
+  if (ccdMotionThreshold && typeof ccdMotionThreshold === 'object') ccdMotionThreshold = ccdMotionThreshold.ptr;
+  _btRigidBody_setCcdMotionThreshold_1(self, ccdMotionThreshold);
+};;
+
+btRigidBody.prototype['setCcdSweptSphereRadius'] = btRigidBody.prototype.setCcdSweptSphereRadius = /** @suppress {undefinedVars, duplicate} @this{Object} */function(radius) {
+  var self = this.ptr;
+  if (radius && typeof radius === 'object') radius = radius.ptr;
+  _btRigidBody_setCcdSweptSphereRadius_1(self, radius);
+};;
+
+btRigidBody.prototype['getUserIndex'] = btRigidBody.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btRigidBody_getUserIndex_0(self);
+};;
+
+btRigidBody.prototype['setUserIndex'] = btRigidBody.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btRigidBody_setUserIndex_1(self, index);
+};;
+
+btRigidBody.prototype['setUserIndex2'] = btRigidBody.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btRigidBody_setUserIndex2_1(self, index);
+};;
+
+btRigidBody.prototype['setIgnoreCollisionCheck'] = btRigidBody.prototype.setIgnoreCollisionCheck = /** @suppress {undefinedVars, duplicate} @this{Object} */function(co, ig) {
+  var self = this.ptr;
+  if (co && typeof co === 'object') co = co.ptr;
+  if (ig && typeof ig === 'object') ig = ig.ptr;
+  _btRigidBody_setIgnoreCollisionCheck_2(self, co, ig);
+};;
+
+  btRigidBody.prototype['__destroy__'] = btRigidBody.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btRigidBody___destroy___0(self);
+};
+// btIndexedMeshArray
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btIndexedMeshArray() { throw "cannot construct a btIndexedMeshArray, no constructor in IDL" }
+btIndexedMeshArray.prototype = Object.create(WrapperObject.prototype);
+btIndexedMeshArray.prototype.constructor = btIndexedMeshArray;
+btIndexedMeshArray.prototype.__class__ = btIndexedMeshArray;
+btIndexedMeshArray.__cache__ = {};
+Module['btIndexedMeshArray'] = btIndexedMeshArray;
+
+btIndexedMeshArray.prototype['size'] = btIndexedMeshArray.prototype.size = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btIndexedMeshArray_size_0(self);
+};;
+
+btIndexedMeshArray.prototype['at'] = btIndexedMeshArray.prototype.at = /** @suppress {undefinedVars, duplicate} @this{Object} */function(n) {
+  var self = this.ptr;
+  if (n && typeof n === 'object') n = n.ptr;
+  return wrapPointer(_btIndexedMeshArray_at_1(self, n), btIndexedMesh);
+};;
+
+  btIndexedMeshArray.prototype['__destroy__'] = btIndexedMeshArray.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btIndexedMeshArray___destroy___0(self);
+};
+// ccDiscreteDynamicsWorld
+/** @suppress {undefinedVars, duplicate} @this{Object} */function ccDiscreteDynamicsWorld(dispatcher, pairCache, constraintSolver, collisionConfiguration) {
+  if (dispatcher && typeof dispatcher === 'object') dispatcher = dispatcher.ptr;
+  if (pairCache && typeof pairCache === 'object') pairCache = pairCache.ptr;
+  if (constraintSolver && typeof constraintSolver === 'object') constraintSolver = constraintSolver.ptr;
+  if (collisionConfiguration && typeof collisionConfiguration === 'object') collisionConfiguration = collisionConfiguration.ptr;
+  this.ptr = _ccDiscreteDynamicsWorld_ccDiscreteDynamicsWorld_4(dispatcher, pairCache, constraintSolver, collisionConfiguration);
+  getCache(ccDiscreteDynamicsWorld)[this.ptr] = this;
+};;
+ccDiscreteDynamicsWorld.prototype = Object.create(btDiscreteDynamicsWorld.prototype);
+ccDiscreteDynamicsWorld.prototype.constructor = ccDiscreteDynamicsWorld;
+ccDiscreteDynamicsWorld.prototype.__class__ = ccDiscreteDynamicsWorld;
+ccDiscreteDynamicsWorld.__cache__ = {};
+Module['ccDiscreteDynamicsWorld'] = ccDiscreteDynamicsWorld;
+
+ccDiscreteDynamicsWorld.prototype['setAllowSleep'] = ccDiscreteDynamicsWorld.prototype.setAllowSleep = /** @suppress {undefinedVars, duplicate} @this{Object} */function(v) {
+  var self = this.ptr;
+  if (v && typeof v === 'object') v = v.ptr;
+  _ccDiscreteDynamicsWorld_setAllowSleep_1(self, v);
+};;
+
+ccDiscreteDynamicsWorld.prototype['setDeactivationTime'] = ccDiscreteDynamicsWorld.prototype.setDeactivationTime = /** @suppress {undefinedVars, duplicate} @this{Object} */function(v) {
+  var self = this.ptr;
+  if (v && typeof v === 'object') v = v.ptr;
+  _ccDiscreteDynamicsWorld_setDeactivationTime_1(self, v);
+};;
+
+ccDiscreteDynamicsWorld.prototype['setNarrowPhaseMethod'] = ccDiscreteDynamicsWorld.prototype.setNarrowPhaseMethod = /** @suppress {undefinedVars, duplicate} @this{Object} */function(v) {
+  var self = this.ptr;
+  if (v && typeof v === 'object') v = v.ptr;
+  _ccDiscreteDynamicsWorld_setNarrowPhaseMethod_1(self, v);
+};;
+
+ccDiscreteDynamicsWorld.prototype['setAllowCcdPenetration'] = ccDiscreteDynamicsWorld.prototype.setAllowCcdPenetration = /** @suppress {undefinedVars, duplicate} @this{Object} */function(v) {
+  var self = this.ptr;
+  if (v && typeof v === 'object') v = v.ptr;
+  _ccDiscreteDynamicsWorld_setAllowCcdPenetration_1(self, v);
+};;
+
+ccDiscreteDynamicsWorld.prototype['getCcdTriggerRecorder'] = ccDiscreteDynamicsWorld.prototype.getCcdTriggerRecorder = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccDiscreteDynamicsWorld_getCcdTriggerRecorder_0(self), btIntArray);
+};;
+
+ccDiscreteDynamicsWorld.prototype['rayTest'] = ccDiscreteDynamicsWorld.prototype.rayTest = /** @suppress {undefinedVars, duplicate} @this{Object} */function(rayFromWorld, rayToWorld, resultCallback) {
+  var self = this.ptr;
+  if (rayFromWorld && typeof rayFromWorld === 'object') rayFromWorld = rayFromWorld.ptr;
+  if (rayToWorld && typeof rayToWorld === 'object') rayToWorld = rayToWorld.ptr;
+  if (resultCallback && typeof resultCallback === 'object') resultCallback = resultCallback.ptr;
+  _ccDiscreteDynamicsWorld_rayTest_3(self, rayFromWorld, rayToWorld, resultCallback);
+};;
+
+ccDiscreteDynamicsWorld.prototype['rayTestSingle'] = ccDiscreteDynamicsWorld.prototype.rayTestSingle = /** @suppress {undefinedVars, duplicate} @this{Object} */function(rayFromTrans, rayToTrans, collisionObject, collisionShape, colObjWorldTransform, resultCallback) {
+  var self = this.ptr;
+  if (rayFromTrans && typeof rayFromTrans === 'object') rayFromTrans = rayFromTrans.ptr;
+  if (rayToTrans && typeof rayToTrans === 'object') rayToTrans = rayToTrans.ptr;
+  if (collisionObject && typeof collisionObject === 'object') collisionObject = collisionObject.ptr;
+  if (collisionShape && typeof collisionShape === 'object') collisionShape = collisionShape.ptr;
+  if (colObjWorldTransform && typeof colObjWorldTransform === 'object') colObjWorldTransform = colObjWorldTransform.ptr;
+  if (resultCallback && typeof resultCallback === 'object') resultCallback = resultCallback.ptr;
+  _ccDiscreteDynamicsWorld_rayTestSingle_6(self, rayFromTrans, rayToTrans, collisionObject, collisionShape, colObjWorldTransform, resultCallback);
+};;
+
+ccDiscreteDynamicsWorld.prototype['getPairCache'] = ccDiscreteDynamicsWorld.prototype.getPairCache = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccDiscreteDynamicsWorld_getPairCache_0(self), btOverlappingPairCache);
+};;
+
+ccDiscreteDynamicsWorld.prototype['addCollisionObject'] = ccDiscreteDynamicsWorld.prototype.addCollisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function(collisionObject, collisionFilterGroup, collisionFilterMask) {
+  var self = this.ptr;
+  if (collisionObject && typeof collisionObject === 'object') collisionObject = collisionObject.ptr;
+  if (collisionFilterGroup && typeof collisionFilterGroup === 'object') collisionFilterGroup = collisionFilterGroup.ptr;
+  if (collisionFilterMask && typeof collisionFilterMask === 'object') collisionFilterMask = collisionFilterMask.ptr;
+  if (collisionFilterGroup === undefined) { _ccDiscreteDynamicsWorld_addCollisionObject_1(self, collisionObject);  return }
+  if (collisionFilterMask === undefined) { _ccDiscreteDynamicsWorld_addCollisionObject_2(self, collisionObject, collisionFilterGroup);  return }
+  _ccDiscreteDynamicsWorld_addCollisionObject_3(self, collisionObject, collisionFilterGroup, collisionFilterMask);
+};;
+
+ccDiscreteDynamicsWorld.prototype['removeCollisionObject'] = ccDiscreteDynamicsWorld.prototype.removeCollisionObject = /** @suppress {undefinedVars, duplicate} @this{Object} */function(collisionObject) {
+  var self = this.ptr;
+  if (collisionObject && typeof collisionObject === 'object') collisionObject = collisionObject.ptr;
+  _ccDiscreteDynamicsWorld_removeCollisionObject_1(self, collisionObject);
+};;
+
+ccDiscreteDynamicsWorld.prototype['setContactBreakingThreshold'] = ccDiscreteDynamicsWorld.prototype.setContactBreakingThreshold = /** @suppress {undefinedVars, duplicate} @this{Object} */function(b) {
+  var self = this.ptr;
+  if (b && typeof b === 'object') b = b.ptr;
+  _ccDiscreteDynamicsWorld_setContactBreakingThreshold_1(self, b);
+};;
+
+ccDiscreteDynamicsWorld.prototype['setGravity'] = ccDiscreteDynamicsWorld.prototype.setGravity = /** @suppress {undefinedVars, duplicate} @this{Object} */function(gravity) {
+  var self = this.ptr;
+  if (gravity && typeof gravity === 'object') gravity = gravity.ptr;
+  _ccDiscreteDynamicsWorld_setGravity_1(self, gravity);
+};;
+
+ccDiscreteDynamicsWorld.prototype['getGravity'] = ccDiscreteDynamicsWorld.prototype.getGravity = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccDiscreteDynamicsWorld_getGravity_0(self), btVector3);
+};;
+
+ccDiscreteDynamicsWorld.prototype['addRigidBody'] = ccDiscreteDynamicsWorld.prototype.addRigidBody = /** @suppress {undefinedVars, duplicate} @this{Object} */function(body, group, mask) {
+  var self = this.ptr;
+  if (body && typeof body === 'object') body = body.ptr;
+  if (group && typeof group === 'object') group = group.ptr;
+  if (mask && typeof mask === 'object') mask = mask.ptr;
+  if (group === undefined) { _ccDiscreteDynamicsWorld_addRigidBody_1(self, body);  return }
+  if (mask === undefined) { _ccDiscreteDynamicsWorld_addRigidBody_2(self, body, group);  return }
+  _ccDiscreteDynamicsWorld_addRigidBody_3(self, body, group, mask);
+};;
+
+ccDiscreteDynamicsWorld.prototype['removeRigidBody'] = ccDiscreteDynamicsWorld.prototype.removeRigidBody = /** @suppress {undefinedVars, duplicate} @this{Object} */function(body) {
+  var self = this.ptr;
+  if (body && typeof body === 'object') body = body.ptr;
+  _ccDiscreteDynamicsWorld_removeRigidBody_1(self, body);
+};;
+
+ccDiscreteDynamicsWorld.prototype['addConstraint'] = ccDiscreteDynamicsWorld.prototype.addConstraint = /** @suppress {undefinedVars, duplicate} @this{Object} */function(constraint, disableCollisionsBetweenLinkedBodies) {
+  var self = this.ptr;
+  if (constraint && typeof constraint === 'object') constraint = constraint.ptr;
+  if (disableCollisionsBetweenLinkedBodies && typeof disableCollisionsBetweenLinkedBodies === 'object') disableCollisionsBetweenLinkedBodies = disableCollisionsBetweenLinkedBodies.ptr;
+  if (disableCollisionsBetweenLinkedBodies === undefined) { _ccDiscreteDynamicsWorld_addConstraint_1(self, constraint);  return }
+  _ccDiscreteDynamicsWorld_addConstraint_2(self, constraint, disableCollisionsBetweenLinkedBodies);
+};;
+
+ccDiscreteDynamicsWorld.prototype['removeConstraint'] = ccDiscreteDynamicsWorld.prototype.removeConstraint = /** @suppress {undefinedVars, duplicate} @this{Object} */function(constraint) {
+  var self = this.ptr;
+  if (constraint && typeof constraint === 'object') constraint = constraint.ptr;
+  _ccDiscreteDynamicsWorld_removeConstraint_1(self, constraint);
+};;
+
+ccDiscreteDynamicsWorld.prototype['stepSimulation'] = ccDiscreteDynamicsWorld.prototype.stepSimulation = /** @suppress {undefinedVars, duplicate} @this{Object} */function(timeStep, maxSubSteps, fixedTimeStep) {
+  var self = this.ptr;
+  if (timeStep && typeof timeStep === 'object') timeStep = timeStep.ptr;
+  if (maxSubSteps && typeof maxSubSteps === 'object') maxSubSteps = maxSubSteps.ptr;
+  if (fixedTimeStep && typeof fixedTimeStep === 'object') fixedTimeStep = fixedTimeStep.ptr;
+  if (maxSubSteps === undefined) { return _ccDiscreteDynamicsWorld_stepSimulation_1(self, timeStep) }
+  if (fixedTimeStep === undefined) { return _ccDiscreteDynamicsWorld_stepSimulation_2(self, timeStep, maxSubSteps) }
+  return _ccDiscreteDynamicsWorld_stepSimulation_3(self, timeStep, maxSubSteps, fixedTimeStep);
+};;
+
+ccDiscreteDynamicsWorld.prototype['addAction'] = ccDiscreteDynamicsWorld.prototype.addAction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(action) {
+  var self = this.ptr;
+  if (action && typeof action === 'object') action = action.ptr;
+  _ccDiscreteDynamicsWorld_addAction_1(self, action);
+};;
+
+ccDiscreteDynamicsWorld.prototype['removeAction'] = ccDiscreteDynamicsWorld.prototype.removeAction = /** @suppress {undefinedVars, duplicate} @this{Object} */function(action) {
+  var self = this.ptr;
+  if (action && typeof action === 'object') action = action.ptr;
+  _ccDiscreteDynamicsWorld_removeAction_1(self, action);
+};;
+
+ccDiscreteDynamicsWorld.prototype['getSolverInfo'] = ccDiscreteDynamicsWorld.prototype.getSolverInfo = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccDiscreteDynamicsWorld_getSolverInfo_0(self), btContactSolverInfo);
+};;
+
+ccDiscreteDynamicsWorld.prototype['getFixedBody'] = ccDiscreteDynamicsWorld.prototype.getFixedBody = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_ccDiscreteDynamicsWorld_getFixedBody_0(self), btRigidBody);
+};;
+
+  ccDiscreteDynamicsWorld.prototype['__destroy__'] = ccDiscreteDynamicsWorld.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _ccDiscreteDynamicsWorld___destroy___0(self);
+};
+// btTransform
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btTransform(q, v) {
+  if (q && typeof q === 'object') q = q.ptr;
+  if (v && typeof v === 'object') v = v.ptr;
+  if (q === undefined) { this.ptr = _btTransform_btTransform_0(); getCache(btTransform)[this.ptr] = this;return }
+  if (v === undefined) { this.ptr = _btTransform_btTransform_1(q); getCache(btTransform)[this.ptr] = this;return }
+  this.ptr = _btTransform_btTransform_2(q, v);
+  getCache(btTransform)[this.ptr] = this;
+};;
+btTransform.prototype = Object.create(WrapperObject.prototype);
+btTransform.prototype.constructor = btTransform;
+btTransform.prototype.__class__ = btTransform;
+btTransform.__cache__ = {};
+Module['btTransform'] = btTransform;
+
+btTransform.prototype['setIdentity'] = btTransform.prototype.setIdentity = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btTransform_setIdentity_0(self);
+};;
+
+btTransform.prototype['setOrigin'] = btTransform.prototype.setOrigin = /** @suppress {undefinedVars, duplicate} @this{Object} */function(origin) {
+  var self = this.ptr;
+  if (origin && typeof origin === 'object') origin = origin.ptr;
+  _btTransform_setOrigin_1(self, origin);
+};;
+
+btTransform.prototype['setRotation'] = btTransform.prototype.setRotation = /** @suppress {undefinedVars, duplicate} @this{Object} */function(rotation) {
+  var self = this.ptr;
+  if (rotation && typeof rotation === 'object') rotation = rotation.ptr;
+  _btTransform_setRotation_1(self, rotation);
+};;
+
+btTransform.prototype['getOrigin'] = btTransform.prototype.getOrigin = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btTransform_getOrigin_0(self), btVector3);
+};;
+
+btTransform.prototype['getRotation'] = btTransform.prototype.getRotation = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btTransform_getRotation_0(self), btQuaternion);
+};;
+
+btTransform.prototype['getBasis'] = btTransform.prototype.getBasis = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btTransform_getBasis_0(self), btMatrix3x3);
+};;
+
+btTransform.prototype['inverse'] = btTransform.prototype.inverse = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btTransform_inverse_0(self), btTransform);
+};;
+
+btTransform.prototype['op_mul'] = btTransform.prototype.op_mul = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  return wrapPointer(_btTransform_op_mul_1(self, t), btTransform);
+};;
+
+  btTransform.prototype['__destroy__'] = btTransform.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btTransform___destroy___0(self);
+};
+// btCylinderShape
+/** @suppress {undefinedVars, duplicate} @this{Object} */function btCylinderShape(halfExtents) {
+  if (halfExtents && typeof halfExtents === 'object') halfExtents = halfExtents.ptr;
+  this.ptr = _btCylinderShape_btCylinderShape_1(halfExtents);
+  getCache(btCylinderShape)[this.ptr] = this;
+};;
+btCylinderShape.prototype = Object.create(btConvexInternalShape.prototype);
+btCylinderShape.prototype.constructor = btCylinderShape;
+btCylinderShape.prototype.__class__ = btCylinderShape;
+btCylinderShape.__cache__ = {};
+Module['btCylinderShape'] = btCylinderShape;
+
+btCylinderShape.prototype['setMargin'] = btCylinderShape.prototype.setMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function(margin) {
+  var self = this.ptr;
+  if (margin && typeof margin === 'object') margin = margin.ptr;
+  _btCylinderShape_setMargin_1(self, margin);
+};;
+
+btCylinderShape.prototype['getMargin'] = btCylinderShape.prototype.getMargin = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCylinderShape_getMargin_0(self);
+};;
+
+btCylinderShape.prototype['updateProp'] = btCylinderShape.prototype.updateProp = /** @suppress {undefinedVars, duplicate} @this{Object} */function(r, h, upAxis) {
+  var self = this.ptr;
+  if (r && typeof r === 'object') r = r.ptr;
+  if (h && typeof h === 'object') h = h.ptr;
+  if (upAxis && typeof upAxis === 'object') upAxis = upAxis.ptr;
+  _btCylinderShape_updateProp_3(self, r, h, upAxis);
+};;
+
+btCylinderShape.prototype['setLocalScaling'] = btCylinderShape.prototype.setLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function(scaling) {
+  var self = this.ptr;
+  if (scaling && typeof scaling === 'object') scaling = scaling.ptr;
+  _btCylinderShape_setLocalScaling_1(self, scaling);
+};;
+
+btCylinderShape.prototype['getLocalScaling'] = btCylinderShape.prototype.getLocalScaling = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btCylinderShape_getLocalScaling_0(self), btVector3);
+};;
+
+btCylinderShape.prototype['calculateLocalInertia'] = btCylinderShape.prototype.calculateLocalInertia = /** @suppress {undefinedVars, duplicate} @this{Object} */function(mass, inertia) {
+  var self = this.ptr;
+  if (mass && typeof mass === 'object') mass = mass.ptr;
+  if (inertia && typeof inertia === 'object') inertia = inertia.ptr;
+  _btCylinderShape_calculateLocalInertia_2(self, mass, inertia);
+};;
+
+btCylinderShape.prototype['isCompound'] = btCylinderShape.prototype.isCompound = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return !!(_btCylinderShape_isCompound_0(self));
+};;
+
+btCylinderShape.prototype['getUserIndex'] = btCylinderShape.prototype.getUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCylinderShape_getUserIndex_0(self);
+};;
+
+btCylinderShape.prototype['setUserIndex'] = btCylinderShape.prototype.setUserIndex = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btCylinderShape_setUserIndex_1(self, index);
+};;
+
+btCylinderShape.prototype['getUserIndex2'] = btCylinderShape.prototype.getUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCylinderShape_getUserIndex2_0(self);
+};;
+
+btCylinderShape.prototype['setUserIndex2'] = btCylinderShape.prototype.setUserIndex2 = /** @suppress {undefinedVars, duplicate} @this{Object} */function(index) {
+  var self = this.ptr;
+  if (index && typeof index === 'object') index = index.ptr;
+  _btCylinderShape_setUserIndex2_1(self, index);
+};;
+
+btCylinderShape.prototype['getAabb'] = btCylinderShape.prototype.getAabb = /** @suppress {undefinedVars, duplicate} @this{Object} */function(t, min, max) {
+  var self = this.ptr;
+  if (t && typeof t === 'object') t = t.ptr;
+  if (min && typeof min === 'object') min = min.ptr;
+  if (max && typeof max === 'object') max = max.ptr;
+  _btCylinderShape_getAabb_3(self, t, min, max);
+};;
+
+btCylinderShape.prototype['getLocalBoundingSphere'] = btCylinderShape.prototype.getLocalBoundingSphere = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return _btCylinderShape_getLocalBoundingSphere_0(self);
+};;
+
+btCylinderShape.prototype['getImplicitShapeDimensions'] = btCylinderShape.prototype.getImplicitShapeDimensions = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  return wrapPointer(_btCylinderShape_getImplicitShapeDimensions_0(self), btVector3);
+};;
+
+  btCylinderShape.prototype['__destroy__'] = btCylinderShape.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} @this{Object} */function() {
+  var self = this.ptr;
+  _btCylinderShape___destroy___0(self);
+};
+(function() {
+  function setupEnums() {
+    
+
+    // btConstraintParams
+
+    Module['BT_CONSTRAINT_ERP'] = _btConstraintParamsBT_CONSTRAINT_ERP();
+
+    Module['BT_CONSTRAINT_STOP_ERP'] = _btConstraintParamsBT_CONSTRAINT_STOP_ERP();
+
+    Module['BT_CONSTRAINT_CFM'] = _btConstraintParamsBT_CONSTRAINT_CFM();
+
+    Module['BT_CONSTRAINT_STOP_CFM'] = _btConstraintParamsBT_CONSTRAINT_STOP_CFM();
+
+    
+
+    // PHY_ScalarType
+
+    Module['PHY_FLOAT'] = _PHY_ScalarTypePHY_FLOAT();
+
+    Module['PHY_DOUBLE'] = _PHY_ScalarTypePHY_DOUBLE();
+
+    Module['PHY_INTEGER'] = _PHY_ScalarTypePHY_INTEGER();
+
+    Module['PHY_SHORT'] = _PHY_ScalarTypePHY_SHORT();
+
+    Module['PHY_FIXEDPOINT88'] = _PHY_ScalarTypePHY_FIXEDPOINT88();
+
+    Module['PHY_UCHAR'] = _PHY_ScalarTypePHY_UCHAR();
+
+  }
+  if (runtimeInitialized) setupEnums();
+  else addOnPreMain(setupEnums);
+})();
+
+this['Ammo'] = Module; /* With or without a closure, the proper usage is Ammo.* */
 
 
   return Ammo.ready

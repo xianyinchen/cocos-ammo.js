@@ -5,6 +5,8 @@
 # For every add executable line you should list every .cpp and .h file you have associated with that executable.  
 
 
+# This is the variable for Windows.  I use this to define the root of my directory structure.
+SET(GLUT_ROOT ${BULLET_PHYSICS_SOURCE_DIR}/Glut)
 
 # You shouldn't have to modify anything below this line 
 ########################################################
@@ -23,6 +25,23 @@ ADD_EXECUTABLE(AppMultiMaterialDemo
         main.cpp
 )
 
+IF (WIN32)
+		IF (NOT INTERNAL_CREATE_MSVC_RELATIVE_PATH_PROJECTFILES)
+			IF (CMAKE_CL_64)
+				ADD_CUSTOM_COMMAND(
+					TARGET AppMultiMaterialDemo
+					POST_BUILD
+					COMMAND ${CMAKE_COMMAND} ARGS -E copy_if_different ${BULLET_PHYSICS_SOURCE_DIR}/glut64.dll ${CMAKE_CURRENT_BINARY_DIR}
+				)
+			ELSE(CMAKE_CL_64)
+				ADD_CUSTOM_COMMAND(
+					TARGET AppMultiMaterialDemo
+					POST_BUILD
+					COMMAND ${CMAKE_COMMAND} ARGS -E copy_if_different ${BULLET_PHYSICS_SOURCE_DIR}/GLUT32.DLL ${CMAKE_CURRENT_BINARY_DIR}
+				)
+			ENDIF(CMAKE_CL_64)
+		ENDIF (NOT INTERNAL_CREATE_MSVC_RELATIVE_PATH_PROJECTFILES)
+ENDIF(WIN32)
 
 IF (INTERNAL_ADD_POSTFIX_EXECUTABLE_NAMES)
 			SET_TARGET_PROPERTIES(AppMultiMaterialDemo PROPERTIES  DEBUG_POSTFIX "_Debug")

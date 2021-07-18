@@ -87,7 +87,7 @@ class CcdPhysicsDemo : public PlatformDemoApplication
 		return demo;
 	}
 
-	
+	void collectContacts(btAlignedObjectArray<btVector3>& positions, btAlignedObjectArray<btVector3>& normals);
 };
 
 #endif //BT_CCD_PHYSICS_DEMO_H

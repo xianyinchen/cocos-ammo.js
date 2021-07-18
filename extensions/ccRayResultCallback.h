@@ -23,7 +23,7 @@ struct ccClosestRayResultCallback : public ClosestRayResultCallback
 	{
 		if ((proxy0->m_collisionFilterGroup & m_collisionFilterMask) != 0) {			
 			if (!m_queryTrigger && proxy0->m_clientObject) {
-				auto co = static_cast<btCollisionObject*>(proxy0->m_clientObject);
+				btCollisionObject* co = static_cast<btCollisionObject*>(proxy0->m_clientObject);
 				return co->hasContactResponse();
 			}
 			return true;
@@ -58,7 +58,7 @@ struct ccAllHitsRayResultCallback : public AllHitsRayResultCallback
 	{
 		if ((proxy0->m_collisionFilterGroup & m_collisionFilterMask) != 0) {			
 			if (!m_queryTrigger && proxy0->m_clientObject) {
-				auto co = static_cast<btCollisionObject*>(proxy0->m_clientObject);
+				btCollisionObject* co = static_cast<btCollisionObject*>(proxy0->m_clientObject);
 				return co->hasContactResponse();
 			}
 			return true;

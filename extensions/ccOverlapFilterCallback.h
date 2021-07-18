@@ -11,7 +11,7 @@ private:
     /* data */
 public:
 	
-    BT_DECLARE_ALIGNED_ALLOCATOR();
+  virtual ~ccOverlapFilterCallback() {}
 
     // return true when pairs need collision
     virtual bool needBroadphaseCollision(btBroadphaseProxy *proxy0, btBroadphaseProxy *proxy1) const
@@ -35,4 +35,4 @@ public:
     }
 };
 
-#endif //CC_OVERLAPPING_PAIR_CACHE_H
+#endif // CC_OVERLAPPING_PAIR_CACHE_H

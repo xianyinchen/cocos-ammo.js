@@ -85,7 +85,7 @@
 		var dynamicObjects = [];
 		var transformAux1 = new Ammo.btTransform();
 
-		var groundShape, bvhMeshShape, bvhTrans;
+		var groundShape, groundBody, bvhMeshShape, bvhTrans;
 
 		var heightData = null;
 		var ammoHeightData = null;
@@ -199,8 +199,8 @@
 			dispatcher = new Ammo.btCollisionDispatcher(collisionConfiguration);
 			broadphase = new Ammo.btDbvtBroadphase();
 			solver = new Ammo.btSequentialImpulseConstraintSolver();
-			physicsWorld = new Ammo.ccDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
-			physicsWorld.getPairCache().setOverlapFilterCallback(new Ammo.ccOverlapFilterCallback());
+			// physicsWorld = new Ammo.ccDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
+			physicsWorld = new Ammo.btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
 			physicsWorld.setGravity(new Ammo.btVector3(0, - 10, 0));
 
 			// Create the terrain body
@@ -214,9 +214,9 @@
 			var groundMass = 0;
 			var groundLocalInertia = new Ammo.btVector3(0, 0, 0);
 			var groundMotionState = new Ammo.btDefaultMotionState(groundTransform);
-			var groundBody = new Ammo.btRigidBody(new Ammo.btRigidBodyConstructionInfo(groundMass, groundMotionState, groundShape, groundLocalInertia));
-			physicsWorld.addRigidBody(groundBody);
+			groundBody = new Ammo.btRigidBody(new Ammo.btRigidBodyConstructionInfo(groundMass, groundMotionState, groundShape, groundLocalInertia));			
 			groundBody.setCollisionFlags(2);
+			physicsWorld.addRigidBody(groundBody);
 			bvhMeshShape = createBvhStaticMeshShape(terrainMesh);
 			// bvhMeshShape.setUserIndex(groundShape.getNumChildShapes());
 			bvhTrans = new Ammo.btTransform();
@@ -453,7 +453,7 @@
 						//     m_index1: manifoldPoint.m_index1,
 						//     m_userPersistentData: manifoldPoint.m_userPersistentData,
 						//   });
-						console.log(manifoldPoint.m_index0, manifoldPoint.m_index1);
+						// console.log(manifoldPoint.m_index0, manifoldPoint.m_index1);
 						break;
 					}
 				}
@@ -467,23 +467,31 @@
 				delY = -0.01;
 			}
 			terrainMesh.position.y += delY;
-			bvhTrans.getOrigin().setY(terrainMesh.position.y);
+            const wt = groundBody.getWorldTransform();
+			wt.getOrigin().setValue(
+				terrainMesh.position.x,
+				terrainMesh.position.y,
+				terrainMesh.position.z
+			);
+			groundBody.getMotionState().setWorldTransform(wt);
+			// bvhTrans.getOrigin().setY(terrainMesh.position.y);
 
-			if (terrainMesh.rotation.x < -10 * Math.PI / 180) {
-				delRot = 0.001;
-			} else if (terrainMesh.rotation.x > 10 * Math.PI / 180) {
-				delRot = -0.001;
-			}
-			terrainMesh.rotation.x += delRot;
+			// if (terrainMesh.rotation.x < -10 * Math.PI / 180) {
+			// 	delRot = 0.001;
+			// } else if (terrainMesh.rotation.x > 10 * Math.PI / 180) {
+			// 	delRot = -0.001;
+			// }
+			// terrainMesh.rotation.x += delRot;
 
-			bvhTrans.setRotation(new Ammo.btQuaternion(
-				terrainMesh.quaternion.x,
-				terrainMesh.quaternion.y,
-				terrainMesh.quaternion.z,
-				terrainMesh.quaternion.w
-			));
+			// bvhTrans.setRotation(new Ammo.btQuaternion(
+			// 	terrainMesh.quaternion.x,
+			// 	terrainMesh.quaternion.y,
+			// 	terrainMesh.quaternion.z,
+			// 	terrainMesh.quaternion.w
+			// ));
 
-			groundShape.updateChildTransform(0, bvhTrans);
+			// groundShape.updateChildTransform(0, bvhTrans);
+
 		}
 
 		});
