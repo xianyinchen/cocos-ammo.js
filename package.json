@@ -1,6 +1,6 @@
 {
   "name": "@cocos/ammo",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Direct port of the Bullet physics engine to JavaScript using Emscripten",
   "main": "builds/node/ammo.cocos.js",
   "scripts": {
