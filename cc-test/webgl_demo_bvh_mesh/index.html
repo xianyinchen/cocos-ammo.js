@@ -461,10 +461,10 @@
 		}
 
 		function updateRotateAndPosition(dt) {
-			if (terrainMesh.position.y < -3) {
-				delY = 0.01;
-			} else if (terrainMesh.position.y > 3) {
-				delY = -0.01;
+			if (terrainMesh.position.y < -5) {
+				delY = 0.05;
+			} else if (terrainMesh.position.y > 5) {
+				delY = -0.05;
 			}
 			terrainMesh.position.y += delY;
             const wt = groundBody.getWorldTransform();

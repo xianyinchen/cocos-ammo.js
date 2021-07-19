@@ -33,14 +33,14 @@ public:
 
       /*
        * 0   : hit trigger count
-       * 1   : self collsion object id
-       * []  : a array that stores the id of hited trigger
+       * 1   : self collsion shaper prt
+       * []  : a array that stores the ptr of hited trigger
        */
       btAlignedObjectArray<int> &record = m_world->getCcdTriggerRecorder();
       if (m_hitTriggerTimes == 0) {
         m_hitTriggerStart = record.size();
         record.push_back(1);
-        record.push_back(m_me->getCollisionShape()->getUserIndex());
+        record.push_back(m_me->getCollisionShape()->getUserPointerAsInt());
       } else {
         record[m_hitTriggerStart] = m_hitTriggerTimes + 1;
       }
@@ -50,9 +50,9 @@ public:
       if (shape->isCompound()) {
         const btCompoundShape *compound = static_cast<const btCompoundShape *>(shape);
         const int index = convexResult.m_localShapeInfo->m_triangleIndex;
-        record.push_back(compound->getChildShape(index)->getUserIndex());
+        record.push_back(compound->getChildShape(index)->getUserPointerAsInt());
       } else {
-        record.push_back(shape->getUserIndex());
+        record.push_back(shape->getUserPointerAsInt());
       }
 
       m_hitTriggerTimes++;

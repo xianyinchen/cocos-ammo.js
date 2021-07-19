@@ -185,8 +185,13 @@ ClosestRayResultCallback implements RayResultCallback;
 
 interface ccClosestRayResultCallback {
   void ccClosestRayResultCallback([Const, Ref] btVector3 from, [Const, Ref] btVector3 to);
-  attribute long m_shapePart;
-  void setQueryTrigger(boolean v);
+  attribute long m_shapeUserPointer;
+  attribute boolean m_queryTrigger;
+  [Ref] btVector3 getHitNormalWorld();
+  [Ref] btVector3 getHitPointWorld();
+  long getCollisionShapePtr();
+  float getClosestHitFraction();
+  void reset(long mask, boolean queryTrigger);
 };
 ccClosestRayResultCallback implements ClosestRayResultCallback;
 
@@ -217,8 +222,13 @@ AllHitsRayResultCallback implements RayResultCallback;
 
 interface ccAllHitsRayResultCallback {
   void ccAllHitsRayResultCallback([Const, Ref] btVector3 from, [Const, Ref] btVector3 to);
-  [Value] attribute btIntArray m_shapeParts;
-  void setQueryTrigger(boolean v);
+  [Value] attribute btIntArray m_shapeUserPointers;
+  attribute boolean m_queryTrigger;
+  [Ref] btScalarArray getHitFractions();
+  [Ref] btVector3Array getHitNormalWorld();
+  [Ref] btVector3Array getHitPointWorld();
+  [Ref] btIntArray getCollisionShapePtrs();
+  void reset(long mask, boolean queryTrigger);
 };
 ccAllHitsRayResultCallback implements AllHitsRayResultCallback;
 
@@ -311,7 +321,9 @@ interface btCollisionShape {
   VoidPtr getUserPointer();
   void setUserPointer(VoidPtr userPointer);
   long getUserIndex();
-  void setUserIndex(long index);
+  void setUserIndex(long index);  
+  long getUserPointerAsInt();
+  void setUserPointerAsInt(long index);
   void getAabb([Const, Ref] btTransform t, [Ref] btVector3 min, [Ref] btVector3 max);
   
   ///XXX

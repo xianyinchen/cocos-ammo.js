@@ -368,7 +368,7 @@ IF(BUILD_DEMOS)
 	ENDIF()
 ENDIF(BUILD_DEMOS)
 
-# subdirs(./../extensions)
+subdirs(./../extensions)
 
 #  "Demos_ps3")
 IF (MSVC)

@@ -225,7 +225,7 @@ void	CcdPhysicsDemo::initPhysics()
 		btBoxShape* box = new btBoxShape(btVector3(btScalar(110.), btScalar(1.), btScalar(110.)));
 		//	box->initializePolyhedralFeatures();
 		btCollisionShape* groundShape = box;
-		groundShape->setUserIndex2(eCollisionShapeID++);
+		// groundShape->setUserPointerAsInt(eCollisionShapeID++);
 
 		//	btCollisionShape* groundShape = new btStaticPlaneShape(btVector3(0,1,0),50);
 
@@ -262,7 +262,7 @@ void	CcdPhysicsDemo::initPhysics()
 		// Re-using the same collision is better for memory usage and performance
 
 		btCollisionShape* colShape = new btBoxShape(btVector3(1, 1, 1));
-		colShape->setUserIndex2(eCollisionShapeID++);
+		// colShape->setUserPointerAsInt(eCollisionShapeID++);
 
 		//btCollisionShape* colShape = new btSphereShape(btScalar(1.));
 		m_collisionShapes.push_back(colShape);
@@ -327,7 +327,7 @@ void	CcdPhysicsDemo::initPhysics()
 	for (int i = 0; i < 3; i++)
 	{
 		btSphereShape* sphere = new btSphereShape(5);
-		sphere->setUserIndex2(eCollisionShapeID++);
+		// sphere->setUserPointerAsInt(eCollisionShapeID++);
 		m_collisionShapes.push_back(sphere);
 		btCollisionObject* ghost = new btCollisionObject();
 		ghost->setCollisionShape(sphere);
@@ -338,7 +338,7 @@ void	CcdPhysicsDemo::initPhysics()
 
 	{
 		btSphereShape* sphere = new btSphereShape(5);
-		sphere->setUserIndex2(eCollisionShapeID++);
+		// sphere->setUserPointerAsInt(eCollisionShapeID++);
 		m_collisionShapes.push_back(sphere);
 		btCollisionObject* ghost = new btCollisionObject();
 		ghost->setCollisionShape(sphere);
@@ -353,7 +353,7 @@ void	CcdPhysicsDemo::initPhysics()
 		btTransform trans;
 		trans.setIdentity();
 		btSphereShape* sphere = new btSphereShape(0.5);
-		sphere->setUserIndex2(eCollisionShapeID++);
+		// sphere->setUserPointerAsInt(eCollisionShapeID++);
 		m_collisionShapes.push_back(sphere);
 		btRigidBody* body = localCreateRigidBody(1, trans, sphere);
 		body->getWorldTransform().setOrigin(btVector3(0, 30, i * -5));
@@ -370,7 +370,7 @@ void	CcdPhysicsDemo::initPhysics()
 
 		{
 			btSphereShape* sphere = new btSphereShape(5);
-			sphere->setUserIndex2(eCollisionShapeID++);
+			// sphere->setUserPointerAsInt(eCollisionShapeID++);
 			m_collisionShapes.push_back(sphere);
 			sphere->setUserIndex(compound->getNumChildShapes());
 			compound->addChildShape(local, sphere);
@@ -378,7 +378,7 @@ void	CcdPhysicsDemo::initPhysics()
 
 		{
 			btBoxShape* box = new btBoxShape(btVector3(2, 2, 2));
-			box->setUserIndex2(eCollisionShapeID++);
+			// box->setUserPointerAsInt(eCollisionShapeID++);
 			m_collisionShapes.push_back(box);
 			local.setIdentity();
 			box->setUserIndex(compound->getNumChildShapes());

@@ -141,6 +141,15 @@ public:
 		return m_userIndex;
 	}
 
+	void setUserPointerAsInt(int index)
+	{
+		m_userPointer = (void*)index;
+	}
+
+	int getUserPointerAsInt() const
+	{
+		return (int)m_userPointer;
+	}
 
 	virtual	int	calculateSerializeBufferSize() const;
 
