@@ -614,21 +614,21 @@ interface btCollisionDispatcher {
 };
 btCollisionDispatcher implements btDispatcher;
 
-interface btOverlappingPairCallback {
-};
+// interface btOverlappingPairCallback {
+// };
 
-interface btOverlapFilterCallback {
-};
+// interface btOverlapFilterCallback {
+// };
 
-interface ccOverlapFilterCallback {
-  void ccOverlapFilterCallback();
-};
-ccOverlapFilterCallback implements btOverlapFilterCallback;
+// interface ccOverlapFilterCallback {
+//   void ccOverlapFilterCallback();
+// };
+// ccOverlapFilterCallback implements btOverlapFilterCallback;
 
 interface btOverlappingPairCache {
-  void setInternalGhostPairCallback(btOverlappingPairCallback ghostPairCallback);
-  void setOverlapFilterCallback(btOverlapFilterCallback cb);
-  [Const] float getNumOverlappingPairs();
+  // void setInternalGhostPairCallback(btOverlappingPairCallback ghostPairCallback);
+  // void setOverlapFilterCallback(btOverlapFilterCallback cb);
+  // [Const] float getNumOverlappingPairs();
 };
 
 // interface btAxisSweep3 {
@@ -636,7 +636,7 @@ interface btOverlappingPairCache {
 // };
 
 interface btBroadphaseInterface {
-  btOverlappingPairCache getOverlappingPairCache();
+  // btOverlappingPairCache getOverlappingPairCache();
 };
 
 interface btCollisionConfiguration {
@@ -859,7 +859,7 @@ interface btCollisionWorld {
   // btDispatcher getDispatcher();
   void rayTest([Const, Ref] btVector3 rayFromWorld, [Const, Ref] btVector3 rayToWorld, [Ref] RayResultCallback resultCallback);
   void rayTestSingle([Const, Ref] btTransform rayFromTrans, [Const, Ref] btTransform rayToTrans, btCollisionObject collisionObject, [Const] btCollisionShape collisionShape, [Const, Ref] btTransform colObjWorldTransform, [Ref] RayResultCallback resultCallback);
-  btOverlappingPairCache getPairCache();
+  // btOverlappingPairCache getPairCache();
   // [Ref] btDispatcherInfo getDispatchInfo();
   void addCollisionObject(btCollisionObject collisionObject, optional long collisionFilterGroup, optional long collisionFilterMask);
   void removeCollisionObject(btCollisionObject collisionObject);
@@ -875,16 +875,16 @@ interface btCollisionWorld {
   void setContactBreakingThreshold(float b);
 };
 
-interface btContactSolverInfo {
-  attribute boolean m_splitImpulse;
-  attribute long m_splitImpulsePenetrationThreshold;
-  attribute long m_numIterations;
-};
+// interface btContactSolverInfo {
+  // attribute boolean m_splitImpulse;
+  // attribute long m_splitImpulsePenetrationThreshold;
+  // attribute long m_numIterations;
+// };
 
 interface btDynamicsWorld {
   void addAction(btActionInterface action);
   void removeAction(btActionInterface action);
-  [Ref] btContactSolverInfo getSolverInfo();
+  // [Ref] btContactSolverInfo getSolverInfo();
   [Ref] btRigidBody getFixedBody();
 };
 btDynamicsWorld implements btCollisionWorld;
@@ -917,6 +917,7 @@ interface ccDiscreteDynamicsWorld {
   void setDeactivationTime(float v);
   void setNarrowPhaseMethod(long v);
   void setAllowCcdPenetration(float v);
+  void setCcdCastCheckResponse(boolean v);
   [Ref] btIntArray getCcdTriggerRecorder();
 };
 ccDiscreteDynamicsWorld implements btDiscreteDynamicsWorld;

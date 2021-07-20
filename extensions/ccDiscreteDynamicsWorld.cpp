@@ -14,8 +14,9 @@ ccDiscreteDynamicsWorld::ccDiscreteDynamicsWorld(
     : btDiscreteDynamicsWorld(dispatcher, pairCache, constraintSolver,
                               collisionConfiguration) {
   // gDeactivationTime = btScalar(1);
-  // m_dispatchInfo.m_allowedCcdPenetration = btScalar(0.01);
-  // getPairCache()->setOverlapFilterCallback(&m_overlapFilterCallback);
+  m_ccdCastCheckResponse = false;
+  m_dispatchInfo.m_allowedCcdPenetration = btScalar(0.01);
+  getPairCache()->setOverlapFilterCallback(&m_overlapFilterCallback);
 }
 
 void ccDiscreteDynamicsWorld::applyGravity() {
@@ -39,7 +40,6 @@ void ccDiscreteDynamicsWorld::applyGravity() {
 void ccDiscreteDynamicsWorld::createPredictiveContacts(btScalar timeStep) {
   BT_PROFILE("createPredictiveContacts");
   getCcdTriggerRecorder().resize(0);
-
   releasePredictiveContacts();
 
   int numBodies = m_nonStaticRigidBodies.size();

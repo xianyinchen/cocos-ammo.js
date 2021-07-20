@@ -1,185 +1,186 @@
 // tslint:disable
-declare function Ammo (): Promise<void>;
+declare function Ammo(): Promise<void>;
 
 declare namespace Ammo {
   type Constructor<T = {}> = new (...args: any[]) => T;
   type VoidPtr = number;
+  type Pointer = { ptr: number };
   const NULL: {};
   const PHY_FLOAT: number;
   const HEAPF32: Float32Array;
-  function destroy (obj: Ammo.Type): void;
-  function castObject<T1, T2 extends Ammo.Type> (obj: T1, fun: Constructor<T2>): T2;
-  function wrapPointer<T extends Ammo.Type> (params: number, obj: Constructor<T>): T;
-  function addFunction (params: Function): number;
-  function getClass (obj: Ammo.Type): void;
-  function getPointer (obj: Ammo.Type): void;
-  function getCache (fun: Constructor<Ammo.Type>): void;
-  function _malloc (byte: number): number;
-  function _free (...args: any): any;
-  function compare (obj1: Ammo.Type, obj2: Ammo.Type): boolean;
+  function destroy(obj: Ammo.Type): void;
+  function castObject<T1, T2 extends Ammo.Type>(obj: T1, fun: Constructor<T2>): T2;
+  function wrapPointer<T extends Ammo.Type>(params: number, obj: Constructor<T>): T;
+  function addFunction(params: Function): number;
+  function getClass(obj: Ammo.Type): void;
+  function getPointer(obj: Ammo.Type): number;
+  function getCache(fun: Constructor<Ammo.Type>): void;
+  function _malloc(byte: number): number;
+  function _free(...args: any): any;
+  function compare(obj1: Ammo.Type, obj2: Ammo.Type): boolean;
 
   interface btIDebugDraw {
-    drawLine (from: btVector3, to: btVector3, color: btVector3): void;
-    drawContactPoint (
+    drawLine(from: btVector3, to: btVector3, color: btVector3): void;
+    drawContactPoint(
       pointOnB: btVector3,
       normalOnB: btVector3,
       distance: number,
       lifeTime: number,
       color: btVector3,
     ): void;
-    reportErrorWarning (warningString: string): void;
-    draw3dText (location: btVector3, textString: string): void;
-    setDebugMode (debugMode: number): void;
-    getDebugMode (): number;
+    reportErrorWarning(warningString: string): void;
+    draw3dText(location: btVector3, textString: string): void;
+    setDebugMode(debugMode: number): void;
+    getDebugMode(): number;
   }
 
   class DebugDrawer implements btIDebugDraw {
-    constructor ();
-    public drawLine (from: btVector3, to: btVector3, color: btVector3): void;
-    public drawContactPoint (
+    constructor();
+    public drawLine(from: btVector3, to: btVector3, color: btVector3): void;
+    public drawContactPoint(
       pointOnB: btVector3,
       normalOnB: btVector3,
       distance: number,
       lifeTime: number,
       color: btVector3,
     ): void;
-    public reportErrorWarning (warningString: string): void;
-    public draw3dText (location: btVector3, textString: string): void;
-    public setDebugMode (debugMode: number): void;
-    public getDebugMode (): number;
+    public reportErrorWarning(warningString: string): void;
+    public draw3dText(location: btVector3, textString: string): void;
+    public setDebugMode(debugMode: number): void;
+    public getDebugMode(): number;
   }
 
   class btVector3 {
-    constructor ();
-    constructor (x: number, y: number, z: number);
-    public length (): number;
-    public x (): number;
-    public y (): number;
-    public z (): number;
-    public setX (x: number): void;
-    public setY (y: number): void;
-    public setZ (z: number): void;
-    public setValue (x: number, y: number, z: number): void;
-    public normalize (): void;
+    constructor();
+    constructor(x: number, y: number, z: number);
+    public length(): number;
+    public x(): number;
+    public y(): number;
+    public z(): number;
+    public setX(x: number): void;
+    public setY(y: number): void;
+    public setZ(z: number): void;
+    public setValue(x: number, y: number, z: number): void;
+    public normalize(): void;
     /**[Value] */
-    public rotate (wAxis: btVector3, angle: number): btVector3;
-    public dot (v: btVector3): number;
-    public op_mul (x: number): btVector3;
-    public op_add (v: btVector3): btVector3;
-    public op_sub (v: btVector3): btVector3;
+    public rotate(wAxis: btVector3, angle: number): btVector3;
+    public dot(v: btVector3): number;
+    public op_mul(x: number): btVector3;
+    public op_add(v: btVector3): btVector3;
+    public op_sub(v: btVector3): btVector3;
   }
 
   class btVector4 extends btVector3 {
-    constructor ();
-    constructor (x: number, y: number, z: number, w: number);
-    public w (): number;
-    public setValue (x: number, y: number, z: number): void;
-    public setValue (x: number, y: number, z: number, w: number): void;
+    constructor();
+    constructor(x: number, y: number, z: number, w: number);
+    public w(): number;
+    public setValue(x: number, y: number, z: number): void;
+    public setValue(x: number, y: number, z: number, w: number): void;
   }
 
   class btQuadWord {
-    public x (): number;
-    public y (): number;
-    public z (): number;
-    public w (): number;
-    public setX (x: number): void;
-    public setY (y: number): void;
-    public setZ (z: number): void;
-    public setW (w: number): void;
+    public x(): number;
+    public y(): number;
+    public z(): number;
+    public w(): number;
+    public setX(x: number): void;
+    public setY(y: number): void;
+    public setZ(z: number): void;
+    public setW(w: number): void;
   }
 
   class btQuaternion extends btQuadWord {
-    constructor ();
-    constructor (x: number, y: number, z: number, w: number);
-    public setValue (x: number, y: number, z: number, w: number): void;
-    public setEulerZYX (z: number, y: number, x: number): void;
-    public setRotation (axis: btVector3, angle: number): void;
-    public normalize (): void;
-    public length2 (): number;
-    public length (): number;
-    public dot (q: btQuaternion): number;
+    constructor();
+    constructor(x: number, y: number, z: number, w: number);
+    public setValue(x: number, y: number, z: number, w: number): void;
+    public setEulerZYX(z: number, y: number, x: number): void;
+    public setRotation(axis: btVector3, angle: number): void;
+    public normalize(): void;
+    public length2(): number;
+    public length(): number;
+    public dot(q: btQuaternion): number;
     /**[Value] */
-    public normalized (): btQuaternion;
+    public normalized(): btQuaternion;
     /**[Value] */
-    public getAxis (): btVector3;
+    public getAxis(): btVector3;
     /**[Value] */
-    public inverse (): btQuaternion;
-    public getAngle (): number;
-    public getAngleShortestPath (): number;
-    public angle (q: btQuaternion): number;
-    public angleShortestPath (q: btQuaternion): number;
-    public op_add (q: btQuaternion): btQuaternion;
-    public op_sub (q: btQuaternion): btQuaternion;
-    public op_mul (s: number): btQuaternion;
-    public op_mulq (q: btQuaternion): btQuaternion;
-    public op_div (s: number): btQuaternion;
+    public inverse(): btQuaternion;
+    public getAngle(): number;
+    public getAngleShortestPath(): number;
+    public angle(q: btQuaternion): number;
+    public angleShortestPath(q: btQuaternion): number;
+    public op_add(q: btQuaternion): btQuaternion;
+    public op_sub(q: btQuaternion): btQuaternion;
+    public op_mul(s: number): btQuaternion;
+    public op_mulq(q: btQuaternion): btQuaternion;
+    public op_div(s: number): btQuaternion;
   }
   class btMatrix3x3 {
-    public setEulerZYX (ex: number, ey: number, ez: number): void;
-    public getRotation (q: btQuaternion): void;
-    public getRow (y: number): btVector3;
+    public setEulerZYX(ex: number, ey: number, ez: number): void;
+    public getRotation(q: btQuaternion): void;
+    public getRow(y: number): btVector3;
   }
 
   class btTransform {
-    constructor ();
-    constructor (q: btQuaternion, v: btVector3);
-    public setIdentity (): void;
-    public setOrigin (origin: btVector3): void;
-    public setRotation (rotation: btQuaternion): void;
-    public getOrigin (): btVector3;
+    constructor();
+    constructor(q: btQuaternion, v: btVector3);
+    public setIdentity(): void;
+    public setOrigin(origin: btVector3): void;
+    public setRotation(rotation: btQuaternion): void;
+    public getOrigin(): btVector3;
     /**[Value] */
-    public getRotation (): btQuaternion;
-    public getBasis (): btMatrix3x3;
-    public setFromOpenGLMatrix (m: number[]): void;
+    public getRotation(): btQuaternion;
+    public getBasis(): btMatrix3x3;
+    public setFromOpenGLMatrix(m: number[]): void;
     /**[Value] */
-    public inverse (): btTransform;
-    public op_mul (t: btTransform): btTransform;
+    public inverse(): btTransform;
+    public op_mul(t: btTransform): btTransform;
   }
 
   class btMotionState {
-    public getWorldTransform (worldTrans: btTransform): void;
-    public setWorldTransform (worldTrans: btTransform): void;
+    public getWorldTransform(worldTrans: btTransform): void;
+    public setWorldTransform(worldTrans: btTransform): void;
   }
 
   class btDefaultMotionState extends btMotionState {
     public m_graphicsWorldTrans: btTransform;
-    constructor (startTrans?: btTransform, centerOfMassOffset?: btTransform);
+    constructor(startTrans?: btTransform, centerOfMassOffset?: btTransform);
   }
 
   class btCollisionObject {
-    public setAnisotropicFriction (
+    public setAnisotropicFriction(
       anisotropicFriction: btVector3,
       frictionMode: number,
     ): void;
-    public getCollisionShape (): btCollisionShape;
-    public setContactProcessingThreshold (contactProcessingThreshold: number): void;
-    public getActivationState (): number;
-    public setActivationState (newState: number): void;
-    public forceActivationState (newState: number): void;
-    public activate (forceActivation?: boolean): void;
-    public isActive (): boolean;
-    public isKinematicObject (): boolean;
-    public isStaticObject (): boolean;
-    public isStaticOrKinematicObject (): boolean;
-    public setRestitution (rest: number): void;
-    public setFriction (frict: number): void;
-    public setRollingFriction (frict: number): void;
-    public setSpinningFriction (frict: number): void;
-    public getWorldTransform (): btTransform;
-    public getCollisionFlags (): number;
-    public setCollisionFlags (flags: number): void;
-    public setWorldTransform (worldTrans: btTransform): void;
-    public setCollisionShape (collisionShape: btCollisionShape): void;
-    public setCcdMotionThreshold (ccdMotionThreshold: number): void;
-    public setCcdSweptSphereRadius (radius: number): void;
-    public getUserIndex (): number;
-    public setUserIndex (index: number): void;
-    public setUserIndex2 (index: number): void;
-    public getUserPointer (): VoidPtr;
-    public setUserPointer (userPointer: VoidPtr): void;
-    public getBroadphaseHandle (): btBroadphaseProxy;
-    public checkCollideWith (co: btCollisionObject): boolean;
-    public setIgnoreCollisionCheck (co: btCollisionObject, ig: boolean): void;
+    public getCollisionShape(): btCollisionShape;
+    public setContactProcessingThreshold(contactProcessingThreshold: number): void;
+    public getActivationState(): number;
+    public setActivationState(newState: number): void;
+    public forceActivationState(newState: number): void;
+    public activate(forceActivation?: boolean): void;
+    public isActive(): boolean;
+    public isKinematicObject(): boolean;
+    public isStaticObject(): boolean;
+    public isStaticOrKinematicObject(): boolean;
+    public setRestitution(rest: number): void;
+    public setFriction(frict: number): void;
+    public setRollingFriction(frict: number): void;
+    public setSpinningFriction(frict: number): void;
+    public getWorldTransform(): btTransform;
+    public getCollisionFlags(): number;
+    public setCollisionFlags(flags: number): void;
+    public setWorldTransform(worldTrans: btTransform): void;
+    public setCollisionShape(collisionShape: btCollisionShape): void;
+    public setCcdMotionThreshold(ccdMotionThreshold: number): void;
+    public setCcdSweptSphereRadius(radius: number): void;
+    public getUserIndex(): number;
+    public setUserIndex(index: number): void;
+    public setUserIndex2(index: number): void;
+    public getUserPointer(): Pointer;
+    public setUserPointer(userPointer: VoidPtr): void;
+    public getBroadphaseHandle(): btBroadphaseProxy;
+    public checkCollideWith(co: btCollisionObject): boolean;
+    public setIgnoreCollisionCheck(co: btCollisionObject, ig: boolean): void;
   }
 
   class btCollisionObjectWrapper { }
@@ -189,8 +190,8 @@ declare namespace Ammo {
     public m_collisionFilterMask: number;
     public m_closestHitFraction: number;
     public m_collisionObject: btCollisionObject;
-    public hasHit (): boolean;
-    public get_m_collisionObject (): btCollisionObject;
+    public hasHit(): boolean;
+    public get_m_collisionObject(): btCollisionObject;
   }
 
   class ClosestRayResultCallback extends RayResultCallback {
@@ -198,21 +199,24 @@ declare namespace Ammo {
     public m_rayToWorld: btVector3;
     public m_hitNormalWorld: btVector3;
     public m_hitPointWorld: btVector3;
-    constructor (from: btVector3, to: btVector3);
-    public get_m_hitPointWorld (): btVector3;
-    public get_m_hitNormalWorld (): btVector3;
+    constructor(from: btVector3, to: btVector3);
+    public get_m_hitPointWorld(): btVector3;
+    public get_m_hitNormalWorld(): btVector3;
   }
 
   class ccClosestRayResultCallback extends ClosestRayResultCallback {
-    public m_shapePart: number;
-    public setQueryTrigger (v:boolean): void;
-    constructor (from: btVector3, to: btVector3);
+    constructor(from: btVector3, to: btVector3);
+    getHitNormalWorld(): btVector3;
+    getHitPointWorld(): btVector3;
+    getCollisionShapePtr(): number;
+    getClosestHitFraction(): number;
+    reset(m: number, qt: boolean): void;
   }
 
   interface btArray<T> {
-    clear (): void;
-    size (): number;
-    at (n: number): T;
+    clear(): void;
+    size(): number;
+    at(n: number): T;
   }
   interface btNumberArray extends btArray<number> { }
   interface btConstCollisionObjectArray extends btArray<btCollisionObject> { }
@@ -223,17 +227,20 @@ declare namespace Ammo {
     public m_rayToWorld: btVector3;
     public m_hitNormalWorld: btVector3Array;
     public m_hitPointWorld: btVector3Array;
-    constructor (from: btVector3, to: btVector3);
-    public get_m_hitPointWorld (): btVector3Array;
-    public get_m_hitNormalWorld (): btVector3Array;
+    constructor(from: btVector3, to: btVector3);
+    public get_m_hitPointWorld(): btVector3Array;
+    public get_m_hitNormalWorld(): btVector3Array;
     public m_hitFractions: btNumberArray;
     public m_collisionObjects: btConstCollisionObjectArray;
   }
 
   class ccAllHitsRayResultCallback extends AllHitsRayResultCallback {
-    public m_shapeParts: btNumberArray;
-    public setQueryTrigger (v:boolean): void;
-    constructor (from: btVector3, to: btVector3);
+    constructor(from: btVector3, to: btVector3);
+    public reset(m: number, qt: boolean): void;
+    public getHitFractions(): btNumberArray;
+    public getHitNormalWorld(): btVector3Array;
+    public getHitPointWorld(): btVector3Array;
+    public getCollisionShapePtrs(): btNumberArray;
   }
 
   class btManifoldPoint {
@@ -242,13 +249,13 @@ declare namespace Ammo {
     public m_positionWorldOnB: btVector3;
     public m_positionWorldOnA: btVector3;
     public m_normalWorldOnB: btVector3;
-    public getPositionWorldOnA (): btVector3;
-    public getPositionWorldOnB (): btVector3;
-    public getAppliedImpulse (): number;
-    public getDistance (): number;
+    public getPositionWorldOnA(): btVector3;
+    public getPositionWorldOnB(): btVector3;
+    public getAppliedImpulse(): number;
+    public getDistance(): number;
 
-    public get_m_positionWorldOnB (): btVector3;
-    public get_m_normalWorldOnB (): btVector3;
+    public get_m_positionWorldOnB(): btVector3;
+    public get_m_normalWorldOnB(): btVector3;
 
     public m_distance1: number;
     public m_combinedFriction: number;
@@ -266,12 +273,12 @@ declare namespace Ammo {
     public m_userPersistentData0: any;
     public m_userPersistentData1: any;
 
-    public getShape0 (): btCollisionShape;
-    public getShape1 (): btCollisionShape;
+    public getShape0(): btCollisionShape;
+    public getShape1(): btCollisionShape;
   }
 
   class ContactResultCallback {
-    public addSingleResult (
+    public addSingleResult(
       cp: btManifoldPoint,
       colObj0Wrap: btCollisionObjectWrapper,
       partId0: number,
@@ -295,7 +302,7 @@ declare namespace Ammo {
     public m_hitNormalLocal: btVector3;
     public m_hitPointLocal: btVector3;
     public m_hitFraction: number;
-    constructor (
+    constructor(
       hitCollisionObject: btCollisionObject,
       localShapeInfo: LocalShapeInfo,
       hitNormalLocal: btVector3,
@@ -308,7 +315,7 @@ declare namespace Ammo {
     public m_collisionFilterGroup: number;
     public m_collisionFilterMask: number;
     public m_closestHitFraction: number;
-    public hasHit (): boolean;
+    public hasHit(): boolean;
   }
 
   class ClosestConvexResultCallback extends ConvexResultCallback {
@@ -316,21 +323,24 @@ declare namespace Ammo {
     public m_convexToWorld: btVector3;
     public m_hitNormalWorld: btVector3;
     public m_hitPointWorld: btVector3;
-    constructor (convexFromWorld: btVector3, convexToWorld: btVector3);
+    constructor(convexFromWorld: btVector3, convexToWorld: btVector3);
   }
 
   class btCollisionShape {
-    public setLocalScaling (scaling: btVector3): void;
-    public getLocalScaling (): btVector3;
-    public calculateLocalInertia (mass: number, inertia: btVector3): void;
-    public setMargin (margin: number): void;
-    public getMargin (): number;
-    public setUserIndex (i: number): void;
-    public isCompound (): boolean;
-    public getAabb (t: btTransform, min: btVector3, max: btVector3): void;
+    public setLocalScaling(scaling: btVector3): void;
+    public getLocalScaling(): btVector3;
+    public calculateLocalInertia(mass: number, inertia: btVector3): void;
+    public setMargin(margin: number): void;
+    public getMargin(): number;
+    public getUserIndex(): number;
+    public setUserIndex(i: number): void;
+    public getUserPointerAsInt(): number;
+    public setUserPointerAsInt(i: number): void;
+    public isCompound(): boolean;
+    public getAabb(t: btTransform, min: btVector3, max: btVector3): void;
 
     ///XXX
-    public getLocalBoundingSphere (): number;
+    public getLocalBoundingSphere(): number;
   }
 
   class btConvexShape extends btCollisionShape { }
@@ -338,122 +348,122 @@ declare namespace Ammo {
   class btEmptyShape extends btCollisionShape { }
 
   class btConvexTriangleMeshShape extends btConvexShape {
-    constructor (meshInterface: btStridingMeshInterface, calcAabb?: boolean);
+    constructor(meshInterface: btStridingMeshInterface, calcAabb?: boolean);
   }
 
   class btBU_Simplex1to4 extends btConvexShape {
-    constructor ();
-    addVertex (pt: btVector3): void;
+    constructor();
+    addVertex(pt: btVector3): void;
   }
 
   class btBoxShape extends btCollisionShape {
-    constructor (boxHalfExtents: btVector3);
-    public setMargin (margin: number): void;
-    public getMargin (): number;
-    public setUnscaledHalfExtents (boxHalfExtents: btVector3): void;
+    constructor(boxHalfExtents: btVector3);
+    public setMargin(margin: number): void;
+    public getMargin(): number;
+    public setUnscaledHalfExtents(boxHalfExtents: btVector3): void;
   }
 
   class btCapsuleShape extends btCollisionShape {
-    constructor (radius: number, height: number);
-    public setMargin (margin: number): void;
-    public getMargin (): number;
-    public getUpAxis (): number;
-    public getRadius (): number;
-    public getHalfHeight (): number;
-    public getImplicitShapeDimensions (): btVector3;
+    constructor(radius: number, height: number);
+    public setMargin(margin: number): void;
+    public getMargin(): number;
+    public getUpAxis(): number;
+    public getRadius(): number;
+    public getHalfHeight(): number;
+    public getImplicitShapeDimensions(): btVector3;
     //XXX
-    public updateProp (r: number, h: number, d: number): void;
+    public updateProp(r: number, h: number, d: number): void;
   }
 
   class btCapsuleShapeX extends btCapsuleShape {
-    constructor (radius: number, height: number);
-    public setMargin (margin: number): void;
-    public getMargin (): number;
+    constructor(radius: number, height: number);
+    public setMargin(margin: number): void;
+    public getMargin(): number;
   }
 
   class btCapsuleShapeZ extends btCapsuleShape {
-    constructor (radius: number, height: number);
-    public setMargin (margin: number): void;
-    public getMargin (): number;
+    constructor(radius: number, height: number);
+    public setMargin(margin: number): void;
+    public getMargin(): number;
   }
 
   class btCylinderShape extends btCollisionShape {
-    constructor (halfExtents: btVector3);
-    public setMargin (margin: number): void;
-    public getMargin (): number;
-    public getImplicitShapeDimensions (): btVector3;
+    constructor(halfExtents: btVector3);
+    public setMargin(margin: number): void;
+    public getMargin(): number;
+    public getImplicitShapeDimensions(): btVector3;
     //XXX
-    public updateProp (r: number, h: number, d: number): void;
+    public updateProp(r: number, h: number, d: number): void;
   }
 
   class btCylinderShapeX extends btCylinderShape {
-    constructor (halfExtents: btVector3);
-    public setMargin (margin: number): void;
-    public getMargin (): number;
+    constructor(halfExtents: btVector3);
+    public setMargin(margin: number): void;
+    public getMargin(): number;
   }
 
   class btCylinderShapeZ extends btCylinderShape {
-    constructor (halfExtents: btVector3);
-    public setMargin (margin: number): void;
-    public getMargin (): number;
+    constructor(halfExtents: btVector3);
+    public setMargin(margin: number): void;
+    public getMargin(): number;
   }
 
   class btSphereShape extends btCollisionShape {
-    constructor (radius: number);
-    public setMargin (margin: number): void;
-    public getMargin (): number;
-    public setUnscaledRadius (radius: number): void;
+    constructor(radius: number);
+    public setMargin(margin: number): void;
+    public getMargin(): number;
+    public setUnscaledRadius(radius: number): void;
   }
 
   class btConeShape extends btCollisionShape {
-    constructor (radius: number, height: number);
-    public setConeUpIndex (i: number): void;
-    public setHeight (h: number): void;
-    public setRadius (r: number): void;
+    constructor(radius: number, height: number);
+    public setConeUpIndex(i: number): void;
+    public setHeight(h: number): void;
+    public setRadius(r: number): void;
   }
 
   class btConvexHullShape extends btCollisionShape {
-    constructor (points?: number[], numPoints?: number);
-    public addPoint (point: btVector3, recalculateLocalAABB?: boolean): void;
-    public setMargin (margin: number): void;
-    public getMargin (): number;
-    public getNumVertices (): number;
-    public initializePolyhedralFeatures (shiftVerticesByMargin: number): boolean;
+    constructor(points?: number[], numPoints?: number);
+    public addPoint(point: btVector3, recalculateLocalAABB?: boolean): void;
+    public setMargin(margin: number): void;
+    public getMargin(): number;
+    public getNumVertices(): number;
+    public initializePolyhedralFeatures(shiftVerticesByMargin: number): boolean;
   }
 
   class btShapeHull {
-    constructor (shape: btConvexShape);
-    public buildHull (margin: number): boolean;
-    public numVertices (): number;
-    public getVertexPointer (): btVector3;
+    constructor(shape: btConvexShape);
+    public buildHull(margin: number): boolean;
+    public numVertices(): number;
+    public getVertexPointer(): btVector3;
   }
 
   class btConeShapeX extends btConeShape {
-    constructor (radius: number, height: number);
+    constructor(radius: number, height: number);
   }
 
   class btConeShapeZ extends btConeShape {
-    constructor (radius: number, height: number);
+    constructor(radius: number, height: number);
   }
 
   class btCompoundShape extends btCollisionShape {
-    constructor (enableDynamicAabbTree?: boolean);
-    public addChildShape (localTransform: btTransform, shape: btCollisionShape): void;
-    public removeChildShape (shape: btCollisionShape): void;
-    public removeChildShapeByIndex (childShapeindex: number): void;
-    public getNumChildShapes (): number;
-    public getChildShape (index: number): btCollisionShape;
-    public setMargin (margin: number): void;
-    public getMargin (): number;
-    public updateChildTransform (childIndex: number, newChildTransform: btTransform, shouldRecalculateLocalAabb?: boolean): void;
-    public setMaterial (childShapeindex: number, f: number, r: number, rf?: number, sf?: number, m?: number): void;
+    constructor(enableDynamicAabbTree?: boolean);
+    public addChildShape(localTransform: btTransform, shape: btCollisionShape): void;
+    public removeChildShape(shape: btCollisionShape): void;
+    public removeChildShapeByIndex(childShapeindex: number): void;
+    public getNumChildShapes(): number;
+    public getChildShape(index: number): btCollisionShape;
+    public setMargin(margin: number): void;
+    public getMargin(): number;
+    public updateChildTransform(childIndex: number, newChildTransform: btTransform, shouldRecalculateLocalAabb?: boolean): void;
+    public setMaterial(childShapeindex: number, f: number, r: number, rf?: number, sf?: number, m?: number): void;
   }
 
   class btStridingMeshInterface { }
 
   class btTriangleMesh extends btStridingMeshInterface {
-    constructor (use32bitIndices?: boolean, use4componentVertices?: boolean);
-    public addTriangle (
+    constructor(use32bitIndices?: boolean, use4componentVertices?: boolean);
+    public addTriangle(
       vertex0: btVector3,
       vertex1: btVector3,
       vertex2: btVector3,
@@ -473,17 +483,17 @@ declare namespace Ammo {
   class btConcaveShape extends btCollisionShape { }
 
   class btStaticPlaneShape extends btConcaveShape {
-    constructor (planeNormal: btVector3, planeConstant: number);
+    constructor(planeNormal: btVector3, planeConstant: number);
     // [Const, Ref] btVector3 getPlaneNormal();
-    getPlaneNormal (): btVector3;
+    getPlaneNormal(): btVector3;
     // void setPlaneConstant(float v);
-    setPlaneConstant (v: number): void;
+    setPlaneConstant(v: number): void;
   }
 
   class btTriangleMeshShape extends btConcaveShape { }
 
   class btBvhTriangleMeshShape extends btTriangleMeshShape {
-    constructor (
+    constructor(
       meshInterface: btStridingMeshInterface,
       useQuantizedAabbCompression: boolean,
       buildBvh?: boolean,
@@ -491,7 +501,7 @@ declare namespace Ammo {
   }
 
   class btHeightfieldTerrainShape extends btConcaveShape {
-    constructor (
+    constructor(
       heightStickWidth: number,
       heightStickLength: number,
       heightfieldData: VoidPtr,
@@ -502,8 +512,8 @@ declare namespace Ammo {
       hdt: string | number,
       flipQuadEdges: boolean,
     );
-    public setMargin (margin: number): void;
-    public getMargin (): number;
+    public setMargin(margin: number): void;
+    public getMargin(): number;
   }
 
   class btDefaultCollisionConstructionInfo {
@@ -513,29 +523,29 @@ declare namespace Ammo {
     m_defaultMaxCollisionAlgorithmPoolSize: number | 1;
     m_customCollisionAlgorithmMaxElementSize: number | 1;
     m_useEpaPenetrationAlgorithm: number | 1;
-    constructor ();
+    constructor();
   }
 
   class btDefaultCollisionConfiguration {
-    constructor (info?: btDefaultCollisionConstructionInfo);
+    constructor(info?: btDefaultCollisionConstructionInfo);
   }
 
   class btPersistentManifold {
-    constructor ();
-    public getBody0 (): btCollisionObject;
-    public getBody1 (): btCollisionObject;
-    public getNumContacts (): number;
-    public getContactPoint (index: number): btManifoldPoint;
+    constructor();
+    public getBody0(): btCollisionObject;
+    public getBody1(): btCollisionObject;
+    public getNumContacts(): number;
+    public getContactPoint(index: number): btManifoldPoint;
   }
 
   class btDispatcher {
-    public getNumManifolds (): number;
-    public getManifoldByIndexInternal (index: number): btPersistentManifold;
+    public getNumManifolds(): number;
+    public getManifoldByIndexInternal(index: number): btPersistentManifold;
   }
 
   class btCollisionDispatcher extends btDispatcher {
-    constructor (conf: btDefaultCollisionConfiguration);
-    public setDispatcherFlags (flags: number): void;
+    constructor(conf: btDefaultCollisionConfiguration);
+    public setDispatcherFlags(flags: number): void;
   }
 
   class btOverlappingPairCallback { }
@@ -544,13 +554,13 @@ declare namespace Ammo {
   class ccOverlapFilterCallback implements btOverlapFilterCallback { }
 
   class btOverlappingPairCache {
-    public setInternalGhostPairCallback (x: btOverlappingPairCallback): void;
-    getNumOverlappingPairs (): number;
-    public setOverlapFilterCallback (x: btOverlapFilterCallback): void;
+    public setInternalGhostPairCallback(x: btOverlappingPairCallback): void;
+    getNumOverlappingPairs(): number;
+    public setOverlapFilterCallback(x: btOverlapFilterCallback): void;
   }
 
   class btAxisSweep3 {
-    constructor (
+    constructor(
       worldAabbMin: btVector3,
       worldAabbMax: btVector3,
       maxHandles?: number,
@@ -560,13 +570,13 @@ declare namespace Ammo {
   }
 
   class btBroadphaseInterface {
-    getOverlappingPairCache (): btOverlappingPairCache;
+    getOverlappingPairCache(): btOverlappingPairCache;
   }
 
   class btCollisionConfiguration { }
 
   class btDbvtBroadphase extends btBroadphaseInterface {
-    constructor ();
+    constructor();
   }
 
   interface btBroadphaseProxy {
@@ -588,7 +598,7 @@ declare namespace Ammo {
     public m_additionalLinearDampingThresholdSqr: number;
     public m_additionalAngularDampingThresholdSqr: number;
     public m_additionalAngularDampingFactor: number;
-    constructor (
+    constructor(
       mass: number,
       motionState: btMotionState,
       collisionShape: btCollisionShape,
@@ -597,64 +607,64 @@ declare namespace Ammo {
   }
 
   class btRigidBody extends btCollisionObject {
-    constructor (constructionInfo: btRigidBodyConstructionInfo);
-    public getCenterOfMassTransform (): btTransform;
-    public setCenterOfMassTransform (xform: btTransform): void;
-    public setSleepingThresholds (linear: number, angular: number): void;
-    public getLinearSleepingThreshold (): number;
-    public getLinearDamping (): number;
-    public getAngularDamping (): number;
-    public setDamping (lin_damping: number, ang_damping: number): void;
-    public setMassProps (mass: number, inertia: btVector3): void;
-    public setLinearFactor (linearFactor: btVector3): void;
-    public applyTorque (torque: btVector3): void;
-    public applyLocalTorque (torque: btVector3): void;
-    public applyForce (force: btVector3, rel_pos: btVector3): void;
-    public applyCentralForce (force: btVector3): void;
-    public applyCentralLocalForce (force: btVector3): void;
-    public applyTorqueImpulse (torque: btVector3): void;
-    public applyImpulse (impulse: btVector3, rel_pos: btVector3): void;
-    public applyCentralImpulse (impulse: btVector3): void;
-    public updateInertiaTensor (): void;
-    public getLinearVelocity (): btVector3;
-    public getAngularVelocity (): btVector3;
-    public setLinearVelocity (lin_vel: btVector3): void;
-    public setAngularVelocity (ang_vel: btVector3): void;
-    public getMotionState (): btMotionState;
-    public setMotionState (motionState: btMotionState): void;
-    public setAngularFactor (angularFactor: btVector3): void;
-    public getAngularFactor (): btVector3;
-    public getLinearFactor (): btVector3;
-    public upcast (colObj: btCollisionObject): btRigidBody;
-    public getAabb (aabbMin: btVector3, aabbMax: btVector3): void;
-    public applyGravity (): void;
-    public getGravity (): btVector3;
-    public setGravity (acceleration: btVector3): void;
-    public getBroadphaseProxy (): btBroadphaseProxy;
-    public getFlags (): number;
-    public setFlags (flags: number): void;
-    public wantsSleeping (): boolean;
-    public clearForces (): void;
-    public getTotalForce (): btVector3;
-    public getTotalTorque (): btVector3;
+    constructor(constructionInfo: btRigidBodyConstructionInfo);
+    public getCenterOfMassTransform(): btTransform;
+    public setCenterOfMassTransform(xform: btTransform): void;
+    public setSleepingThresholds(linear: number, angular: number): void;
+    public getLinearSleepingThreshold(): number;
+    public getLinearDamping(): number;
+    public getAngularDamping(): number;
+    public setDamping(lin_damping: number, ang_damping: number): void;
+    public setMassProps(mass: number, inertia: btVector3): void;
+    public setLinearFactor(linearFactor: btVector3): void;
+    public applyTorque(torque: btVector3): void;
+    public applyLocalTorque(torque: btVector3): void;
+    public applyForce(force: btVector3, rel_pos: btVector3): void;
+    public applyCentralForce(force: btVector3): void;
+    public applyCentralLocalForce(force: btVector3): void;
+    public applyTorqueImpulse(torque: btVector3): void;
+    public applyImpulse(impulse: btVector3, rel_pos: btVector3): void;
+    public applyCentralImpulse(impulse: btVector3): void;
+    public updateInertiaTensor(): void;
+    public getLinearVelocity(): btVector3;
+    public getAngularVelocity(): btVector3;
+    public setLinearVelocity(lin_vel: btVector3): void;
+    public setAngularVelocity(ang_vel: btVector3): void;
+    public getMotionState(): btMotionState;
+    public setMotionState(motionState: btMotionState): void;
+    public setAngularFactor(angularFactor: btVector3): void;
+    public getAngularFactor(): btVector3;
+    public getLinearFactor(): btVector3;
+    public upcast(colObj: btCollisionObject): btRigidBody;
+    public getAabb(aabbMin: btVector3, aabbMax: btVector3): void;
+    public applyGravity(): void;
+    public getGravity(): btVector3;
+    public setGravity(acceleration: btVector3): void;
+    public getBroadphaseProxy(): btBroadphaseProxy;
+    public getFlags(): number;
+    public setFlags(flags: number): void;
+    public wantsSleeping(): boolean;
+    public clearForces(): void;
+    public getTotalForce(): btVector3;
+    public getTotalTorque(): btVector3;
 
     //XXX
-    public clearState (): void;
+    public clearState(): void;
   }
 
   class btConstraintSetting {
     public m_tau: number;
     public m_damping: number;
     public m_impulseClamp: number;
-    constructor ();
+    constructor();
   }
 
   class btTypedConstraint {
-    public enableFeedback (needsFeedback: boolean): void;
-    public getBreakingImpulseThreshold (): number;
-    public setBreakingImpulseThreshold (threshold: number): void;
-    public getParam (num: number, axis: number): number;
-    public setParam (num: number, value: number, axis: number): void;
+    public enableFeedback(needsFeedback: boolean): void;
+    public getBreakingImpulseThreshold(): number;
+    public setBreakingImpulseThreshold(threshold: number): void;
+    public getParam(num: number, axis: number): number;
+    public setParam(num: number, value: number, axis: number): void;
   }
 
   enum btConstraintParams {
@@ -667,81 +677,81 @@ declare namespace Ammo {
   class btPoint2PointConstraint extends btTypedConstraint {
 
     public m_setting: btConstraintSetting;
-    constructor (
+    constructor(
       rbA: btRigidBody,
       rbB: btRigidBody,
       pivotInA: btVector3,
       pivotInB: btVector3,
     );
-    constructor (rbA: btRigidBody, pivotInA: btVector3);
-    public setPivotA (pivotA: btVector3): void;
-    public setPivotB (pivotB: btVector3): void;
-    public getPivotInA (): btVector3;
-    public getPivotInB (): btVector3;
+    constructor(rbA: btRigidBody, pivotInA: btVector3);
+    public setPivotA(pivotA: btVector3): void;
+    public setPivotB(pivotB: btVector3): void;
+    public getPivotInA(): btVector3;
+    public getPivotInB(): btVector3;
   }
 
   class btGeneric6DofConstraint extends btTypedConstraint {
-    constructor (
+    constructor(
       rbA: btRigidBody,
       rbB: btRigidBody,
       frameInA: btTransform,
       frameInB: btTransform,
       useLinearFrameReferenceFrameA: boolean,
     );
-    constructor (
+    constructor(
       rbB: btRigidBody,
       frameInB: btTransform,
       useLinearFrameReferenceFrameB: boolean,
     );
-    public setLinearLowerLimit (linearLower: btVector3): void;
-    public setLinearUpperLimit (linearUpper: btVector3): void;
-    public setAngularLowerLimit (angularLower: btVector3): void;
-    public setAngularUpperLimit (angularUpper: btVector3): void;
-    public getFrameOffsetA (): btTransform;
+    public setLinearLowerLimit(linearLower: btVector3): void;
+    public setLinearUpperLimit(linearUpper: btVector3): void;
+    public setAngularLowerLimit(angularLower: btVector3): void;
+    public setAngularUpperLimit(angularUpper: btVector3): void;
+    public getFrameOffsetA(): btTransform;
   }
 
   class btGeneric6DofSpringConstraint extends btGeneric6DofConstraint {
-    constructor (
+    constructor(
       rbA: btRigidBody,
       rbB: btRigidBody,
       frameInA: btTransform,
       frameInB: btTransform,
       useLinearFrameReferenceFrameA: boolean,
     );
-    constructor (
+    constructor(
       rbB: btRigidBody,
       frameInB: btTransform,
       useLinearFrameReferenceFrameB: boolean,
     );
-    public enableSpring (index: number, onOff: boolean): void;
-    public setStiffness (index: number, stiffness: number): void;
-    public setDamping (index: number, damping: number): void;
+    public enableSpring(index: number, onOff: boolean): void;
+    public setStiffness(index: number, stiffness: number): void;
+    public setDamping(index: number, damping: number): void;
   }
 
   class btSequentialImpulseConstraintSolver {
-    constructor ();
+    constructor();
   }
 
   class btConeTwistConstraint extends btTypedConstraint {
-    constructor (
+    constructor(
       rbA: btRigidBody,
       rbB: btRigidBody,
       rbAFrame: btTransform,
       rbBFrame: btTransform,
     );
-    constructor (rbA: btRigidBody, rbAFrame: btTransform);
-    public setLimit (limitIndex: number, limitValue: number): void;
-    public setAngularOnly (angularOnly: boolean): void;
-    public setDamping (damping: number): void;
-    public enableMotor (b: boolean): void;
-    public setMaxMotorImpulse (maxMotorImpulse: number): void;
-    public setMaxMotorImpulseNormalized (maxMotorImpulse: number): void;
-    public setMotorTarget (q: btQuaternion): void;
-    public setMotorTargetInConstraintSpace (q: btQuaternion): void;
+    constructor(rbA: btRigidBody, rbAFrame: btTransform);
+    public setLimit(limitIndex: number, limitValue: number): void;
+    public setAngularOnly(angularOnly: boolean): void;
+    public setDamping(damping: number): void;
+    public enableMotor(b: boolean): void;
+    public setMaxMotorImpulse(maxMotorImpulse: number): void;
+    public setMaxMotorImpulseNormalized(maxMotorImpulse: number): void;
+    public setMotorTarget(q: btQuaternion): void;
+    public setMotorTargetInConstraintSpace(q: btQuaternion): void;
   }
 
   class btHingeConstraint extends btTypedConstraint {
-    constructor (
+    constructor(
       rbA: btRigidBody,
       rbB: btRigidBody,
       pivotInA: btVector3,
@@ -750,57 +760,57 @@ declare namespace Ammo {
       axisInB: btVector3,
       useReferenceFrameA?: boolean,
     );
-    constructor (
+    constructor(
       rbA: btRigidBody,
       rbB: btRigidBody,
       rbAFrame: btTransform,
       rbBFrame: btTransform,
       useReferenceFrameA?: boolean,
     );
-    constructor (
+    constructor(
       rbA: btRigidBody,
       rbAFrame: btTransform,
       useReferenceFrameA?: boolean,
     );
-    public setLimit (
+    public setLimit(
       low: number,
       high: number,
       softness: number,
       biasFactor: number,
       relaxationFactor?: number,
     ): void;
-    public enableAngularMotor (
+    public enableAngularMotor(
       enableMotor: boolean,
       targetVelocity: number,
       maxMotorImpulse: number,
     ): void;
-    public setAngularOnly (angularOnly: boolean): void;
-    public enableMotor (enableMotor: boolean): void;
-    public setMaxMotorImpulse (maxMotorImpulse: number): void;
-    public setMotorTarget (targetAngle: number, dt: number): void;
+    public setAngularOnly(angularOnly: boolean): void;
+    public enableMotor(enableMotor: boolean): void;
+    public setMaxMotorImpulse(maxMotorImpulse: number): void;
+    public setMotorTarget(targetAngle: number, dt: number): void;
   }
 
   class btSliderConstraint extends btTypedConstraint {
-    constructor (
+    constructor(
       rbA: btRigidBody,
       rbB: btRigidBody,
       frameInA: btTransform,
       frameInB: btTransform,
       useLinearReferenceFrameA: boolean,
     );
-    constructor (
+    constructor(
       rbB: btRigidBody,
       frameInB: btTransform,
       useLinearReferenceFrameA: boolean,
     );
-    public setLowerLinLimit (lowerLimit: number): void;
-    public setUpperLinLimit (upperLimit: number): void;
-    public setLowerAngLimit (lowerAngLimit: number): void;
-    public setUpperAngLimit (upperAngLimit: number): void;
+    public setLowerLinLimit(lowerLimit: number): void;
+    public setUpperLinLimit(upperLimit: number): void;
+    public setLowerAngLimit(lowerAngLimit: number): void;
+    public setUpperAngLimit(upperAngLimit: number): void;
   }
 
   class btFixedConstraint extends btTypedConstraint {
-    constructor (
+    constructor(
       rbA: btRigidBody,
       rbB: btRigidBody,
       frameInA: btTransform,
@@ -825,48 +835,48 @@ declare namespace Ammo {
   }
 
   class btCollisionWorld {
-    public getDispatcher (): btDispatcher;
-    public rayTest (
+    public getDispatcher(): btDispatcher;
+    public rayTest(
       rayFromWorld: btVector3,
       rayToWorld: btVector3,
       resultCallback: RayResultCallback,
     ): void;
-    public rayTestSingle (rayFromWorld: btTransform, rayToWorld: btTransform, co: btCollisionObject, cs: btCollisionShape, coTran: btTransform, resultCallback: RayResultCallback);
-    public getPairCache (): btOverlappingPairCache;
-    public getDispatchInfo (): btDispatcherInfo;
-    public addCollisionObject (
+    public rayTestSingle(rayFromWorld: btTransform, rayToWorld: btTransform, co: btCollisionObject, cs: btCollisionShape, coTran: btTransform, resultCallback: RayResultCallback);
+    public getPairCache(): btOverlappingPairCache;
+    public getDispatchInfo(): btDispatcherInfo;
+    public addCollisionObject(
       collisionObject: btCollisionObject,
       collisionFilterGroup?: number,
       collisionFilterMask?: number,
     ): void;
-    public removeCollisionObject (collisionObject: btCollisionObject): void;
-    public getBroadphase (): btBroadphaseInterface;
-    public convexSweepTest (
+    public removeCollisionObject(collisionObject: btCollisionObject): void;
+    public getBroadphase(): btBroadphaseInterface;
+    public convexSweepTest(
       castShape: btConvexShape,
       from: btTransform,
       to: btTransform,
       resultCallback: ConvexResultCallback,
       allowedCcdPenetration: number,
     ): void;
-    public contactPairTest (
+    public contactPairTest(
       colObjA: btCollisionObject,
       colObjB: btCollisionObject,
       resultCallback: ContactResultCallback,
     ): void;
-    public contactTest (
+    public contactTest(
       colObj: btCollisionObject,
       resultCallback: ContactResultCallback,
     ): void;
-    public updateSingleAabb (colObj: btCollisionObject): void;
-    public setDebugDrawer (debugDrawer: btIDebugDraw): void;
-    public getDebugDrawer (): btIDebugDraw;
-    public debugDrawWorld (): void;
-    public debugDrawObject (
+    public updateSingleAabb(colObj: btCollisionObject): void;
+    public setDebugDrawer(debugDrawer: btIDebugDraw): void;
+    public getDebugDrawer(): btIDebugDraw;
+    public debugDrawWorld(): void;
+    public debugDrawObject(
       worldTransform: btTransform,
       shape: btCollisionShape,
       color: btVector3,
     ): void;
-    public setContactBreakingThreshold (b: number): void;
+    public setContactBreakingThreshold(b: number): void;
   }
 
   class btContactSolverInfo {
@@ -876,43 +886,47 @@ declare namespace Ammo {
   }
 
   class btDynamicsWorld extends btCollisionWorld {
-    public addAction (action: btActionInterface): void;
-    public removeAction (action: btActionInterface): void;
-    public getSolverInfo (): btContactSolverInfo;
+    public addAction(action: btActionInterface): void;
+    public removeAction(action: btActionInterface): void;
+    public getSolverInfo(): btContactSolverInfo;
   }
 
   class btDiscreteDynamicsWorld extends btDynamicsWorld {
-    constructor (
+    constructor(
       dispatcher: btDispatcher,
       pairCache: btBroadphaseInterface,
       constraintSolver: btConstraintSolver,
       collisionConfiguration: btCollisionConfiguration,
     );
-    public setGravity (gravity: btVector3): void;
-    public getGravity (): btVector3;
-    public addRigidBody (body: btRigidBody): void;
-    public addRigidBody (body: btRigidBody, group: number, mask: number): void;
-    public removeRigidBody (body: btRigidBody): void;
-    public addConstraint (
+    public setGravity(gravity: btVector3): void;
+    public getGravity(): btVector3;
+    public addRigidBody(body: btRigidBody): void;
+    public addRigidBody(body: btRigidBody, group: number, mask: number): void;
+    public removeRigidBody(body: btRigidBody): void;
+    public addConstraint(
       constraint: btTypedConstraint,
       disableCollisionsBetweenLinkedBodies?: boolean,
     ): void;
-    public removeConstraint (constraint: btTypedConstraint): void;
-    public stepSimulation (
+    public removeConstraint(constraint: btTypedConstraint): void;
+    public stepSimulation(
       timeStep: number,
       maxSubSteps?: number,
       fixedTimeStep?: number,
     ): number;
 
     // Contact callback support
-    public setContactAddedCallback (funcpointer: number): void;
-    public setContactProcessedCallback (funcpointer: number): void;
-    public setContactDestroyedCallback (funcpointer: number): void;
+    public setContactAddedCallback(funcpointer: number): void;
+    public setContactProcessedCallback(funcpointer: number): void;
+    public setContactDestroyedCallback(funcpointer: number): void;
   }
 
   class ccDiscreteDynamicsWorld extends btDiscreteDynamicsWorld {
-    public setAllowSleep (v:boolean): void;
-    public setDeactivationTime (v:number): void;
+    public setAllowSleep(v: boolean): void;
+    public setDeactivationTime(v: number): void;
+    public setNarrowPhaseMethod(v: number): void;
+    public setAllowCcdPenetration(v: number): void;
+    public setCcdCastCheckResponse(v: boolean): void;
+    public getCcdTriggerRecorder(): btNumberArray;
   }
 
   class btVehicleTuning {
@@ -922,7 +936,7 @@ declare namespace Ammo {
     public m_maxSuspensionTravelCm: number;
     public m_frictionSlip: number;
     public m_maxSuspensionForce: number;
-    constructor ();
+    constructor();
   }
 
   class btVehicleRaycasterResult {
@@ -932,7 +946,7 @@ declare namespace Ammo {
   }
 
   class btVehicleRaycaster {
-    public castRay (
+    public castRay(
       from: btVector3,
       to: btVector3,
       result: btVehicleRaycasterResult,
@@ -941,9 +955,9 @@ declare namespace Ammo {
 
   class btDefaultVehicleRaycaster extends btVehicleRaycaster {
     // constructor (world: btDynamicsWorld);
-    public addAction (action: btActionInterface): void;
-    public removeAction (action: btActionInterface): void;
-    public getSolverInfo (): btContactSolverInfo;
+    public addAction(action: btActionInterface): void;
+    public removeAction(action: btActionInterface): void;
+    public getSolverInfo(): btContactSolverInfo;
   }
 
   class RaycastInfo {
@@ -997,57 +1011,57 @@ declare namespace Ammo {
     public m_clippedInvContactDotSuspension: number;
     public m_suspensionRelativeVelocity: number;
     public m_skidInfo: number;
-    constructor (ci: btWheelInfoConstructionInfo);
-    public getSuspensionRestLength (): number;
-    public updateWheel (chassis: btRigidBody, raycastInfo: RaycastInfo): void;
+    constructor(ci: btWheelInfoConstructionInfo);
+    public getSuspensionRestLength(): number;
+    public updateWheel(chassis: btRigidBody, raycastInfo: RaycastInfo): void;
   }
 
   class btActionInterface {
-    public updateAction (collisionWorld: btCollisionWorld, deltaTimeStep: number): void;
+    public updateAction(collisionWorld: btCollisionWorld, deltaTimeStep: number): void;
   }
 
   class btKinematicCharacterController extends btActionInterface {
-    constructor (
+    constructor(
       ghostObject: btPairCachingGhostObject,
       convexShape: btConvexShape,
       stepHeight: number,
       upAxis?: btVector3,
     );
-    public setUpAxis (axis: number): void;
-    public setWalkDirection (walkDirection: btVector3): void;
-    public setVelocityForTimeInterval (velocity: btVector3, timeInterval: number): void;
-    public warp (origin: btVector3): void;
-    public preStep (collisionWorld: btCollisionWorld): void;
-    public playerStep (collisionWorld: btCollisionWorld, dt: number): void;
-    public setFallSpeed (fallSpeed: number): void;
-    public setJumpSpeed (jumpSpeed: number): void;
-    public setMaxJumpHeight (maxJumpHeight: number): void;
-    public canJump (): boolean;
-    public jump (v?: btVector3): void;
-    public setGravity (gravity: btVector3): void;
-    public getGravity (): number;
-    public setMaxSlope (slopeRadians: number): void;
-    public getMaxSlope (): number;
-    public getGhostObject (): btPairCachingGhostObject;
-    public setUseGhostSweepTest (useGhostObjectSweepTest: boolean): void;
-    public onGround (): boolean;
-    public setUpInterpolate (value: boolean): void;
+    public setUpAxis(axis: number): void;
+    public setWalkDirection(walkDirection: btVector3): void;
+    public setVelocityForTimeInterval(velocity: btVector3, timeInterval: number): void;
+    public warp(origin: btVector3): void;
+    public preStep(collisionWorld: btCollisionWorld): void;
+    public playerStep(collisionWorld: btCollisionWorld, dt: number): void;
+    public setFallSpeed(fallSpeed: number): void;
+    public setJumpSpeed(jumpSpeed: number): void;
+    public setMaxJumpHeight(maxJumpHeight: number): void;
+    public canJump(): boolean;
+    public jump(v?: btVector3): void;
+    public setGravity(gravity: btVector3): void;
+    public getGravity(): number;
+    public setMaxSlope(slopeRadians: number): void;
+    public getMaxSlope(): number;
+    public getGhostObject(): btPairCachingGhostObject;
+    public setUseGhostSweepTest(useGhostObjectSweepTest: boolean): void;
+    public onGround(): boolean;
+    public setUpInterpolate(value: boolean): void;
   }
 
   class btRaycastVehicle extends btActionInterface {
-    constructor (
+    constructor(
       tuning: btVehicleTuning,
       chassis: btRigidBody,
       raycaster: btVehicleRaycaster,
     );
-    public applyEngineForce (force: number, wheel: number): void;
-    public setSteeringValue (steering: number, wheel: number): void;
-    public getWheelTransformWS (wheelIndex: number): btTransform;
-    public updateWheelTransform (
+    public applyEngineForce(force: number, wheel: number): void;
+    public setSteeringValue(steering: number, wheel: number): void;
+    public getWheelTransformWS(wheelIndex: number): btTransform;
+    public updateWheelTransform(
       wheelIndex: number,
       interpolatedTransform: boolean,
     ): void;
-    public addWheel (
+    public addWheel(
       connectionPointCS0: btVector3,
       wheelDirectionCS0: btVector3,
       wheelAxleCS: btVector3,
@@ -1056,50 +1070,50 @@ declare namespace Ammo {
       tuning: btVehicleTuning,
       isFrontWheel: boolean,
     ): btWheelInfo;
-    public getNumWheels (): number;
-    public getRigidBody (): btRigidBody;
-    public getWheelInfo (index: number): btWheelInfo;
-    public setBrake (brake: number, wheelIndex: number): void;
-    public setCoordinateSystem (
+    public getNumWheels(): number;
+    public getRigidBody(): btRigidBody;
+    public getWheelInfo(index: number): btWheelInfo;
+    public setBrake(brake: number, wheelIndex: number): void;
+    public setCoordinateSystem(
       rightIndex: number,
       upIndex: number,
       forwardIndex: number,
     ): void;
-    public getCurrentSpeedKmHour (): number;
-    public getChassisWorldTransform (): btTransform;
-    public rayCast (wheel: btWheelInfo): number;
-    public updateVehicle (step: number): void;
-    public resetSuspension (): void;
-    public getSteeringValue (wheel: number): number;
-    public updateWheelTransformsWS (
+    public getCurrentSpeedKmHour(): number;
+    public getChassisWorldTransform(): btTransform;
+    public rayCast(wheel: btWheelInfo): number;
+    public updateVehicle(step: number): void;
+    public resetSuspension(): void;
+    public getSteeringValue(wheel: number): number;
+    public updateWheelTransformsWS(
       wheel: btWheelInfo,
       interpolatedTransform?: boolean,
     ): void;
-    public setPitchControl (pitch: number): void;
-    public updateSuspension (deltaTime: number): void;
-    public updateFriction (timeStep: number): void;
-    public getRightAxis (): number;
-    public getUpAxis (): number;
-    public getForwardAxis (): number;
-    public getForwardVector (): btVector3;
-    public getUserConstraintType (): number;
-    public setUserConstraintType (userConstraintType: number): void;
-    public setUserConstraintId (uid: number): void;
-    public getUserConstraintId (): number;
+    public setPitchControl(pitch: number): void;
+    public updateSuspension(deltaTime: number): void;
+    public updateFriction(timeStep: number): void;
+    public getRightAxis(): number;
+    public getUpAxis(): number;
+    public getForwardAxis(): number;
+    public getForwardVector(): btVector3;
+    public getUserConstraintType(): number;
+    public setUserConstraintType(userConstraintType: number): void;
+    public setUserConstraintId(uid: number): void;
+    public getUserConstraintId(): number;
   }
 
   class btGhostObject extends btCollisionObject {
-    constructor ();
-    public getNumOverlappingObjects (): number;
-    public getOverlappingObject (index: number): btCollisionObject;
+    constructor();
+    public getNumOverlappingObjects(): number;
+    public getOverlappingObject(index: number): btCollisionObject;
   }
 
   class btPairCachingGhostObject extends btGhostObject {
-    constructor ();
+    constructor();
   }
 
   class btGhostPairCallback {
-    constructor ();
+    constructor();
   }
 
   class btSoftBodyWorldInfo {
@@ -1111,7 +1125,7 @@ declare namespace Ammo {
     public m_broadphase: btBroadphaseInterface;
     public m_dispatcher: btDispatcher;
     public m_gravity: btVector3;
-    constructor ();
+    constructor();
   }
 
   class Node {
@@ -1125,8 +1139,8 @@ declare namespace Ammo {
   }
 
   class tNodeArray {
-    public size (): number;
-    public at (n: number): Node;
+    public size(): number;
+    public at(n: number): Node;
   }
 
   class Material {
@@ -1137,8 +1151,8 @@ declare namespace Ammo {
   }
 
   class tMaterialArray {
-    public size (): number;
-    public at (n: number): Material;
+    public size(): number;
+    public at(n: number): Material;
   }
 
   class Anchor {
@@ -1152,11 +1166,11 @@ declare namespace Ammo {
   }
 
   class tAnchorArray {
-    public size (): number;
-    public at (n: number): Anchor;
-    public clear (): void;
-    public push_back (val: Anchor): void;
-    public pop_back (): void;
+    public size(): number;
+    public at(n: number): Anchor;
+    public clear(): void;
+    public push_back(val: Anchor): void;
+    public pop_back(): void;
   }
 
   class Config {
@@ -1192,100 +1206,100 @@ declare namespace Ammo {
     public m_nodes: tNodeArray;
     public m_materials: tMaterialArray;
     public m_anchors: tAnchorArray;
-    constructor (
+    constructor(
       worldInfo: btSoftBodyWorldInfo,
       node_count: number,
       x: btVector3,
       m: number[],
     );
-    public checkLink (node0: number, node1: number): boolean;
-    public checkFace (node0: number, node1: number, node2: number): boolean;
-    public appendMaterial (): Material;
-    public appendNode (x: btVector3, m: number): void;
-    public appendLink (
+    public checkLink(node0: number, node1: number): boolean;
+    public checkFace(node0: number, node1: number, node2: number): boolean;
+    public appendMaterial(): Material;
+    public appendNode(x: btVector3, m: number): void;
+    public appendLink(
       node0: number,
       node1: number,
       mat: Material,
       bcheckexist: boolean,
     ): void;
-    public appendFace (
+    public appendFace(
       node0: number,
       node1: number,
       node2: number,
       mat: Material,
     ): void;
-    public appendTetra (
+    public appendTetra(
       node0: number,
       node1: number,
       node2: number,
       node3: number,
       mat: Material,
     ): void;
-    public appendAnchor (
+    public appendAnchor(
       node: number,
       body: btRigidBody,
       disableCollisionBetweenLinkedBodies: boolean,
       influence: number,
     ): void;
-    public addForce (force: btVector3): void;
-    public addForce (force: btVector3, node: number): void;
-    public addAeroForceToNode (windVelocity: btVector3, nodeIndex: number): void;
-    public getTotalMass (): number;
-    public setTotalMass (mass: number, fromfaces: boolean): void;
-    public setMass (node: number, mass: number): void;
-    public transform (trs: btTransform): void;
-    public translate (trs: btVector3): void;
-    public rotate (rot: btQuaternion): void;
-    public scale (scl: btVector3): void;
-    public generateClusters (k: number, maxiterations?: number): number;
-    public generateBendingConstraints (distance: number, mat: Material): number;
-    public upcast (colObj: btCollisionObject): btSoftBody;
+    public addForce(force: btVector3): void;
+    public addForce(force: btVector3, node: number): void;
+    public addAeroForceToNode(windVelocity: btVector3, nodeIndex: number): void;
+    public getTotalMass(): number;
+    public setTotalMass(mass: number, fromfaces: boolean): void;
+    public setMass(node: number, mass: number): void;
+    public transform(trs: btTransform): void;
+    public translate(trs: btVector3): void;
+    public rotate(rot: btQuaternion): void;
+    public scale(scl: btVector3): void;
+    public generateClusters(k: number, maxiterations?: number): number;
+    public generateBendingConstraints(distance: number, mat: Material): number;
+    public upcast(colObj: btCollisionObject): btSoftBody;
   }
 
   class btSoftBodyRigidBodyCollisionConfiguration extends btDefaultCollisionConfiguration {
-    constructor (info?: btDefaultCollisionConstructionInfo);
+    constructor(info?: btDefaultCollisionConstructionInfo);
   }
 
   class btSoftBodySolver { }
 
   class btDefaultSoftBodySolver extends btSoftBodySolver {
-    constructor ();
+    constructor();
   }
 
   class btSoftBodyArray {
-    public size (): number;
-    public at (n: number): btSoftBody;
+    public size(): number;
+    public at(n: number): btSoftBody;
   }
 
   class btSoftRigidDynamicsWorld extends btDiscreteDynamicsWorld {
-    constructor (
+    constructor(
       dispatcher: btDispatcher,
       pairCache: btBroadphaseInterface,
       constraintSolver: btConstraintSolver,
       collisionConfiguration: btCollisionConfiguration,
       softBodySolver: btSoftBodySolver,
     );
-    public addSoftBody (
+    public addSoftBody(
       body: btSoftBody,
       collisionFilterGroup: number,
       collisionFilterMask: number,
     ): void;
-    public removeSoftBody (body: btSoftBody): void;
-    public removeCollisionObject (collisionObject: btCollisionObject): void;
-    public getWorldInfo (): btSoftBodyWorldInfo;
-    public getSoftBodyArray (): btSoftBodyArray;
+    public removeSoftBody(body: btSoftBody): void;
+    public removeCollisionObject(collisionObject: btCollisionObject): void;
+    public getWorldInfo(): btSoftBodyWorldInfo;
+    public getSoftBodyArray(): btSoftBodyArray;
   }
 
   class btSoftBodyHelpers {
-    constructor ();
-    public CreateRope (
+    constructor();
+    public CreateRope(
       worldInfo: btSoftBodyWorldInfo,
       from: btVector3,
       to: btVector3,
       res: number,
       fixeds: number,
     ): btSoftBody;
-    public CreatePatch (
+    public CreatePatch(
       worldInfo: btSoftBodyWorldInfo,
       corner00: btVector3,
       corner10: btVector3,
@@ -1296,7 +1310,7 @@ declare namespace Ammo {
       fixeds: number,
       gendiags: boolean,
     ): btSoftBody;
-    public CreatePatchUV (
+    public CreatePatchUV(
       worldInfo: btSoftBodyWorldInfo,
       corner00: btVector3,
       corner10: btVector3,
@@ -1308,20 +1322,20 @@ declare namespace Ammo {
       gendiags: boolean,
       tex_coords: number[],
     ): btSoftBody;
-    public CreateEllipsoid (
+    public CreateEllipsoid(
       worldInfo: btSoftBodyWorldInfo,
       center: btVector3,
       radius: btVector3,
       res: number,
     ): btSoftBody;
-    public CreateFromTriMesh (
+    public CreateFromTriMesh(
       worldInfo: btSoftBodyWorldInfo,
       vertices: number[],
       triangles: number[],
       ntriangles: number,
       randomizeConstraints: boolean,
     ): btSoftBody;
-    public CreateFromConvexHull (
+    public CreateFromConvexHull(
       worldInfo: btSoftBodyWorldInfo,
       vertices: btVector3,
       nvertices: number,

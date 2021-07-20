@@ -920,6 +920,7 @@ interface ccDiscreteDynamicsWorld {
   void setDeactivationTime(float v);
   void setNarrowPhaseMethod(long v);
   void setAllowCcdPenetration(float v);
+  void setCcdCastCheckResponse(boolean v);
   [Ref] btIntArray getCcdTriggerRecorder();
 };
 ccDiscreteDynamicsWorld implements btDiscreteDynamicsWorld;

@@ -10,8 +10,9 @@
 ATTRIBUTE_ALIGNED16(class)
 ccDiscreteDynamicsWorld : public btDiscreteDynamicsWorld {
 private:
-  // ccOverlapFilterCallback m_overlapFilterCallback;
+  ccOverlapFilterCallback m_overlapFilterCallback;
   btAlignedObjectArray<int> m_ccdTriggerRecorder;
+  bool m_ccdCastCheckResponse;
 
 public:
   BT_DECLARE_ALIGNED_ALLOCATOR();
@@ -31,6 +32,14 @@ public:
 
   void setAllowCcdPenetration(btScalar v) {
     m_dispatchInfo.m_allowedCcdPenetration = v;
+  }
+
+  void setCcdCastCheckResponse(bool v) {
+    m_ccdCastCheckResponse = v;
+  }
+
+  bool getCcdCastCheckResponse() const {
+    return m_ccdCastCheckResponse;
   }
 
   btAlignedObjectArray<int> &getCcdTriggerRecorder() {

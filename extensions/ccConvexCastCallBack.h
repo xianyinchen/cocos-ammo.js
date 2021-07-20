@@ -72,6 +72,14 @@ public:
     if (!ClosestConvexResultCallback::needsCollision(proxy0))
       return false;
 
+    /// cast check response?
+    if(!m_world->getCcdCastCheckResponse()) {
+		  btCollisionObject* otherObj = (btCollisionObject*) proxy0->m_clientObject;
+      if (!m_world->getDispatcher()->needsResponse(m_me,otherObj)){        
+			  return false;
+      }
+    }
+
     return true;
   }
 };
