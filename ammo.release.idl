@@ -153,6 +153,8 @@ interface btCollisionObject {
   // [Const] btBroadphaseProxy getBroadphaseHandle();
   // boolean checkCollideWith([Const] btCollisionObject co);
   void setIgnoreCollisionCheck([Const] btCollisionObject co, boolean ig);
+  void setInterpolationWorldTransform([Const,Ref] btTransform trans);
+  [Ref] btTransform getInterpolationWorldTransform();
 };
 
 // [NoDelete]
