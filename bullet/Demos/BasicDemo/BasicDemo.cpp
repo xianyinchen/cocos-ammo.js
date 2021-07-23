@@ -37,7 +37,6 @@ subject to the following restrictions:
 #include "GLDebugDrawer.h"
 #include "LinearMath/btAabbUtil2.h"
 #include "../Extras/ConvexDecomposition/cd_wavefront.cpp"
-#include "../../extensions/ccOverlapFilterCallback.h"
 
 static GLDebugDrawer gDebugDraw;
 
@@ -146,9 +145,6 @@ void	BasicDemo::initPhysics()
 	m_dynamicsWorld->setDebugDrawer(&gDebugDraw);
 
 	m_dynamicsWorld->setGravity(btVector3(0, -10, 0));
-
-	btOverlapFilterCallback * filterCallback = new ccOverlapFilterCallback();
-	m_dynamicsWorld->getPairCache()->setOverlapFilterCallback(filterCallback);
 
 	///create a few basic rigid bodies
 	btBoxShape* groundShape = new btBoxShape(btVector3(btScalar(50.), btScalar(50.), btScalar(50.)));

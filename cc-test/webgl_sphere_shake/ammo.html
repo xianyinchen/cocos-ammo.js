@@ -148,7 +148,6 @@
         var solver = new Ammo.btSequentialImpulseConstraintSolver();
         var dynamicsWorld = new Ammo.ccDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver,
           collisionConfiguration);
-        dynamicsWorld.getPairCache().setOverlapFilterCallback(new Ammo.ccOverlapFilterCallback());
         dynamicsWorld.setGravity(new Ammo.btVector3(0, -10, 0));
 
         var bodies = [];
