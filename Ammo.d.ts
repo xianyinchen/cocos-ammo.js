@@ -181,6 +181,8 @@ declare namespace Ammo {
     public getBroadphaseHandle(): btBroadphaseProxy;
     public checkCollideWith(co: btCollisionObject): boolean;
     public setIgnoreCollisionCheck(co: btCollisionObject, ig: boolean): void;
+    public setInterpolationWorldTransform(trans: btTransform): void;
+    public getInterpolationWorldTransform(): btTransform;
   }
 
   class btCollisionObjectWrapper { }
