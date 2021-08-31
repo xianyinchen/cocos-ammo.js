@@ -65,15 +65,15 @@ protected:
 
 	btScalar	m_collisionMargin;
 
+protected:
+	btVector3	m_localScaling;
+
 	btAlignedObjectArray<btScalar> m_frictions;
 	btAlignedObjectArray<btScalar> m_rollingFrictions;
 	btAlignedObjectArray<btScalar> m_restitutions;
 	btAlignedObjectArray<btScalar> m_spinningFrictions;
 	btAlignedObjectArray<int> m_combinedModes;
 	bool m_isMutiMaterial;
-
-protected:
-	btVector3	m_localScaling;
 
 public:
 	BT_DECLARE_ALIGNED_ALLOCATOR();
