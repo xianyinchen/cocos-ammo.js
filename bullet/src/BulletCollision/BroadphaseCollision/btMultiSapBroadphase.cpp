@@ -105,7 +105,7 @@ void	btMultiSapBroadphase::buildTree(const btVector3& bvhAabbMin,const btVector3
 	m_optimizedAabbTree->buildInternal();
 }
 
-btBroadphaseProxy*	btMultiSapBroadphase::createProxy(  const btVector3& aabbMin,  const btVector3& aabbMax,int shapeType,void* userPtr, short int collisionFilterGroup,short int collisionFilterMask, btDispatcher* dispatcher,void* /*ignoreMe*/)
+btBroadphaseProxy*	btMultiSapBroadphase::createProxy(  const btVector3& aabbMin,  const btVector3& aabbMax,int shapeType,void* userPtr, int collisionFilterGroup,int collisionFilterMask, btDispatcher* dispatcher/*,void* ignoreMe*/)
 {
 	//void* ignoreMe -> we could think of recursive multi-sap, if someone is interested
 
@@ -379,7 +379,7 @@ void    btMultiSapBroadphase::calculateOverlappingPairs(btDispatcher* dispatcher
 		m_invalidPair = 0;
 
 		
-		int i;
+		// int i;
 
 		btBroadphasePair previousPair;
 		previousPair.m_pProxy0 = 0;

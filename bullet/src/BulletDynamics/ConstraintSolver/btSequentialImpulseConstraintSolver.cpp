@@ -322,6 +322,7 @@ static btSimdScalar gResolveSplitPenetrationImpulse_scalar_reference(
 		return deltaImpulse;
 }
 
+#ifdef USE_SIMD
 static btSimdScalar gResolveSplitPenetrationImpulse_sse2(btSolverBody& body1,btSolverBody& body2,const btSolverConstraint& c)
 {
 #ifdef USE_SIMD
@@ -357,6 +358,7 @@ static btSimdScalar gResolveSplitPenetrationImpulse_sse2(btSolverBody& body1,btS
 	return gResolveSplitPenetrationImpulse_scalar_reference(body1,body2,c);
 #endif
 }
+#endif
 
 
 btSequentialImpulseConstraintSolver::btSequentialImpulseConstraintSolver()
