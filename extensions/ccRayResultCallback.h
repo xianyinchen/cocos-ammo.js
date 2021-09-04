@@ -20,7 +20,7 @@ struct ccClosestRayResultCallback : public ClosestRayResultCallback
 	ccClosestRayResultCallback(const btVector3&	rayFromWorld,const btVector3&	rayToWorld)
 	:ClosestRayResultCallback(rayFromWorld, rayToWorld), m_shapeUserPointer(0), m_queryTrigger(true)
 	{
-		m_collisionFilterGroup = 0xffffffff;
+		m_collisionFilterGroup = -1;
 	}
 
 	// return true when pairs need collision
@@ -86,7 +86,7 @@ struct ccAllHitsRayResultCallback : public AllHitsRayResultCallback
 	ccAllHitsRayResultCallback(const btVector3&	rayFromWorld,const btVector3&	rayToWorld)
 	:AllHitsRayResultCallback(rayFromWorld, rayToWorld), m_queryTrigger(true)
 	{
-		m_collisionFilterGroup = 0xffffffff;
+		m_collisionFilterGroup = -1;
 	}
 
 	// return true when pairs need collision
