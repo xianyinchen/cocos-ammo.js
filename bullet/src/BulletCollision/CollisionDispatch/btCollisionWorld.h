@@ -205,8 +205,20 @@ public:
 	{
 		btScalar	m_closestHitFraction;
 		const btCollisionObject*		m_collisionObject;
-		int	m_collisionFilterGroup;
-		int	m_collisionFilterMask;
+		#if defined(__EMSCRIPTEN__)
+		// Change short to int, because we need a 32 bit mask data.
+		// But two 32 bit data make bad performance, and we only need mask, so make a union data to avoid that problem.
+		// It is very hacky and only works with cocos creator.
+		union 
+		{
+			int	m_collisionFilterGroup;
+			int	m_collisionFilterMask;
+		};	
+
+		#else
+		short int	m_collisionFilterGroup;
+		short int	m_collisionFilterMask;
+		#endif
 		//@BP Mod - Custom flags, currently used to enable backface culling on tri-meshes, see btRaycastCallback.h. Apply any of the EFlags defined there on m_flags here to invoke.
 		unsigned int m_flags;
 
@@ -221,8 +233,12 @@ public:
 		RayResultCallback()
 			:m_closestHitFraction(btScalar(1.)),
 			m_collisionObject(0),
+			
+			#if !defined(__EMSCRIPTEN__)
 			m_collisionFilterGroup(btBroadphaseProxy::DefaultFilter),
 			m_collisionFilterMask(btBroadphaseProxy::AllFilter),
+			#endif
+
 			//@BP Mod
 			m_flags(0)
 		{
