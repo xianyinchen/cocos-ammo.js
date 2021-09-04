@@ -142,11 +142,11 @@ struct ccAllHitsRayResultCallback : public AllHitsRayResultCallback
 		m_queryTrigger = queryTrigger;
 		m_closestHitFraction = btScalar(1.);
 		m_collisionObject = 0;
-		m_shapeUserPointers.clear();
-		m_hitFractions.clear();
-		m_collisionObjects.clear();
-		m_hitPointWorld.clear();
-		m_hitNormalWorld.clear();
+		m_shapeUserPointers.resize(0);
+		m_hitFractions.resize(0);
+		m_collisionObjects.resize(0);
+		m_hitPointWorld.resize(0);
+		m_hitNormalWorld.resize(0);
 	}
 };
 
