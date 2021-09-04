@@ -24,19 +24,14 @@ subject to the following restrictions:
 ///This is to allow MaterialCombiner/Custom Friction/Restitution values
 ContactAddedCallback		gContactAddedCallback=0;
 
-
-btScalar btManifoldResult::calculateCF_R(btScalar a, btScalar b, int mode){
-	if (mode == 0)
-		return (a + b) / 2;
-	else if (mode == 1)
-		return btMin(a, b);	
-	else if (mode == 2)
-		return a * b;
-	else
-		return btMax(a, b);
+btScalar btManifoldResult::calculateCombinedRestitution(const btScalar a, const btScalar b)
+{
+	return a * b;
 }
-btScalar btManifoldResult::calculateCRF_SF(btScalar a, btScalar b, int mode){	
-	btScalar friction = calculateCF_R(a, b, mode);
+
+btScalar btManifoldResult::calculateCombinedFriction(const btScalar a, const btScalar b)
+{
+	btScalar friction = a * b;
 
 	const btScalar MAX_FRICTION  = btScalar(10.);
 	if (friction < -MAX_FRICTION)
@@ -190,17 +185,16 @@ void btManifoldResult::addContactPoint(const btVector3& normalOnBInWorld,const b
 	btScalar restitution0 = collisionObject0->getRestitution();
 	btScalar rollingFriction0 = collisionObject0->getRollingFriction();
 	btScalar spinningFriction0 = collisionObject0->getSpinningFriction();
-	int combineMode0 = collisionObject0->getUserIndex2();
 	if (collisionShape0->isCompound())
 	{
 		const btCompoundShape* compoundShape0 = static_cast<const btCompoundShape*>(collisionShape0);
+		newPt.m_shape0 = compoundShape0->getChildShape(newPt.m_index0);
 		if (compoundShape0->isMutiMaterial())
 		{
 			friction0 = compoundShape0->getFriction(newPt.m_index0);
 			restitution0 = compoundShape0->getRestitution(newPt.m_index0);
 			rollingFriction0 = compoundShape0->getRollingFriction(newPt.m_index0);
 			spinningFriction0 = compoundShape0->getSpinningFriction(newPt.m_index0);
-			combineMode0 = compoundShape0->getCombinedMode(newPt.m_index0);
 		}
 	}
 	else if (collisionShape0->getShapeType() == TRIANGLE_MESH_SHAPE_PROXYTYPE || collisionShape0->getShapeType() == TERRAIN_SHAPE_PROXYTYPE || collisionShape0->getShapeType() == MULTIMATERIAL_TRIANGLE_MESH_PROXYTYPE)
@@ -216,7 +210,6 @@ void btManifoldResult::addContactPoint(const btVector3& normalOnBInWorld,const b
 				restitution0 = comShapeForTrimesh->getRestitution(index);
 				rollingFriction0 = comShapeForTrimesh->getRollingFriction(index);
 				spinningFriction0 = comShapeForTrimesh->getSpinningFriction(index);
-				combineMode0 = comShapeForTrimesh->getCombinedMode(index);
 			}
 		}
 	}
@@ -226,17 +219,16 @@ void btManifoldResult::addContactPoint(const btVector3& normalOnBInWorld,const b
 	btScalar restitution1 = collisionObject1->getRestitution();
 	btScalar rollingFriction1 = collisionObject1->getRollingFriction();
 	btScalar spinningFriction1 = collisionObject1->getSpinningFriction();
-	int combineMode1 = collisionObject1->getUserIndex2();
 	if (collisionShape1->isCompound())
 	{
 		const btCompoundShape* compoundShape1 = static_cast<const btCompoundShape*>(collisionShape1);
+		newPt.m_shape1 = compoundShape1->getChildShape(newPt.m_index1);
 		if (compoundShape1->isMutiMaterial())
 		{
 			friction1 = compoundShape1->getFriction(newPt.m_index1);
 			restitution1 = compoundShape1->getRestitution(newPt.m_index1);
 			rollingFriction1 = compoundShape1->getRollingFriction(newPt.m_index1);
 			spinningFriction1 = compoundShape1->getSpinningFriction(newPt.m_index1);
-			combineMode1 = compoundShape1->getCombinedMode(newPt.m_index1);
 		}
 	}
 	else if (collisionShape1->getShapeType() == TRIANGLE_MESH_SHAPE_PROXYTYPE || collisionShape1->getShapeType() == TERRAIN_SHAPE_PROXYTYPE || collisionShape1->getShapeType() == MULTIMATERIAL_TRIANGLE_MESH_PROXYTYPE)
@@ -252,16 +244,14 @@ void btManifoldResult::addContactPoint(const btVector3& normalOnBInWorld,const b
 				restitution1 = comShapeForTrimesh->getRestitution(index);
 				rollingFriction1 = comShapeForTrimesh->getRollingFriction(index);
 				spinningFriction1 = comShapeForTrimesh->getSpinningFriction(index);
-				combineMode1 = comShapeForTrimesh->getCombinedMode(index);
 			}
 		}
 	}
 
-	const int cm = btMax(combineMode0, combineMode1);
-	newPt.m_combinedFriction = calculateCF_R(friction0, friction1, cm);
-	newPt.m_combinedRestitution = calculateCF_R(restitution0, restitution1, cm);
-	newPt.m_combinedRollingFriction = calculateCRF_SF(rollingFriction0, rollingFriction1, cm);
-	newPt.m_combinedSpinningFriction = calculateCRF_SF(spinningFriction0, spinningFriction1, cm);
+	newPt.m_combinedFriction = calculateCombinedFriction(friction0, friction1);
+	newPt.m_combinedRollingFriction = calculateCombinedFriction(rollingFriction0, rollingFriction1);
+	newPt.m_combinedSpinningFriction = calculateCombinedFriction(spinningFriction0, spinningFriction1);
+	newPt.m_combinedRestitution = calculateCombinedRestitution(restitution0, restitution1);
 	btPlaneSpace1(newPt.m_normalWorldOnB, newPt.m_lateralFrictionDir1, newPt.m_lateralFrictionDir2);
 
 	//printf("depth=%f\n",depth);

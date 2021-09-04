@@ -86,11 +86,7 @@ void	btCompoundShape::addChildShape(const btTransform& localTransform,btCollisio
 
 	m_children.push_back(child);
 
-	m_frictions.push_back(btScalar(0.5));
-	m_restitutions.push_back(btScalar(0.));
-	m_rollingFrictions.push_back(btScalar(0.0f));
-	m_spinningFrictions.push_back(btScalar(0.0f));
-	m_combinedModes.push_back(2);
+	m_materials.resizeNoInitialize(m_materials.size() + 4);
 }
 
 void	btCompoundShape::updateChildTransform(int childIndex, const btTransform& newChildTransform,bool shouldRecalculateLocalAabb)
@@ -126,11 +122,7 @@ void btCompoundShape::removeChildShapeByIndex(int childShapeIndex)
 		m_children[childShapeIndex].m_node->dataAsInt = childShapeIndex;
 	m_children.pop_back();
 
-	m_frictions.remove(childShapeIndex);
-	m_restitutions.remove(childShapeIndex);
-	m_rollingFrictions.remove(childShapeIndex);
-	m_spinningFrictions.remove(childShapeIndex);
-	m_combinedModes.remove(childShapeIndex);
+	m_materials.resizeNoInitialize(m_materials.size() - 4);
 }
 
 

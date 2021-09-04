@@ -378,7 +378,7 @@ void	btCollisionWorld::rayTestSingleInternal(const btTransform& rayFromTrans,con
 					btCollisionWorld::LocalShapeInfo	shapeInfo;
 					shapeInfo.m_shapePart = partId;
 					shapeInfo.m_triangleIndex = triangleIndex;
-
+					shapeInfo.m_shapeTemp = m_triangleMesh;
 					btVector3 hitNormalWorld = m_colObjWorldTransform.getBasis() * hitNormalLocal;
 
 					btCollisionWorld::LocalRayResult rayResult
@@ -433,11 +433,12 @@ void	btCollisionWorld::rayTestSingleInternal(const btTransform& rayFromTrans,con
 			{
 				struct LocalInfoAdder2 : public RayResultCallback
 				{
+					const btCollisionShape* m_childCollisionShape;
 					RayResultCallback* m_userCallback;
 					int m_i;
 					
-					LocalInfoAdder2 (int i, RayResultCallback *user)
-						: m_userCallback(user), m_i(i)
+					LocalInfoAdder2 (int i, RayResultCallback *user, const btCollisionShape* child)
+						: m_childCollisionShape(child), m_userCallback(user), m_i(i)
 					{ 
 						m_closestHitFraction = m_userCallback->m_closestHitFraction;
 						m_flags = m_userCallback->m_flags;
@@ -500,7 +501,7 @@ void	btCollisionWorld::rayTestSingleInternal(const btTransform& rayFromTrans,con
 
 						
 
-						LocalInfoAdder2 my_cb(i, &m_resultCallback);
+						LocalInfoAdder2 my_cb(i, &m_resultCallback, childCollisionShape);
 
 						rayTestSingleInternal(
 							m_rayFromTrans,
@@ -591,10 +592,12 @@ void	btCollisionWorld::objectQuerySingleInternal(const btConvexShape* castShape,
 				if (castResult.m_fraction < resultCallback.m_closestHitFraction)
 				{
 					castResult.m_normal.normalize();
+					btCollisionWorld::LocalShapeInfo	shapeInfo;
+					shapeInfo.m_shapeTemp = collisionShape;
 					btCollisionWorld::LocalConvexResult localConvexResult
 						(
 						colObjWrap->getCollisionObject(),
-						0,
+						&shapeInfo,
 						castResult.m_normal,
 						castResult.m_hitPoint,
 						castResult.m_fraction
@@ -641,6 +644,7 @@ void	btCollisionWorld::objectQuerySingleInternal(const btConvexShape* castShape,
 						btCollisionWorld::LocalShapeInfo	shapeInfo;
 						shapeInfo.m_shapePart = partId;
 						shapeInfo.m_triangleIndex = triangleIndex;
+						shapeInfo.m_shapeTemp = m_triangleMesh;
 						if (hitFraction <= m_resultCallback->m_closestHitFraction)
 						{
 
@@ -686,10 +690,12 @@ void	btCollisionWorld::objectQuerySingleInternal(const btConvexShape* castShape,
 							if (castResult.m_fraction < resultCallback.m_closestHitFraction)
 							{
 								castResult.m_normal.normalize();
+								btCollisionWorld::LocalShapeInfo	shapeInfo;
+								shapeInfo.m_shapeTemp = collisionShape;
 								btCollisionWorld::LocalConvexResult localConvexResult
 									(
 									colObjWrap->getCollisionObject(),
-									0,
+									&shapeInfo,
 									castResult.m_normal,
 									castResult.m_hitPoint,
 									castResult.m_fraction
@@ -733,6 +739,7 @@ void	btCollisionWorld::objectQuerySingleInternal(const btConvexShape* castShape,
 							btCollisionWorld::LocalShapeInfo	shapeInfo;
 							shapeInfo.m_shapePart = partId;
 							shapeInfo.m_triangleIndex = triangleIndex;
+							shapeInfo.m_shapeTemp = m_triangleMesh;
 							if (hitFraction <= m_resultCallback->m_closestHitFraction)
 							{
 
@@ -808,11 +815,12 @@ void	btCollisionWorld::objectQuerySingleInternal(const btConvexShape* castShape,
 						btTransform childWorldTrans = m_colObjWorldTransform * childTrans;
 
 						struct	LocalInfoAdder : public ConvexResultCallback {
+							const btCollisionShape* m_childCollisionShape;
 							ConvexResultCallback* m_userCallback;
 							int m_i;
 
-							LocalInfoAdder(int i, ConvexResultCallback *user)
-								: m_userCallback(user), m_i(i)
+							LocalInfoAdder(int i, ConvexResultCallback *user, const btCollisionShape* child)
+								: m_childCollisionShape(child), m_userCallback(user), m_i(i)
 							{
 								m_closestHitFraction = m_userCallback->m_closestHitFraction;
 							}
@@ -825,6 +833,7 @@ void	btCollisionWorld::objectQuerySingleInternal(const btConvexShape* castShape,
 								btCollisionWorld::LocalShapeInfo	shapeInfo;
 								shapeInfo.m_shapePart = -1;
 								shapeInfo.m_triangleIndex = m_i;
+								shapeInfo.m_shapeTemp = m_childCollisionShape;
 								if (r.m_localShapeInfo == NULL)
 									r.m_localShapeInfo = &shapeInfo;
 								const btScalar result = m_userCallback->addSingleResult(r, b);
@@ -834,7 +843,7 @@ void	btCollisionWorld::objectQuerySingleInternal(const btConvexShape* castShape,
 							}
 						};
 
-						LocalInfoAdder my_cb(index, &m_resultCallback);
+						LocalInfoAdder my_cb(index, &m_resultCallback, childCollisionShape);
 
 						btCollisionObjectWrapper tmpObj(m_colObjWrap, childCollisionShape, m_colObjWrap->getCollisionObject(), childWorldTrans, -1, index);
 

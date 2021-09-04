@@ -14,7 +14,6 @@ ccDiscreteDynamicsWorld::ccDiscreteDynamicsWorld(
     : btDiscreteDynamicsWorld(dispatcher, pairCache, constraintSolver,
                               collisionConfiguration) {
   // gDeactivationTime = btScalar(1);
-  m_ccdCastCheckResponse = false;
   m_dispatchInfo.m_allowedCcdPenetration = btScalar(0.01);
   getPairCache()->setOverlapFilterCallback(&m_overlapFilterCallback);
 }
@@ -39,7 +38,6 @@ void ccDiscreteDynamicsWorld::applyGravity() {
 
 void ccDiscreteDynamicsWorld::createPredictiveContacts(btScalar timeStep) {
   BT_PROFILE("createPredictiveContacts");
-  getCcdTriggerRecorder().resize(0);
   releasePredictiveContacts();
 
   int numBodies = m_nonStaticRigidBodies.size();
@@ -96,7 +94,8 @@ void ccDiscreteDynamicsWorld::createPredictiveContacts(btScalar timeStep) {
 
               btManifoldPoint newPoint(btVector3(0, 0, 0), localPointB,
                                        sweepResults.m_hitNormalWorld, distance);
-
+              newPoint.m_shape0 = body->getCollisionShape();
+              newPoint.m_shape1 = sweepResults.m_hitCollisionObject->getCollisionShape();
               int index = manifold->addManifoldPoint(newPoint, true);
               btManifoldPoint &pt = manifold->getContactPoint(index);
               pt.m_combinedRestitution = 0;

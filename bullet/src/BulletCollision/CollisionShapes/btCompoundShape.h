@@ -68,11 +68,7 @@ protected:
 protected:
 	btVector3	m_localScaling;
 
-	btAlignedObjectArray<btScalar> m_frictions;
-	btAlignedObjectArray<btScalar> m_rollingFrictions;
-	btAlignedObjectArray<btScalar> m_restitutions;
-	btAlignedObjectArray<btScalar> m_spinningFrictions;
-	btAlignedObjectArray<int> m_combinedModes;
+	btAlignedObjectArray<btScalar> m_materials;
 	bool m_isMutiMaterial;
 
 public:
@@ -180,34 +176,30 @@ public:
 	///fills the dataBuffer and returns the struct name (and 0 on failure)
 	virtual	const char*	serialize(void* dataBuffer, btSerializer* serializer) const;
 
-	void setMaterial(int index, btScalar friction, btScalar restitution, btScalar rollingFriction = btScalar(0.), btScalar spinningFriction = btScalar(0.), int mode = 2)
+	void setMaterial(int index, btScalar friction, btScalar restitution, btScalar rollingFriction = btScalar(0.), btScalar spinningFriction = btScalar(0.))
 	{
-		m_frictions[index] = friction;
-		m_restitutions[index] = restitution;
-		m_rollingFrictions[index] = rollingFriction;
-		m_spinningFrictions[index] = spinningFriction;
-		m_combinedModes[index] = mode;
+		const int offset = index * 4;
+		m_materials[offset] = friction;
+		m_materials[offset + 1] = restitution;
+		m_materials[offset + 2] = rollingFriction;
+		m_materials[offset + 3] = spinningFriction;
 		m_isMutiMaterial = true;
 	}
 
 	btScalar getFriction(const int index) const {
-		return m_frictions[index];
+		return m_materials[index * 4];
 	}
 	
 	btScalar getRestitution(const int index) const {
-		return m_restitutions[index];
+		return m_materials[index * 4 + 1];
 	}
 	
 	btScalar getRollingFriction(const int index) const {
-		return m_rollingFrictions[index];
+		return m_materials[index * 4 + 2];
 	}
 	
 	btScalar getSpinningFriction(const int index) const {
-		return m_spinningFrictions[index];
-	}
-
-	int getCombinedMode(const int index) const {
-		return m_combinedModes[index];
+		return m_materials[index * 4 + 3];
 	}
 
 	bool isMutiMaterial() const

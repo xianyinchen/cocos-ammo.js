@@ -498,7 +498,7 @@ interface btCompoundShape {
   float getMargin();
   
   ///XXX
-  void setMaterial(long childShapeindex, float f, float r, optional float rf, optional float sf, optional long m);
+  void setMaterial(long childShapeindex, float f, float r, optional float rf, optional float sf);
 };
 btCompoundShape implements btCollisionShape;
 

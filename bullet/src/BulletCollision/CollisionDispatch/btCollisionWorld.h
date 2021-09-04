@@ -176,7 +176,7 @@ public:
 		int	m_shapePart;
 		int	m_triangleIndex;
 		
-		//const btCollisionShape*	m_shapeTemp;
+		const btCollisionShape*	m_shapeTemp;
 		//const btTransform*	m_shapeLocalTransform;
 	};
 
