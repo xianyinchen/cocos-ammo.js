@@ -8,13 +8,14 @@
 #include "BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h"
 #include "ccDiscreteDynamicsWorld.h"
 
-typedef btCollisionWorld::ClosestConvexResultCallback
-    ClosestConvexResultCallback;
+namespace cc 
+{
+typedef btCollisionWorld::ClosestConvexResultCallback ClosestConvexResultCallback;
 
 struct ccNotMeClosestConvexResultCallback : public ClosestConvexResultCallback {
 
 public:
-  const btCollisionShape* m_hit;
+  const btCollisionShape *m_hit;
   btCollisionObject *m_me;
   ccDiscreteDynamicsWorld *m_world;
 
@@ -51,5 +52,5 @@ public:
     return true;
   }
 };
-
+}
 #endif // CC_CONVEX_CAST_CALLBACK_H

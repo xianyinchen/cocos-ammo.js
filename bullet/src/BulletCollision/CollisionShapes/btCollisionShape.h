@@ -20,8 +20,10 @@ subject to the following restrictions:
 #include "LinearMath/btVector3.h"
 #include "LinearMath/btMatrix3x3.h"
 #include "BulletCollision/BroadphaseCollision/btBroadphaseProxy.h" //for the shape types
+#include "extensions/ccMaterial.h"
 class btSerializer;
 
+using cc::ccMaterial;
 
 ///The btCollisionShape class provides an interface for collision shapes that can be shared among btCollisionObjects.
 ATTRIBUTE_ALIGNED16(class) btCollisionShape
@@ -30,12 +32,13 @@ protected:
 	int m_shapeType;
 	void* m_userPointer;
 	int m_userIndex;
+	ccMaterial* m_material;
 
 public:
 
 	BT_DECLARE_ALIGNED_ALLOCATOR();
 
-	btCollisionShape() : m_shapeType (INVALID_SHAPE_PROXYTYPE), m_userPointer(0), m_userIndex(-1)
+	btCollisionShape() : m_shapeType (INVALID_SHAPE_PROXYTYPE), m_userPointer(0), m_userIndex(0), m_material(0)
 	{
 	}
 
@@ -139,6 +142,14 @@ public:
 	int getUserIndex() const
 	{
 		return m_userIndex;
+	}
+
+	void setMaterial(ccMaterial *m) {
+		m_material = m;
+	}
+	
+	ccMaterial* getMaterial() const {
+		return m_material;
 	}
 
 	void setUserPointerAsInt(int index)

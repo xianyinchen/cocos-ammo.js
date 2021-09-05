@@ -7,6 +7,9 @@
 #include "LinearMath/btScalar.h"
 #include "ccOverlapFilterCallback.h"
 
+namespace cc
+{
+
 ATTRIBUTE_ALIGNED16(class)
 ccDiscreteDynamicsWorld : public btDiscreteDynamicsWorld {
 private:
@@ -36,5 +39,7 @@ public:
   virtual void applyGravity();
   virtual void createPredictiveContacts(btScalar timeStep);
 };
+
+}
 
 #endif // CC_DISCRETE_DYNAMICS_WORLD_H

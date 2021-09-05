@@ -7,6 +7,9 @@
 #include "LinearMath/btVector3.h"
 #include "ccConvexCastCallBack.h"
 
+namespace cc
+{
+
 ccDiscreteDynamicsWorld::ccDiscreteDynamicsWorld(
     btDispatcher *dispatcher, btBroadphaseInterface *pairCache,
     btConstraintSolver *constraintSolver,
@@ -49,59 +52,42 @@ void ccDiscreteDynamicsWorld::createPredictiveContacts(btScalar timeStep) {
       if (body->isActive() && (!body->isStaticOrKinematicObject())) {
         body->predictIntegratedTransform(timeStep, predictedTrans);
         const btTransform &transform = body->getWorldTransform();
-        btScalar squareMotion =
-            (predictedTrans.getOrigin() - transform.getOrigin()).length2();
+        btScalar squareMotion = (predictedTrans.getOrigin() - transform.getOrigin()).length2();
 
-        if (getDispatchInfo().m_useContinuous &&
-            body->getCcdSquareMotionThreshold() &&
-            body->getCcdSquareMotionThreshold() < squareMotion) {
+        if (getDispatchInfo().m_useContinuous && body->getCcdSquareMotionThreshold() && body->getCcdSquareMotionThreshold() < squareMotion) {
           BT_PROFILE("predictive convexSweepTest");
           if (body->getCollisionShape()->isConvex()) {
-            ccNotMeClosestConvexResultCallback sweepResults(
-                body, this, transform.getOrigin(), predictedTrans.getOrigin());
+            ccNotMeClosestConvexResultCallback sweepResults(body, this, transform.getOrigin(), predictedTrans.getOrigin());
 
-            // btConvexShape* convexShape =
-            // static_cast<btConvexShape*>(body->getCollisionShape());
+            // btConvexShape* convexShape = static_cast<btConvexShape*>(body->getCollisionShape());
             btSphereShape tmpSphere(body->getCcdSweptSphereRadius());
 
-            sweepResults.m_collisionFilterGroup =
-                body->getBroadphaseProxy()->m_collisionFilterGroup;
-            sweepResults.m_collisionFilterMask =
-                body->getBroadphaseProxy()->m_collisionFilterMask;
+            sweepResults.m_collisionFilterGroup = body->getBroadphaseProxy()->m_collisionFilterGroup;
+            sweepResults.m_collisionFilterMask = body->getBroadphaseProxy()->m_collisionFilterMask;
             btTransform modifiedPredictedTrans = predictedTrans;
             modifiedPredictedTrans.setBasis(transform.getBasis());
 
-            convexSweepTest(&tmpSphere, transform, modifiedPredictedTrans,
-                            sweepResults);
+            convexSweepTest(&tmpSphere, transform, modifiedPredictedTrans, sweepResults);
 
             if (sweepResults.hasHit()) {
-              btVector3 distVec =
-                  (predictedTrans.getOrigin() - transform.getOrigin()) *
-                  sweepResults.m_closestHitFraction;
+              btVector3 distVec = (predictedTrans.getOrigin() - transform.getOrigin()) * sweepResults.m_closestHitFraction;
               btScalar distance = distVec.dot(-sweepResults.m_hitNormalWorld);
 
-              btPersistentManifold *manifold = m_dispatcher1->getNewManifold(
-                  body, sweepResults.m_hitCollisionObject);
+              btPersistentManifold *manifold = m_dispatcher1->getNewManifold(body, sweepResults.m_hitCollisionObject);
               btMutexLock(&m_predictiveManifoldsMutex);
               m_predictiveManifolds.push_back(manifold);
               btMutexUnlock(&m_predictiveManifoldsMutex);
 
               btVector3 worldPointB = transform.getOrigin() + distVec;
-              btVector3 localPointB =
-                  sweepResults.m_hitCollisionObject->getWorldTransform()
-                      .inverse() *
-                  worldPointB;
+              btVector3 localPointB = sweepResults.m_hitCollisionObject->getWorldTransform().inverse() * worldPointB;
 
-              btManifoldPoint newPoint(btVector3(0, 0, 0), localPointB,
-                                       sweepResults.m_hitNormalWorld, distance);
+              btManifoldPoint newPoint(btVector3(0, 0, 0), localPointB, sweepResults.m_hitNormalWorld, distance);
               newPoint.m_shape0 = body->getCollisionShape();
-              newPoint.m_shape1 = sweepResults.m_hitCollisionObject->getCollisionShape();
+              newPoint.m_shape1 = sweepResults.m_hit;
               int index = manifold->addManifoldPoint(newPoint, true);
               btManifoldPoint &pt = manifold->getContactPoint(index);
               pt.m_combinedRestitution = 0;
-              pt.m_combinedFriction =
-                  btManifoldResult::calculateCombinedFriction(
-                      body, sweepResults.m_hitCollisionObject);
+              pt.m_combinedFriction = btManifoldResult::calculateCombinedFriction(body, sweepResults.m_hitCollisionObject);
               pt.m_positionWorldOnA = transform.getOrigin();
               pt.m_positionWorldOnB = worldPointB;
             }
@@ -110,4 +96,6 @@ void ccDiscreteDynamicsWorld::createPredictiveContacts(btScalar timeStep) {
       }
     }
   }
+}
+
 }

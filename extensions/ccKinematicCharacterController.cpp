@@ -24,6 +24,8 @@ subject to the following restrictions:
 #include "LinearMath/btDefaultMotionState.h"
 #include "ccKinematicCharacterController.h"
 
+namespace cc
+{
 
 // static helper method
 static btVector3
@@ -778,4 +780,6 @@ bool ccKinematicCharacterController::needsCollision(const btCollisionObject* bod
 	collides = collides && (body1->getBroadphaseHandle()->m_collisionFilterGroup & body0->getBroadphaseHandle()->m_collisionFilterMask);
 	collides = collides && body0->checkCollideWith(body1) && body1->checkCollideWith(body0);
 	return collides;
+}
+
 }

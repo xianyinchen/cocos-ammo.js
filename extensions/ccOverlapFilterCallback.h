@@ -5,6 +5,9 @@
 #include "BulletCollision/BroadphaseCollision/btOverlappingPairCache.h"
 #include "BulletCollision/CollisionDispatch/btCollisionObject.h"
 
+namespace cc 
+{
+
 ATTRIBUTE_ALIGNED16(class) ccOverlapFilterCallback : public btOverlapFilterCallback
 {
 private:
@@ -34,5 +37,7 @@ public:
         return collides;
     }
 };
+
+}
 
 #endif // CC_OVERLAPPING_PAIR_CACHE_H

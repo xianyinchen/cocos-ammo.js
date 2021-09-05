@@ -15,6 +15,9 @@ class btCollisionWorld;
 class btCollisionDispatcher;
 class btPairCachingGhostObject;
 
+namespace cc 
+{
+
 ///ccKinematicCharacterController is an object that supports a sliding motion in a world.
 ///It uses a ghost object and convex sweep test to test for upcoming collisions. This is combined with discrete collision detection to recover from penetrations.
 ///Interaction between ccKinematicCharacterController and dynamic rigid bodies needs to be explicity implemented by the user.
@@ -153,5 +156,7 @@ public:
 	// EXTENDS
 	virtual bool needsCollision(const btCollisionObject* body0, const btCollisionObject* body1);
 };
+
+}
 
 #endif // CC_KINEMATIC_CHARACTER_CONTROLLER_H

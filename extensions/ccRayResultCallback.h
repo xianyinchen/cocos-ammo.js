@@ -8,6 +8,9 @@
 #include "LinearMath/btAlignedObjectArray.h"
 #include "LinearMath/btScalar.h"
 
+namespace cc
+{
+
 typedef btCollisionWorld::ClosestRayResultCallback ClosestRayResultCallback;
 typedef btCollisionWorld::AllHitsRayResultCallback AllHitsRayResultCallback;
 typedef btCollisionWorld::LocalRayResult LocalRayResult;
@@ -149,5 +152,7 @@ struct ccAllHitsRayResultCallback : public AllHitsRayResultCallback
 		m_hitNormalWorld.resize(0);
 	}
 };
+
+}
 
 #endif //CC_RAY_RESULT_CALLBACK_H

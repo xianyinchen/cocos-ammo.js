@@ -153,9 +153,6 @@ public:
     static btScalar calculateCombinedSpinningFriction(const btCollisionObject* body0,const btCollisionObject* body1);
     static btScalar calculateCombinedContactDamping(const btCollisionObject* body0,const btCollisionObject* body1);
 	static btScalar calculateCombinedContactStiffness(const btCollisionObject* body0,const btCollisionObject* body1);
-
-	static btScalar calculateCombinedFriction(const btScalar a, const btScalar b);
-	static btScalar calculateCombinedRestitution(const btScalar a, const btScalar b);
 };
 
 #endif //BT_MANIFOLD_RESULT_H
