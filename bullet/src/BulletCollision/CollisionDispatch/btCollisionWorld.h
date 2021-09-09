@@ -205,7 +205,7 @@ public:
 	{
 		btScalar	m_closestHitFraction;
 		const btCollisionObject*		m_collisionObject;
-		#if defined(__EMSCRIPTEN__)
+		#if defined(__EMSCRIPTEN__) || defined(__wasi__)
 		// Change short to int, because we need a 32 bit mask data.
 		// But two 32 bit data make bad performance, and we only need mask, so make a union data to avoid that problem.
 		// It is very hacky and only works with cocos creator.
@@ -234,7 +234,7 @@ public:
 			:m_closestHitFraction(btScalar(1.)),
 			m_collisionObject(0),
 			
-			#if !defined(__EMSCRIPTEN__)
+			#if !defined(__EMSCRIPTEN__) && !defined(__wasi__)
 			m_collisionFilterGroup(btBroadphaseProxy::DefaultFilter),
 			m_collisionFilterMask(btBroadphaseProxy::AllFilter),
 			#endif
