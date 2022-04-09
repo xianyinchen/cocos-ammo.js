@@ -7,7 +7,7 @@ bullet/build
 bullet/build-win
 bullet/examples/pybullet
 *.diff
-
+/temp/
 /bullet/CMakeFiles
 /bullet/autom4te.cache
 /bullet/Makefile.in
