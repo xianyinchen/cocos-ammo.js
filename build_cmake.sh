@@ -13,7 +13,7 @@ cd ./temp && emmake make
 cd $local
 
 # 生成绑定代码
-$PYTHON $EMSCRIPTEN/tools/webidl_binder.py ./ammo.release.idl ammo_glue
+#$PYTHON $EMSCRIPTEN/tools/webidl_binder.py ./ammo.release.idl ammo_glue
 
 # 编译 JS
 # $(CXX) $(LINK_OPTS) -I$(VERSION) $< -o build/$(VERSION)_$(BUILD).js -s WASM=0 -fno-rtti

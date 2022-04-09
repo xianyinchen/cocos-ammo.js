@@ -1668,18 +1668,6 @@ float EMSCRIPTEN_KEEPALIVE emscripten_bind_btCompoundShape_getMargin_0(btCompoun
   return self->getMargin();
 }
 
-void EMSCRIPTEN_KEEPALIVE emscripten_bind_btCompoundShape_setMaterial_3(btCompoundShape* self, int childShapeindex, float f, float r) {
-  self->setMaterial(childShapeindex, f, r);
-}
-
-void EMSCRIPTEN_KEEPALIVE emscripten_bind_btCompoundShape_setMaterial_4(btCompoundShape* self, int childShapeindex, float f, float r, float rf) {
-  self->setMaterial(childShapeindex, f, r, rf);
-}
-
-void EMSCRIPTEN_KEEPALIVE emscripten_bind_btCompoundShape_setMaterial_5(btCompoundShape* self, int childShapeindex, float f, float r, float rf, float sf) {
-  self->setMaterial(childShapeindex, f, r, rf, sf);
-}
-
 void EMSCRIPTEN_KEEPALIVE emscripten_bind_btCompoundShape_setLocalScaling_1(btCompoundShape* self, const btVector3* scaling) {
   self->setLocalScaling(*scaling);
 }
@@ -2666,14 +2654,6 @@ void EMSCRIPTEN_KEEPALIVE emscripten_bind_ccDiscreteDynamicsWorld_setNarrowPhase
 
 void EMSCRIPTEN_KEEPALIVE emscripten_bind_ccDiscreteDynamicsWorld_setAllowCcdPenetration_1(ccDiscreteDynamicsWorld* self, float v) {
   self->setAllowCcdPenetration(v);
-}
-
-void EMSCRIPTEN_KEEPALIVE emscripten_bind_ccDiscreteDynamicsWorld_setCcdCastCheckResponse_1(ccDiscreteDynamicsWorld* self, bool v) {
-  self->setCcdCastCheckResponse(v);
-}
-
-btIntArray* EMSCRIPTEN_KEEPALIVE emscripten_bind_ccDiscreteDynamicsWorld_getCcdTriggerRecorder_0(ccDiscreteDynamicsWorld* self) {
-  return &self->getCcdTriggerRecorder();
 }
 
 void EMSCRIPTEN_KEEPALIVE emscripten_bind_ccDiscreteDynamicsWorld_rayTest_3(ccDiscreteDynamicsWorld* self, const btVector3* rayFromWorld, const btVector3* rayToWorld, btCollisionWorld::RayResultCallback* resultCallback) {

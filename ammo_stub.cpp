@@ -12,4 +12,7 @@
 #include <BulletCollision/CollisionShapes/btConvexPolyhedron.h>
 #include <BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h>
 #include <idl_templates.h>
+
+using namespace cc;
+
 #include <ammo_glue.cpp>
