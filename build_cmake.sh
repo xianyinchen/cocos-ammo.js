@@ -20,6 +20,7 @@ cd $local
 
 # 配置编译参数
 EMCC_OPTS=(
+  -s ENVIRONMENT=web,worker
   -s WASM=1
   -s NO_DYNAMIC_EXECUTION=1
   -s IGNORE_CLOSURE_COMPILER_ERRORS=1
@@ -47,7 +48,7 @@ EMCC_OPTS=(
   )
 
 # 编译 WASM
-emcc $local/ammo_stub.cpp $local/temp/bullet/src/BulletSoftBody/libBulletSoftBody.a $local/temp/bullet/src/BulletDynamics/libBulletDynamics.a $local/temp/bullet/src/BulletCollision/libBulletCollision.a $local/temp/bullet/src/LinearMath/libLinearMath.a -I $local/ -I $local/bullet/src/ --post-js $local/ammo_glue.js ${EMCC_OPTS[@]} -s WASM=1 -o ammo.js
+emcc $local/ammo_stub.cpp $local/temp/extensions/libExtensions.a $local/temp/bullet/src/BulletSoftBody/libBulletSoftBody.a $local/temp/bullet/src/BulletDynamics/libBulletDynamics.a $local/temp/bullet/src/BulletCollision/libBulletCollision.a $local/temp/bullet/src/LinearMath/libLinearMath.a -I $local/ -I $local/bullet/src/ --post-js $local/ammo_glue.js ${EMCC_OPTS[@]} -s WASM=1 -o ammo.js
 
 # 生成 ts 描述文件 (node > 14.0.0)
 #node --experimental-specifier-resolution=node --harmony ./webidl2ts/dist/index.js -f ./box2d-$VERSION.idl -n Box2D -o box2d.d.ts

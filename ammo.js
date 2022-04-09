@@ -5750,12 +5750,6 @@ function array_bounds_check_error(idx,size){ throw 'Array index ' + idx + ' out 
       return demangleAll(js);
     }
 
-  /** @type {function(...*):?} */
-  function __ZN2cc23ccDiscreteDynamicsWorldC1EP12btDispatcherP21btBroadphaseInterfaceP18btConstraintSolverP24btCollisionConfiguration(
-  ) {
-  err('missing function: _ZN2cc23ccDiscreteDynamicsWorldC1EP12btDispatcherP21btBroadphaseInterfaceP18btConstraintSolverP24btCollisionConfiguration'); abort(-1);
-  }
-
   function ___handle_stack_overflow(requested) {
       requested = requested >>> 0;
       abort('stack overflow (Attempt to set SP to 0x' + requested.toString(16) +
@@ -5946,7 +5940,6 @@ function checkIncomingModuleAPI() {
   ignoredModuleProp('fetchSettings');
 }
 var asmLibraryArg = {
-  "_ZN2cc23ccDiscreteDynamicsWorldC1EP12btDispatcherP21btBroadphaseInterfaceP18btConstraintSolverP24btCollisionConfiguration": __ZN2cc23ccDiscreteDynamicsWorldC1EP12btDispatcherP21btBroadphaseInterfaceP18btConstraintSolverP24btCollisionConfiguration,
   "__handle_stack_overflow": ___handle_stack_overflow,
   "_emscripten_date_now": __emscripten_date_now,
   "abort": _abort,
